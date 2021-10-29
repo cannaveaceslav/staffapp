@@ -40,3 +40,6 @@ I chose a project "StaffApp" to develop an application  because:
 ## If you are interested in viewpoints, go ahead, 
    check it out: [Viewpoints](https://github.com/cannaveaceslav/staffapp/wiki/Viewpoints)
 
+## And who is the owner and who is the dream team who developed such a beautiful application? 
+ Here he is, Slava Canna!
+ [Ava](https://user-images.githubusercontent.com/57837220/139452463-5f90b1d9-40e0-4676-a6ce-c3bc77bad0e5.jpg)
