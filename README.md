@@ -36,7 +36,7 @@ I chose a project "StaffApp" to develop an application  because:
    take a look here [Functional Requrements](https://github.com/cannaveaceslav/staffapp/wiki/Functional-Requirements)
 
 ## Also if you want to find all Non-Functional Requrements
-   take a look here [None-Functional Requrements](https://github.com/cannaveaceslav/staffapp/wiki/None-Functional-Requirements)
+   take a look here [None-Functional Requrements](https://github.com/cannaveaceslav/staffapp/wiki/Non-Functional-Requirements)
    
 ## If you are interested in viewpoints, go ahead, 
    check it out: [Viewpoints](https://github.com/cannaveaceslav/staffapp/wiki/Viewpoints)
