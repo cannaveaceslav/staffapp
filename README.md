@@ -23,7 +23,7 @@ I chose a project "StaffApp" to develop an application  because:
    - should allow you to select an employee from the list and see what items are listed for him (laptop, chair, monitor ...).
    - should allow you to bind items to new employees, or replace existing ones by entering a barcode or choosing item from the list;
    - should allow for an inventory of items.
-[20000000000000000001.pdf](https://github.com/cannaveaceslav/staffapp/files/7442609/20000000000000000001.pdf)
+
 
 ## IoT:
 
