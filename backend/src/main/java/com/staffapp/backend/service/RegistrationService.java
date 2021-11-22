@@ -33,7 +33,7 @@ public class RegistrationService {
                                                    UserRole.USER
                                           )
     );
-    String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
+    String link = "http://localhost:8080/registration/confirm?token=" + token;
     emailSender.send(registrationRequest.getEmail(),
                      buildEmail(registrationRequest.getFirstName(), link)
     );
@@ -67,13 +67,13 @@ public class RegistrationService {
             "\n" +
             "<span style=\"display:none;font-size:1px;color:#fff;max-height:0\"></span>\n" +
             "\n" +
-            "  <table role=\"presentation\" width=\"100%\" style=\"border-collapse:collapse;min-width:100%;width:100%!important\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n" +
+            "  <table role=\"presentation\" width=\"60%\" style=\"border-collapse:collapse;min-width:100%;width:100%!important\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n" +
             "    <tbody><tr>\n" +
-            "      <td width=\"100%\" height=\"53\" bgcolor=\"#0b0c0c\">\n" +
+            "      <td width=\"50%\" height=\"53\" bgcolor=\"#1D70B8\">\n" +
             "        \n" +
             "        <table role=\"presentation\" width=\"100%\" style=\"border-collapse:collapse;max-width:580px\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" align=\"center\">\n" +
             "          <tbody><tr>\n" +
-            "            <td width=\"70\" bgcolor=\"#0b0c0c\" valign=\"middle\">\n" +
+            "            <td width=\"70\" bgcolor=\"#1D70B8\" valign=\"middle\">\n" +
             "                <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse\">\n" +
             "                  <tbody><tr>\n" +
             "                    <td style=\"padding-left:10px\">\n" +
@@ -99,7 +99,7 @@ public class RegistrationService {
             "        \n" +
             "                <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse\">\n" +
             "                  <tbody><tr>\n" +
-            "                    <td bgcolor=\"#1D70B8\" width=\"100%\" height=\"10\"></td>\n" +
+            "                    <td bgcolor=\"#1D70B8\" width=\"100%\" height=\"0\"></td>\n" +
             "                  </tr>\n" +
             "                </tbody></table>\n" +
             "        \n" +

@@ -1,4 +1,4 @@
-package com.staffapp.backend.security.config;
+package com.staffapp.backend.config;
 
 import com.staffapp.backend.service.UserService;
 import lombok.AllArgsConstructor;
@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/api/v*/registration/**")
+                    .antMatchers("/registration/**")
                     .permitAll()
                 .anyRequest()
                 .authenticated().and()
