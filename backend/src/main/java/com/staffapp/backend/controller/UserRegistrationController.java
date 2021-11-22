@@ -10,11 +10,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "api/v1/registration")
+@RequestMapping(path = "/registration")
 @AllArgsConstructor
 public class UserRegistrationController {
 
   private final RegistrationService registrationService;
+
+  @GetMapping
+  public String register() {
+    return "<html>\n" + "<header><title>Welcome</title></header>\n" +
+            "<body>\n" + "Hello world\n" + "</body>\n" + "</html>";
+  }
+
+//  @GetMapping
+//  public String register() {
+//    return "register";
+//  }
 
   @PostMapping
   public String register(@RequestBody RegistrationRequest registrationRequest) {
