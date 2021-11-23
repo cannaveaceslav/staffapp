@@ -19,7 +19,17 @@ public class UserRegistrationController {
   @GetMapping
   public String register() {
     return "<html>\n" + "<header><title>Welcome</title></header>\n" +
-            "<body>\n" + "Hello world\n" + "</body>\n" + "</html>";
+            "<body>\n" + "Register new account\n" +
+            "\"<br/><br/>" +
+            "<form action=\"servlet/Register\" method=\"post\">\n" +
+            "Name:<input type=\"text\" name=\"userName\"/><br/><br/>\n" +
+            "Email Id:<input type=\"text\" name=\"userEmail\"/><br/><br/>\n" +
+            "Password:<input type=\"password\" name=\"userPass\"/><br/><br/>\n" +
+            "Confirm password:<input type=\"password\" name=\"userPass\"/><br/><br/>\n" +
+            "<input type=\" button \" value=\" register \"/>\n" +
+            "</form>"+
+            "</body>\n" +
+            "</html>";
   }
 
 //  @GetMapping

@@ -29,15 +29,22 @@ public class UserService implements UserDetailsService {
   }
 
   public String signUpUser(User user) {
+
+
     boolean userExists = userRepository
             .findByEmail(user.getEmail())
             .isPresent();
 
-    if (userExists) {
-      // TODO check of attributes are the same and
-      // TODO if email not confirmed send confirmation email.
 
-      throw new IllegalStateException("email already taken");
+    if (userExists) {
+      // TODO check of attributes are the same
+//      boolean userIsEnabled = userRepository
+//              .findByEmail(user.getEmail()).get().isEnabled();
+//
+//      if (userIsEnabled) {
+//        throw new IllegalStateException("email already taken");
+//      }
+              throw new IllegalStateException("email already taken");
     }
 
     String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
@@ -53,13 +60,11 @@ public class UserService implements UserDetailsService {
             user
     );
     confirmationTokenService.saveConfirmationToken(confirmationToken);
-
-    // TODO: 11/8/2021 send email
     return token;
 
   }
 
-  public void enableUser(String userName){
+  public void enableUser(String userName) {
     userRepository.updateUserEnable(userName);
   }
 }
