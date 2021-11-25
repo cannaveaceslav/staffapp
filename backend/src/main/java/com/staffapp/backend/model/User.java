@@ -43,6 +43,9 @@ public class User implements UserDetails {
   private Boolean locked = false;
   private Boolean enabled = false;
 
+
+
+
   public User(String firstName,
               String lastName,
               String email,
