@@ -1,9 +1,11 @@
 package com.staffapp.backend.model;
 
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -19,23 +21,23 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 
-
 @Getter
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-@Table(name = "APP_EMPLOYEE")
-public class Employee {
+@Table(name = "APP_EMPLOYEE_HIST")
+public class Employee_Hist {
 
   @SequenceGenerator
-          (name = "APP_EMPLOYEE_SEQUENCE",
-                  sequenceName = "APP_EMPLOYEE_SEQUENCE",
+          (name = "APP_EMPLOYEE_HIST_SEQUENCE",
+                  sequenceName = "APP_EMPLOYEE_HIST_SEQUENCE",
                   allocationSize = 1)
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE,
-          generator = "APP_EMPLOYEE_SEQUENCE")
+          generator = "APP_EMPLOYEE_HIST_SEQUENCE")
   private Long id;
+  private Long employeeId;
   @ManyToOne
   @JoinColumn(name = "app_company_id",
           nullable = false)
@@ -52,12 +54,11 @@ public class Employee {
   private LocalDateTime birthday;
   @Column(nullable = false)
   private LocalDateTime createdAt;
-  private LocalDateTime modifiedAt;
-  private Boolean enabled = true;
+  private LocalDateTime deletedAt;
+  private Boolean enabled = false;
   @Lob
   private byte[] image;
   @OneToOne(mappedBy = "employee")
   private Location location;
-
 
 }
