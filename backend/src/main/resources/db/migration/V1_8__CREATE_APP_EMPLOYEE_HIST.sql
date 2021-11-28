@@ -1,0 +1,54 @@
+CREATE TABLE STAFFAPP.APP_EMPLOYEE_HIST
+(
+  ID               NUMBER(19)                   NOT NULL,
+  BIRTHDAY         TIMESTAMP(6)                 NOT NULL,
+  CREATED_AT       TIMESTAMP(6)                 NOT NULL,
+  DELETED_AT       TIMESTAMP(6),
+  DEPARTMENT       VARCHAR2(255 CHAR),
+  EMAIL            VARCHAR2(255 CHAR)           NOT NULL,
+  EMPLOYEE_ID      NUMBER(19),
+  ENABLED          NUMBER(1),
+  FIRST_NAME       VARCHAR2(255 CHAR)           NOT NULL,
+  IMAGE            BLOB,
+  LAST_NAME        VARCHAR2(255 CHAR)           NOT NULL,
+  APP_COMPANY_ID   NUMBER(19)                   NOT NULL,
+  APP_LOCATION_ID  NUMBER(19)
+)
+LOB (IMAGE) STORE AS SECUREFILE (
+  TABLESPACE  STAFFAPP_DAT
+  ENABLE      STORAGE IN ROW
+  CHUNK       8192
+  NOCACHE
+  LOGGING)
+TABLESPACE STAFFAPP_DAT
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING
+NOCOMPRESS
+NOCACHE;
+
+
+ALTER TABLE STAFFAPP.APP_EMPLOYEE_HIST ADD (
+  PRIMARY KEY
+  (ID)
+  USING INDEX
+    TABLESPACE STAFFAPP_DAT
+    PCTFREE    10
+    INITRANS   2
+    MAXTRANS   255
+    STORAGE    (
+                PCTINCREASE      0
+                BUFFER_POOL      DEFAULT
+               )
+  ENABLE VALIDATE);
+
+
+--  There is no statement for index STAFFAPP.SYS_C00199852.
+--  The object is created when the parent object is created.
+

@@ -58,7 +58,8 @@ public class Employee_Hist {
   private Boolean enabled = false;
   @Lob
   private byte[] image;
-  @OneToOne(mappedBy = "employee")
+  @OneToOne
+  @JoinColumn(name = "app_location_id")
   private Location location;
 
 }
