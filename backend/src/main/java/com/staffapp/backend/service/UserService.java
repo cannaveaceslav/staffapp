@@ -4,6 +4,7 @@ import com.staffapp.backend.model.User;
 import com.staffapp.backend.repository.UserRepository;
 import com.staffapp.backend.model.ConfirmationToken;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,10 +12,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class UserService implements UserDetailsService {
 
   private final static String USER_NOT_FOUND_MSG = "User with email %s not found";
@@ -29,37 +32,51 @@ public class UserService implements UserDetailsService {
   }
 
   public String signUpUser(User user) {
+
+    String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+    user.setPassword(encodedPassword);
+    String token = UUID.randomUUID().toString();
+
     boolean userExists = userRepository
             .findByEmail(user.getEmail())
             .isPresent();
 
     if (userExists) {
-      // TODO check of attributes are the same and
-      // TODO if email not confirmed send confirmation email.
+      log.info("User with email [{}] exists. Check if user is enabled.", user.getEmail());
+      boolean userIsEnabled = userRepository
+              .findByEmail(user.getEmail()).get().isEnabled();
 
-      throw new IllegalStateException("email already taken");
+      if (!userIsEnabled) {
+        log.info("User with email  [{}] is disabled", user.getEmail());
+        user.setId(userRepository.findByEmail(user.getEmail()).get().getId());
+        userRepository.save(user);
+        log.info("User with email [{}] was updated.", user.getEmail());
+        confirmationTokenService.saveConfirmationToken(generateConfirmationToken(user, token));
+        return token;
+      } else {
+        //TODO fix logs with object
+        log.info("User with email [{}] is already enabled. Registration failed.", user.getEmail());
+        throw new IllegalStateException("email already taken");
+      }
+    } else {
+      userRepository.save(user);
+      log.info("Created new user with email [{}].", user.getEmail());
+      confirmationTokenService.saveConfirmationToken(generateConfirmationToken(user, token));
+      return token;
     }
+  }
 
-    String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
-    user.setPassword(encodedPassword);
-    userRepository.save(user);
+  public void enableUser(String userName) {
+    userRepository.updateUserEnable(userName);
+  }
 
-    String token = UUID.randomUUID().toString();
+  private ConfirmationToken generateConfirmationToken(User user, String token) {
 
-    ConfirmationToken confirmationToken = new ConfirmationToken(
+    return new ConfirmationToken(
             token,
             LocalDateTime.now(),
             LocalDateTime.now().plusMinutes(15),
             user
     );
-    confirmationTokenService.saveConfirmationToken(confirmationToken);
-
-    // TODO: 11/8/2021 send email
-    return token;
-
-  }
-
-  public void enableUser(String userName){
-    userRepository.updateUserEnable(userName);
   }
 }
