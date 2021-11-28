@@ -36,3 +36,5 @@ ALTER TABLE STAFFAPP.APP_COMPANY ADD (
   ENABLE VALIDATE);
 
 
+--  There is no statement for index STAFFAPP.SYS_C00199635.
+--  The object is created when the parent object is created.

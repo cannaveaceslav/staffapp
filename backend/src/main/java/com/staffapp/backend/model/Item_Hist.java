@@ -39,7 +39,7 @@ public class Item_Hist {
   private Long ItemId;
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
-  private String itemType;
+  private ItemType itemType;
   @Column(nullable = false)
   private String itemName;
   @Column(nullable = false)

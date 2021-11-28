@@ -56,7 +56,8 @@ public class Employee {
   private Boolean enabled = true;
   @Lob
   private byte[] image;
-  @OneToOne(mappedBy = "employee")
+  @OneToOne
+  @JoinColumn(name = "app_location_id")
   private Location location;
 
 
