@@ -1,9 +1,8 @@
-package com.staffapp.backend.controller;
+package com.staffapp.backend.controller.Registration;
 
 import com.staffapp.backend.service.RegistrationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
