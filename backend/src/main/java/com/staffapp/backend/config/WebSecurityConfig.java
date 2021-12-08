@@ -19,25 +19,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   private final UserService userService;
   private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
- @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-                .authorizeRequests()
-                    .antMatchers("/registration/**")
-                    .permitAll()
-                .anyRequest()
-                .authenticated().and()
-                .formLogin();
-    }
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http
+            .csrf().disable()
+            .authorizeRequests()
+            .antMatchers(
+                    "/registration/**",
+                    "/js/**",
+                    "/css/**",
+                    "/img/**")
+            .permitAll()
+            .anyRequest()
+            .authenticated().and()
+            .formLogin();
+  }
 
   @Override
-  protected void configure(AuthenticationManagerBuilder auth)  {
+  protected void configure(AuthenticationManagerBuilder auth) {
     auth.authenticationProvider(daoAuthenticationProvider());
   }
 
   @Bean
-  public DaoAuthenticationProvider daoAuthenticationProvider(){
+  public DaoAuthenticationProvider daoAuthenticationProvider() {
     DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
     provider.setPasswordEncoder(bCryptPasswordEncoder);
     provider.setUserDetailsService(userService);

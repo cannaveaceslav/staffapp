@@ -1,32 +1,80 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-</head>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="en"
+      layout:decorate="~{layout/main}">
 <body>
-<div class="container">
-    <div class="hero-unit">
-        <h1><p th:text="'Hello, ' + ${name} + '!'" /></h1>
-        <p> th:text="'Hello, ' + ${name} + '!'" </p>
-        <p>
-            Welcome to the Spring Boot Thymeleaf example post
-            Get started quickly by signing up.
-        </p>
-        <p>
-            <a href="/signup" th:href="@{/signup}" class="btn btn-large btn-success">Sign up</a>
-        </p>
-         <p>
-            <a href="/signup" th:href="@{/signup}" class="btn btn-large btn-success">Sign up</a>
-        </p>
-         <p>
-            <a href="/signup" th:href="@{/signup}" class="btn btn-large btn-success">Sign up</a>
-        </p>
-         <p>
-            <a href="/signup" th:href="@{/signup}" class="btn btn-large btn-success">Sign up</a>
-        </p>
-    </div>
-    <div th:replace="fragments/footer :: footer">&copy; 2018 Java Development Journal</div>
+<div layout:fragment="content">
+  <h1>Registration</h1>
+
+  <form class="form-horizontal" th:action="@{/registration}" method="POST">
+    <fieldset>
+      <div id="legend">
+        <legend class="">Register</legend>
+      </div>
+      <div class="control-group">
+        <!-- Username -->
+        <label class="control-label" for="username">Username</label>
+        <div class="controls">
+          <input type="text" id="username" name="username" placeholder="" class="input-xlarge" required="required">
+          <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <!-- firstname -->
+        <label class="control-label" for="firstname">Firstname</label>
+        <div class="controls">
+          <input type="text" id="firstname" name="firstname" placeholder="" class="input-xlarge" required="required">
+          <p class="help-block"></p>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <!-- lastname -->
+        <label class="control-label" for="lastname">Lastname</label>
+        <div class="controls">
+          <input type="text" id="lastname" name="lastname" placeholder="" class="input-xlarge" required="required">
+          <p class="help-block"></p>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <!-- E-mail -->
+        <label class="control-label" for="email">E-mail</label>
+        <div class="controls">
+          <input type="email" id="email" name="email" placeholder="" class="input-xlarge" required="required">
+          <p class="help-block">Please provide your E-mail</p>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <!-- Password-->
+        <label class="control-label" for="password">Password</label>
+        <div class="controls">
+          <input type="password" id="password" name="password" placeholder="" class="input-xlarge" required="required">
+          <p class="help-block">Password should be at least 4 characters</p>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <!-- Password -->
+        <label class="control-label" for="password_confirm">Password (Confirm)</label>
+        <div class="controls">
+          <input type="password" id="password_confirm" name="passwordConfirmation" placeholder="" class="input-xlarge"
+                 required="required">
+          <p class="help-block">Please confirm password</p>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <!-- Button -->
+        <div class="controls">
+          <button class="btn btn-success">Register</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
 </div>
-<h1><p th:text="'Hello, ' + ${name} + '!'" /></h1>
 </body>
 </html>

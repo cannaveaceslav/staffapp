@@ -1,4 +1,4 @@
-package com.staffapp.backend.controller;
+package com.staffapp.backend.controller.Home;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -8,15 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping(path = "/")
+@RequestMapping({"", "/", "home"})
 @AllArgsConstructor
-public class Home {
+public class HomeController {
 
 
-  @GetMapping("/home")
+  @GetMapping
   public String greeting(@RequestParam(name = "name", required = false, defaultValue = "World") String name,
                          Model model) {
     model.addAttribute("name");
     return "greeting";
   }
+
+
 }
