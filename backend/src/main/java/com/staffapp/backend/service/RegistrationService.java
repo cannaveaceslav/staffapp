@@ -37,6 +37,7 @@ public class RegistrationService {
     emailSender.send(registrationRequest.getEmail(),
                      buildEmail(registrationRequest.getFirstName(), link)
     );
+    //TODO return here a new html page with msg 'check you email bla bla'
     return token;
 
   }
@@ -59,6 +60,7 @@ public class RegistrationService {
 
     confirmationTokenService.setConfirmedAt(token);
     userService.enableUser(confirmationToken.getUser().getEmail());
+    //TODO return new html page that email was confirmed, sleep 5 sec, redirect to HOME page
     return "Email confirmed";
   }
 
