@@ -30,37 +30,38 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "APP_ITEM")
 public class Item {
-  @SequenceGenerator
-          (name = "APP_ITEM_SEQUENCE",
-                  sequenceName = "APP_ITEM_SEQUENCE",
-                  allocationSize = 1)
-  @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE,
-          generator = "APP_ITEM_SEQUENCE")
-  private Long id;
+    @SequenceGenerator
+            (name = "APP_ITEM_SEQUENCE",
+                    sequenceName = "APP_ITEM_SEQUENCE",
+                    allocationSize = 1)
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "APP_ITEM_SEQUENCE")
+    private Long id;
 
-  @Enumerated(EnumType.STRING)
-  @Column(nullable = false)
-  private ItemType itemType;
-  @Column(nullable = false)
-  private String itemName;
-  @Column(nullable = false)
-  private String description;
-  @Column(nullable = false)
-  private LocalDateTime manufacturedAt;
-  @Column(nullable = false, unique = true)
-  private String barcode;
-  @Column(nullable = false)
-  private LocalDateTime createdAt;
-  private LocalDateTime modifiedAt;
-  private Boolean enabled = true;
-  @Lob
-  private byte[] image;
-  @ManyToOne
-  @JoinColumn(name = "app_employee_id")
-  private Employee employee;
-  @ManyToOne
-  @JoinColumn(name = "app_location_id")
-  private Location location;
+
+    @Column(nullable = false)
+    private String itemName;
+    @Column(nullable = false)
+    private String description;
+    @Column(nullable = false)
+    private LocalDateTime manufacturedAt;
+    @Column(nullable = false, unique = true)
+    private String barcode;
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
+    private LocalDateTime modifiedAt;
+    private Boolean enabled = true;
+    @Lob
+    private byte[] image;
+    @ManyToOne
+    @JoinColumn(name = "app_itemtype_id", nullable = false)
+    private ItemType itemType;
+    @ManyToOne
+    @JoinColumn(name = "app_employee_id")
+    private Employee employee;
+    @ManyToOne
+    @JoinColumn(name = "app_location_id")
+    private Location location;
 
 }
