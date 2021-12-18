@@ -1,6 +1,6 @@
 package com.staffapp.backend.config;
 
-import com.staffapp.backend.service.UserService;
+import com.staffapp.backend.service.user.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +23,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http
             .csrf().disable()
+            .httpBasic()
+            .and()
             .authorizeRequests()
             .antMatchers(
                     "/registration/**",

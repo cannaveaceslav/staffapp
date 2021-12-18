@@ -1,8 +1,9 @@
-package com.staffapp.backend.service;
+package com.staffapp.backend.service.user;
 
 import com.staffapp.backend.model.User;
 import com.staffapp.backend.repository.UserRepository;
 import com.staffapp.backend.model.ConfirmationToken;
+import com.staffapp.backend.service.registration.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,14 +11,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
 @AllArgsConstructor
 @Slf4j
+@Transactional
 public class UserService implements UserDetailsService {
 
   private final static String USER_NOT_FOUND_MSG = "User with email %s not found";
