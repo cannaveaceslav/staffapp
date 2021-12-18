@@ -18,7 +18,7 @@ import static java.time.LocalDateTime.now;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/layout")
 @Api("Controller to work with layout of the office. Add and remove working tables (locations)")

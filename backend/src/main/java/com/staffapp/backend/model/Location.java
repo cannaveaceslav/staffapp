@@ -1,19 +1,13 @@
 package com.staffapp.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -37,7 +31,8 @@ public class Location {
   private Long locationNumber;
   private Boolean available = true;
   private String description;
-  @OneToOne(mappedBy = "location")
+  @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+  @OneToOne(mappedBy = "location", fetch = FetchType.EAGER)
   private Employee employee;
   @Column(nullable = false)
   private LocalDateTime createdAt;
