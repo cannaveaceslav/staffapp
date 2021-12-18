@@ -48,7 +48,9 @@ public class EmployeeHist {
   private String lastName;
   @Column(nullable = false)
   private String email;
-  @Enumerated(EnumType.STRING)
+  @ManyToOne
+  @JoinColumn(name = "app_department_id",
+          nullable = false)
   private Department department;
   @Column(nullable = false)
   private LocalDateTime birthday;
