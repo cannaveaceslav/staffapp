@@ -1,4 +1,4 @@
-package com.staffapp.backend.service;
+package com.staffapp.backend.service.registration;
 
 import com.staffapp.backend.controller.Registration.RegistrationRequest;
 import com.staffapp.backend.model.User;
@@ -6,6 +6,7 @@ import com.staffapp.backend.model.UserRole;
 import com.staffapp.backend.security.EmailSender;
 import com.staffapp.backend.security.EmailValidator;
 import com.staffapp.backend.model.ConfirmationToken;
+import com.staffapp.backend.service.user.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

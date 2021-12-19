@@ -1,3 +1,4 @@
+
 CREATE TABLE STAFFAPP.APP_EMPLOYEE
 (
   ID                 NUMBER(19)                 NOT NULL,
@@ -28,8 +29,8 @@ STORAGE    (
             PCTINCREASE      0
             BUFFER_POOL      DEFAULT
            )
-LOGGING
-NOCOMPRESS
+LOGGING 
+NOCOMPRESS 
 NOCACHE;
 
 
@@ -48,5 +49,5 @@ ALTER TABLE STAFFAPP.APP_EMPLOYEE ADD (
   ENABLE VALIDATE);
 
 
---  There is no statement for index STAFFAPP.SYS_C007769.
+--  There is no statement for index STAFFAPP.SYS_C008013.
 --  The object is created when the parent object is created.

@@ -1,4 +1,4 @@
-package com.staffapp.backend.service;
+package com.staffapp.backend.service.registration;
 
 import com.staffapp.backend.repository.ConfirmationTokenRepository;
 import com.staffapp.backend.model.ConfirmationToken;

@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Api("Controller for main page")
 public class HomeController {
 
-@ApiOperation("Show user main page. Return view 'greeting.html'")
-  @GetMapping
-  public String greeting(@RequestParam(name = "name", required = false, defaultValue = "World") String name,
-                         Model model) {
-    model.addAttribute("name");
-    return "greeting";
-  }
+    @ApiOperation("Show user main page. Return view 'greeting.html'")
+    @GetMapping
+    public String greeting(@RequestParam(name = "name", required = false, defaultValue = "World") String name,
+                           Model model) {
+        model.addAttribute("name");
+        return "greeting";
+    }
 
 
 }

@@ -1,4 +1,4 @@
-package com.staffapp.backend.service;
+package com.staffapp.backend.service.email;
 
 import com.staffapp.backend.security.EmailSender;
 import lombok.AllArgsConstructor;

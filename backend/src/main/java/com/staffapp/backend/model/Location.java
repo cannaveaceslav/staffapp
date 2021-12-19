@@ -1,19 +1,9 @@
 package com.staffapp.backend.model;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -24,22 +14,28 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "APP_LOCATION")
 public class Location {
-  @SequenceGenerator
-          //todo
-          (name = "APP_LOCATION_SEQUENCE",
-                  sequenceName = "APP_LOCATION_SEQUENCE",
-                  allocationSize = 1)
-  @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE,
-          generator = "APP_LOCATION_SEQUENCE")
-  private Long id;
-  @Column(nullable = false, unique = true)
-  private Long locationNumber;
-  private Boolean available = true;
-  private String description;
-  @OneToOne(mappedBy = "location")
-  private Employee employee;
-  @Column(nullable = false)
-  private LocalDateTime createdAt;
-  private LocalDateTime modifiedAt;
+    @SequenceGenerator
+            (name = "APP_LOCATION_SEQUENCE",
+                    sequenceName = "APP_LOCATION_SEQUENCE",
+                    allocationSize = 1)
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "APP_LOCATION_SEQUENCE")
+    private Long id;
+    @Column(nullable = false, unique = true)
+    @SequenceGenerator
+            (name = "APP_LOCATION_NUMBER_SEQUENCE",
+                    sequenceName = "APP_LOCATION_NUMBER_SEQUENCE",
+                    allocationSize = 1)
+    private Long locationNumber;
+    private Boolean available = true;
+    private String description;
+    //  @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//  @OneToOne(mappedBy = "location", fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "app_employee_id")
+    private Employee employee;
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
+    private LocalDateTime modifiedAt;
 }
