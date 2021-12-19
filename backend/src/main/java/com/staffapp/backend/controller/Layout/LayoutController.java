@@ -71,6 +71,22 @@ public class LayoutController {
         );
     }
 
+    @PutMapping("/update")
+    @ApiOperation("Method update current location." +
+            "Returns a response with the map with key=location and value=new location")
+    public ResponseEntity<Response> updateLocation(@RequestBody @Valid Location location) {
+
+        return ResponseEntity.ok(
+                Response.builder()
+                        .timeStamp(now())
+                        .data(Collections.singletonMap("location", layoutService.update(location)))
+                        .message("Location updated")
+                        .status(CREATED)
+                        .statusCode(CREATED.value())
+                        .build()
+        );
+    }
+
     @DeleteMapping("/delete/{id}")
     @ApiOperation("Method deletes indicated location by id.")
     public ResponseEntity<Response> deleteLocation(@PathVariable("id") Long id) {
