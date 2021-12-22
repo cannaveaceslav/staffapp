@@ -10,6 +10,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 @Configuration
 @AllArgsConstructor
@@ -54,6 +60,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     provider.setPasswordEncoder(bCryptPasswordEncoder);
     provider.setUserDetailsService(userService);
     return provider;
+  }
+
+  @Bean
+  public CorsFilter corsFilter() {
+    UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+    CorsConfiguration corsConfiguration = new CorsConfiguration();
+    corsConfiguration.setAllowCredentials(true);
+    corsConfiguration.setAllowedOrigins((Collections.singletonList("http://localhost:4200")));
+    corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Accec-Control-Allow-Origin",
+                                                      "Content-Type", "Accept", "Jwt-Token",
+                                                      "Authorization", "Origin, Accept", "X-Request-With",
+                                                      "Access-Control-Request-Method", "Access-Control-Request-Headers"));
+    corsConfiguration.setExposedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Jwt-Tokem",
+                                                      "Authorization", "Access-Control-Allow-Origin",
+                                                      "Access-Control-Allow-Credentials", "Filename"));
+    corsConfiguration.setAllowedHeaders(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+    urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
+    return new CorsFilter((urlBasedCorsConfigurationSource));
   }
 
 }

@@ -26,6 +26,7 @@ public class LayoutController {
 
     private final LayoutService layoutService;
 
+    @CrossOrigin(origins = "http://localhost:8081")
     @GetMapping
     @ApiOperation("Method returns a response with the map with key=locations and value=list of all locations")
     public ResponseEntity<Response> getLocations() {
