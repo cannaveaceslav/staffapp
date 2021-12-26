@@ -7,13 +7,13 @@ import {Location} from "../interface/location";
 
 @Injectable({providedIn: 'root'})
 export class LayoutService {
-  private readonly apiUrl = 'http://localhost:8081';
+  private readonly apiUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) {
   }
 
   // getLocations(): Observable<CustomResponse>{
-  //   return this.http.get<CustomResponse>('http://localhost:8081/server/list');
+  //   return this.http.get<CustomResponse>('http://localhost:8080/server/list');
   // }
 
   locations$ = <Observable<CustomResponse>>

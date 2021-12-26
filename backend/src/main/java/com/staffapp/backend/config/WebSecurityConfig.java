@@ -38,6 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     "/css/**",
                     "/img/**",
                     "/login",
+                    "/layout",
                     "/assets/**",
                     "/actuator",
                     "/actuator/*",
