@@ -5,10 +5,8 @@ import com.staffapp.backend.model.Response;
 import com.staffapp.backend.service.layout.LayoutService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -26,6 +24,7 @@ public class LayoutController {
 
     private final LayoutService layoutService;
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping
     @ApiOperation("Method returns a response with the map with key=locations and value=list of all locations")
     public ResponseEntity<Response> getLocations() {
