@@ -18,7 +18,7 @@ export class LayoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.appState$ = this.layoutService.locations$
+    this.appState$ = this.layoutService.getlocations$
       .pipe(
         map(response => {
           return {dataState: DataState.LOADED_STATE, appData: response}

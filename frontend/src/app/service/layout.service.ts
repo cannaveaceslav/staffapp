@@ -16,7 +16,7 @@ export class LayoutService {
   //   return this.http.get<CustomResponse>('http://localhost:8080/server/list');
   // }
 
-  locations$ = <Observable<CustomResponse>>
+  getlocations$ = <Observable<CustomResponse>>
     this.http.get<CustomResponse>(`${this.apiUrl}/layout`)
     .pipe(
       tap(console.log),

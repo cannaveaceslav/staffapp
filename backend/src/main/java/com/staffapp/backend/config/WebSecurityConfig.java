@@ -25,10 +25,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   private final UserService userService;
   private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
+  //todo remove all restricted pages
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
             .csrf().disable()
+            .cors()
+            .and()
             .httpBasic()
             .and()
             .authorizeRequests()
@@ -39,6 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     "/img/**",
                     "/login",
                     "/layout",
+                    "/employees",
                     "/assets/**",
                     "/actuator",
                     "/actuator/*",
