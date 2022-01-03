@@ -1,5 +1,6 @@
 import {Location} from "./location";
 import {Employee} from "./employee";
+import {Item} from "./item";
 
 export interface CustomResponse {
   timeStamp: Date;
@@ -9,5 +10,6 @@ export interface CustomResponse {
   message: string;
   developerMessage: string;
   data: {locations?: Location [], location?: Location
-        ,employees?: Employee, employee?: Employee};
+        ,employees?: Employee [], employee?: Employee
+        ,items?: Item [], item?: Item};
 }

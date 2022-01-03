@@ -49,6 +49,6 @@ export class LayoutService {
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.log(error)
-    return  throwError(`An error occurred - Error code: ${error.status}`);
+    throw new Error(`An error occurred - Error code: ${error.status}`);
   }
 }
