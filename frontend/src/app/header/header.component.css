@@ -1,0 +1,14 @@
+.navbar-brand{
+  font-family: "Arial Black";
+  color: whitesmoke;
+  font-size: x-large;
+}
+.navbar-nav{
+  padding: 1%;
+  color: whitesmoke;
+  font-size: 14px;
+  }
+
+.navbar{
+  background-color: navy;
+}

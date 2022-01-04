@@ -9,6 +9,10 @@ import { EmployeesComponent } from './employees/employees.component';
 import { ItemsComponent } from './items/items.component';
 import { ReportsComponent } from './reports/reports.component';
 import { HomeComponent } from './home/home.component';
+import { AddEmployeeComponent } from './add-employee/add-employee.component';
+import {FormsModule} from "@angular/forms";
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +21,16 @@ import { HomeComponent } from './home/home.component';
     EmployeesComponent,
     ItemsComponent,
     ReportsComponent,
-    HomeComponent
+    HomeComponent,
+    AddEmployeeComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,6 +6,7 @@ import {AppState} from "../interface/app-state";
 import {CustomResponse} from "../interface/custom-response";
 import {DataState} from "../enum/data-state.enum";
 import {catchError} from "rxjs/operators";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-employees',
@@ -16,7 +17,7 @@ export class EmployeesComponent implements OnInit {
   appState$!: Observable<AppState<CustomResponse>>;
   readonly DataState = DataState;
 
-  constructor(private employeesService: EmployeesService) {
+  constructor(private employeesService: EmployeesService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -44,6 +45,11 @@ export class EmployeesComponent implements OnInit {
         })
       );
   }
+
+  public goToPage(pageName: string) {
+    this.router.navigate([`${pageName}`]);
+  }
+
 
   // handleSuccessfulResponse(response: any) {
   //   this.employees = response.data.employees;
