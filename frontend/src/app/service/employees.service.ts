@@ -40,6 +40,13 @@ export class EmployeesService {
         catchError(this.handleError)
       );
 
+  delete$ = (employee: Employee) => <Observable<CustomResponse>>
+    this.httpClient.delete<CustomResponse>(`${this.baseURL}/employees/delete/`+employee.id)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
+
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.log(error)

@@ -23,9 +23,11 @@
 <ng-container *ngIf="(appState$ | async ) as appState" [ngSwitch]="appState.dataState">
 
   <ng-container *ngSwitchCase="DataState.LOADING_STATE">
+
     <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
       <span class="sr-only">Loading...</span>
     </div>
+
   </ng-container>
 
   <ng-container *ngSwitchCase="DataState.LOADED_STATE">
@@ -39,13 +41,14 @@
       </tr>
 
 
-      <tbody  *ngFor="let employee of appState?.appData?.data?.employees; let i = index">
-      <tr >
+      <tbody *ngFor="let employee of appState?.appData?.data?.employees; let i = index">
+      <tr>
         <td>
+          <a><button class="btn btn-danger" (click)="deleteEmployee(employee)"> Delete Employee</button></a>
           <!-- Team -->
           <section id="team" class="pb-5">
             <div class="container">
-              <div class="row">
+              <div class="row" >
                 <!-- Team member -->
                 <div class="col-xs-12 col-sm-6 col-md-4">
                   <div class="image-flip">
@@ -54,14 +57,17 @@
                         <div class="card">
                           <div class="card-body text-center">
                             <p><img class=" img-fluid"
-                                    src="https://vsekidki.ru/uploads/posts/2016-08/1470735121_lecdaa3axdc.jpg">
+                                    src="https://vsekidki.ru/uploads/posts/2016-08/1470735121_lecdaa3axdc.jpg"
+                              alt ={{employee.lastName}}>
                             </p>
                             <p class="card-title">{{employee.company.companyName}}</p>
+                            <p class="card-title">{{employee.department.departmentName}}</p>
                             <h4 class="card-title">{{employee.lastName}}</h4>
                             <h4 class="card-title">{{employee.firstName}}</h4>
                             <p class="card-text">{{employee.email}}       ewfwefwe .
                               fwefwefwefwefwefwefwe             {{employee.createdAt}}</p>
-                            <!--                        <p class="card-text" >{{emp.createdAt}}                                 .</p>-->
+
+
                             <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i
                               class="fa fa-plus"></i></a>
                           </div>
@@ -127,6 +133,7 @@
                                     src="https://vsekidki.ru/uploads/posts/2016-08/1470735121_lecdaa3axdc.jpg">
                             </p>
                             <p class="card-title">{{employee.company.companyName}}</p>
+                              <p class="card-title">{{employee.department.departmentName}}</p>
                             <h4 class="card-title">{{employee.lastName}}</h4>
                             <h4 class="card-title">{{employee.firstName}}</h4>
                             <p class="card-text">{{employee.email}} tex text text text text text text
@@ -197,6 +204,7 @@
                                     src="https://vsekidki.ru/uploads/posts/2016-08/1470735121_lecdaa3axdc.jpg">
                             </p>
                             <p class="card-title">{{employee.company.companyName}}</p>
+                              <p class="card-title">{{employee.department.departmentName}}</p>
                             <h4 class="card-title">{{employee.lastName}}</h4>
                             <h4 class="card-title">{{employee.firstName}}</h4>
                             <p class="card-text">{{employee.email}} tex text text text text text text
@@ -259,8 +267,8 @@
   </ng-container>
 
   <ng-container *ngSwitchCase="DataState.ERROR_STATE">
-    <div class="alert alert-danger" role="alert">
-      error!
+    <div class="spinner-border text-danger" role="status">
+      <span class="sr-only">Loading...</span>
     </div>
   </ng-container>
 

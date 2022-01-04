@@ -27,17 +27,15 @@ import static org.springframework.http.HttpStatus.OK;
 @Controller
 @AllArgsConstructor
 @RequestMapping("/employees")
-//@CrossOrigin(origins = "http://localhost:4200")
 @Api("Controller for all employees page")
 public class EmployeesController {
 
   private final EmployeeService employeeService;
 
 
-  //  @CrossOrigin(origins = "http://localhost:8080")
   @GetMapping
   @ApiOperation("Method returns a response with the map with key=employees and value=list of all employees")
-  public ResponseEntity<Response> getLocations() {
+  public ResponseEntity<Response> getLocations() throws InterruptedException {
     return ResponseEntity.ok(
             Response.builder()
                     .timeStamp(now())

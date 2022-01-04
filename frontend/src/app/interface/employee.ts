@@ -1,4 +1,6 @@
 import {Company} from "./company";
+import {Department} from "./department";
+import {Location} from "./location";
 
 export interface Employee {
   id: number;
@@ -6,11 +8,11 @@ export interface Employee {
   firstName: string;
   lastName: string;
   email: string;
-  department: Object;
+  department: Department;
   birthday: Date;
   createdAt: Date;
   modifiedAt: Date;
   enabled: boolean;
   image: Blob;
-  location: Object;
+  location: Location;
 }

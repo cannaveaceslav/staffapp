@@ -25,7 +25,7 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
-    public Collection<Employee> list(int limit) {
+    public Collection<Employee> list(int limit) throws InterruptedException {
         log.info("Fetching all employees");
         return employeeRepository.findAll(PageRequest.of(0, limit, Sort.by("lastName"))).toList();
     }

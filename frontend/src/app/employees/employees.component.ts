@@ -32,6 +32,19 @@ export class EmployeesComponent implements OnInit {
       );
   }
 
+  deleteEmployee(employee: Employee): void {
+    this.appState$ = this.employeesService.delete$(employee)
+      .pipe(
+        map(response => {
+          return {dataState: DataState.LOADED_STATE, appData: response}
+        }),
+        startWith({dataState: DataState.LOADING_STATE}),
+        catchError((error: string) => {
+          return of({dataState: DataState.ERROR_STATE, error: error})
+        })
+      );
+  }
+
   // handleSuccessfulResponse(response: any) {
   //   this.employees = response.data.employees;
   // }
