@@ -16,7 +16,7 @@ export class LayoutService {
   //   return this.http.get<CustomResponse>('http://localhost:8080/server/list');
   // }
 
-  locations$ = <Observable<CustomResponse>>
+  getlocations$ = <Observable<CustomResponse>>
     this.http.get<CustomResponse>(`${this.apiUrl}/layout`)
     .pipe(
       tap(console.log),
@@ -49,6 +49,6 @@ export class LayoutService {
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.log(error)
-    return  throwError(`An error occurred - Error code: ${error.status}`);
+    throw new Error(`An error occurred - Error code: ${error.status}`);
   }
 }

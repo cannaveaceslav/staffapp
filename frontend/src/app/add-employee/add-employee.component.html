@@ -1,0 +1,92 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+  <div class="main">
+    <div class="main-center">
+      <h5>Fill all the required field to create new employee.</h5>
+      <form class="" method="post" action="#">
+
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+            <!--            <input type="name" class="form-control" name="name" id="name" placeholder="Employee Last Name"/>-->
+            <input type="name" [(ngModel)]="employee.lastName" placeholder="Last Name" name="lastName"
+                   class="form-control" id="lastName">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+            <!--            <input type="text" class="form-control" name="email" placeholder="Enter your Email"/>-->
+            <input type="text" [(ngModel)]="employee.firstName" placeholder="First Name" name="firstName"
+                   class="form-control" id="firstName">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+            <!--            <input type="text" class="form-control" name="email" placeholder="Enter your Email"/>-->
+            <input type="email" [(ngModel)]="employee.email" placeholder="email" name="email" class="form-control"
+                   id="email">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="birthday">Date of birth</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+            <!--            <input type="text" class="form-control" name="email" placeholder="Enter your Email"/>-->
+            <input type="date"   [(ngModel)]="employee.birthday" placeholder="birthday" name="birthday"
+                   class="form-control" id="birthday">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="company">Company</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+            <!--            <input type="text" class="form-control" name="email" placeholder="Enter your Email"/>-->
+            <input list="companies" [(ngModel)]="employee.company" placeholder="company" name="company"
+                   class="form-control" id="company">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="department">Department</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+            <!--            <input type="text" class="form-control" name="email" placeholder="Enter your Email"/>-->
+            <input list="departments" [(ngModel)]="employee.department.departmentName" placeholder="department" name="department"
+                   class="form-control" id="department">
+          </div>
+        </div>
+
+        <datalist id="departments">
+          <option value="Admin">
+          <option value="Service">
+          <option value="R&D">
+          <option value=".Net">
+          <option value="Other">
+        </datalist>
+
+        <datalist id="companies">
+          <option value="ISD">
+          <option value="Inther">
+
+        </datalist>
+
+
+        <button type="submit" (click)=createEmployee(employee)>Create</button>
+
+      </form>
+    </div><!--main-center"-->
+  </div><!--main-->
+</div><!--container-->

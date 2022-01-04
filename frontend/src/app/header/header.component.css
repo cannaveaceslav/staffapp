@@ -1,0 +1,31 @@
+.navbar-brand {
+  font-family: "Arial Black";
+  color: whitesmoke;
+  font-size: x-large;
+}
+
+.navbar-nav {
+  padding: 1%;
+  color: whitesmoke;
+  font-size: 14px;
+}
+
+.nav-link {
+  color: #a300bf;
+  font-size: large;
+  padding-left: 60%;
+}
+
+.nav-link2 {
+  color: lightgrey;
+  font-size: medium;
+  padding-left: 900%;
+  margin-block-end: 100px;
+  border-bottom: white;
+
+
+}
+
+.navbar {
+  background-color: navy;
+}

@@ -18,88 +18,89 @@ import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path = "/layout")
 @Api("Controller to work with layout of the office. Add and remove working tables (locations)")
 public class LayoutController {
 
-    private final LayoutService layoutService;
+  private final LayoutService layoutService;
 
-    @CrossOrigin(origins = "http://localhost:8080")
-    @GetMapping
-    @ApiOperation("Method returns a response with the map with key=locations and value=list of all locations")
-    public ResponseEntity<Response> getLocations() {
-        return ResponseEntity.ok(
-                Response.builder()
-                        .timeStamp(now())
-                        .data(Collections.singletonMap("locations", layoutService.list()))
-                        .message("Locations retrieved")
-                        .status(OK)
-                        .statusCode(OK.value())
-                        .build()
-        );
-    }
+  @CrossOrigin(origins = "http://localhost:8080")
+  @GetMapping
+  @ApiOperation("Method returns a response with the map with key=locations and value=list of all locations")
+  public ResponseEntity<Response> getLocations() {
+    return ResponseEntity.ok(
+            Response.builder()
+                    .timeStamp(now())
+                    .data(Collections.singletonMap("locations", layoutService.list()))
+                    .message("Locations retrieved")
+                    .status(OK)
+                    .statusCode(OK.value())
+                    .build()
+    );
+  }
 
-    @GetMapping("/get/{id}")
-    @ApiOperation("Method returns a response with the map with key=location and value=location by id")
-    public ResponseEntity<Response> getLocation(@PathVariable("id") Long id) {
+  @GetMapping("/get/{id}")
+  @ApiOperation("Method returns a response with the map with key=location and value=location by id")
+  public ResponseEntity<Response> getLocation(@PathVariable("id") Long id) {
 
-        return ResponseEntity.ok(
-                Response.builder()
-                        .timeStamp(now())
-                        .data(Collections.singletonMap("location", layoutService.get(id)))
-                        .message("Location with id " + id + " retrieved")
-                        .status(OK)
-                        .statusCode(OK.value())
-                        .build()
-        );
-    }
+    return ResponseEntity.ok(
+            Response.builder()
+                    .timeStamp(now())
+                    .data(Collections.singletonMap("location", layoutService.get(id)))
+                    .message("Location with id " + id + " retrieved")
+                    .status(OK)
+                    .statusCode(OK.value())
+                    .build()
+    );
+  }
 
-    @PostMapping("/save")
-    @ApiOperation("Method to add new location." +
-            "Returns a response with the map with key=location and value=new location")
-    public ResponseEntity<Response> saveLocation(@RequestBody @Valid Location location) {
+  @PostMapping("/save")
+  @ApiOperation("Method to add new location." +
+          "Returns a response with the map with key=location and value=new location")
+  public ResponseEntity<Response> saveLocation(@RequestBody @Valid Location location) {
 
-        return ResponseEntity.ok(
-                Response.builder()
-                        .timeStamp(now())
-                        .data(Collections.singletonMap("location", layoutService.create(location)))
-                        .message("Location created")
-                        .status(CREATED)
-                        .statusCode(CREATED.value())
-                        .build()
-        );
-    }
+    return ResponseEntity.ok(
+            Response.builder()
+                    .timeStamp(now())
+                    .data(Collections.singletonMap("location", layoutService.create(location)))
+                    .message("Location created")
+                    .status(CREATED)
+                    .statusCode(CREATED.value())
+                    .build()
+    );
+  }
 
-    @PutMapping("/update")
-    @ApiOperation("Method update current location." +
-            "Returns a response with the map with key=location and value=new location")
-    public ResponseEntity<Response> updateLocation(@RequestBody @Valid Location location) {
+  @PutMapping("/update")
+  @ApiOperation("Method update current location." +
+          "Returns a response with the map with key=location and value=new location")
+  public ResponseEntity<Response> updateLocation(@RequestBody @Valid Location location) {
 
-        return ResponseEntity.ok(
-                Response.builder()
-                        .timeStamp(now())
-                        .data(Collections.singletonMap("location", layoutService.update(location)))
-                        .message("Location updated")
-                        .status(CREATED)
-                        .statusCode(CREATED.value())
-                        .build()
-        );
-    }
+    return ResponseEntity.ok(
+            Response.builder()
+                    .timeStamp(now())
+                    .data(Collections.singletonMap("location", layoutService.update(location)))
+                    .message("Location updated")
+                    .status(CREATED)
+                    .statusCode(CREATED.value())
+                    .build()
+    );
+  }
 
-    @DeleteMapping("/delete/{id}")
-    @ApiOperation("Method deletes indicated location by id.")
-    public ResponseEntity<Response> deleteLocation(@PathVariable("id") Long id) {
+  @DeleteMapping("/delete/{id}")
+  @ApiOperation("Method deletes indicated location by id.")
+  public ResponseEntity<Response> deleteLocation(@PathVariable("id") Long id) {
 
-        return ResponseEntity.ok(
-                Response.builder()
-                        .timeStamp(now())
-                        .data(Collections.singletonMap("deleted", layoutService.delete(id)))
-                        .message("Location with id " + id + " deleted")
-                        .status(OK)
-                        .statusCode(OK.value())
-                        .build()
-        );
-    }
+    return ResponseEntity.ok(
+            Response.builder()
+                    .timeStamp(now())
+                    .data(Collections.singletonMap("deleted", layoutService.delete(id)))
+                    .message("Location with id " + id + " deleted")
+                    .status(OK)
+                    .statusCode(OK.value())
+                    .build()
+    );
+  }
 
 //    @GetMapping
 //    @ApiOperation("Shows layout with all locations in the office. Returns 'layout.html' view")
