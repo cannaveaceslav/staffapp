@@ -1,0 +1,64 @@
+<!--<div class="container">-->
+<!--  <div>-->
+<!--    User Name : <input type="text" name="username" [(ngModel)]="username">-->
+<!--    Password : <input type="password" name="password" [(ngModel)]="password">-->
+<!--  </div>-->
+<!--  <button (click)=checkLogin() class="btn btn-success">-->
+<!--    Login-->
+<!--  </button>-->
+<!--</div>-->
+
+<body aria-busy="true">
+<!-- Mask & flexbox options-->
+<div class="mask  d-flex justify-content-center align-items-center">
+  <div class="container mt-5 pt-5">
+    <section class="white-text">
+      <div class="row">
+        <div class="col-12">
+          <div class="card z-depth-2">
+            <div class="card-body p-0">
+
+              <div class="row mx-0">
+
+                <div class="col-lg-6 py-5 px-md-5">
+                  <div class="view">
+                    <img src="https://mdbootstrap.com/api/snippets/static/screenshots/custom-2165729.jpeg?1591321163955"
+                         class="img-fluid" alt="sample image">
+                  </div>
+                </div>
+
+                <div class="col-lg-6 cloudy-knoxville-gradient accent-3 py-5 px-md-5">
+                  <div class="avatar mx-auto">
+                    <img src="../../assets/images/logo-mini.jpg"
+                         class="animated bounce infinite" id="animated-img1" alt="Transparent MDB Logo"
+                         style="padding-left:10px" height="190">
+                  </div>
+
+                  <form class="text-center">
+
+                    <h4 class="mt-3 text-center text  dark-grey-text"><i class="fas fa-diagnoses"></i> Sign In </h4>
+                   <input type="text" name="username" [(ngModel)]="username" class="form-control mb-4">
+                   <input type="password" name="password" [(ngModel)]="password" class="form-control mb-4">
+                    <div class="d-flex justify-content-around"></div>
+                    <button type="submit" class="btn purple-gradient" rounded="true" name='submit' mdbWavesEffect
+                            (click)=checkLogin() >Login</button>
+                     <button type="submit" class="btn purple-gradient" rounded="true" name='submit' mdbWavesEffect
+                            (click)=checkLogin() style="margin-left: 10px; background-color: #009edf" >Registration</button>
+
+
+                  </form>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+</div>

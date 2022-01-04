@@ -1,16 +1,16 @@
 <header>
   <nav class="navbar navbar-expand-md navbar navbar-dark">
-     <a class="navbar-brand" href="/home">Staffapp</a>
+    <a class="navbar-brand" href="/home">Staffapp</a>
 
-    <ul class="navbar-nav">
-      <li><a routerLink="/home" class="nav-link">Home</a></li>
-      <li><a routerLink="/layout" class="nav-link">Layout</a></li>
-      <li><a routerLink="/employees" class="nav-link">Employees</a></li>
-      <li><a routerLink="/items" class="nav-link">Items</a></li>
-      <li><a routerLink="/reports" class="nav-link">Reports</a></li>
-      <li><a routerLink="/logout" class="nav-link">Logout</a></li>
+    <ul class="navbar-nav" style="color: whitesmoke;font-size: large" >
+      <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/home" class="nav-link">Home</a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/layout" class="nav-link">Layout</a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/employees" class="nav-link">Employees</a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/items" class="nav-link">Items</a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/reports" class="nav-link">Reports</a></li>
+      <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link"style="margin-block: 3%; padding-left: 1400%; font-size: medium">LogOut</a></li>
     </ul>
-<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
   </nav>
 
 </header>
