@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {map, Observable, of, startWith} from "rxjs";
-import {DataState} from '../enum/data-state.enum';
-import {AppState} from "../interface/app-state";
-import {CustomResponse} from "../interface/custom-response";
-import {EmployeesService} from "../service/employees.service";
-import {Employee} from "../interface/employee";
+import {DataState} from '../../enum/data-state.enum';
+import {AppState} from "../../interface/app-state";
+import {CustomResponse} from "../../interface/custom-response";
+import {EmployeesService} from "../../service/employees.service";
+import {Employee} from "../../interface/employee";
 import {catchError} from "rxjs/operators";
-import {EmployeesComponent} from "../employees/employees.component";
+import {EmployeesComponent} from "../employees.component";
 
 @Component({
   selector: 'app-add-employee',
