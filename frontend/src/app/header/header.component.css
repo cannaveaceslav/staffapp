@@ -28,4 +28,5 @@
 
 .navbar {
   background-color: navy;
+  background-image:  linear-gradient(40deg,navy 50%,lightskyblue 80%)
 }
