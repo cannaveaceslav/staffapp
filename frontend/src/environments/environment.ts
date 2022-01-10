@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   serverActuatorUrl: 'http://localhost:8080/actuator',
-  serverUrl: 'http://localhost:8080/actuator'
+  serverUrl: 'http://localhost:8080'
 };
 
 /*

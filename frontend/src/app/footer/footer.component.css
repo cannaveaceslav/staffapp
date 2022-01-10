@@ -5,5 +5,6 @@ body {
 .text-voilet {color : #a300bf !important;}
 .bg-1 {
  background-image: url("https://images.pexels.com/photos/693776/pexels-photo-693776.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+
  background-color: #a300bf;
 }
