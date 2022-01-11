@@ -2,8 +2,10 @@ package com.staffapp.backend.config;
 
 import com.staffapp.backend.service.user.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -36,20 +38,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .httpBasic()
             .and()
             .authorizeRequests()
-            .antMatchers(
-                    "/registration/**",
-                    "/js/**",
-                    "/css/**",
-                    "/img/**",
-                    "/login",
-                    "/layout/**",
-                    "/employees/**",
-                    "/items/**",
-                    "/assets/**",
-                    "/actuator",
-                    "/actuator/*",
-                    "/instances",
-                    "/instances/*")
+            .antMatchers(HttpMethod.OPTIONS,
+                         "/registration/**",
+                         "/js/**",
+                         "/css/**",
+                         "/img/**",
+                         "/login/**",
+                         "/layout/**",
+                         "/items/**",
+                         "/assets/**",
+                         "/actuator",
+                         "/actuator/*",
+                         "/instances",
+                         "/instances/*")
             .permitAll()
             .anyRequest()
             .authenticated().and()
@@ -69,7 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     return provider;
   }
 
-//  @Bean
+  //  @Bean
 //  public CorsFilter corsFilter() {
 //    UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
 //    CorsConfiguration corsConfiguration = new CorsConfiguration();
@@ -89,15 +90,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //  }
   @Bean
   CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(Collections.singletonList("*"));
+    CorsConfiguration configuration = new CorsConfiguration();
+    configuration.setAllowedOriginPatterns(Collections.singletonList("*"));
 //        configuration.setAllowedOrigins(Collections.singletonList("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "DELETE", "PUT", "PATCH"));
-        configuration.setAllowedHeaders(Arrays.asList("X-Requested-With", "Origin", "Content-Type", "Accept", "Authorization"));
-        configuration.setAllowCredentials(true);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
+    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "DELETE", "PUT", "PATCH"));
+    configuration.setAllowedHeaders(Arrays.asList("X-Requested-With", "Origin", "Content-Type", "Accept", "Authorization"));
+    configuration.setAllowCredentials(true);
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", configuration);
+    return source;
+  }
 
 }

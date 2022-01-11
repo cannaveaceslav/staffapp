@@ -19,13 +19,29 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  checkLogin() {
-    if (this.authenticationService.authenticate(this.username, this.password)
-    ) {
+  checkLogin2() {
+    if (this.authenticationService.authenticate(this.username, this.password)) {
+      console.log('authentication failed: '+this.username+'/'+this.password);
       this.router.navigate([''])
       this.invalidLogin = false
     } else
       this.invalidLogin = true
+  }
+
+  checkLogin() {
+    (this.authenticationService.authenticate(this.username, this.password).subscribe(
+      data => {
+              console.log('authentication failed: '+this.username+'/'+this.password);
+        this.router.navigate([''])
+        this.invalidLogin = false
+      },
+      error => {
+        this.invalidLogin = true
+
+      }
+    )
+    );
+
   }
 
 }

@@ -58,6 +58,10 @@ public class User implements UserDetails {
     this.userRole = userRole;
   }
 
+  public User(String firstName) {
+    this.firstName = firstName;
+  }
+
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(userRole.name());
