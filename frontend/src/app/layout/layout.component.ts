@@ -31,4 +31,23 @@ export class LayoutComponent implements OnInit {
       );
   }
 
+  onDragEnded(event: { source: { getRootElement: () => any; }; }) {
+    let element = event.source.getRootElement();
+    let boundingClientRect = element.getBoundingClientRect();
+    let parentPosition = this.getPosition(element);
+    console.log('x: ' + (boundingClientRect.x - parentPosition.left), 'y: ' + (boundingClientRect.y - parentPosition.top));
+
+  }
+
+  getPosition(el: any) {
+    let x = 0;
+    let y = 0;
+    while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
+      x += el.offsetLeft - el.scrollLeft;
+      y += el.offsetTop - el.scrollTop;
+      el = el.offsetParent;
+    }
+    return {top: y, left: x};
+  }
+
 }
