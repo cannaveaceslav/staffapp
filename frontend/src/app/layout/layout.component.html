@@ -1,37 +1,37 @@
 <ng-container *ngIf="(appState$ | async ) as appState" [ngSwitch]="appState.dataState">
-  <div style="position: relative; left: 30px; top: 100px; height: 700px; width:4000px; background-color: silver"
+  <div style="position: relative; left: 30px; top: 100px; height: 700px; width:100%; background-color: silver"
        class="container">
     <ng-container *ngSwitchCase="DataState.LOADED_STATE">
 
       <div *ngFor="let location of appState?.appData?.data?.locations">
-        <div style="height: 30px; width: 30px; background-color: red; z-index: 10"
+        <div class="table-available"
              cdkDrag
              cdkDragBoundary=".container"
-             (cdkDragEnded)=onDragEnded($event)>
-          <h6 style="text-align: center;  border-bottom-color: #009edf" >{{location.locationNumber}}</h6>
+             (cdkDragEnded)=onDragEnded($event)
+             (cdkDragStarted)=handleDragStart($event)
+             (click)=handleClick($event) *ngIf="location.available; else notAvailable">
+
+          <p>{{location.locationNumber}}</p>
         </div>
+        <ng-template #notAvailable>
+          <div class="table-not-available"
+               cdkDrag
+               cdkDragBoundary=".container"
+               (cdkDragEnded)=onDragEnded($event)
+               (cdkDragStarted)=handleDragStart($event)
+               (click)=handleClick($event) >
+            {{location.locationNumber}}
+          </div>
+        </ng-template>
       </div>
     </ng-container>
   </div>
   <ng-container>
-  <div class="container" style="height: 200px">
-  </div>
+    <div class="container" style="height: 200px">
+    </div>
   </ng-container>
 
 </ng-container>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <!--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"-->

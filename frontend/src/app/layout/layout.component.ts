@@ -5,6 +5,7 @@ import {AppState} from "../interface/app-state";
 import {CustomResponse} from "../interface/custom-response";
 import {DataState} from "../enum/data-state.enum";
 import {catchError} from "rxjs/operators";
+import {CdkDragStart, DragAxis} from "@angular/cdk/drag-drop";
 
 @Component({
   selector: 'app-layout',
@@ -14,9 +15,15 @@ import {catchError} from "rxjs/operators";
 export class LayoutComponent implements OnInit {
   appState$!: Observable<AppState<CustomResponse>>;
   readonly DataState = DataState;
+  public dragging!: boolean;
+
+
 
   constructor(private layoutService: LayoutService) {
   }
+
+
+
 
   ngOnInit(): void {
     this.appState$ = this.layoutService.getlocations$
@@ -40,14 +47,26 @@ export class LayoutComponent implements OnInit {
   }
 
   getPosition(el: any) {
-    let x = 0;
-    let y = 0;
+    let x = 50;
+    let y = 40;
     while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
       x += el.offsetLeft - el.scrollLeft;
       y += el.offsetTop - el.scrollTop;
       el = el.offsetParent;
     }
     return {top: y, left: x};
+  }
+
+    public handleDragStart(event: CdkDragStart): void {
+    this.dragging = true;
+  }
+
+  public handleClick(event: MouseEvent): void {
+    if (this.dragging) {
+      this.dragging = false;
+      return
+    }
+    alert('clicked!');
   }
 
 }
