@@ -16,6 +16,7 @@ export class LayoutComponent implements OnInit {
   appState$!: Observable<AppState<CustomResponse>>;
   readonly DataState = DataState;
   public dragging!: boolean;
+  // public 	position!: {x: number, y: number}
 
 
 

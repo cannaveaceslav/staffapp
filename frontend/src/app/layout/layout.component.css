@@ -24,6 +24,7 @@ p {
   width: 30px;
   background-color: forestgreen;
   z-index: 15;
+  position: absolute;
 }
 
 .table-not-available {

@@ -8,4 +8,6 @@ export interface Location {
   createdAt: Date;
   modifiedAt: Date;
   employee: Employee;
+  pos_x: number;
+  pos_y: number;
 }

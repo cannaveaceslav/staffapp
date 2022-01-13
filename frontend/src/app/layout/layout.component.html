@@ -1,5 +1,5 @@
 <ng-container *ngIf="(appState$ | async ) as appState" [ngSwitch]="appState.dataState">
-  <div style="position: relative; left: 30px; top: 100px; height: 700px; width:100%; background-color: silver"
+  <div style="position: relative; left: 30px; top: 10px; height: 700px; width:100%; background-color: silver"
        class="container">
     <ng-container *ngSwitchCase="DataState.LOADED_STATE">
 
@@ -7,6 +7,7 @@
         <div class="table-available"
              cdkDrag
              cdkDragBoundary=".container"
+             [cdkDragFreeDragPosition]="{x:location.pos_x, y:location.pos_y}"
              (cdkDragEnded)=onDragEnded($event)
              (cdkDragStarted)=handleDragStart($event)
              (click)=handleClick($event) *ngIf="location.available; else notAvailable">
@@ -17,9 +18,10 @@
           <div class="table-not-available"
                cdkDrag
                cdkDragBoundary=".container"
+               [cdkDragFreeDragPosition]="{x:location.pos_x, y:location.pos_y}"
                (cdkDragEnded)=onDragEnded($event)
                (cdkDragStarted)=handleDragStart($event)
-               (click)=handleClick($event) >
+               (click)=handleClick($event)>
             {{location.locationNumber}}
           </div>
         </ng-template>
