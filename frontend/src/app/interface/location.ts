@@ -1,3 +1,4 @@
+import {Employee} from "./employee";
 
 export interface Location {
   id: number;
@@ -6,5 +7,5 @@ export interface Location {
   available: boolean;
   createdAt: Date;
   modifiedAt: Date;
-  employeeId: number;
+  employee: Employee;
 }

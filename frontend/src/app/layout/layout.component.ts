@@ -12,7 +12,8 @@ import {catchError} from "rxjs/operators";
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
-  appState$: Observable<AppState<CustomResponse>> | undefined;
+  appState$!: Observable<AppState<CustomResponse>>;
+  readonly DataState = DataState;
 
   constructor(private layoutService: LayoutService) {
   }
