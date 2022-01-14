@@ -3,12 +3,13 @@
        class="container">
     <ng-container *ngSwitchCase="DataState.LOADED_STATE">
 
-      <div *ngFor="let location of appState?.appData?.data?.locations">
+      <div *ngFor="let location of appState?.appData?.data?.locations"  >
+
         <div class="table-available"
              cdkDrag
              cdkDragBoundary=".container"
              [cdkDragFreeDragPosition]="{x:location.pos_x, y:location.pos_y}"
-             (cdkDragEnded)=onDragEnded($event)
+             (cdkDragEnded)=onDragEnded($event,location)
              (cdkDragStarted)=handleDragStart($event)
              (click)=handleClick($event) *ngIf="location.available; else notAvailable">
 
@@ -19,7 +20,7 @@
                cdkDrag
                cdkDragBoundary=".container"
                [cdkDragFreeDragPosition]="{x:location.pos_x, y:location.pos_y}"
-               (cdkDragEnded)=onDragEnded($event)
+               (cdkDragEnded)=onDragEnded($event,location)
                (cdkDragStarted)=handleDragStart($event)
                (click)=handleClick($event)>
             {{location.locationNumber}}
