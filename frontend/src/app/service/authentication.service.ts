@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
-import {filter, map, Observable} from "rxjs";
-import {CustomResponse} from "../interface/custom-response";
+import {filter, map, Observable, of} from "rxjs";
 import {environment} from "../../environments/environment";
-import {User} from "../interface/user";
 import {catchError, tap} from "rxjs/operators";
+import {DataState} from "../enum/data-state.enum";
 
 
 @Injectable({
@@ -19,13 +18,15 @@ export class AuthenticationService {
 
   authenticate(username: string, password: string) {
     const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(username + ':' + password)});
-    return this.httpClient.get<User>(`${this.baseURL}/login/validateLogin`, {headers}).pipe(
+    return this.httpClient.get<Boolean>(`${this.baseURL}/login/validateLogin`, {headers}).pipe(
       map(
         userData => {
           sessionStorage.setItem('username', username);
+          let authString = 'Basic ' + btoa(username + ':' + password);
+          sessionStorage.setItem('basicauth', authString);
           return userData;
-        }
-      )
+        }),
+      catchError(this.handleError)
     );
   }
 

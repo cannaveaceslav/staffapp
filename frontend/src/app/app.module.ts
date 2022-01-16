@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AdminComponent } from './admin/admin.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import {BasicAuthHttpInterceptorService} from "./service/basicauthhttpinterceptor.service";
 // import {
 //   MatToolbarModule,
 //   MatTabsModule,
@@ -59,7 +60,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     // MatRadioModule,
     DragDropModule
   ],
-  providers: [],
+  providers: [  {
+    provide:HTTP_INTERCEPTORS, useClass:BasicAuthHttpInterceptorService, multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

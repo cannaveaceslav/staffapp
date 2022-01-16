@@ -6,9 +6,6 @@ import {CustomResponse} from "../interface/custom-response";
 import {catchError, tap} from "rxjs/operators";
 import {environment} from "../../environments/environment";
 
-let username = 'admin';
-let password = 'admin';
-let headers = new HttpHeaders({Authorization: 'Basic ' + btoa(username + ':' + password)});
 
 
 
@@ -29,35 +26,35 @@ export class EmployeesService {
   // }
 
   public getEmployees$ = <Observable<CustomResponse>>
-    this.httpClient.get<CustomResponse>(`${this.baseURL}/employees`, {'headers': headers})
+    this.httpClient.get<CustomResponse>(`${this.baseURL}/employees`)
       .pipe(
         tap(console.log),
         catchError(this.handleError)
       );
 
   public employee$ = (employeeId: number) => <Observable<CustomResponse>>
-    this.httpClient.get<CustomResponse>(`${this.baseURL}/employees/get/${employeeId}`,{'headers': headers})
+    this.httpClient.get<CustomResponse>(`${this.baseURL}/employees/get/${employeeId}`)
       .pipe(
         tap(console.log),
         catchError(this.handleError)
       );
 
   public save$ = (employee: Employee) => <Observable<CustomResponse>>
-    this.httpClient.post<CustomResponse>(`${this.baseURL}/employees/save`, employee,{'headers': headers})
+    this.httpClient.post<CustomResponse>(`${this.baseURL}/employees/save`, employee)
       .pipe(
         tap(console.log),
         catchError(this.handleError)
       );
 
   delete$ = (employee: Employee) => <Observable<CustomResponse>>
-    this.httpClient.delete<CustomResponse>(`${this.baseURL}/employees/delete/` + employee.id,{'headers': headers})
+    this.httpClient.delete<CustomResponse>(`${this.baseURL}/employees/delete/` + employee.id)
       .pipe(
         tap(console.log),
         catchError(this.handleError)
       );
 
 
-  private handleError(error: HttpErrorResponse): Observable<never> {
+  private  handleError(error: HttpErrorResponse): Observable<never> {
     console.log(error)
     throw new Error(`An error occurred - Error code: ${error.status}`);
   }
