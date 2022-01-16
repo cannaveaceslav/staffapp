@@ -81,4 +81,10 @@ public class UserService implements UserDetailsService {
             user
     );
   }
+
+  public User loadUserByUsernameAndPassword(String email, String password) {
+    return userRepository.findByEmailAndPassword(email, password)
+            .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
+
+  }
 }

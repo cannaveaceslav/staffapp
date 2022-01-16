@@ -16,6 +16,18 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AdminComponent } from './admin/admin.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+// import {
+//   MatToolbarModule,
+//   MatTabsModule,
+//   MatButtonModule,
+//   MatInputModule,
+//   MatDatepickerModule,
+//   MatNativeDateModule,
+//   MatCheckboxModule,
+//   MatRadioModule
+// } from '@angular/material';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +48,16 @@ import { AdminComponent } from './admin/admin.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    // MatToolbarModule,
+    // MatTabsModule,
+    // MatButtonModule,
+    // MatInputModule,
+    // MatDatepickerModule,
+    // MatNativeDateModule,
+    // MatCheckboxModule,
+    // MatRadioModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

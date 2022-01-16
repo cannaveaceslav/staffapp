@@ -35,7 +35,7 @@ public class EmployeesController {
 
   @GetMapping
   @ApiOperation("Method returns a response with the map with key=employees and value=list of all employees")
-  public ResponseEntity<Response> getLocations() throws InterruptedException {
+  public ResponseEntity<Response> getEmployees() throws InterruptedException {
     return ResponseEntity.ok(
             Response.builder()
                     .timeStamp(now())
@@ -50,7 +50,7 @@ public class EmployeesController {
   @PostMapping("/save")
   @ApiOperation("Method to add new employee." +
           "Returns a response with the map with key=employee and value=new employee")
-  public ResponseEntity<Response> saveLocation(@RequestBody @Valid Employee employee) {
+  public ResponseEntity<Response> saveEmployee(@RequestBody @Valid Employee employee) {
 
     return ResponseEntity.ok(
             Response.builder()
@@ -66,7 +66,7 @@ public class EmployeesController {
   @PutMapping("/update")
   @ApiOperation("Method update current location." +
           "Returns a response with the map with key=employee and value=new employee")
-  public ResponseEntity<Response> updateLocation(@RequestBody @Valid Employee employee) {
+  public ResponseEntity<Response> updateEmployee(@RequestBody @Valid Employee employee) {
 
     return ResponseEntity.ok(
             Response.builder()
@@ -81,7 +81,7 @@ public class EmployeesController {
 
   @DeleteMapping("/delete/{id}")
   @ApiOperation("Method deletes indicated employee by id.")
-  public ResponseEntity<Response> deleteLocation(@PathVariable("id") Long id) {
+  public ResponseEntity<Response> deleteEmployee(@PathVariable("id") Long id) {
 
     return ResponseEntity.ok(
             Response.builder()

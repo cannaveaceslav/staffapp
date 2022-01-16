@@ -1,18 +1,27 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Employee} from "../interface/employee";
 import {Observable, throwError} from "rxjs";
 import {CustomResponse} from "../interface/custom-response";
 import {catchError, tap} from "rxjs/operators";
+import {environment} from "../../environments/environment";
+
+let username = 'admin';
+let password = 'admin';
+let headers = new HttpHeaders({Authorization: 'Basic ' + btoa(username + ':' + password)});
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeesService {
-  private baseURL = 'http://localhost:8080';
+  private baseURL = environment.serverUrl;
+
 
   constructor(private httpClient: HttpClient) {
   }
+
 
   // public getEmployees() {
   //   console.log('Getting all employees');
@@ -20,28 +29,28 @@ export class EmployeesService {
   // }
 
   public getEmployees$ = <Observable<CustomResponse>>
-    this.httpClient.get<CustomResponse>(`${this.baseURL}/employees`)
+    this.httpClient.get<CustomResponse>(`${this.baseURL}/employees`, {'headers': headers})
       .pipe(
         tap(console.log),
         catchError(this.handleError)
       );
 
   public employee$ = (employeeId: number) => <Observable<CustomResponse>>
-    this.httpClient.get<CustomResponse>(`${this.baseURL}/employees/get/${employeeId}`)
+    this.httpClient.get<CustomResponse>(`${this.baseURL}/employees/get/${employeeId}`,{'headers': headers})
       .pipe(
         tap(console.log),
         catchError(this.handleError)
       );
 
   public save$ = (employee: Employee) => <Observable<CustomResponse>>
-    this.httpClient.post<CustomResponse>(`${this.baseURL}/employees/save`, employee)
+    this.httpClient.post<CustomResponse>(`${this.baseURL}/employees/save`, employee,{'headers': headers})
       .pipe(
         tap(console.log),
         catchError(this.handleError)
       );
 
   delete$ = (employee: Employee) => <Observable<CustomResponse>>
-    this.httpClient.delete<CustomResponse>(`${this.baseURL}/employees/delete/`+employee.id)
+    this.httpClient.delete<CustomResponse>(`${this.baseURL}/employees/delete/` + employee.id,{'headers': headers})
       .pipe(
         tap(console.log),
         catchError(this.handleError)

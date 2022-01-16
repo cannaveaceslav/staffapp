@@ -1,0 +1,43 @@
+p {
+  font-family: Lato;
+  margin-bottom: 0;
+}
+
+.main {
+  margin: 8px;
+}
+
+.container {
+  position: relative;
+  top: 0;
+}
+
+.table-available {
+  color: cornsilk;
+  border: solid 2px #ccc;
+  cursor: pointer;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  background-color: forestgreen;
+  z-index: 15;
+  position: absolute;
+}
+
+.table-not-available {
+  color: cornsilk;
+  border: solid 2px #ccc;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  background-color: darkred;
+  z-index: 15;
+}
+
