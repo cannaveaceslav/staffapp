@@ -70,24 +70,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     return provider;
   }
 
-  //  @Bean
-//  public CorsFilter corsFilter() {
-//    UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
-//    CorsConfiguration corsConfiguration = new CorsConfiguration();
-//    corsConfiguration.setAllowCredentials(false);
-////    corsConfiguration.setAllowedOrigins((Collections.singletonList("http://localhost:4200")));
-//    corsConfiguration.setAllowedOrigins(Collections.singletonList("*"));
-//    corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Accec-Control-Allow-Origin",
-//                                                      "Content-Type", "Accept", "Jwt-Token",
-//                                                      "Authorization", "Origin, Accept", "X-Request-With",
-//                                                      "Access-Control-Request-Method", "Access-Control-Request-Headers"));
-//    corsConfiguration.setExposedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Jwt-Tokem",
-//                                                      "Authorization", "Access-Control-Allow-Origin",
-//                                                      "Access-Control-Allow-Credentials", "Filename"));
-//    corsConfiguration.setAllowedHeaders(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-//    urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
-//    return new CorsFilter((urlBasedCorsConfigurationSource));
-//  }
   @Bean
   CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();

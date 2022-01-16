@@ -10,10 +10,12 @@ import {LoginComponent} from "./login/login.component";
 import {LogoutComponent} from "./logout/logout.component";
 import {AuthGaurdService} from "./service/auth-gaurd.service";
 import {AdminComponent} from "./admin/admin.component";
+import {RegistrationComponent} from "./registration/registration.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
+  {path: 'registration', component: RegistrationComponent},
   {path: 'logout', component: LogoutComponent, canActivate: [AuthGaurdService]},
   {path: 'home', component: HomeComponent, canActivate: [AuthGaurdService]},
   {path: 'layout', component: LayoutComponent, canActivate: [AuthGaurdService]},

@@ -13,5 +13,5 @@ export interface CustomResponse {
   data: {locations?: Location [], location?: Location
         ,employees?: Employee [], employee?: Employee
         ,items?: Item [], item?: Item
-        ,user?: User};
+        ,user?: User };
 }

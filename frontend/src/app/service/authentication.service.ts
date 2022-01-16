@@ -4,6 +4,7 @@ import {filter, map, Observable, of} from "rxjs";
 import {environment} from "../../environments/environment";
 import {catchError, tap} from "rxjs/operators";
 import {DataState} from "../enum/data-state.enum";
+import {RegistrationRequest} from "../interface/registrationRequest";
 
 
 @Injectable({
@@ -11,6 +12,7 @@ import {DataState} from "../enum/data-state.enum";
 })
 export class AuthenticationService {
   private baseURL = environment.serverUrl;
+  public registrationRequest!: Observable<RegistrationRequest>;
 
   constructor(private httpClient: HttpClient) {
   }
@@ -40,6 +42,12 @@ export class AuthenticationService {
   logOut() {
     sessionStorage.removeItem('username')
   }
+
+  register(registrationRequest: RegistrationRequest) {
+
+     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa('admin' + ':' + 'admin') });
+        return this.httpClient.post(`${this.baseURL}/registration`, registrationRequest,{headers});
+    }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.log(error)

@@ -1,0 +1,7 @@
+body {
+      background-image:  linear-gradient(40deg,mediumblue 10%,lightskyblue 60%);
+}
+.mt-5, .my-5 {
+    margin-top: 1rem!important;
+  padding-bottom: 10rem;
+}

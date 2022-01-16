@@ -7,8 +7,10 @@ import {AuthenticationService} from "../service/authentication.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+   user: string | null = sessionStorage.getItem('username');
 
-  constructor (public loginService: AuthenticationService) {
+
+  constructor(public loginService: AuthenticationService) {
   }
 
   ngOnInit(): void {

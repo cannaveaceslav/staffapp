@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthenticationService } from '../service/authentication.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {AuthenticationService} from '../service/authentication.service';
+import {AlertService} from "../service/alert.service";
 
 @Component({
   selector: 'app-login',
@@ -14,36 +15,33 @@ export class LoginComponent implements OnInit {
   invalidLogin = false
 
   constructor(private router: Router,
-    private authenticationService: AuthenticationService) { }
+              private authenticationService: AuthenticationService
+    , private alertService: AlertService) {
+  }
 
   ngOnInit() {
   }
 
-  checkLogin2() {
-    if (this.authenticationService.authenticate(this.username, this.password)) {
-      console.log('authentication failed: '+this.username+'/'+this.password);
-      this.router.navigate([''])
-      this.invalidLogin = false
-    } else
-      this.invalidLogin = true
-  }
 
   checkLogin() {
     (this.authenticationService.authenticate(this.username, this.password).subscribe(
-      data => {
-        this.router.navigate([''])
-        this.invalidLogin = false
-      },
-      error => {
-        this.invalidLogin = true
-        console.log("Authentication failed")
-      }
-    )
+        data => {
+          this.router.navigate([''])
+          this.invalidLogin = false
+        },
+        error => {
+          this.alertService.error(error);
+          this.invalidLogin = true
+          console.log("Authentication failed")
+        }
+      )
     );
 
   }
 
-  register() {
 
+  public goToPage(pageName: string) {
+    this.router.navigate([`${pageName}`]);
   }
+
 }
