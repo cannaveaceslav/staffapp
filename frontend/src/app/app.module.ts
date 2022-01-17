@@ -10,7 +10,7 @@ import { ItemsComponent } from './items/items.component';
 import { ReportsComponent } from './reports/reports.component';
 import { HomeComponent } from './home/home.component';
 import { AddEmployeeComponent } from './employees/add-employee/add-employee.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
@@ -18,6 +18,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { AdminComponent } from './admin/admin.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import {BasicAuthHttpInterceptorService} from "./service/basicauthhttpinterceptor.service";
+import { RegistrationComponent } from './registration/registration.component';
 // import {
 //   MatToolbarModule,
 //   MatTabsModule,
@@ -43,13 +44,15 @@ import {BasicAuthHttpInterceptorService} from "./service/basicauthhttpintercepto
     FooterComponent,
     LoginComponent,
     LogoutComponent,
-    AdminComponent
+    AdminComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     // MatToolbarModule,
     // MatTabsModule,
     // MatButtonModule,
