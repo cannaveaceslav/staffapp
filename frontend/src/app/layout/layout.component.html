@@ -1,9 +1,8 @@
 <ng-container *ngIf="(appState$ | async ) as appState" [ngSwitch]="appState.dataState">
-  <div style="position: relative; left: 30px; top: 10px; height: 700px; width:100%; background-color: silver"
-       class="container">
+  <div class="container">
     <ng-container *ngSwitchCase="DataState.LOADED_STATE">
 
-      <div *ngFor="let location of appState?.appData?.data?.locations"  >
+      <div *ngFor="let location of appState?.appData?.data?.locations">
 
         <div class="table-available"
              cdkDrag
@@ -30,7 +29,7 @@
     </ng-container>
   </div>
   <ng-container>
-    <div class="container" style="height: 200px">
+    <div style="height: 300px">
     </div>
   </ng-container>
 
