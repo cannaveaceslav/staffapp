@@ -1,4 +1,4 @@
-package com.staffapp.backend.controller.Item;
+package com.staffapp.backend.controller.ItemList;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
