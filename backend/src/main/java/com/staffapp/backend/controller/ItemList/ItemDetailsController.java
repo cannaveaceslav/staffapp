@@ -1,4 +1,4 @@
-package com.staffapp.backend.controller.Item;
+package com.staffapp.backend.controller.ItemList;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @AllArgsConstructor
 @RequestMapping(path = "/item-info")
 @Api("Controller to work with each item")
-public class ItemInfoController {
+public class ItemDetailsController {
 
   @GetMapping
   @ApiOperation("Shows user detailed info for selected item. Returns 'item-info.html' view")

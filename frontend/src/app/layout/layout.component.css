@@ -9,7 +9,15 @@ p {
 
 .container {
   position: relative;
-  top: 0;
+  left: 30px;
+  top: 10px;
+  height: 461px;
+  width: 1211px;
+  background-image: url('../../assets/images/isd_office.png');
+  background-position: left;
+  background-color: silver;
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: inherit; /* Resize the background image to cover the entire container */
 }
 
 .table-available {
@@ -20,9 +28,9 @@ p {
   text-align: center;
   justify-content: center;
   align-items: center;
-  height: 30px;
-  width: 30px;
-  background-color: forestgreen;
+  height: 25px;
+  width: 25px;
+  background-color: limegreen;
   z-index: 15;
   position: absolute;
 }
@@ -35,9 +43,9 @@ p {
   text-align: center;
   justify-content: center;
   align-items: center;
-  height: 30px;
-  width: 30px;
-  background-color: darkred;
+  height: 25px;
+  width: 25px;
+  background-color: red;
   z-index: 15;
 }
 

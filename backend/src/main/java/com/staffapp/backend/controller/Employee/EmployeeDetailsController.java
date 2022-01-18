@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @AllArgsConstructor
 @RequestMapping("/employee-info")
 @Api("Controller for employee info page. Show detailed info for each chosen employee")
-public class EmployeeInfoController {
+public class EmployeeDetailsController {
 
   @ApiOperation("Show user page for chosen employee with all details. Return view 'employee-info.html'")
   @GetMapping
