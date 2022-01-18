@@ -5,3 +5,10 @@ body {
     margin-top: 1rem!important;
   padding-bottom: 10rem;
 }
+.card-header{
+  border-bottom: 0;
+  background-color: white;
+}
+.card-body{
+  border: #a300bf;
+}
