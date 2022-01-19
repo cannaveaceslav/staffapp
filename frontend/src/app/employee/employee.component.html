@@ -9,11 +9,12 @@
       <span class="sr-only">Loading...</span>
     </div>
   </ng-container>
+
   <ng-container *ngSwitchCase="DataState.LOADED_STATE">
-    <div class="container" let employee=appState?.appData?.data?.employees>
+    <div class="container" >
       <div class="row">
         <div class="col-lg-12 bg-primary p-2 text-white mt-2 text-center text-capitalize">
-          {{employee.lastName}}
+          {{employee?.lastName}}
         </div>
       </div>
       <div class="row mt-4">
@@ -74,16 +75,16 @@
         </div>
         <div class="col-lg-7">
           <h5>
-            {{employee.lastName}}
+            {{employee?.lastName}}
           </h5>
           <h3>
-            ₹16,766
+            {{employee?.firstName}}
           </h3>
           <p>
-            Available offers
+             {{employee?.department?.departmentName}}
           </p>
           <ul>
-            <li class="pb-2"><b>Bank Offer</b> 5% Unlimited Cashback on Bank Credit Card <b>T&C</b></li>
+            <li class="pb-2"><b>{{employee?.email}}</b> 5% Unlimited Cashback on Bank Credit Card <b>T&C</b></li>
             <li><b>Bank Offer</b> 5% Instant Discount on EMI with Bank Credit and Debit Cards <b>T&C</b></li>
           </ul>
         </div>

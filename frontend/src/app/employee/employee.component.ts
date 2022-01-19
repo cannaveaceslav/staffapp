@@ -18,18 +18,18 @@ export class EmployeeComponent implements OnInit {
   public value: any;
   appState$!: Observable<AppState<CustomResponse>>;
   readonly DataState = DataState;
-  public employee!: Employee;
+  public employee?: Employee;
 
   constructor(private route: ActivatedRoute, private employeesService: EmployeesService) {
   }
 
   ngOnInit(): void {
     this.value = this.route.snapshot.params['id'];
-    // this.appState$ = this.employeesService.getEmployee$(this.value)
-    this.appState$ = this.employeesService.getEmployee$(43)
+    this.appState$ = this.employeesService.getEmployee$(this.value)
       .pipe(
         map(response => {
-          console.log('SUCCESS')
+          console.log('SUCCESS');
+          this.employee =response.data.employee;
           return {dataState: DataState.LOADED_STATE, appData: response}
         }),
         startWith({dataState: DataState.LOADING_STATE}),
