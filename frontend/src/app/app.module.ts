@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
 import { EmployeesComponent } from './employees/employees.component';
-import { ItemsComponent } from './items/items.component';
+import { ItemComponent } from './item/item.component';
 import { ReportsComponent } from './reports/reports.component';
 import { HomeComponent } from './home/home.component';
 import { AddEmployeeComponent } from './employees/add-employee/add-employee.component';
@@ -19,6 +19,8 @@ import { AdminComponent } from './admin/admin.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import {BasicAuthHttpInterceptorService} from "./service/basicauthhttpinterceptor.service";
 import { RegistrationComponent } from './registration/registration.component';
+import { ItemtypeComponent } from './itemtype/itemtype.component';
+import { EmployeeComponent } from './employee/employee.component';
 // import {
 //   MatToolbarModule,
 //   MatTabsModule,
@@ -36,7 +38,7 @@ import { RegistrationComponent } from './registration/registration.component';
     AppComponent,
     LayoutComponent,
     EmployeesComponent,
-    ItemsComponent,
+    ItemComponent,
     ReportsComponent,
     HomeComponent,
     AddEmployeeComponent,
@@ -45,7 +47,9 @@ import { RegistrationComponent } from './registration/registration.component';
     LoginComponent,
     LogoutComponent,
     AdminComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    ItemtypeComponent,
+    EmployeeComponent
   ],
   imports: [
     BrowserModule,

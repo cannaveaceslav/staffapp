@@ -15,15 +15,12 @@
   <ng-container *ngSwitchCase="DataState.LOADED_STATE">
     <section class="our-webcoderskull padding-lg">
       <div class="container">
-<!--        <div class="row heading heading-icon">-->
-<!--          <h2>Our Team</h2>-->
-<!--        </div>-->
         <ul class="row" >
-          <li class="col-12 col-md-6 col-lg-3" *ngFor="let employee of appState?.appData?.data?.employees; let i = index">
-            <div class="cnt-block equal-hight" >
-              <figure><img src="http://www.webcoderskull.com/img/team1.png" class="img-responsive"  alt="Employee picture" (click)="getEmployeePage(employee.id)"></figure>
-              <h6><a href="http://www.webcoderskull.com/">{{employee.lastName}} {{employee.firstName}}</a></h6>
-              <p>{{employee.department.departmentName}}</p>
+          <li class="col-12 col-md-6 col-lg-3" *ngFor="let itemType of appState?.appData?.data?.itemTypes; let i = index">
+            <div class="cnt-block equal-hight" style="height: 349px;">
+              <figure><img src="https://image.shutterstock.com/image-vector/device-icons-smart-phone-tablet-600w-303111371.jpg" class="img-responsive" alt=""></figure>
+              <h3><a href="http://www.webcoderskull.com/">{{itemType.typeName}}</a></h3>
+              <p>{{itemType.id}}</p>
 <!--              <ul class="follow-us clearfix">-->
 <!--                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>-->
 <!--                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>-->

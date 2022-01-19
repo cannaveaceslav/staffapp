@@ -33,14 +33,13 @@ public class LoginController {
   @GetMapping(produces = "application/json")
   @RequestMapping({"/validateLogin"})
   public boolean validateLogin() {
-    //todo fetch user from userService
     log.info("User authenticated");
     return true;
   }
 
   @GetMapping("/validate/{email}/{password}")
   @ApiOperation("Method returns a response with the map with key=user and value=user from DB")
-  public ResponseEntity<Response> getEmployees(@PathVariable("email") String email,
+  public ResponseEntity<Response> getUser(@PathVariable("email") String email,
                                                @PathVariable("password") String password) throws InterruptedException {
     return ResponseEntity.ok(
             Response.builder()

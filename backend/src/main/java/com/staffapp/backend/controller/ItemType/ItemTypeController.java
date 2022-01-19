@@ -1,12 +1,13 @@
-package com.staffapp.backend.controller.Layout;
+package com.staffapp.backend.controller.ItemType;
 
-import com.staffapp.backend.model.Location;
+import com.staffapp.backend.model.ItemType;
 import com.staffapp.backend.model.Response;
-import com.staffapp.backend.service.layout.LayoutService;
+import com.staffapp.backend.service.itemType.ItemTypeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.Collections;
@@ -24,23 +24,23 @@ import static java.time.LocalDateTime.now;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
-@RestController
-@RequiredArgsConstructor
+@Controller
+@AllArgsConstructor
+@RequestMapping(path = "/item-types")
+@Api("Controller for page with item types (chairs, laptops, keyboards etc.")
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping(path = "/layout")
-@Api("Controller to work with layout of the office. Add and remove working tables (locations)")
-public class LayoutController {
+public class ItemTypeController {
 
-  private final LayoutService layoutService;
+  private final ItemTypeService itemTypeService;
 
   @GetMapping
-  @ApiOperation("Method returns a response with the map with key=locations and value=list of all locations")
-  public ResponseEntity<Response> getLocations() {
+  @ApiOperation("Method returns a response with the map with key=itemTypes and value=list of all itemTypes")
+  public ResponseEntity<Response> getItemTypes() {
     return ResponseEntity.ok(
             Response.builder()
                     .timeStamp(now())
-                    .data(Collections.singletonMap("locations", layoutService.list()))
-                    .message("Locations retrieved")
+                    .data(Collections.singletonMap("itemTypes", itemTypeService.list()))
+                    .message("List of itemTypes retrieved")
                     .status(OK)
                     .statusCode(OK.value())
                     .build()
@@ -48,14 +48,14 @@ public class LayoutController {
   }
 
   @GetMapping("/get/{id}")
-  @ApiOperation("Method returns a response with the map with key=location and value=location by id")
-  public ResponseEntity<Response> getLocation(@PathVariable("id") Long id) {
+  @ApiOperation("Method returns a response with the map with key=itemType and value=itemType by id")
+  public ResponseEntity<Response> getItemType(@PathVariable("id") Long id) {
 
     return ResponseEntity.ok(
             Response.builder()
                     .timeStamp(now())
-                    .data(Collections.singletonMap("location", layoutService.getById(id)))
-                    .message("Location with id " + id + " retrieved")
+                    .data(Collections.singletonMap("itemType", itemTypeService.getById(id)))
+                    .message("ItemType with id " + id + " retrieved")
                     .status(OK)
                     .statusCode(OK.value())
                     .build()
@@ -63,15 +63,15 @@ public class LayoutController {
   }
 
   @PostMapping("/save")
-  @ApiOperation("Method to add new location." +
-          "Returns a response with the map with key=location and value=new location")
-  public ResponseEntity<Response> saveLocation(@RequestBody @Valid Location location) {
+  @ApiOperation("Method to add new itemType." +
+          "Returns a response with the map with key=itemType and value=new itemType")
+  public ResponseEntity<Response> saveItemType(@RequestBody @Valid ItemType itemType) {
 
     return ResponseEntity.ok(
             Response.builder()
                     .timeStamp(now())
-                    .data(Collections.singletonMap("location", layoutService.create(location)))
-                    .message("Location created")
+                    .data(Collections.singletonMap("itemType", itemTypeService.create(itemType)))
+                    .message("ItemType created")
                     .status(CREATED)
                     .statusCode(CREATED.value())
                     .build()
@@ -79,15 +79,15 @@ public class LayoutController {
   }
 
   @PutMapping("/update")
-  @ApiOperation("Method update current location." +
-          "Returns a response with the map with key=location and value=new location")
-  public ResponseEntity<Response> updateLocation(@RequestBody @Valid Location location) {
+  @ApiOperation("Method update current itemType." +
+          "Returns a response with the map with key=itemType and value=itemType")
+  public ResponseEntity<Response> updateItemType(@RequestBody @Valid ItemType itemType) {
 
     return ResponseEntity.ok(
             Response.builder()
                     .timeStamp(now())
-                    .data(Collections.singletonMap("location", layoutService.update(location)))
-                    .message("Location updated")
+                    .data(Collections.singletonMap("itemType", itemTypeService.update(itemType)))
+                    .message("ItemType updated")
                     .status(CREATED)
                     .statusCode(CREATED.value())
                     .build()
@@ -95,19 +95,17 @@ public class LayoutController {
   }
 
   @DeleteMapping("/delete/{id}")
-  @ApiOperation("Method deletes indicated location by id.")
+  @ApiOperation("Method deletes indicated itemType by id.")
   public ResponseEntity<Response> deleteLocation(@PathVariable("id") Long id) {
 
     return ResponseEntity.ok(
             Response.builder()
                     .timeStamp(now())
-                    .data(Collections.singletonMap("deleted", layoutService.delete(id)))
-                    .message("Location with id " + id + " deleted")
+                    .data(Collections.singletonMap("itemType", itemTypeService.delete(id)))
+                    .message("ItemType with id " + id + " deleted")
                     .status(OK)
                     .statusCode(OK.value())
                     .build()
     );
   }
-
-
 }

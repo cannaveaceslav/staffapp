@@ -32,7 +32,7 @@ export class EmployeesService {
         catchError(this.handleError)
       );
 
-  public employee$ = (employeeId: number) => <Observable<CustomResponse>>
+  public getEmployee$ = (employeeId: number) => <Observable<CustomResponse>>
     this.httpClient.get<CustomResponse>(`${this.baseURL}/employees/get/${employeeId}`)
       .pipe(
         tap(console.log),

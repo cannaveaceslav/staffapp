@@ -12,32 +12,38 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Transactional
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class EmployeeService {
-    private final EmployeeRepository employeeRepository;
+  private final EmployeeRepository employeeRepository;
 
-    public Employee create(Employee employee) {
-        log.info("Saving new  employee [{}]", employee.getLastName() + " " + employee.getFirstName());
-        return employeeRepository.save(employee);
-    }
+  public Employee create(Employee employee) {
+    log.info("Saving new  employee [{}]", employee.getLastName() + " " + employee.getFirstName());
+    return employeeRepository.save(employee);
+  }
 
-    public Collection<Employee> list(int limit) throws InterruptedException {
-        log.info("Fetching all employees");
-        return employeeRepository.findAll(PageRequest.of(0, limit, Sort.by("lastName"))).toList();
-    }
+  public Collection<Employee> list(int limit) throws InterruptedException {
+    log.info("Fetching all employees");
+    return employeeRepository.findAll(PageRequest.of(0, limit, Sort.by("lastName"))).toList();
+  }
 
-    public Employee update(@NotNull Employee employee) {
-        log.info("Updating employee [{}], [{}]", employee.getLastName(), employee.getFirstName());
-        return employeeRepository.save(employee);
-    }
+  public Optional<Employee> getById(Long id) {
+    log.info("Getting employee by id [{}]", id);
+    return Optional.of(employeeRepository.getById(id));
+  }
 
-    public Boolean delete(Long id) {
-        log.info("Deleting employee with id: [{}]", id);
-        employeeRepository.deleteById(id);
-        return Boolean.TRUE;
-    }
+  public Employee update(@NotNull Employee employee) {
+    log.info("Updating employee [{}], [{}]", employee.getLastName(), employee.getFirstName());
+    return employeeRepository.save(employee);
+  }
+
+  public Boolean delete(Long id) {
+    log.info("Deleting employee with id: [{}]", id);
+    employeeRepository.deleteById(id);
+    return Boolean.TRUE;
+  }
 }

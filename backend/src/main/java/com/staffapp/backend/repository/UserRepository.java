@@ -24,6 +24,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
           "WHERE c.email = ?1")
   void updateUserEnable(String email);
 
+  @Transactional
   @Modifying
   @Query("UPDATE User c " +
           "SET c.firstName = ?1 , " +

@@ -16,7 +16,7 @@ import {Location} from '../interface/location';
 export class LayoutComponent implements OnInit {
   appState$!: Observable<AppState<CustomResponse>>;
   readonly DataState = DataState;
-  @Input() locationDTO!: Location;
+  public location!: Location;
   public dragging!: boolean;
 
 
@@ -43,10 +43,11 @@ export class LayoutComponent implements OnInit {
     let boundingClientRect = element.getBoundingClientRect();
     let parentPosition = this.getPosition(element);
     console.log('x: ' + (boundingClientRect.x - parentPosition.left), 'y: ' + (boundingClientRect.y - parentPosition.top));
-    this.locationDTO.pos_x = boundingClientRect.x - parentPosition.left;
-    this.locationDTO.pos_y = boundingClientRect.y - parentPosition.top;
-    console.log(this.locationDTO.pos_y+"   "+this.locationDTO.pos_x);
-    this.saveLocation(this.locationDTO);
+    console.log(this.location)
+    this.location.pos_x = boundingClientRect.x - parentPosition.left;
+    this.location.pos_y = boundingClientRect.y - parentPosition.top;
+    console.log(this.location.pos_y+"   "+this.location.pos_x);
+    this.saveLocation(this.location);
 
   }
 

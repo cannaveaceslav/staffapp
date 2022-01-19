@@ -29,7 +29,7 @@ public class LayoutService {
         return locationRepository.findAll();
     }
 
-    public Location get(Long id) {
+    public Location getById(Long id) {
         log.info("Getting location by id [{}]", id);
         return locationRepository.getById(id);
     }
