@@ -9,9 +9,8 @@
       <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/item-types" class="nav-link">Items</a></li>
       <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/reports" class="nav-link">Reports</a></li>
       <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
-      <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link" style="margin-block: 3%; padding-left: 900%; font-size: medium;" >Logout</a></li>
-      <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link
-      " style="margin-block: 3%; padding-left: 900%; font-size: medium;font-style: normal; color: #a300bf" >{{user}}</a></li>
+      <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">Logout</a></li>
+<!--      <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link" style="margin-block: 3%; padding-left: 900%; font-size: medium;font-style: normal; color: #a300bf" >{{user}}</a></li>-->
     </ul>
   </nav>
 
