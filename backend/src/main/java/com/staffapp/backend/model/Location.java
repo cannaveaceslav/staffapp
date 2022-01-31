@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "APP_LOCATION")
 public class Location {
   @SequenceGenerator
@@ -30,8 +31,6 @@ public class Location {
   private Long locationNumber;
   private Boolean available = true;
   private String description;
-  //  @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-//  @OneToOne(mappedBy = "location", fetch = FetchType.EAGER)
   @OneToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "app_employee_id")
   private Employee employee;

@@ -34,9 +34,9 @@ public class LayoutService {
         return locationRepository.getById(id);
     }
 
-    public Optional<Location> getByEmployeeId(@NotNull Employee employee) {
+    public Optional<Location> getLocationByEmployee(@NotNull Employee employee) {
         log.info("Getting location by employee [{}]", employee.getLastName() + " " + employee.getFirstName());
-        return Optional.ofNullable(locationRepository.findByEmployee(employee.getId()));
+        return locationRepository.findLocationByEmployee_Id(employee.getId());
     }
 
     public Location update(@NotNull Location location) {
@@ -45,7 +45,7 @@ public class LayoutService {
     }
 
     public Boolean delete(Long id) {
-        log.info("Deleting location [{}]", id);
+        log.info("Deleting location with ID [{}]", id);
         locationRepository.deleteById(id);
         return Boolean.TRUE;
     }
