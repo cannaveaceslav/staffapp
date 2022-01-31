@@ -38,7 +38,7 @@ public class EmployeeController {
     return ResponseEntity.ok(
             Response.builder()
                     .timeStamp(now())
-                    .data(Collections.singletonMap("employees", employeeService.list(100)))
+                    .data(Collections.singletonMap("employees", employeeService.list()))
                     .message("Employees retrieved")
                     .status(OK)
                     .statusCode(OK.value())

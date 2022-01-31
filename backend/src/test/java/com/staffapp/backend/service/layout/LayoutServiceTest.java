@@ -41,12 +41,14 @@ class LayoutServiceTest {
   private Location testLocation1;
   private Location testLocation2;
   private Employee testEmployee;
+  private Random random;
+
 
   @BeforeEach
   void setUpTestData() {
     layoutService = new LayoutService(locationRepository);
+    random = new Random();
 
-    Random random = new Random();
 
     testEmployee = Employee.builder()
             .id((long) random.nextInt(1000))
@@ -87,10 +89,9 @@ class LayoutServiceTest {
   @Test
   void assertThatLocationIsCreated() {
     when(locationRepository.save(any(Location.class))).thenReturn(testLocation1);
-    layoutService.create(testLocation1);
 
-    verify(locationRepository).save(testLocation1);
     assertEquals(testLocation1, layoutService.create(testLocation1));
+    verify(locationRepository).save(testLocation1);
   }
 
   @Test
@@ -106,19 +107,17 @@ class LayoutServiceTest {
   @Test
   void assertThatReturnsRightLocation() {
     when(locationRepository.getById(any(Long.class))).thenReturn(testLocation1);
-    layoutService.getById(testLocation1.getId());
 
-    verify(locationRepository).getById(testLocation1.getId());
     assertEquals(testLocation1, layoutService.getById(testLocation1.getId()));
+    verify(locationRepository).getById(testLocation1.getId());
   }
 
   @Test
   void assertThatReturnsLocationByEmployeeId() {
     when(locationRepository.findLocationByEmployee_Id(any(Long.class))).thenReturn(java.util.Optional.ofNullable(testLocation2));
-    layoutService.getLocationByEmployee(testEmployee);
 
-    verify(locationRepository).findLocationByEmployee_Id(testEmployee.getId());
     assertEquals(java.util.Optional.ofNullable(testLocation2), layoutService.getLocationByEmployee(testEmployee));
+    verify(locationRepository).findLocationByEmployee_Id(testEmployee.getId());
   }
 
   @Test

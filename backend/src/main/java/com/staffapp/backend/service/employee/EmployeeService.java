@@ -26,9 +26,10 @@ public class EmployeeService {
     return employeeRepository.save(employee);
   }
 
-  public Collection<Employee> list(int limit) throws InterruptedException {
+  public Collection<Employee> list() throws InterruptedException {
     log.info("Fetching all employees");
-    return employeeRepository.findAll(PageRequest.of(0, limit, Sort.by("lastName"))).toList();
+//    return employeeRepository.findAll(PageRequest.of(0, limit, Sort.by("lastName"))).toList();
+    return employeeRepository.findAll(Sort.by("lastName"));
   }
 
   public Optional<Employee> getById(Long id) {
