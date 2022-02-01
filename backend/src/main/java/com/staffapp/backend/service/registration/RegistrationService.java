@@ -1,6 +1,6 @@
 package com.staffapp.backend.service.registration;
 
-import com.staffapp.backend.controller.Registration.RegistrationRequest;
+import com.staffapp.backend.model.RegistrationRequest;
 import com.staffapp.backend.model.User;
 import com.staffapp.backend.model.UserRole;
 import com.staffapp.backend.security.EmailSender;

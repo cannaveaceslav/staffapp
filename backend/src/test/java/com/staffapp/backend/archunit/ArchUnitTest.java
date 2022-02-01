@@ -21,7 +21,7 @@ public class ArchUnitTest {
 
           .whereLayer("Controller").mayNotBeAccessedByAnyLayer()
           .whereLayer("Service").mayOnlyBeAccessedByLayers("Controller", "Service", "Configuration")
-          .whereLayer("Model").mayOnlyBeAccessedByLayers("Repository", "Service", "Configuration")
+          .whereLayer("Model").mayOnlyBeAccessedByLayers("Repository", "Service", "Configuration","Controller")
          .whereLayer("Repository").mayOnlyBeAccessedByLayers("Service", "Configuration");
 
   @ArchTest
