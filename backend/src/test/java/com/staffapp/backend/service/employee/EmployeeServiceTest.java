@@ -10,17 +10,20 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.data.domain.Sort;
 
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
@@ -31,20 +34,24 @@ import static org.mockito.Mockito.when;
 @Slf4j
 class EmployeeServiceTest {
   @Mock
-  private EmployeeRepository employeeRepository;
+  private EmployeeRepository employeeRepositoryMock;
+  @SpyBean
+  private EmployeeRepository employeeRepositorySpy;
   @Mock
   private Company testCompany;
   @Mock
   private Department testDepartment;
-  private EmployeeService employeeService;
+  private EmployeeService employeeServiceWithMock;
+  private EmployeeService employeeServiceWithSpy;
   private Employee testEmployee;
-  private Random random;
 
 
   @BeforeEach
   void setUp() {
-    employeeService = new EmployeeService(employeeRepository);
-    random = new Random();
+    employeeServiceWithMock = new EmployeeService(employeeRepositoryMock);
+    employeeServiceWithSpy = new EmployeeService(employeeRepositorySpy);
+    Random random = new Random();
+
     testEmployee = Employee.builder()
             .id((long) random.nextInt(1000))
             .firstName("testEmployee")
@@ -60,47 +67,60 @@ class EmployeeServiceTest {
 
   @Test
   void assertThatEmployeeIsCreated() {
-    when(employeeRepository.save(any(Employee.class))).thenReturn(testEmployee);
+    when(employeeRepositoryMock.save(any(Employee.class))).thenReturn(testEmployee);
 
-    assertEquals(testEmployee, employeeService.create(testEmployee));
-    verify(employeeRepository, times(1)).save(testEmployee);
+    assertEquals(testEmployee, employeeServiceWithMock.create(testEmployee));
+    verify(employeeRepositoryMock, times(1)).save(testEmployee);
 
   }
 
 
   @SneakyThrows
   @Test
-  void assertThatReturnsListOfEmployees() {
+  void assertThatReturnsListOfEmployeesWithMock() {
     List<Employee> expectedResult = new ArrayList<>(Collections.singletonList(testEmployee));
-    when(employeeRepository.findAll(Sort.by("lastName"))).thenReturn(expectedResult);
-    Collection<Employee> actualResult = employeeService.list();
+    when(employeeRepositoryMock.findAll(Sort.by("lastName"))).thenReturn(expectedResult);
+    Collection<Employee> actualResult = employeeServiceWithMock.list();
 
-    verify(employeeRepository).findAll(Sort.by("lastName"));
+    verify(employeeRepositoryMock).findAll(Sort.by("lastName"));
     assertTrue(actualResult.containsAll(expectedResult));
     assertEquals(1, actualResult.size());
   }
 
+  @SneakyThrows
+  @Test
+  void assertThatReturnsListOfEmployeesWithSpy() {
+    List<Employee> expectedResult = new ArrayList<>(Collections.singletonList(testEmployee));
+    Collection<Employee> actualResult = employeeServiceWithSpy.list();
+
+    verify(employeeRepositorySpy).findAll(Sort.by("lastName"));
+    assertNotEquals(actualResult.size(), expectedResult.size());
+
+    when(employeeRepositorySpy.findAll(Sort.by("lastName"))).thenReturn(Arrays.asList(testEmployee,testEmployee));
+    assertEquals(2,employeeServiceWithSpy.list().size());
+  }
+
   @Test
   void assertThatReturnsProperEmployee() {
-    when(employeeRepository.getById(any(Long.class))).thenReturn(testEmployee);
+    when(employeeRepositoryMock.getById(any(Long.class))).thenReturn(testEmployee);
 
-    assertEquals(testEmployee, employeeService.getById(testEmployee.getId()).get());
-    verify(employeeRepository).getById(testEmployee.getId());
+    assertEquals(testEmployee, employeeServiceWithMock.getById(testEmployee.getId()).get());
+    verify(employeeRepositoryMock).getById(testEmployee.getId());
   }
 
   @Test
   void assertThatReturnsTheSameEmployeeAfterUpdate() {
-    when(employeeRepository.save(any(Employee.class))).thenReturn(testEmployee);
-    Employee actualResult = employeeService.update(testEmployee);
+    when(employeeRepositoryMock.save(any(Employee.class))).thenReturn(testEmployee);
+    Employee actualResult = employeeServiceWithMock.update(testEmployee);
 
-    verify(employeeRepository, times(1)).save(testEmployee);
+    verify(employeeRepositoryMock, times(1)).save(testEmployee);
     assertEquals(testEmployee, actualResult);
   }
 
   @Test
-   void assertThatEmployeeIsDeleted() {
-    employeeService.delete(testEmployee.getId());
+  void assertThatEmployeeIsDeleted() {
+    employeeServiceWithMock.delete(testEmployee.getId());
 
-    verify(employeeRepository, times(1)).deleteById(testEmployee.getId());
+    verify(employeeRepositoryMock, times(1)).deleteById(testEmployee.getId());
   }
 }
