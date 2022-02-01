@@ -3,6 +3,7 @@ package com.staffapp.backend.controller.Layout;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.staffapp.backend.model.Location;
 import com.staffapp.backend.service.layout.LayoutService;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,21 +12,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.time.LocalDateTime;
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -56,7 +49,8 @@ class LayoutControllerTest {
   }
 
   @Test
-  void saveLocationReturns201() throws Exception {
+  @SneakyThrows
+  void saveLocationReturns201() {
     final Location testLocation = Location.builder()
             .id((long) random.nextInt(1000))
             .locationNumber((long) random.nextInt(1000))
@@ -68,7 +62,6 @@ class LayoutControllerTest {
             .pos_y(200.0)
             .build();
 
-//    when(layoutService.create(any(Location.class))).thenReturn(testLocation);
 
     mockMvc.perform(post("/layout/save")
                             .contentType(APPLICATION_JSON)
@@ -86,18 +79,12 @@ class LayoutControllerTest {
   }
 
   @Test
-  void getLocation() {
+  @SneakyThrows
+  void getOneLocationReturns201() {
+    int locationId = 25;
+    mockMvc.perform(get("/layout/get/{id}", locationId))
+            .andExpect(jsonPath("$.message").value("Location with id " + locationId + " retrieved"))
+            .andExpect(status().isOk());
   }
 
-  @Test
-  void saveLocation() {
-  }
-
-  @Test
-  void updateLocation() {
-  }
-
-  @Test
-  void deleteLocation() {
-  }
 }
