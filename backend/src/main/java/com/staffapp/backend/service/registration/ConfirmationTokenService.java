@@ -28,4 +28,8 @@ public class ConfirmationTokenService {
   }
 
 
+  public void deleteTokenByUserId(Long userId) {
+    confirmationTokenRepository.deleteTokenByUserId(userId);
+  }
+
 }

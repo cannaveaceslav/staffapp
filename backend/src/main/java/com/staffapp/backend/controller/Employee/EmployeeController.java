@@ -8,7 +8,6 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +27,7 @@ import static org.springframework.http.HttpStatus.OK;
 @AllArgsConstructor
 @RequestMapping("/employees")
 @Api("Controller for all employees page")
-public class EmployeesController {
+public class EmployeeController {
 
   private final EmployeeService employeeService;
 
@@ -39,8 +38,22 @@ public class EmployeesController {
     return ResponseEntity.ok(
             Response.builder()
                     .timeStamp(now())
-                    .data(Collections.singletonMap("employees", employeeService.list(100)))
+                    .data(Collections.singletonMap("employees", employeeService.list()))
                     .message("Employees retrieved")
+                    .status(OK)
+                    .statusCode(OK.value())
+                    .build()
+    );
+  }
+   @GetMapping("/get/{id}")
+  @ApiOperation("Method gets indicated employee by id.")
+  public ResponseEntity<Response> getEmployee(@PathVariable("id") Long id) {
+
+    return ResponseEntity.ok(
+            Response.builder()
+                    .timeStamp(now())
+                    .data(Collections.singletonMap("employee", employeeService.getById(id)))
+                    .message("Employee with id " + id + " retrieved")
                     .status(OK)
                     .statusCode(OK.value())
                     .build()
@@ -55,7 +68,7 @@ public class EmployeesController {
     return ResponseEntity.ok(
             Response.builder()
                     .timeStamp(now())
-                    .data(Collections.singletonMap("location", employeeService.create(employee)))
+                    .data(Collections.singletonMap("employee", employeeService.create(employee)))
                     .message("Location created")
                     .status(CREATED)
                     .statusCode(CREATED.value())

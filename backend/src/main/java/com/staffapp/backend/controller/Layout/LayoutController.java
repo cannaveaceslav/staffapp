@@ -7,7 +7,15 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.Collections;
@@ -25,7 +33,6 @@ public class LayoutController {
 
   private final LayoutService layoutService;
 
-  @CrossOrigin(origins = "http://localhost:8080")
   @GetMapping
   @ApiOperation("Method returns a response with the map with key=locations and value=list of all locations")
   public ResponseEntity<Response> getLocations() {
@@ -47,7 +54,7 @@ public class LayoutController {
     return ResponseEntity.ok(
             Response.builder()
                     .timeStamp(now())
-                    .data(Collections.singletonMap("location", layoutService.get(id)))
+                    .data(Collections.singletonMap("location", layoutService.getById(id)))
                     .message("Location with id " + id + " retrieved")
                     .status(OK)
                     .statusCode(OK.value())
@@ -102,22 +109,5 @@ public class LayoutController {
     );
   }
 
-//    @GetMapping
-//    @ApiOperation("Shows layout with all locations in the office. Returns 'layout.html' view")
-//    public String showLayout() {
-//        return "layout";
-//    }
-//
-//    @PostMapping
-//    @ApiOperation("Add new location to layout. Returns 'layout.html' view")
-//    public String addLocation() {
-//        return "layout";
-//    }
-//
-//    @DeleteMapping
-//    @ApiOperation("Remove selected location from layout. Returns 'layout.html' view")
-//    public String deleteLocation() {
-//        return "layout";
-//    }
 
 }

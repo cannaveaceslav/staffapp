@@ -51,8 +51,13 @@ export class EmployeesComponent implements OnInit {
   }
 
 
-  // handleSuccessfulResponse(response: any) {
-  //   this.employees = response.data.employees;
-  // }
 
+  getEmployeePage(employeeId: number) {
+    {
+    let employeePage = {
+      url : `employee/${employeeId}`
+    };
+    this.router.navigateByUrl(employeePage.url);
+  }
+  }
 }

@@ -1,4 +1,4 @@
-package com.staffapp.backend.controller.ItemList;
+package com.staffapp.backend.controller.Reports;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping(path = "/item-info")
-@Api("Controller to work with each item")
-public class ItemDetailsController {
+@RequestMapping("/reports")
+@Api("Controller for reports page")
+public class ReportController {
 
   @GetMapping
-  @ApiOperation("Shows user detailed info for selected item. Returns 'item-info.html' view")
-  public String showItemInfo(){
-    return "item-info";
+  @ApiOperation("Show all available reports")
+  public String showReports(){
+    return "reports";
   }
 }

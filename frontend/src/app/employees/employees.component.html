@@ -1,268 +1,39 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-<h5 class="section-title h1">OUR TEAM</h5>
-
-<!--<table border="3">-->
-<!--  <thead></thead>-->
-<!--  <tr>-->
-<!--    <th>Firstname</th>-->
-<!--    <th>Lastname</th>-->
-<!--    <th>Department</th>-->
-<!--  </tr>-->
-
-<!--  <tbody>-->
-<!--  <tr *ngFor="let emp of employees">-->
-<!--    <td>{{emp.id}}</td>-->
-<!--    <td>{{emp.company.companyName}}</td>-->
-<!--    <td>{{emp.firstName}}</td>-->
-<!--  </tr>-->
-<!--  </tbody>-->
-<!--</table>-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <ng-container *ngIf="(appState$ | async ) as appState" [ngSwitch]="appState.dataState">
-
   <ng-container *ngSwitchCase="DataState.LOADING_STATE">
-
     <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
       <span class="sr-only">Loading...</span>
     </div>
-
   </ng-container>
 
   <ng-container *ngSwitchCase="DataState.LOADED_STATE">
-    <table border="0">
-      <thead>
-      <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-      <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      </thead >
-      <tr>
-        <a><button class="btn btn-primary" (click)="goToPage('addemployee')"> Add Employee</button></a>
-      </tr>
-
-
-      <tbody *ngFor="let employee of appState?.appData?.data?.employees; let i = index">
-      <tr>
-        <td>
-          <a><button class="btn btn-danger" (click)="deleteEmployee(employee)"> Delete Employee</button></a>
-          <!-- Team -->
-          <section id="team" class="pb-5">
-            <div class="container">
-              <div class="row" >
-                <!-- Team member -->
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                  <div class="image-flip">
-                    <div class="mainflip flip-0">
-                      <div class="frontside">
-                        <div class="card">
-                          <div class="card-body text-center">
-                            <p><img class=" img-fluid"
-                                    src="https://vsekidki.ru/uploads/posts/2016-08/1470735121_lecdaa3axdc.jpg"
-                              alt ={{employee.lastName}}>
-                            </p>
-                            <p class="card-title">{{employee.company.companyName}}</p>
-                            <p class="card-title">{{employee.department.departmentName}}</p>
-                            <h4 class="card-title">{{employee.lastName}}</h4>
-                            <h4 class="card-title">{{employee.firstName}}</h4>
-                            <p class="card-text">{{employee.email}}       ewfwefwe .
-                              fwefwefwefwefwefwefwe             {{employee.createdAt}}</p>
-
-
-                            <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i
-                              class="fa fa-plus"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="backside">
-                        <div class="card">
-                          <div class="card-body text-center mt-4">
-                            <h4 class="card-title">{{employee.lastName}}</h4>
-                            <h3 class="card-title">{{employee.firstName}}</h3>
-                            <p class="card-text">{{employee.email}}</p>
-                            <ul class="list-inline">
-                              <li class="list-inline-item">
-                                <a class="social-icon text-xs-center" target="_blank"
-                                   href="https://www.fiverr.com/share/qb8D02">
-                                  <i class="fa fa-facebook"></i>
-                                </a>
-                              </li>
-                              <li class="list-inline-item">
-                                <a class="social-icon text-xs-center" target="_blank"
-                                   href="https://www.fiverr.com/share/qb8D02">
-                                  <i class="fa fa-twitter"></i>
-                                </a>
-                              </li>
-                              <li class="list-inline-item">
-                                <a class="social-icon text-xs-center" target="_blank"
-                                   href="https://www.fiverr.com/share/qb8D02">
-                                  <i class="fa fa-skype"></i>
-                                </a>
-                              </li>
-                              <li class="list-inline-item">
-                                <a class="social-icon text-xs-center" target="_blank"
-                                   href="https://www.fiverr.com/share/qb8D02">
-                                  <i class="fa fa-google"></i>
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
+    <section class="our-webcoderskull padding-lg">
+      <div class="container">
+<!--        <div class="row heading heading-icon">-->
+<!--          <h2>Our Team</h2>-->
+<!--        </div>-->
+        <ul class="row" >
+          <li class="col-12 col-md-6 col-lg-3" *ngFor="let employee of appState?.appData?.data?.employees; let i = index">
+            <div class="cnt-block equal-hight" >
+              <figure><img src="http://www.webcoderskull.com/img/team1.png" class="img-responsive"  alt="Employee picture" (click)="getEmployeePage(employee.id)"></figure>
+              <h6><a href="http://www.webcoderskull.com/">{{employee.lastName}} {{employee.firstName}}</a></h6>
+              <p>{{employee.department.departmentName}}</p>
+              <ul class="follow-us clearfix">
+                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+<!--                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>-->
+                <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+              </ul>
             </div>
-          </section>
-          <!-- Team -->
-        </td>
-        <td>
-          <!-- Team -->
-          <section id="team3" class="pb-5">
-            <div class="container">
-              <div class="row">
-                <!-- Team member -->
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                  <div class="image-flip">
-                    <div class="mainflip flip-0">
-                      <div class="frontside">
-                        <div class="card">
-                          <div class="card-body text-center">
-                            <p><img class=" img-fluid"
-                                    src="https://vsekidki.ru/uploads/posts/2016-08/1470735121_lecdaa3axdc.jpg">
-                            </p>
-                            <p class="card-title">{{employee.company.companyName}}</p>
-                              <p class="card-title">{{employee.department.departmentName}}</p>
-                            <h4 class="card-title">{{employee.lastName}}</h4>
-                            <h4 class="card-title">{{employee.firstName}}</h4>
-                            <p class="card-text">{{employee.email}} tex text text text text text text
-                              text {{employee.createdAt}}</p>
-                            <!--                        <p class="card-text" >{{emp.createdAt}}                                 .</p>-->
-                            <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i
-                              class="fa fa-plus"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="backside">
-                        <div class="card">
-                          <div class="card-body text-center mt-4">
-                            <h4 class="card-title">{{employee.lastName}}</h4>
-                            <h3 class="card-title">{{employee.firstName}}</h3>
-                            <p class="card-text">{{employee.email}}</p>
-                            <ul class="list-inline">
-                              <li class="list-inline-item">
-                                <a class="social-icon text-xs-center" target="_blank"
-                                   href="https://www.fiverr.com/share/qb8D02">
-                                  <i class="fa fa-facebook"></i>
-                                </a>
-                              </li>
-                              <li class="list-inline-item">
-                                <a class="social-icon text-xs-center" target="_blank"
-                                   href="https://www.fiverr.com/share/qb8D02">
-                                  <i class="fa fa-twitter"></i>
-                                </a>
-                              </li>
-                              <li class="list-inline-item">
-                                <a class="social-icon text-xs-center" target="_blank"
-                                   href="https://www.fiverr.com/share/qb8D02">
-                                  <i class="fa fa-skype"></i>
-                                </a>
-                              </li>
-                              <li class="list-inline-item">
-                                <a class="social-icon text-xs-center" target="_blank"
-                                   href="https://www.fiverr.com/share/qb8D02">
-                                  <i class="fa fa-google"></i>
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </section>
-          <!-- Team -->
-        </td>
-        <td>
-          <!-- Team -->
-          <section id="team4" class="pb-5">
-            <div class="container5">
-              <div class="row">
-                <!-- Team member -->
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                  <div class="image-flip">
-                    <div class="mainflip flip-0">
-                      <div class="frontside">
-                        <div class="card">
-                          <div class="card-body text-center">
-                            <p><img class=" img-fluid"
-                                    src="https://vsekidki.ru/uploads/posts/2016-08/1470735121_lecdaa3axdc.jpg">
-                            </p>
-                            <p class="card-title">{{employee.company.companyName}}</p>
-                              <p class="card-title">{{employee.department.departmentName}}</p>
-                            <h4 class="card-title">{{employee.lastName}}</h4>
-                            <h4 class="card-title">{{employee.firstName}}</h4>
-                            <p class="card-text">{{employee.email}} tex text text text text text text
-                              text {{employee.createdAt}}</p>
-                            <!--                        <p class="card-text" >{{emp.createdAt}}                                 .</p>-->
-                            <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i
-                              class="fa fa-plus"></i></a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="backside">
-                        <div class="card">
-                          <div class="card-body text-center mt-4">
-                            <h4 class="card-title">{{employee.lastName}}</h4>
-                            <h3 class="card-title">{{employee.firstName}}</h3>
-                            <p class="card-text">{{employee.email}}</p>
-                            <ul class="list-inline">
-                              <li class="list-inline-item">
-                                <a class="social-icon text-xs-center" target="_blank"
-                                   href="https://www.fiverr.com/share/qb8D02">
-                                  <i class="fa fa-facebook"></i>
-                                </a>
-                              </li>
-                              <li class="list-inline-item">
-                                <a class="social-icon text-xs-center" target="_blank"
-                                   href="https://www.fiverr.com/share/qb8D02">
-                                  <i class="fa fa-twitter"></i>
-                                </a>
-                              </li>
-                              <li class="list-inline-item">
-                                <a class="social-icon text-xs-center" target="_blank"
-                                   href="https://www.fiverr.com/share/qb8D02">
-                                  <i class="fa fa-skype"></i>
-                                </a>
-                              </li>
-                              <li class="list-inline-item">
-                                <a class="social-icon text-xs-center" target="_blank"
-                                   href="https://www.fiverr.com/share/qb8D02">
-                                  <i class="fa fa-google"></i>
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </section>
-          <!-- Team -->
-        </td>
-      </tr>
-
-
-      </tbody>
-    </table>
+          </li>
+        </ul>
+      </div>
+    </section>
   </ng-container>
 
   <ng-container *ngSwitchCase="DataState.ERROR_STATE">
@@ -272,6 +43,3 @@
   </ng-container>
 
 </ng-container>
-<!------ Include the above in your HEAD tag ---------->
-
-
