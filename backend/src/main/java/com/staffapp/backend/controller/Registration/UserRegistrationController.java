@@ -1,5 +1,6 @@
 package com.staffapp.backend.controller.Registration;
 
+import com.staffapp.backend.model.RegistrationRequest;
 import com.staffapp.backend.service.registration.RegistrationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

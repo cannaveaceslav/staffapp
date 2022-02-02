@@ -3,12 +3,10 @@ package com.staffapp.backend.service.user;
 import com.staffapp.backend.model.User;
 import com.staffapp.backend.model.UserRole;
 import com.staffapp.backend.service.registration.ConfirmationTokenService;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -23,9 +21,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class UserServiceTest {
 
   @Autowired
-  private  UserService userService;
+  private UserService userService;
   @Autowired
-  private  ConfirmationTokenService confirmationTokenService;
+  private ConfirmationTokenService confirmationTokenService;
 
   private User testUser;
 

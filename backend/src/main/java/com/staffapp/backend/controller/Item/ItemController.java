@@ -1,9 +1,7 @@
 package com.staffapp.backend.controller.Item;
 
 import com.staffapp.backend.model.Item;
-import com.staffapp.backend.model.ItemType;
 import com.staffapp.backend.model.Response;
-import com.staffapp.backend.repository.ItemRepository;
 import com.staffapp.backend.service.item.ItemService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

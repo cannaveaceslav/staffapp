@@ -1,4 +1,4 @@
-package com.staffapp.backend.controller.Registration;
+package com.staffapp.backend.model;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
