@@ -34,9 +34,9 @@ public class LayoutService {
         return locationRepository.getById(id);
     }
 
-    public Optional<Location> getLocationByEmployee(@NotNull Employee employee) {
-        log.info("Getting location by employee [{}]", employee.getLastName() + " " + employee.getFirstName());
-        return locationRepository.findLocationByEmployee_Id(employee.getId());
+    public Optional<Location> getLocationByEmployee(@NotNull Long id) {
+        log.info("Getting location by employee id [{}]",id);
+        return locationRepository.findLocationByEmployee_Id(id);
     }
 
     public Location update(@NotNull Location location) {

@@ -10,13 +10,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.times;
@@ -68,7 +68,7 @@ class ItemTypeServiceTest {
     when(itemTypeRepository.getById(any(Long.class))).thenReturn(testItemType);
 
     assertEquals(testItemType, itemTypeService.getById(testItemType.getId()).get());
-    verify(itemTypeRepository,atLeast(1)).getById(testItemType.getId());
+    verify(itemTypeRepository, atLeast(1)).getById(testItemType.getId());
   }
 
   @Test
