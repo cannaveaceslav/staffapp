@@ -1,5 +1,6 @@
 body {
-    font-family: 'Roboto';font-size: 20px;
+    font-family: 'Roboto';
+  font-size: 40px;
 }
 .bg-voilet {background-color : navy !important;}
 .text-voilet {color : #a300bf !important;}
