@@ -27,7 +27,7 @@ const routes: Routes = [
   {path: 'item-types', component: ItemtypeComponent, canActivate: [AuthGaurdService]},
   {path: 'addemployee', component: AddEmployeeComponent, canActivate: [AuthGaurdService]},
   {path: 'reports', component: ReportsComponent, canActivate: [AuthGaurdService]},
-  {path: 'dashboard', component: AdminComponent, canActivate: [AuthGaurdService]}
+  {path: 'admin', component: AdminComponent, canActivate: [AuthGaurdService]}
 ];
 
 

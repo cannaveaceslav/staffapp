@@ -40,7 +40,7 @@ public class LayoutController {
             Response.builder()
                     .timeStamp(now())
                     .data(Collections.singletonMap("locations", layoutService.list()))
-                    .message("Locations retrieved")
+                    .message("Locations retrie  ved")
                     .status(OK)
                     .statusCode(OK.value())
                     .build()

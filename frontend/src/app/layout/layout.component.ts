@@ -42,11 +42,11 @@ export class LayoutComponent implements OnInit {
     let element = event.source.getRootElement();
     let boundingClientRect = element.getBoundingClientRect();
     let parentPosition = this.getPosition(element);
-    console.log('x: ' + (boundingClientRect.x - parentPosition.left), 'y: ' + (boundingClientRect.y - parentPosition.top));
+    console.log("******"+'x: ' + (boundingClientRect.x - parentPosition.left), 'y: ' + (boundingClientRect.y - parentPosition.top));
     console.log(this.location)
     this.location.pos_x = boundingClientRect.x - parentPosition.left;
     this.location.pos_y = boundingClientRect.y - parentPosition.top;
-    console.log(this.location.pos_y+"   "+this.location.pos_x);
+    console.log(this.location.pos_y+"   "+this.location.pos_x+'canna');
     this.saveLocation(this.location);
 
   }
