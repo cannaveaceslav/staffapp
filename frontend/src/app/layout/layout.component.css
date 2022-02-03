@@ -13,13 +13,19 @@ p {
   top: 10px;
   height: 461px;
   width: 1211px;
-  background-image: url('../../assets/images/isd_office.png');
+    /*background: url("../../assets/images/isd-office.heic") no-repeat center center / cover;*/
+  background-image: url('../../assets/images/isd_office.png'),url('../../assets/images/isd-office.heic');
   background-position: left;
   background-color: silver;
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: inherit; /* Resize the background image to cover the entire container */
 }
+.our-webcoderskull {
+  /*background: url("https://image.shutterstock.com/z/stock-photo-desk-office-with-laptop-blank-notepad-coffee-cup-and-pen-on-wood-table-flat-lay-top-view-copy-1689463411.jpg") no-repeat center top / cover;*/
+  /*background: url("https://design-interio.ru/upload/iblock/aca/aca0078d582200d1aa3ccb4ff375dcf3.jpg") no-repeat center top / cover;*/
+  background: url("../../assets/images/isd-office.heic") no-repeat center center / cover;
 
+}
 .table-available {
   color: cornsilk;
   border: solid 2px #ccc;

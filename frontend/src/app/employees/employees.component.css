@@ -81,8 +81,9 @@ ul {
 }
 
 .our-webcoderskull {
-  background: url("https://image.shutterstock.com/z/stock-photo-desk-office-with-laptop-blank-notepad-coffee-cup-and-pen-on-wood-table-flat-lay-top-view-copy-1689463411.jpg") no-repeat center top / cover;
+  /*background: url("https://image.shutterstock.com/z/stock-photo-desk-office-with-laptop-blank-notepad-coffee-cup-and-pen-on-wood-table-flat-lay-top-view-copy-1689463411.jpg") no-repeat center top / cover;*/
   /*background: url("https://design-interio.ru/upload/iblock/aca/aca0078d582200d1aa3ccb4ff375dcf3.jpg") no-repeat center top / cover;*/
+  background: url("../../assets/images/isd-office.heic") no-repeat center center / cover;
 
 }
 

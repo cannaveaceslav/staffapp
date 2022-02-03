@@ -53,7 +53,8 @@ ul{
 
 
 .our-webcoderskull{
-  background: url("https://xn--b1afbusfheq.xn--p1ai/800/600/https/st.depositphotos.com/1001069/4808/i/450/depositphotos_48089287-stock-photo-office-table-with-notepad-computer.jpg") no-repeat center top / cover;
+  /*background: url("https://xn--b1afbusfheq.xn--p1ai/800/600/https/st.depositphotos.com/1001069/4808/i/450/depositphotos_48089287-stock-photo-office-table-with-notepad-computer.jpg") no-repeat center top / cover;*/
+  background: url("../../assets/images/isd-office.heic") no-repeat center center / cover;
 
 }
 .our-webcoderskull .cnt-block{
