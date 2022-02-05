@@ -1,21 +1,201 @@
-.grid-container {
-  margin: 20px;
+.trace-modal {
+    position: fixed;
+    top: 30%;
+    left: 30%;
+    background-color: lightskyblue;
+    transform: translateX(-50%);
+    z-index: 11;
 }
 
-.dashboard-card {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
+main {
+    overflow-x: hidden;
 }
 
-.more-button {
-  position: absolute;
-  top: 5px;
-  right: 10px;
+.row {
+    margin-top: 10px;
 }
 
-.dashboard-card-content {
-  text-align: center;
+.card-block {
+    border-radius: 2px;
+    padding: 5px;
 }
+
+.http404 {
+    background-color: pink;
+}
+
+.http200 {
+    background-color: yellow;
+}
+
+.http400 {
+    background-color: #009edf;
+}
+
+.http500 {
+    background-color: lime;
+}
+
+.status_bar {
+    display: flex;
+    justify-content: flex-start;
+    gap: 40px;
+    flex-direction: row;
+    align-items: center;
+    font-size: 20px;
+    height: 100px;
+    background-color: rgb(152, 225, 228);
+}
+
+.status_bar span:first-child {
+    margin-left: 10px;
+}
+
+.status_bar button:first-child {
+    margin-right: 10px;
+}
+
+.btn_refresh {
+    margin-left: auto;
+    align-items: center;
+}
+
+div.container {
+    margin: auto;
+}
+
+.trace {
+    overflow-y: scroll;
+}
+
+#httptrace-table tr td{
+    padding: 0.5rem;
+}
+
+@media only screen and (max-width: 889px) {
+    .status_bar {
+        flex-direction: column;
+        align-items: flex-start;
+        height: 100%;
+        gap: 0;
+    }
+
+    .status_bar span:first-child {
+        margin-left: 0;
+    }
+
+    .btn_refresh {
+        margin: 10px 0 0 0;
+    }
+
+    .hide_on_sm {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+
+}
+
+/****************************************navbar*************************************/
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+ul.bookmarks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    text-align: left; /* change to "center" or "right" to align differently */
+    border-bottom: 10px solid green; /* bottom border */
+    background: #ffffff;
+    background: linear-gradient(to bottom,  #ffffff 0%,#d8d8d8 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#d8d8d8',GradientType=0 );
+}
+
+ul.bookmarks li {
+    display: inline;
+
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    color: black; /* font color */
+    text-decoration: none;
+    padding: 8px 20px;
+    font-size: 25px; /* font size */
+    font-weight: bold;
+    vertical-align: bottom;
+    transition: color 0.5s;
+
+}
+
+ul.bookmarks a span{
+    cursor: pointer;
+	position: relative;
+	z-index: 10;
+}
+
+ul.bookmarks li:first-of-type {
+    margin-left: 10px;
+}
+
+
+
+ul.bookmarks a::before{
+	content: '';
+	color: white;
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: green; /* tab background */
+	left: 0;
+	top: 110%; /* extra 10% is to account for shadow dimension */
+	box-shadow: -2px 2px 10px rgba(255,255,255,.5) inset;
+	border-radius: 15px 15px 0 0 / 12px 12px; /* oval shaped border for top-left and top-right corners */
+	transition: top 0.5s;
+
+}
+
+ul.bookmarks a:hover{
+	color: rgb(255, 255, 255); /* hover color */
+}
+
+ul.bookmarks a:hover::before{
+	top: 0; /* slide tab up */
+}
+
+
+ul.bookmarks.blue{
+	border-bottom-color: #259AD1;
+}
+
+ul.bookmarks.blue a::before{
+	background: #259AD1;
+}
+
+@media only screen and (max-width: 100px) {
+    ul.bookmarks li {
+        display: block;
+        font-size: 15px;
+    }
+
+    ul.bookmarks li:first-of-type {
+        margin-left: 0px;
+    }
+}
+

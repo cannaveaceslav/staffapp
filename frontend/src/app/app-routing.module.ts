@@ -13,6 +13,12 @@ import {AdminComponent} from "./admin/admin.component";
 import {RegistrationComponent} from "./registration/registration.component";
 import {ItemtypeComponent} from "./itemtype/itemtype.component";
 import {EmployeeComponent} from "./employee/employee.component";
+import {DashboardComponent} from "./admin/dashboard/dashboard.component";
+import {AddNewContentAdminComponent} from "./admin/add-new-content-admin/add-new-content-admin.component";
+import {EmployeesAdminComponent} from "./admin/employees-admin/employees-admin.component";
+import {ItemTypesAdminComponent} from "./admin/item-types-admin/item-types-admin.component";
+import {UsersAdminComponent} from "./admin/users-admin/users-admin.component";
+import {ItemsAdminComponent} from "./admin/items-admin/items-admin.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -27,7 +33,15 @@ const routes: Routes = [
   {path: 'item-types', component: ItemtypeComponent, canActivate: [AuthGaurdService]},
   {path: 'addemployee', component: AddEmployeeComponent, canActivate: [AuthGaurdService]},
   {path: 'reports', component: ReportsComponent, canActivate: [AuthGaurdService]},
-  {path: 'admin', component: AdminComponent, canActivate: [AuthGaurdService]}
+  //admin pages
+  {path: 'admin', component: AdminComponent, canActivate: [AuthGaurdService]},
+  {path: 'admin/dashboard', component: DashboardComponent, canActivate: [AuthGaurdService]},
+  {path: 'admin/add-new-content', component: AddNewContentAdminComponent, canActivate: [AuthGaurdService]},
+  {path: 'admin/items', component: ItemsAdminComponent, canActivate: [AuthGaurdService]},
+  {path: 'admin/employees', component: EmployeesAdminComponent, canActivate: [AuthGaurdService]},
+  {path: 'admin/item-types', component: ItemTypesAdminComponent, canActivate: [AuthGaurdService]},
+  {path: 'admin/users', component: UsersAdminComponent, canActivate: [AuthGaurdService]},
+  {path: 'admin/locations', component: UsersAdminComponent, canActivate: [AuthGaurdService]}
 ];
 
 

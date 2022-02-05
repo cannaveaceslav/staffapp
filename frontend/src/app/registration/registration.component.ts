@@ -78,6 +78,7 @@ export class RegistrationComponent implements OnInit {
 
   register(registrationRequest: RegistrationRequest) {
     console.log('Register user:', registrationRequest);
-    return this.httpClient.post(this.baseURL + '/registration', registrationRequest)
+    this.httpClient.post(this.baseURL + '/registration', registrationRequest);
+    return this.router.navigate(['../login']);
   }
 }

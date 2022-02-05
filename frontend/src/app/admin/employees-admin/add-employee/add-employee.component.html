@@ -1,0 +1,63 @@
+<p-toast></p-toast>
+<mat-card class="add_employee">
+
+  <h3 class="title">Add new employee</h3>
+  <div class="field grid">
+    <label class="col" for="lastName">Last Name</label>
+    <input class="col" type="text" pInputText id="lastName" [(ngModel)]="defaultEmployee.lastName" autofocus/>
+  </div>
+  <div class="field grid">
+    <label class="col" for="firstName">First Name</label>
+    <textarea class="col" id="firstName" pInputTextarea [(ngModel)]="defaultEmployee.firstName" rows="3"
+              cols="20"></textarea>
+  </div>
+  <div class="field grid">
+    <p-dropdown class="col" [(ngModel)]="defaultEmployee.company" inputId="company" [options]="companies"
+                placeholder="Select">
+      <ng-template let-option pTemplate="item">
+        <span [class]="'article-badge status-' + option.value">{{option.label}}</span>
+      </ng-template>
+    </p-dropdown>
+  </div>
+  <div class="field grid">
+    <p-dropdown class="col" [(ngModel)]="defaultEmployee.department" inputId="department" [options]="departments"
+                placeholder="Select">
+      <ng-template let-option pTemplate="item">
+        <span [class]="'article-badge status-' + option.value">{{option.label}}</span>
+      </ng-template>
+    </p-dropdown>
+  </div>
+
+  <div class="field grid">
+    <label class="col" for="email">Email</label>
+    <textarea class="col" id="email" pInputTextarea [(ngModel)]="defaultEmployee.email"></textarea>
+  </div>
+
+  <div class="field grid">
+    <label class="col" for="birthday">Birthday</label>
+    <input class="col" type="date" pInputText id="birthday" [(ngModel)]="defaultEmployee.birthday"/>
+  </div>
+
+  <div class="field grid">
+    <label class="col" for="location">Location</label>
+    <input class="col" type="number" pInputText id="location" [(ngModel)]="defaultEmployee.location"/>
+  </div>
+
+   <div class="field">
+    <label class="mb-3">Status</label>
+    <div class="formgrid grid">
+      <div class="field-radiobutton col-6">
+        <p-radioButton id="category1" name="category" value="true" [(ngModel)]="defaultEmployee.enabled">
+        </p-radioButton>
+        <label for="category1">Enabled</label>
+      </div>
+    </div>
+  </div>
+
+  <span class="p-buttonset">
+    <button pButton pRipple label="Cancel" class="button-text p-button-danger" style="width: 207.5px;"
+            (click)="cancel()"></button>
+    <button pButton pRipple label="Save" class="button-text p-button-success" style="width: 207.5px;"
+            (click)="save()"></button>
+  </span>
+</mat-card>

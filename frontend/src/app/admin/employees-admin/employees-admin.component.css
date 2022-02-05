@@ -26,3 +26,14 @@ ul.bookmarks {
     background: linear-gradient(to bottom,  #ffffff 0%,#d8d8d8 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#d8d8d8',GradientType=0 );
 }
+.cont {
+    opacity: 20%;
+}
+
+.app-add-employee {
+  position: absolute;
+  top: 150px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
