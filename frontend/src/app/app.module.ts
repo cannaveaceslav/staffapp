@@ -52,6 +52,8 @@ import {ConfirmPageComponent} from './registration/confirm-page/confirm-page.com
 import {RadioButtonModule} from "primeng/radiobutton";
 import {ButtonModule} from "primeng/button";
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -109,7 +111,9 @@ import {MatDialogModule} from "@angular/material/dialog";
     PaginatorModule,
     TreeTableModule,
     TableModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
+    MatTooltipModule
 
   ],
   providers: [{

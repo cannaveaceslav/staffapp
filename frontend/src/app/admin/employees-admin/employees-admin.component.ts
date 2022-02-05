@@ -9,6 +9,10 @@ import {AppState} from "../../interface/app-state";
 import {Employee} from "../../interface/employee";
 import {EmployeesService} from "../../service/employees.service";
 import {catchError} from "rxjs/operators";
+import {MatSort} from "@angular/material/sort";
+import {Item} from "../../interface/item";
+import {MatTable, MatTableDataSource} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-employees-admin',
@@ -16,25 +20,39 @@ import {catchError} from "rxjs/operators";
   styleUrls: ['./employees-admin.component.css']
 })
 export class EmployeesAdminComponent implements OnInit {
+  displayedColumns: string[] = ['ID'
+    , 'LAST NAME'
+    , 'FIRST NAME'
+    , 'COMPANY'
+    , 'DEPARTMENT'
+    , 'EMAIL'
+    , 'BIRTHDAY'
+    , 'LOCATION'
+    , 'IMAGE'
+    , 'EDIT'
+    , 'DELETE'];
   appState$!: Observable<AppState<CustomResponse>>;
   readonly DataState = DataState;
-  addNewEmployee: boolean = false;
-  employees?: Employee[] = [];
-  first = 0;
-  rows = 15;
+  employees?: Employee[] = []
+  newEmployee?: Employee;
+  dataSource!: MatTableDataSource<Employee[]>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort, {}) sort!: MatSort;
+  @ViewChild(MatTable) table!: MatTable<any>;
 
-  constructor(private employeesService: EmployeesService
-    , private router: Router
-    , private breakpointObserver: BreakpointObserver
-    , public dialog: MatDialog
-    , private route: ActivatedRoute) {
+
+  constructor(private router: Router
+    , private employeeService: EmployeesService
+    , private breakpointObserver: BreakpointObserver) {
   }
 
-  ngOnInit() {
-    this.appState$ = this.employeesService.getEmployees$
+  ngOnInit(): void {
+    this.appState$ = this.employeeService.getEmployees$
       .pipe(
         map(response => {
           this.employees = response.data.employees;
+          // @ts-ignore
+          this.dataSource = new MatTableDataSource(this.employees);
           return {dataState: DataState.LOADED_STATE, appData: response}
         }),
         startWith({dataState: DataState.LOADING_STATE}),
@@ -50,39 +68,17 @@ export class EmployeesAdminComponent implements OnInit {
       shareReplay()
     );
 
-  next() {
-    this.first = this.first + this.rows;
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  prev() {
-    this.first = this.first - this.rows;
-  }
-
-  reset() {
-    this.first = 0;
-  }
-
-  isLastPage(): boolean {
-    return this.employees ? this.first === (this.employees.length - this.rows) : true;
-  }
-
-  isFirstPage(): boolean {
-    return this.employees ? this.first === 0 : true;
-  }
-
-  enableAddProductComp() {
-    this.addNewEmployee = !this.addNewEmployee;
-  }
-
-  closeComp() {
-    this.addNewEmployee = false;
-  }
-
-  loadEmployees() {
-    this.appState$ = this.employeesService.getEmployees$
+  delete(employee: Employee): void {
+    this.appState$ = this.employeeService.delete$(employee)
       .pipe(
         map(response => {
-          this.employees = response.data.employees;
+          this.ngOnInit();
           return {dataState: DataState.LOADED_STATE, appData: response}
         }),
         startWith({dataState: DataState.LOADING_STATE}),
@@ -90,7 +86,14 @@ export class EmployeesAdminComponent implements OnInit {
           return of({dataState: DataState.ERROR_STATE, error: error})
         })
       );
+
   }
 
+  edit(employee: Employee) {
 
+  }
+
+  addEmployee(employee: any) {
+
+  }
 }

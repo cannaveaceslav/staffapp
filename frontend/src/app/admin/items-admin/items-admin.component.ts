@@ -1,15 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {map, Observable, of, shareReplay, startWith} from "rxjs";
-import {MatTableDataSource} from "@angular/material/table";
+import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {DataState} from "../../enum/data-state.enum";
 import {CustomResponse} from "../../interface/custom-response";
 import {AppState} from "../../interface/app-state";
-import {ItemtypeService} from "../../service/itemtype.service";
 import {catchError} from "rxjs/operators";
 import {Item} from "../../interface/item";
 import {ItemService} from "../../service/item.service";
+import {MatSort} from "@angular/material/sort";
+import {MatPaginator} from "@angular/material/paginator";
 
 
 @Component({
@@ -18,13 +19,15 @@ import {ItemService} from "../../service/item.service";
   styleUrls: ['./items-admin.component.css']
 })
 export class ItemsAdminComponent implements OnInit {
-  displayedColumns: string[] = ['ID', 'ITEM NAME', 'BARCODE', 'DESCRIPTION','MANUFACTURED AT','EMPLOYEE', 'TYPE', 'LOCATION'];
+  displayedColumns: string[] = ['ID', 'ITEM NAME', 'BARCODE', 'DESCRIPTION', 'MANUFACTURED AT', 'EMPLOYEE', 'TYPE', 'LOCATION', 'EDIT', 'DELETE'];
   appState$!: Observable<AppState<CustomResponse>>;
   readonly DataState = DataState;
   items?: Item[] = []
-  dataSource! : MatTableDataSource<Item[]>;
-
-
+  newItem?: Item;
+  dataSource!: MatTableDataSource<Item[]>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort, {}) sort!: MatSort;
+  @ViewChild(MatTable) table!: MatTable<any>;
 
 
   constructor(private router: Router
@@ -37,7 +40,7 @@ export class ItemsAdminComponent implements OnInit {
       .pipe(
         map(response => {
           this.items = response.data.items;
-           // @ts-ignore
+          // @ts-ignore
           this.dataSource = new MatTableDataSource(this.items);
           return {dataState: DataState.LOADED_STATE, appData: response}
         }),
@@ -54,10 +57,32 @@ export class ItemsAdminComponent implements OnInit {
       shareReplay()
     );
 
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    // @ts-ignore
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  delete(item: Item): void {
+    this.appState$ = this.itemService.delete$(item)
+      .pipe(
+        map(response => {
+          this.ngOnInit();
+          return {dataState: DataState.LOADED_STATE, appData: response}
+        }),
+        startWith({dataState: DataState.LOADING_STATE}),
+        catchError((error: string) => {
+          return of({dataState: DataState.ERROR_STATE, error: error})
+        })
+      );
+
+  }
+
+  edit(item: Item) {
+
+  }
+
+  addItem(newItem: any) {
+
+  }
 }
