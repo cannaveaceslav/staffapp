@@ -1,5 +1,7 @@
 package com.staffapp.backend.config;
 
+import org.springframework.boot.actuate.trace.http.HttpTraceRepository;
+import org.springframework.boot.actuate.trace.http.InMemoryHttpTraceRepository;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,27 +24,35 @@ public class StaffAppConfig {
     filter.setAfterMessagePrefix("REQUEST DATA : ");
     return filter;
   }
-      @Bean
-    public SpringResourceTemplateResolver templateResolver() {
-        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-        templateResolver.setCacheable(false);
-        templateResolver.setPrefix("classpath:/templates/");
-        templateResolver.setSuffix(".html");
-        return templateResolver;
-    }
 
     @Bean
-    public SpringTemplateEngine templateEngine() {
-        SpringTemplateEngine springTemplateEngine = new SpringTemplateEngine();
-        springTemplateEngine.addTemplateResolver(templateResolver());
-        return springTemplateEngine;
+    public HttpTraceRepository httpTraceRepository() {
+      return new InMemoryHttpTraceRepository();
     }
 
-    @Bean
-    public ThymeleafViewResolver viewResolver() {
-        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
-        viewResolver.setTemplateEngine(templateEngine());
-        viewResolver.setOrder(1);
-        return viewResolver;
-    }
+
+
+  @Bean
+  public SpringResourceTemplateResolver templateResolver() {
+    SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+    templateResolver.setCacheable(false);
+    templateResolver.setPrefix("classpath:/templates/");
+    templateResolver.setSuffix(".html");
+    return templateResolver;
+  }
+
+  @Bean
+  public SpringTemplateEngine templateEngine() {
+    SpringTemplateEngine springTemplateEngine = new SpringTemplateEngine();
+    springTemplateEngine.addTemplateResolver(templateResolver());
+    return springTemplateEngine;
+  }
+
+  @Bean
+  public ThymeleafViewResolver viewResolver() {
+    ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+    viewResolver.setTemplateEngine(templateEngine());
+    viewResolver.setOrder(1);
+    return viewResolver;
+  }
 }

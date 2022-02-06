@@ -1,42 +1,7 @@
-// import { Component } from '@angular/core';
-// import { map } from 'rxjs/operators';
-// import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-//
-// @Component({
-//   selector: 'app-dashboard',
-//   templateUrl: './dashboard.component.html',
-//   styleUrls: ['./dashboard.component.css']
-// })
-// export class DashboardComponent {
-//   /** Based on the screen size, switch from standard to one column per row */
-//   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-//     map(({ matches }) => {
-//       if (matches) {
-//         return [
-//           { title: 'Card 1', cols: 1, rows: 1 },
-//           { title: 'Card 2', cols: 1, rows: 1 },
-//           { title: 'Card 3', cols: 1, rows: 1 },
-//           { title: 'Card 4', cols: 1, rows: 1 }
-//         ];
-//       }
-//
-//       return [
-//         { title: 'Card 1', cols: 2, rows: 1 },
-//         { title: 'Card 2', cols: 1, rows: 1 },
-//         { title: 'Card 3', cols: 1, rows: 2 },
-//         { title: 'Card 4', cols: 1, rows: 1 }
-//       ];
-//     })
-//   );
-//
-//   constructor(private breakpointObserver: BreakpointObserver) {}
-// }
-
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { switchMap } from 'rxjs/operators';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {map, Observable, shareReplay, Subscription, timer} from "rxjs";
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {SystemlHealth} from "../../interface/system-health";
 import {SystemCPU} from "../../interface/SystemCPU";
 import {DashboardService} from "../../service/dashboard.service";
@@ -59,15 +24,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
   http500Traces: any[] = [];
   httpDefaultTraces: any[] = [];
   timeStamp!: number;
-  viewTrace = false;
+  viewTrace = true;
 
   subscription!: Subscription;
 
-  constructor(private dashboardService: DashboardService,
-    private route: ActivatedRoute, private breakpointObserver: BreakpointObserver) { }
+  constructor(private dashboardService: DashboardService
+    , private route: ActivatedRoute
+    , private breakpointObserver: BreakpointObserver) {
+  }
 
   ngOnInit(): void {
-    this.viewTrace = false;
+    this.viewTrace = true;
     this.getTraces();
     this.getCpuUsage();
     this.getSystemHealth();
@@ -77,8 +44,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
 
+
   }
-    isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
       shareReplay()
@@ -86,7 +55,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 
   private getCpuUsage(): void {
-    this.systemCPU = this.route.snapshot.data['systemCPU'];
+    // this.systemCPU = this.route.snapshot.data['systemCPU'];
+
+    this.dashboardService.getSystemCPU().subscribe(
+      (response: SystemCPU) => {
+
+        this.systemCPU = response;
+      },
+      (error: HttpErrorResponse) => {
+
+      }
+    );
   }
 
   private getSystemHealth(): void {
@@ -106,7 +85,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.dashboardService.getProcessUptime().subscribe(
       (response: any) => {
 
-        this.timeStamp = Math.round(response.metrics[0].value);
+        this.timeStamp = Math.round(response.measurements[0].value);
         this.processUptime = this.formateUptime(this.timeStamp);
         if (isUpdateTime) {
           this.updateTime();
@@ -118,6 +97,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
     );
   }
+
   private getTraces(): void {
     this.dashboardService.getHttpTraces().subscribe(
       (response: any) => {
@@ -215,6 +195,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
     return `${mm}/${dd}/${year}`;
   }
-
 
 }

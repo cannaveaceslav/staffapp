@@ -25,7 +25,7 @@ ul.bookmarks {
     position: relative;
     text-align: left; /* change to "center" or "right" to align differently */
     border-bottom: 10px solid green; /* bottom border */
-    background: #a300bf;
+    background: #ffffff;
     background: linear-gradient(to bottom,  #ffffff 0%,#d8d8d8 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#d8d8d8',GradientType=0 );
 }

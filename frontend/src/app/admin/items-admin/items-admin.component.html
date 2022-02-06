@@ -10,9 +10,9 @@
           <a mat-list-item role="listitem" routerLink="/admin/dashboard" routerLinkActive="active">
             <mat-icon matListIcon>dashboard</mat-icon>
             Dashboard</a>
-          <a mat-list-item role="listitem" routerLink="/admin/add-new-content" routerLinkActive="active">
-            <mat-icon matListIcon>add_box</mat-icon>
-            Add new content</a>
+<!--          <a mat-list-item role="listitem" routerLink="/admin/add-new-content" routerLinkActive="active">-->
+<!--            <mat-icon matListIcon>add_box</mat-icon>-->
+<!--            Add new content</a>-->
           <a mat-list-item role="listitem" routerLink="/admin/items" routerLinkActive="active">
             <mat-icon matListIcon>devices</mat-icon>
             All items</a>
@@ -67,6 +67,11 @@
             <td mat-cell *matCellDef="let item"> {{item.itemName}} </td>
           </ng-container>
 
+            <ng-container matColumnDef="TYPE">
+            <th mat-header-cell *matHeaderCellDef>TYPE</th>
+            <td mat-cell *matCellDef="let item"> {{item.itemType.typeName}} </td>
+          </ng-container>
+
           <ng-container matColumnDef="BARCODE">
             <th mat-header-cell *matHeaderCellDef>BARCODE</th>
             <td mat-cell *matCellDef="let item"> {{item.barcode}} </td>
@@ -87,14 +92,14 @@
             <td mat-cell *matCellDef="let item"> {{item.employee.lastName + ' ' + item.employee.firstName}} </td>
           </ng-container>
 
-          <ng-container matColumnDef="TYPE">
-            <th mat-header-cell *matHeaderCellDef>TYPE</th>
-            <td mat-cell *matCellDef="let item"> {{item.itemType.typeName}} </td>
-          </ng-container>
-
           <ng-container matColumnDef="LOCATION">
             <th mat-header-cell *matHeaderCellDef>LOCATION</th>
             <td mat-cell *matCellDef="let item"> {{item.location.locationNumber}} </td>
+          </ng-container>
+
+           <ng-container matColumnDef="IMAGE">
+            <th mat-header-cell *matHeaderCellDef>IMAGE</th>
+            <td mat-cell *matCellDef="let item"> {{item.image}} </td>
           </ng-container>
 
           <!-- Action Column -->

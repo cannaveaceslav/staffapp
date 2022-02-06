@@ -19,6 +19,7 @@ import {EmployeesAdminComponent} from "./admin/employees-admin/employees-admin.c
 import {ItemTypesAdminComponent} from "./admin/item-types-admin/item-types-admin.component";
 import {UsersAdminComponent} from "./admin/users-admin/users-admin.component";
 import {ItemsAdminComponent} from "./admin/items-admin/items-admin.component";
+import {LocationsAdminComponent} from "./admin/locations-admin/locations-admin.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -41,7 +42,7 @@ const routes: Routes = [
   {path: 'admin/employees', component: EmployeesAdminComponent, canActivate: [AuthGaurdService]},
   {path: 'admin/item-types', component: ItemTypesAdminComponent, canActivate: [AuthGaurdService]},
   {path: 'admin/users', component: UsersAdminComponent, canActivate: [AuthGaurdService]},
-  {path: 'admin/locations', component: UsersAdminComponent, canActivate: [AuthGaurdService]}
+  {path: 'admin/locations', component: LocationsAdminComponent, canActivate: [AuthGaurdService]}
 ];
 
 

@@ -3,6 +3,8 @@ import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {Router} from "@angular/router";
 import {map, Observable, of, shareReplay, startWith} from "rxjs";
 import {DataState} from "../../enum/data-state.enum";
+import {ItemType} from "../../interface/itemType";
+import {ItemtypeService} from "../../service/itemtype.service";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {Item} from "../../interface/item";
@@ -10,39 +12,37 @@ import {MatSort} from "@angular/material/sort";
 import {catchError} from "rxjs/operators";
 import {CustomResponse} from "../../interface/custom-response";
 import {AppState} from "../../interface/app-state";
-import {Location} from "../../interface/location";
-import {LayoutService} from "../../service/layout.service";
 
 @Component({
-  selector: 'app-locations-admin',
-  templateUrl: './locations-admin.component.html',
-  styleUrls: ['./locations-admin.component.css']
+  selector: 'app-item-types-admin',
+  templateUrl: './item-types-admin.component.html',
+  styleUrls: ['./item-types-admin.component.css']
 })
-export class LocationsAdminComponent implements OnInit {
+export class ItemTypesAdminComponent implements OnInit {
 
-  displayedColumns: string[] = ['ID', 'LOCATION NUMBER', 'DESCRIPTION', 'EMPLOYEE', 'POS X', 'POS Y', 'EDIT', 'DELETE'];
+ displayedColumns: string[] = ['ID', 'ITEM TYPE', 'DESCRIPTION', 'IMAGE'];
   appState$!: Observable<AppState<CustomResponse>>;
   readonly DataState = DataState;
-  locations?: Location[] = []
-  newLocation?: Location;
-  dataSource!: MatTableDataSource<Location[]>;
+  itemTypes?: ItemType[] = []
+  newItemType?: ItemType;
+  dataSource!: MatTableDataSource<ItemType[]>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort, {}) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<any>;
 
 
   constructor(private router: Router
-    , private locationService: LayoutService
+    , private itemTypeService: ItemtypeService
     , private breakpointObserver: BreakpointObserver) {
   }
 
   ngOnInit(): void {
-    this.appState$ = this.locationService.getlocations$
+    this.appState$ = this.itemTypeService.getItemTypes$
       .pipe(
         map(response => {
-          this.locations = response.data.locations;
+          this.itemTypes = response.data.itemTypes;
           // @ts-ignore
-          this.dataSource = new MatTableDataSource(this.locations);
+          this.dataSource = new MatTableDataSource(this.itemTypes);
           return {dataState: DataState.LOADED_STATE, appData: response}
         }),
         startWith({dataState: DataState.LOADING_STATE}),
@@ -64,8 +64,8 @@ export class LocationsAdminComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  delete(location: Location): void {
-    this.appState$ = this.locationService.delete$(location.id)
+  delete(itemType: ItemType): void {
+    this.appState$ = this.itemTypeService.delete$(itemType)
       .pipe(
         map(response => {
           this.ngOnInit();
@@ -79,11 +79,11 @@ export class LocationsAdminComponent implements OnInit {
 
   }
 
-  edit(location: Location) {
+  edit(item: Item) {
 
   }
 
-  addLocation(newLocation: any) {
+  addItem(newItem: any) {
 
   }
 

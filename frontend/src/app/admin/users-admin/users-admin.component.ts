@@ -2,47 +2,57 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {Router} from "@angular/router";
 import {map, Observable, of, shareReplay, startWith} from "rxjs";
-import {DataState} from "../../enum/data-state.enum";
-import {MatPaginator} from "@angular/material/paginator";
-import {MatTable, MatTableDataSource} from "@angular/material/table";
-import {Item} from "../../interface/item";
+import {User} from "../../interface/user";
 import {MatSort} from "@angular/material/sort";
 import {catchError} from "rxjs/operators";
+import {Employee} from "../../interface/employee";
+import {DataState} from "../../enum/data-state.enum";
+import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {CustomResponse} from "../../interface/custom-response";
 import {AppState} from "../../interface/app-state";
-import {Location} from "../../interface/location";
-import {LayoutService} from "../../service/layout.service";
+import {MatPaginator} from "@angular/material/paginator";
+import {UserService} from "../../service/user.service";
 
 @Component({
-  selector: 'app-locations-admin',
-  templateUrl: './locations-admin.component.html',
-  styleUrls: ['./locations-admin.component.css']
+  selector: 'app-users-admin',
+  templateUrl: './users-admin.component.html',
+  styleUrls: ['./users-admin.component.css']
 })
-export class LocationsAdminComponent implements OnInit {
+export class UsersAdminComponent implements OnInit {
 
-  displayedColumns: string[] = ['ID', 'LOCATION NUMBER', 'DESCRIPTION', 'EMPLOYEE', 'POS X', 'POS Y', 'EDIT', 'DELETE'];
+  displayedColumns: string[] = ['ID'
+    , 'LAST NAME'
+    , 'FIRST NAME'
+    , 'EMAIL'
+    , 'PASSWORD'
+    , 'USER ROLE'
+    , 'LOCKED'
+    , 'ENABLED'
+    , 'EDIT'
+    , 'DELETE'];
+
   appState$!: Observable<AppState<CustomResponse>>;
   readonly DataState = DataState;
-  locations?: Location[] = []
-  newLocation?: Location;
-  dataSource!: MatTableDataSource<Location[]>;
+  users?: User[] = []
+  newUser?: User;
+  dataSource!: MatTableDataSource<User[]>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort, {}) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<any>;
 
 
   constructor(private router: Router
-    , private locationService: LayoutService
+    , private userService: UserService
     , private breakpointObserver: BreakpointObserver) {
   }
 
   ngOnInit(): void {
-    this.appState$ = this.locationService.getlocations$
+    this.appState$ = this.userService.getUsers$
       .pipe(
         map(response => {
-          this.locations = response.data.locations;
+          this.users = response.data.users;
           // @ts-ignore
-          this.dataSource = new MatTableDataSource(this.locations);
+          this.dataSource = new MatTableDataSource(this.users);
           return {dataState: DataState.LOADED_STATE, appData: response}
         }),
         startWith({dataState: DataState.LOADING_STATE}),
@@ -64,8 +74,8 @@ export class LocationsAdminComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  delete(location: Location): void {
-    this.appState$ = this.locationService.delete$(location.id)
+  delete(user: User): void {
+    this.appState$ = this.userService.delete$(user.id)
       .pipe(
         map(response => {
           this.ngOnInit();
@@ -79,13 +89,11 @@ export class LocationsAdminComponent implements OnInit {
 
   }
 
-  edit(location: Location) {
+  edit(user: User) {
 
   }
 
-  addLocation(newLocation: any) {
+  addEmployee(user: any) {
 
   }
-
-
 }

@@ -15,5 +15,5 @@ export interface CustomResponse {
         ,employees?: Employee [], employee?: Employee
         ,items?: Item [], item?: Item
         ,itemTypes?: ItemType [], itemType?: ItemType
-        ,user?: User };
+        ,users?: User [] ,user?: User };
 }

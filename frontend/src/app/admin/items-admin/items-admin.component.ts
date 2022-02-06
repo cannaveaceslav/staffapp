@@ -19,7 +19,17 @@ import {MatPaginator} from "@angular/material/paginator";
   styleUrls: ['./items-admin.component.css']
 })
 export class ItemsAdminComponent implements OnInit {
-  displayedColumns: string[] = ['ID', 'ITEM NAME', 'BARCODE', 'DESCRIPTION', 'MANUFACTURED AT', 'EMPLOYEE', 'TYPE', 'LOCATION', 'EDIT', 'DELETE'];
+  displayedColumns: string[] = ['ID'
+    , 'ITEM NAME'
+    , 'TYPE'
+    , 'BARCODE'
+    , 'DESCRIPTION'
+    , 'MANUFACTURED AT'
+    , 'EMPLOYEE'
+    , 'LOCATION'
+    , 'IMAGE'
+    , 'EDIT'
+    , 'DELETE'];
   appState$!: Observable<AppState<CustomResponse>>;
   readonly DataState = DataState;
   items?: Item[] = []

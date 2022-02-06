@@ -1,3 +1,4 @@
-export interface UserRole {
+export enum UserRole {
+  ADMIN, USER
 
 }
