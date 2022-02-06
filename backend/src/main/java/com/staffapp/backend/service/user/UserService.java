@@ -15,7 +15,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -89,7 +92,36 @@ public class UserService implements UserDetailsService {
             .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
 
   }
-  public void deleteUser(User user){
-     userRepository.delete(user);
+
+  public void deleteUser(User user) {
+    userRepository.delete(user);
   }
+
+  public User create(@NotNull User user) {
+    log.info("Creating new user with email [{}]", user.getEmail());
+    return userRepository.save(user);
+  }
+
+  public Collection<User> list() {
+    log.info("Fetching all users");
+    return userRepository.findAll();
+  }
+
+  public User getById(Long id) {
+    log.info("Getting user by id [{}]", id);
+    return userRepository.getById(id);
+  }
+
+  public User update(@NotNull User user) {
+    log.info("Updating user with email[{}]", user.getEmail());
+    return userRepository.save(user);
+  }
+
+  public Boolean deleteById(Long id) {
+    log.info("Deleting user with ID [{}]", id);
+    userRepository.deleteById(id);
+    return Boolean.TRUE;
+  }
+
+
 }

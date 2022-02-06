@@ -1,0 +1,153 @@
+.trace-modal {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    background-color: #babbc4;
+    transform: translateX(-50%);
+    z-index: 11;
+}
+
+main {
+    overflow-x: hidden;
+}
+
+.row {
+    margin-top: 10px;
+}
+
+.card-block {
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.http404 {
+    background-color: sandybrown;
+}
+
+.http200 {
+    background-color: rgb(156, 224, 156);
+}
+
+.http400 {
+    background-color: rgb(244, 234, 96);
+}
+
+.http500 {
+    background-color: rgb(244, 101, 96);
+}
+
+.status_bar {
+    display: flex;
+    justify-content: flex-start;
+    gap: 40px;
+    flex-direction: row;
+    align-items: center;
+    font-size: 20px;
+    height: 100px;
+    background-color: rgb(152, 225, 228);
+}
+
+.status_bar span:first-child {
+    margin-left: 10px;
+}
+
+.status_bar button:first-child {
+    margin-right: 10px;
+}
+
+.btn_refresh {
+    margin-left: auto;
+    align-items: center;
+}
+
+div.container {
+    margin: auto;
+}
+
+.trace {
+    overflow-y: scroll;
+}
+
+#httptrace-table tr td{
+    padding: 0.5rem;
+}
+
+@media only screen and (max-width: 889px) {
+    .status_bar {
+        flex-direction: column;
+        align-items: flex-start;
+        height: 100%;
+        gap: 0;
+    }
+
+    .status_bar span:first-child {
+        margin-left: 0;
+    }
+
+    .btn_refresh {
+        margin: 10px 0 0 0;
+    }
+
+    .hide_on_sm {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+
+}
+/****************************************navbar*************************************/.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: silver;
+}
+.mat-drawer{
+  background: silver;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+ul.bookmarks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    text-align: left; /* change to "center" or "right" to align differently */
+    border-bottom: 10px solid green; /* bottom border */
+    background: #a300bf;
+    background: linear-gradient(to bottom,  #ffffff 0%,#d8d8d8 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#d8d8d8',GradientType=0 );
+}
+.cont {
+    opacity: 20%;
+}
+
+/* Structure */
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.iconbutton{
+  padding-top: 10px;
+}
+.table-button{
+  width: 20%;
+  border: #a300bf;
+  border-radius: 5px;
+  background: silver;
+  margin-left: 2%;
+
+}

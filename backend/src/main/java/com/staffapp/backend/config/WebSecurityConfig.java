@@ -44,11 +44,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                          "/css/**",
                          "/img/**",
                          "/login/**",
-                         "/layout/**",
-                         "/items/**",
                          "/assets/**",
                          "/actuator",
-                         "/actuator/*",
+                         "/actuator/**",
                          "/instances",
                          "/instances/*")
             .permitAll()

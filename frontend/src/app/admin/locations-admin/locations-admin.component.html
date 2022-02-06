@@ -1,0 +1,136 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <div id="sidebar">
+        <mat-nav-list role="list">
+          <a mat-list-item role="listitem" routerLink="/admin/dashboard" routerLinkActive="active">
+            <mat-icon matListIcon>dashboard</mat-icon>
+            Dashboard</a>
+<!--          <a mat-list-item role="listitem" routerLink="/admin/add-new-content" routerLinkActive="active">-->
+<!--            <mat-icon matListIcon>add_box</mat-icon>-->
+<!--            Add new content</a>-->
+          <a mat-list-item role="listitem" routerLink="/admin/items" routerLinkActive="active">
+            <mat-icon matListIcon>devices</mat-icon>
+            All items</a>
+          <a mat-list-item role="listitem" routerLink="/admin/employees" routerLinkActive="active">
+            <mat-icon matListIcon>person_add</mat-icon>
+            All employees</a>
+          <a mat-list-item role="listitem" routerLink="/admin/item-types" routerLinkActive="active">
+            <mat-icon matListIcon>event_seat</mat-icon>
+            All item types</a>
+          <a mat-list-item role="listitem" routerLink="/admin/locations" routerLinkActive="active">
+            <mat-icon matListIcon>person_pin_circle</mat-icon>
+            All locations</a>
+          <a mat-list-item role="listitem" routerLink="/admin/users" routerLinkActive="active">
+            <mat-icon matListIcon>person</mat-icon>
+            Users</a>
+        </mat-nav-list>
+      </div>
+    </mat-nav-list>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+    <ng-container *ngIf="(appState$ | async ) as appState" [ngSwitch]="appState.dataState">
+
+      <ng-container *ngSwitchCase="DataState.LOADING_STATE">
+        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="DataState.LOADED_STATE">
+
+        <button mat-icon-button matTooltip="Click to create new" class="table-button"
+                (click)="addLocation(newLocation)" color="warn">ADD NEW LOCATION
+          <mat-icon>person_pin_circle</mat-icon>
+        </button>
+
+        <mat-form-field appearance="standard">
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+        </mat-form-field>
+
+        <!--        <table mat-table class="mat-elevation-z8" *ngFor="let itemType of appState?.appData?.data?.itemTypes;">-->
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="ID">
+            <th mat-header-cell *matHeaderCellDef> ID.</th>
+            <td mat-cell *matCellDef="let location"> {{location.id}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="LOCATION NUMBER">
+            <th mat-header-cell *matHeaderCellDef> LOCATION NUMBER</th>
+            <td mat-cell *matCellDef="let location"> {{location.locationNumber}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="DESCRIPTION">
+            <th mat-header-cell *matHeaderCellDef> DESCRIPTION</th>
+            <td mat-cell *matCellDef="let location"> {{location.description}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="EMPLOYEE">
+            <th mat-header-cell *matHeaderCellDef> EMPLOYEE</th>
+            <td mat-cell *matCellDef="let location"> {{location.employee?.lastName + ' ' + location.employee?.firstName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="POS X">
+            <th mat-header-cell *matHeaderCellDef>POS X</th>
+            <td mat-cell *matCellDef="let location"> {{location.pos_x}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="POS Y">
+            <th mat-header-cell *matHeaderCellDef>POS Y</th>
+            <td mat-cell *matCellDef="let location"> {{location.pos_y}} </td>
+          </ng-container>
+
+          <!-- Action Column -->
+          <ng-container matColumnDef="EDIT">
+            <th mat-header-cell *matHeaderCellDef> EDIT</th>
+            <td mat-cell *matCellDef="let location">
+              <button mat-icon-button matTooltip="Click to Edit" class="iconbutton"
+                      color="primary" (click)="edit(location)">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="DELETE">
+            <th mat-header-cell *matHeaderCellDef> DELETE</th>
+            <td mat-cell *matCellDef="let location">
+              <button mat-icon-button matTooltip="Click to Delete" class="iconbutton"
+                      (click)="delete(location)" color="warn">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+            >
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+
+      </ng-container>
+
+      <ng-container *ngSwitchCase="DataState.ERROR_STATE">
+        <div class="spinner-border text-danger" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </ng-container>
+
+    </ng-container>
+
+  </mat-sidenav-content>
+
+
+</mat-sidenav-container>
