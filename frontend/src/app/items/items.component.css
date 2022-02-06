@@ -1,0 +1,19 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.iconbutton{
+  padding-top: 10px;
+}
+.table-button{
+  width: 20%;
+  border: #a300bf;
+  border-radius: 5px;
+  background: silver;
+  margin-left: 2%;
+
+}

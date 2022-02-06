@@ -18,7 +18,10 @@
         <ul class="row" >
           <li class="col-12 col-md-6 col-lg-3" *ngFor="let itemType of appState?.appData?.data?.itemTypes; let i = index">
             <div class="cnt-block equal-hight" style="height: 349px;">
-              <figure><img src="https://image.shutterstock.com/image-vector/device-icons-smart-phone-tablet-600w-303111371.jpg" class="img-responsive" alt=""></figure>
+              <figure><img src="https://image.shutterstock.com/image-vector/device-icons-smart-phone-tablet-600w-303111371.jpg"
+                           class="img-responsive"
+                           alt="item type picture"
+              (click)="getItemsByItemType(itemType.id)"></figure>
               <h3><a href="http://www.webcoderskull.com/">{{itemType.typeName}}</a></h3>
               <p>{{itemType.id}}</p>
 <!--              <ul class="follow-us clearfix">-->

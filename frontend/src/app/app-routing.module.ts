@@ -20,6 +20,7 @@ import {ItemTypesAdminComponent} from "./admin/item-types-admin/item-types-admin
 import {UsersAdminComponent} from "./admin/users-admin/users-admin.component";
 import {ItemsAdminComponent} from "./admin/items-admin/items-admin.component";
 import {LocationsAdminComponent} from "./admin/locations-admin/locations-admin.component";
+import {ItemsComponent} from "./items/items.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -30,7 +31,8 @@ const routes: Routes = [
   {path: 'layout', component: LayoutComponent, canActivate: [AuthGaurdService]},
   {path: 'employees', component: EmployeesComponent, canActivate: [AuthGaurdService]},
   {path: 'employee/:id', component: EmployeeComponent, canActivate: [AuthGaurdService]},
-  {path: 'items', component: ItemComponent, canActivate: [AuthGaurdService]},
+  {path: 'items/:id', component: ItemsComponent, canActivate: [AuthGaurdService]},
+  {path: 'item/:id', component: ItemComponent, canActivate: [AuthGaurdService]},
   {path: 'item-types', component: ItemtypeComponent, canActivate: [AuthGaurdService]},
   {path: 'addemployee', component: AddEmployeeComponent, canActivate: [AuthGaurdService]},
   {path: 'reports', component: ReportsComponent, canActivate: [AuthGaurdService]},
