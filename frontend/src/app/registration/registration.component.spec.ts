@@ -19,7 +19,8 @@ describe('RegistrationComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  // it('should create component', () => {
+  //   const app = fixture.componentInstance;
+  //   expect(app).toBeTruthy();
+  // });
 });
