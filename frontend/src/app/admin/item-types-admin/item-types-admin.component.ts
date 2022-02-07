@@ -20,7 +20,7 @@ import {AppState} from "../../interface/app-state";
 })
 export class ItemTypesAdminComponent implements OnInit {
 
- displayedColumns: string[] = ['ID', 'ITEM TYPE', 'DESCRIPTION', 'IMAGE'];
+ displayedColumns: string[] = ['ID', 'ITEM TYPE', 'DESCRIPTION', 'IMAGE','EDIT', 'DELETE'];
   appState$!: Observable<AppState<CustomResponse>>;
   readonly DataState = DataState;
   itemTypes?: ItemType[] = []

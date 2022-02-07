@@ -30,4 +30,16 @@ export class ItemtypeComponent implements OnInit {
       );
   }
 
+  getItemsByItemType(itemTypeId: number)     {
+    {
+    let itemsPage = {
+      url : `items/${itemTypeId}`
+    };
+    console.log(itemsPage)
+    this.router.navigateByUrl(itemsPage.url);
+  }
+  }
+
+
+
 }

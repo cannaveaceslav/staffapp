@@ -1,3 +1,13 @@
-.pro-details .nav-item{
-    height:50px;
+.pro-details .nav-item {
+  height: 50px;
+}
+
+.container {
+  background-color: whitesmoke;
+}
+
+.ext-container {
+  background-color: navy;
+  height: 100%;
+  background-image: linear-gradient(30deg, #a300bf 1%, #3931af 40%, lightskyblue 90%)
 }
