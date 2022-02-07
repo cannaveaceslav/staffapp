@@ -7,6 +7,7 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="DataState.LOADED_STATE">
+        <div class="ext-container">
 
         <mat-form-field appearance="standard">
           <mat-label>Filter</mat-label>
@@ -72,7 +73,7 @@
         </table>
         <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 
-
+        </div>
       </ng-container>
 
       <ng-container *ngSwitchCase="DataState.ERROR_STATE">
