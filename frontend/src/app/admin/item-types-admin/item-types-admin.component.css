@@ -7,10 +7,14 @@
 }
 
 .sidenav .mat-toolbar {
-  background: silver;
+  /*background: silver;*/
+  background: linear-gradient(to bottom, #ffffff 0%, #d8d8d8 100%);
 }
-.mat-drawer{
-  background: silver;
+
+.mat-drawer {
+  /*background: silver;*/
+  background: linear-gradient(to top, cornflowerblue 0%, #d8d8d8 100%);
+
 }
 
 .mat-toolbar.mat-primary {
@@ -18,27 +22,30 @@
   top: 0;
   z-index: 1;
 }
+
 ul.bookmarks {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    text-align: left; /* change to "center" or "right" to align differently */
-    border-bottom: 10px solid green; /* bottom border */
-    background: #ffffff;
-    background: linear-gradient(to bottom,  #ffffff 0%,#d8d8d8 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#d8d8d8',GradientType=0 );
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  text-align: left; /* change to "center" or "right" to align differently */
+  border-bottom: 10px solid green; /* bottom border */
+  background: #ffffff;
+  background: linear-gradient(to bottom, #ffffff 0%, #d8d8d8 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#d8d8d8', GradientType=0);
 }
+
 .cont {
-    opacity: 20%;
+  opacity: 20%;
 }
 
 /* Structure */
 table {
   width: 80%;
-  background-color: lightgrey;
+  /*background-color: lightgrey;*/
   margin-left: 10%;
   margin-right: 10%;
+  background: linear-gradient(to top, lightsteelblue 0%, #d8d8d8 100%);
 
 
 }
@@ -52,7 +59,8 @@ table {
   margin-right: 10%;
 
 }
-.mat-input-element{
+
+.mat-input-element {
   color: #babbc4;
 }
 
@@ -95,11 +103,11 @@ table {
 /*  background-image: linear-gradient(30deg, #3931af 10%, lightskyblue 90%)*/
 /*}*/
 
-.table-button{
+.table-button {
   width: 20%;
   border: #a300bf;
   border-radius: 5px;
-  background: silver;
-  margin-left: 2%;
+  background: linear-gradient(to top, lightsteelblue 0%, #d8d8d8 100%);
+  margin-left: 10%;
 
 }

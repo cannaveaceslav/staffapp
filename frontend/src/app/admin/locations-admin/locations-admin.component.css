@@ -7,10 +7,13 @@
 }
 
 .sidenav .mat-toolbar {
-  background: silver;
+  /*background: silver;*/
+   background: linear-gradient(to bottom,  #ffffff 0%,#d8d8d8 100%);
 }
 .mat-drawer{
-  background: silver;
+  /*background: silver;*/
+     background: linear-gradient(to top,  cornflowerblue 0%,#d8d8d8 100%);
+
 }
 
 .mat-toolbar.mat-primary {
@@ -36,9 +39,10 @@ ul.bookmarks {
 /* Structure */
 table {
   width: 80%;
-  background-color: lightgrey;
+  /*background-color: lightgrey;*/
   margin-left: 10%;
   margin-right: 10%;
+    background: linear-gradient(to top,  lightsteelblue 0%,#d8d8d8 100%);
 
 
 }
@@ -99,7 +103,7 @@ table {
   width: 20%;
   border: #a300bf;
   border-radius: 5px;
-  background: silver;
-  margin-left: 2%;
+    background: linear-gradient(to top,  lightsteelblue 0%,#d8d8d8 100%);
+  margin-left: 10%;
 
 }
