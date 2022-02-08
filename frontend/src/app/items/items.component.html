@@ -1,85 +1,91 @@
- <ng-container *ngIf="(appState$ | async ) as appState" [ngSwitch]="appState.dataState">
+<ng-container *ngIf="(appState$ | async ) as appState" [ngSwitch]="appState.dataState">
 
-      <ng-container *ngSwitchCase="DataState.LOADING_STATE">
-        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-      </ng-container>
+  <ng-container *ngSwitchCase="DataState.LOADING_STATE">
+    <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </ng-container>
 
-      <ng-container *ngSwitchCase="DataState.LOADED_STATE">
-        <div class="ext-container">
+  <ng-container *ngSwitchCase="DataState.LOADED_STATE">
+<!--  <ng-container [hidden]="!DataState.LOADED_STATE">-->
+    <div class="ext-container">
 
-        <mat-form-field appearance="standard">
-          <mat-label>Filter</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
-        </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+      </mat-form-field>
 
-        <!--        <table mat-table class="mat-elevation-z8" *ngFor="let itemType of appState?.appData?.data?.itemTypes;">-->
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!--        <table mat-table class="mat-elevation-z8" *ngFor="let itemType of appState?.appData?.data?.itemTypes;">-->
+      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+             class="mat-elevation-z8">
 
-          <ng-container matColumnDef="ID">
-            <th mat-header-cell *matHeaderCellDef> ID.</th>
-            <td mat-cell *matCellDef="let item" (click)="getItemPage(item.id)"> {{item.id}} </td>
-          </ng-container>
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="ID">ID</th>
+          <td mat-cell *matCellDef="let item" (click)="getItemPage(item.id)"> {{item.id}} </td>
+        </ng-container>
 
-          <ng-container matColumnDef="ITEM NAME">
-            <th mat-header-cell *matHeaderCellDef> ITEM NAME</th>
-            <td mat-cell *matCellDef="let item" (click)="getItemPage(item.id)"> {{item.itemName}} </td>
-          </ng-container>
+        <ng-container matColumnDef="itemName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ITEM NAME</th>
+          <td mat-cell *matCellDef="let item" (click)="getItemPage(item.id)"> {{item.itemName}} </td>
+        </ng-container>
 
-            <ng-container matColumnDef="TYPE">
-            <th mat-header-cell *matHeaderCellDef>TYPE</th>
-            <td mat-cell *matCellDef="let item" (click)="getItemPage(item.id)"> {{item.itemType.typeName}} </td>
-          </ng-container>
+        <ng-container matColumnDef="typeName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>TYPE</th>
+          <td mat-cell *matCellDef="let item" (click)="getItemPage(item.id)"> {{item.itemType.typeName}} </td>
+        </ng-container>
 
-          <ng-container matColumnDef="BARCODE">
-            <th mat-header-cell *matHeaderCellDef>BARCODE</th>
-            <td mat-cell *matCellDef="let item" (click)="getItemPage(item.id)"> {{item.barcode}} </td>
-          </ng-container>
+        <ng-container matColumnDef="barcode">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>BARCODE</th>
+          <td mat-cell *matCellDef="let item" (click)="getItemPage(item.id)"> {{item.barcode}} </td>
+        </ng-container>
 
-          <ng-container matColumnDef="DESCRIPTION">
-            <th mat-header-cell *matHeaderCellDef> DESCRIPTION</th>
-            <td mat-cell *matCellDef="let item" (click)="getItemPage(item.id)"> {{item.description}} </td>
-          </ng-container>
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> DESCRIPTION</th>
+          <td mat-cell *matCellDef="let item" (click)="getItemPage(item.id)"> {{item.description}} </td>
+        </ng-container>
 
-          <ng-container matColumnDef="MANUFACTURED AT">
-            <th mat-header-cell *matHeaderCellDef> MANUFACTURED AT</th>
-            <td mat-cell *matCellDef="let item" (click)="getItemPage(item.id)"> {{item.manufactured_at}} </td>
-          </ng-container>
+        <ng-container matColumnDef="manufactured_at">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> MANUFACTURED AT</th>
+          <td mat-cell *matCellDef="let item" (click)="getItemPage(item.id)"> {{item.manufactured_at}} </td>
+        </ng-container>
 
-          <ng-container matColumnDef="EMPLOYEE">
-            <th mat-header-cell *matHeaderCellDef> EMPLOYEE</th>
-            <td mat-cell *matCellDef="let item" (click)="getItemPage(item.id)"> {{item.employee.lastName + ' ' + item.employee.firstName}} </td>
-          </ng-container>
+        <ng-container matColumnDef="lastName+firstName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> EMPLOYEE</th>
+          <td mat-cell *matCellDef="let item"
+              (click)="getItemPage(item.id)"> {{item.employee.lastName + ' ' + item.employee.firstName}} </td>
+        </ng-container>
 
-          <ng-container matColumnDef="LOCATION">
-            <th mat-header-cell *matHeaderCellDef>LOCATION</th>
-            <td mat-cell *matCellDef="let item" (click)="getItemPage(item.id)"> {{item.location.locationNumber}} </td>
-          </ng-container>
+        <ng-container matColumnDef="locationNumber">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>LOCATION</th>
+          <td mat-cell *matCellDef="let item" (click)="getItemPage(item.id)"> {{item.location.locationNumber}} </td>
+        </ng-container>
 
-           <ng-container matColumnDef="IMAGE">
-            <th mat-header-cell *matHeaderCellDef>IMAGE</th>
-            <td mat-cell *matCellDef="let item" (click)="getItemPage(item.id)"> {{item.image}} </td>
-          </ng-container>
+        <ng-container matColumnDef="IMAGE">
+          <th mat-header-cell *matHeaderCellDef>IMAGE</th>
+          <td mat-cell *matCellDef="let item" (click)="getItemPage(item.id)"> {{item.image}} </td>
+        </ng-container>
 
 
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-          <!-- Row shown when there is no matching data. -->
-          <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-          </tr>
-        </table>
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+      <!--        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>-->
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons
+                     aria-label="Select page of items">
+      </mat-paginator>
+    </div>
+  </ng-container>
 
-        </div>
-      </ng-container>
+  <ng-container *ngSwitchCase="DataState.ERROR_STATE">
+    <div class="spinner-border text-danger" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </ng-container>
 
-      <ng-container *ngSwitchCase="DataState.ERROR_STATE">
-        <div class="spinner-border text-danger" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-      </ng-container>
-
-    </ng-container>
+</ng-container>

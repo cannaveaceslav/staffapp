@@ -46,7 +46,6 @@ import {LocationsAdminComponent} from './admin/locations-admin/locations-admin.c
 import {ItemsAdminComponent} from "./admin/items-admin/items-admin.component";
 import {EmployeesAdminComponent} from "./admin/employees-admin/employees-admin.component";
 import {ItemTypesAdminComponent} from "./admin/item-types-admin/item-types-admin.component";
-import {AddNewContentAdminComponent} from "./admin/add-new-content-admin/add-new-content-admin.component";
 import {UsersAdminComponent} from './admin/users-admin/users-admin.component';
 import {ConfirmPageComponent} from './registration/confirm-page/confirm-page.component';
 import {RadioButtonModule} from "primeng/radiobutton";
@@ -55,6 +54,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { ItemsComponent } from './items/items.component';
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -78,46 +78,46 @@ import { ItemsComponent } from './items/items.component';
     ItemsAdminComponent,
     EmployeesAdminComponent,
     ItemTypesAdminComponent,
-    AddNewContentAdminComponent,
     UsersAdminComponent,
     ConfirmPageComponent,
     ItemsComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatToolbarModule,
-    MatTabsModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatCheckboxModule,
-    MatRadioModule,
-    DragDropModule,
-    BrowserAnimationsModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    RadioButtonModule,
-    ButtonModule,
-    MatSidenavModule,
-    MatDialogModule,
-    MatIconModule,
-    MatListModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
-    PaginatorModule,
-    TreeTableModule,
-    TableModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatTooltipModule
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatToolbarModule,
+        MatTabsModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatCheckboxModule,
+        MatRadioModule,
+        DragDropModule,
+        BrowserAnimationsModule,
+        LayoutModule,
+        MatToolbarModule,
+        MatButtonModule,
+        RadioButtonModule,
+        ButtonModule,
+        MatSidenavModule,
+        MatDialogModule,
+        MatIconModule,
+        MatListModule,
+        MatGridListModule,
+        MatCardModule,
+        MatMenuModule,
+        PaginatorModule,
+        TreeTableModule,
+        TableModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatTooltipModule,
+        MatSortModule
 
-  ],
+    ],
   providers: [{
     provide: HTTP_INTERCEPTORS, useClass: BasicAuthHttpInterceptorService, multi: true
   }],

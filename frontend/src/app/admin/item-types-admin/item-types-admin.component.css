@@ -7,12 +7,10 @@
 }
 
 .sidenav .mat-toolbar {
-  /*background: silver;*/
   background: linear-gradient(to bottom, #ffffff 0%, #d8d8d8 100%);
 }
 
 .mat-drawer {
-  /*background: silver;*/
   background: linear-gradient(to top, cornflowerblue 0%, #d8d8d8 100%);
 
 }
@@ -42,10 +40,9 @@ ul.bookmarks {
 /* Structure */
 table {
   width: 80%;
-  /*background-color: lightgrey;*/
   margin-left: 10%;
   margin-right: 10%;
-  background: linear-gradient(to top, lightsteelblue 0%, #d8d8d8 100%);
+  background: linear-gradient(to top, cornflowerblue 0%, #FFFFFF 5%);
 
 
 }
@@ -77,9 +74,7 @@ table {
 }
 
 .mat-paginator {
-  /*background-color: navy;*/
-  /*background-image: linear-gradient(30deg, #a300bf 1%, #3931af 40%, lightskyblue 90%)*/
-  background-color: lightgrey;
+  background: linear-gradient(to top, cornflowerblue 0%, #FFFFFF 100%);
   width: 80%;
   margin-left: 10%;
   margin-right: 10%;
@@ -98,16 +93,14 @@ table {
 
 }
 
-/*.ext-container {*/
-/*  background-color: navy;*/
-/*  background-image: linear-gradient(30deg, #3931af 10%, lightskyblue 90%)*/
-/*}*/
 
 .table-button {
-  width: 20%;
-  border: #a300bf;
-  border-radius: 5px;
-  background: linear-gradient(to top, lightsteelblue 0%, #d8d8d8 100%);
+  width: 80%;
   margin-left: 10%;
+  margin-right: 10%;
+  background: linear-gradient(to top, cornflowerblue 0%, #FFFFFF 100%);
+  border-radius: 5px;
+  margin-top: 5%;
+
 
 }
