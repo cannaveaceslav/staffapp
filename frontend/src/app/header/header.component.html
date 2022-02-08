@@ -8,6 +8,8 @@
       <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/employees" class="nav-link">Employees</a></li>
       <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/item-types" class="nav-link">Items</a></li>
       <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/reports" class="nav-link">Reports</a></li>
+      <!--      available only if admin logged in-->
+      <li><a *ngIf="loginService.isAdminLoggedIn()" routerLink="/admin" class="nav-link">Admin</a></li>
       <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
       <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link">Logout</a></li>
 <!--      <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout" class="nav-link" style="margin-block: 3%; padding-left: 900%; font-size: medium;font-style: normal; color: #a300bf" >{{user}}</a></li>-->

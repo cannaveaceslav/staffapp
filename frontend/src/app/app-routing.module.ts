@@ -14,7 +14,6 @@ import {RegistrationComponent} from "./registration/registration.component";
 import {ItemtypeComponent} from "./itemtype/itemtype.component";
 import {EmployeeComponent} from "./employee/employee.component";
 import {DashboardComponent} from "./admin/dashboard/dashboard.component";
-import {AddNewContentAdminComponent} from "./admin/add-new-content-admin/add-new-content-admin.component";
 import {EmployeesAdminComponent} from "./admin/employees-admin/employees-admin.component";
 import {ItemTypesAdminComponent} from "./admin/item-types-admin/item-types-admin.component";
 import {UsersAdminComponent} from "./admin/users-admin/users-admin.component";
@@ -39,7 +38,6 @@ const routes: Routes = [
   //admin pages
   {path: 'admin', component: AdminComponent, canActivate: [AuthGaurdService]},
   {path: 'admin/dashboard', component: DashboardComponent, canActivate: [AuthGaurdService]},
-  {path: 'admin/add-new-content', component: AddNewContentAdminComponent, canActivate: [AuthGaurdService]},
   {path: 'admin/items', component: ItemsAdminComponent, canActivate: [AuthGaurdService]},
   {path: 'admin/employees', component: EmployeesAdminComponent, canActivate: [AuthGaurdService]},
   {path: 'admin/item-types', component: ItemTypesAdminComponent, canActivate: [AuthGaurdService]},
