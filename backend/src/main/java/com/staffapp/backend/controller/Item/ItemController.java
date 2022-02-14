@@ -79,7 +79,7 @@ public class ItemController {
   @PostMapping("/save")
   @ApiOperation("Method to add new item." +
           "Returns a response with the map with key=item and value=new item")
-  public ResponseEntity<Response> saveItemType(@RequestBody @Valid Item item) {
+  public ResponseEntity<Response> saveItem(@RequestBody @Valid Item item) {
 
     return ResponseEntity.ok(
             Response.builder()
@@ -95,7 +95,7 @@ public class ItemController {
   @PutMapping("/update")
   @ApiOperation("Method update current itemType." +
           "Returns a response with the map with key=item and value=item")
-  public ResponseEntity<Response> updateItemType(@RequestBody @Valid Item item) {
+  public ResponseEntity<Response> updateItem(@RequestBody @Valid Item item) {
 
     return ResponseEntity.ok(
             Response.builder()
@@ -110,7 +110,7 @@ public class ItemController {
 
   @DeleteMapping("/delete/{id}")
   @ApiOperation("Method deletes indicated item by id.")
-  public ResponseEntity<Response> deleteLocation(@PathVariable("id") Long id) {
+  public ResponseEntity<Response> deleteItem(@PathVariable("id") Long id) {
 
     return ResponseEntity.ok(
             Response.builder()
