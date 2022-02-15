@@ -47,6 +47,7 @@ public class ItemController {
                     .build()
     );
   }
+
   @GetMapping("/type/{id}")
   @ApiOperation("Method returns a response with the map with key=items and value=list of all items by itemTypeId")
   public ResponseEntity<Response> getItemsByItemTypeId(@PathVariable("id") Long id) {
@@ -108,6 +109,7 @@ public class ItemController {
     );
   }
 
+
   @DeleteMapping("/delete/{id}")
   @ApiOperation("Method deletes indicated item by id.")
   public ResponseEntity<Response> deleteItem(@PathVariable("id") Long id) {
@@ -117,6 +119,23 @@ public class ItemController {
                     .timeStamp(now())
                     .data(Collections.singletonMap("item", itemService.delete(id)))
                     .message("item with id " + id + " deleted")
+                    .status(OK)
+                    .statusCode(OK.value())
+                    .build()
+    );
+  }
+
+  @PostMapping("/save/{employeeId}/{itemId}")
+  @ApiOperation("Method that updates selected item with employee.")
+  public ResponseEntity<Response> linkItem(@PathVariable("employeeId") Long employeeId,
+                                             @PathVariable("itemId") Long itemId) {
+
+
+    return ResponseEntity.ok(
+            Response.builder()
+                    .timeStamp(now())
+                    .data(Collections.singletonMap("ISUPDATED", itemService.updateByEmployeeId(employeeId, itemId) ))
+                    .message("Employee [" + employeeId + "] linked to item [" + itemId+"]")
                     .status(OK)
                     .statusCode(OK.value())
                     .build()
