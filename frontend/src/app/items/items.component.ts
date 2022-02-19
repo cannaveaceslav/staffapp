@@ -6,11 +6,12 @@ import {map, Observable, of, shareReplay, startWith} from "rxjs";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {Item} from "../interface/item";
-import {MatSort} from "@angular/material/sort";
+import {MatSort, Sort} from "@angular/material/sort";
 import {catchError} from "rxjs/operators";
 import {ItemService} from "../service/item.service";
 import {CustomResponse} from "../interface/custom-response";
 import {AppState} from "../interface/app-state";
+import {LiveAnnouncer} from "@angular/cdk/a11y";
 
 @Component({
   selector: 'app-items',
@@ -22,25 +23,35 @@ export class ItemsComponent implements OnInit {
   appState$!: Observable<AppState<CustomResponse>>;
   readonly DataState = DataState;
   items?: Item[] = []
+  sort!: Sort
   dataSource!: MatTableDataSource<Item[]>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort, {}) sort!: MatSort;
+
+  @ViewChild(MatSort) set matSort(sort: MatSort) {
+    if (!this.dataSource.sort) {
+      this.dataSource.sort = sort;
+    }
+  }
+
+  // @ViewChild(MatSort, {}) sort!: MatSort;
+
   @ViewChild(MatTable) table!: MatTable<any>;
   public value: any;
-  displayedColumns: string[] = ['ID'
-    , 'ITEM NAME'
-    , 'TYPE'
-    , 'BARCODE'
-    , 'DESCRIPTION'
-    , 'MANUFACTURED AT'
-    , 'EMPLOYEE'
-    , 'LOCATION'
+  displayedColumns: string[] = ['id'
+    , 'itemName'
+    , 'typeName'
+    , 'barcode'
+    , 'description'
+    , 'manufactured_at'
+    , 'lastName+firstName'
+    , 'locationNumber'
     , 'IMAGE'];
 
 
   constructor(private router: Router
     , private itemService: ItemService
     , private breakpointObserver: BreakpointObserver
+    , private _liveAnnouncer: LiveAnnouncer
     , private route: ActivatedRoute) {
   }
 
@@ -67,6 +78,9 @@ export class ItemsComponent implements OnInit {
       shareReplay()
     );
 
+  // ngAfterViewInit() {
+  //   this.dataSource.sort = this.sort;
+  // }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -83,5 +97,13 @@ export class ItemsComponent implements OnInit {
       this.router.navigateByUrl(itemsPage.url);
     }
 
+  }
+
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
   }
 }

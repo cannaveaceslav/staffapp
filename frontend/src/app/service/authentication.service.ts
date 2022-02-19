@@ -38,6 +38,11 @@ export class AuthenticationService {
     console.log(!(user === null))
     return !(user === null)
   }
+   isAdminLoggedIn() {
+    let user = sessionStorage.getItem('username')
+    console.log((user))
+    return (user==='admin')
+  }
 
   logOut() {
     sessionStorage.removeItem('username')
