@@ -7,25 +7,34 @@ p {
   margin: 8px;
 }
 
+.ext-container {
+  background-color: navy;
+  background-image: linear-gradient(30deg, #a300bf 1%, #3931af 40%, lightskyblue 90%);
+  height: 100%;
+}
+
 .container {
   position: relative;
   left: 30px;
   top: 10px;
   height: 461px;
   width: 1211px;
-    /*background: url("../../assets/images/isd-office.heic") no-repeat center center / cover;*/
-  background-image: url('../../assets/images/isd_office.png'),url('../../assets/images/isd-office.heic');
-  background-position: left;
-  background-color: silver;
+  /*margin-bottom: 120px;*/
+  /*background: url("../../assets/images/isd-office.heic") no-repeat center center / cover;*/
+  background-image: url('../../assets/images/isd_office.png'), url('../../assets/images/isd-office.heic');
+  /*background-position: left;*/
+  /*background-color: silver;*/
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: inherit; /* Resize the background image to cover the entire container */
 }
+
 .our-webcoderskull {
   /*background: url("https://image.shutterstock.com/z/stock-photo-desk-office-with-laptop-blank-notepad-coffee-cup-and-pen-on-wood-table-flat-lay-top-view-copy-1689463411.jpg") no-repeat center top / cover;*/
   /*background: url("https://design-interio.ru/upload/iblock/aca/aca0078d582200d1aa3ccb4ff375dcf3.jpg") no-repeat center top / cover;*/
   background: url("../../assets/images/isd-office.heic") no-repeat center center / cover;
 
 }
+
 .table-available {
   color: cornsilk;
   border: solid 2px #ccc;
@@ -66,6 +75,7 @@ p {
 .cdk-drag-placeholder {
   background: rgba(0, 5, 0, .2);
 }
+
 /* Animate items as they're being sorted. */
 .cdk-drop-list-dragging .cdk-drag {
   transition: transform .5s cubic-bezier(0.88, -0.19, 0.26, 1.27);

@@ -54,6 +54,7 @@ import {ButtonModule} from "primeng/button";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import { ItemsComponent } from './items/items.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     ItemTypesAdminComponent,
     AddNewContentAdminComponent,
     UsersAdminComponent,
-    ConfirmPageComponent
+    ConfirmPageComponent,
+    ItemsComponent
   ],
   imports: [
     BrowserModule,

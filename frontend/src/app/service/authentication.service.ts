@@ -45,9 +45,9 @@ export class AuthenticationService {
 
   register(registrationRequest: RegistrationRequest) {
 
-     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa('admin' + ':' + 'admin') });
-        return this.httpClient.post(`${this.baseURL}/registration`, registrationRequest,{headers});
-    }
+    const headers = new HttpHeaders({Authorization: 'Basic ' + btoa('admin' + ':' + 'admin')});
+    return this.httpClient.post(`${this.baseURL}/registration`, registrationRequest, {headers});
+  }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.log(error)

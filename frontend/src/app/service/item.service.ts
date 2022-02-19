@@ -22,7 +22,7 @@ export class ItemService {
       );
 
   public getItemsByItemTypeId$ = (itemTypeId: number) => <Observable<CustomResponse>>
-    this.httpClient.get<CustomResponse>(`${this.baseURL}/items/type/{id}`)
+    this.httpClient.get<CustomResponse>(`${this.baseURL}/items/${itemTypeId}`)
       .pipe(
         tap(console.log),
         catchError(this.handleError)

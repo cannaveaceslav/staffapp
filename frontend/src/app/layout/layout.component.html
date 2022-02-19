@@ -1,37 +1,40 @@
 <ng-container *ngIf="(appState$ | async ) as appState" [ngSwitch]="appState.dataState">
-  <div class="container">
-    <ng-container *ngSwitchCase="DataState.LOADED_STATE">
+  <div class="ext-container">
 
-      <div *ngFor="let location of appState?.appData?.data?.locations" >
+    <div class="container">
+      <ng-container *ngSwitchCase="DataState.LOADED_STATE">
 
-        <div class="table-available"
-             cdkDrag
-             cdkDragBoundary=".container"
-             [cdkDragFreeDragPosition]="{x:location.pos_x, y:location.pos_y}"
+        <div *ngFor="let location of appState?.appData?.data?.locations">
 
-             (cdkDragEnded)=onDragEnded($event,location)
-             (cdkDragStarted)=handleDragStart($event)
-             (click)=handleClick($event) *ngIf="location.available; else notAvailable">
-
-          <p>{{location.locationNumber}}</p>
-        </div>
-        <ng-template #notAvailable>
-          <div class="table-not-available"
+          <div class="table-available"
                cdkDrag
                cdkDragBoundary=".container"
                [cdkDragFreeDragPosition]="{x:location.pos_x, y:location.pos_y}"
+
                (cdkDragEnded)=onDragEnded($event,location)
                (cdkDragStarted)=handleDragStart($event)
-               (click)=handleClick($event)>
-            {{location.locationNumber}}
+               (click)=handleClick($event) *ngIf="location.available; else notAvailable">
+
+            <p>{{location.locationNumber}}</p>
           </div>
-        </ng-template>
-      </div>
-    </ng-container>
+          <ng-template #notAvailable>
+            <div class="table-not-available"
+                 cdkDrag
+                 cdkDragBoundary=".container"
+                 [cdkDragFreeDragPosition]="{x:location.pos_x, y:location.pos_y}"
+                 (cdkDragEnded)=onDragEnded($event,location)
+                 (cdkDragStarted)=handleDragStart($event)
+                 (click)=handleClick($event)>
+              {{location.locationNumber}}
+            </div>
+          </ng-template>
+        </div>
+      </ng-container>
+    </div>
   </div>
   <ng-container>
-    <div style="height: 300px">
-    </div>
+<!--    <div style="height: 300px">-->
+<!--    </div>-->
   </ng-container>
 
 </ng-container>
