@@ -47,7 +47,8 @@ public class ItemController {
                     .build()
     );
   }
-  @GetMapping("/{id}")
+
+  @GetMapping("/type/{id}")
   @ApiOperation("Method returns a response with the map with key=items and value=list of all items by itemTypeId")
   public ResponseEntity<Response> getItemsByItemTypeId(@PathVariable("id") Long id) {
     return ResponseEntity.ok(
@@ -79,7 +80,7 @@ public class ItemController {
   @PostMapping("/save")
   @ApiOperation("Method to add new item." +
           "Returns a response with the map with key=item and value=new item")
-  public ResponseEntity<Response> saveItemType(@RequestBody @Valid Item item) {
+  public ResponseEntity<Response> saveItem(@RequestBody @Valid Item item) {
 
     return ResponseEntity.ok(
             Response.builder()
@@ -95,7 +96,7 @@ public class ItemController {
   @PutMapping("/update")
   @ApiOperation("Method update current itemType." +
           "Returns a response with the map with key=item and value=item")
-  public ResponseEntity<Response> updateItemType(@RequestBody @Valid Item item) {
+  public ResponseEntity<Response> updateItem(@RequestBody @Valid Item item) {
 
     return ResponseEntity.ok(
             Response.builder()
@@ -108,15 +109,33 @@ public class ItemController {
     );
   }
 
+
   @DeleteMapping("/delete/{id}")
   @ApiOperation("Method deletes indicated item by id.")
-  public ResponseEntity<Response> deleteLocation(@PathVariable("id") Long id) {
+  public ResponseEntity<Response> deleteItem(@PathVariable("id") Long id) {
 
     return ResponseEntity.ok(
             Response.builder()
                     .timeStamp(now())
                     .data(Collections.singletonMap("item", itemService.delete(id)))
                     .message("item with id " + id + " deleted")
+                    .status(OK)
+                    .statusCode(OK.value())
+                    .build()
+    );
+  }
+
+  @PostMapping("/save/{employeeId}/{itemId}")
+  @ApiOperation("Method that updates selected item with employee.")
+  public ResponseEntity<Response> linkItem(@PathVariable("employeeId") Long employeeId,
+                                             @PathVariable("itemId") Long itemId) {
+
+
+    return ResponseEntity.ok(
+            Response.builder()
+                    .timeStamp(now())
+                    .data(Collections.singletonMap("ISUPDATED", itemService.updateByEmployeeId(employeeId, itemId) ))
+                    .message("Employee [" + employeeId + "] linked to item [" + itemId+"]")
                     .status(OK)
                     .statusCode(OK.value())
                     .build()

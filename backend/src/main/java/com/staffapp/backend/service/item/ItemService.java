@@ -44,6 +44,12 @@ public class ItemService {
     return itemRepository.save(item);
   }
 
+  public int updateByEmployeeId(Long employeeId, Long itemId) {
+    log.info("Linking item [{}] with employee [{}]", itemId,employeeId);
+    return itemRepository.linkEmployeeToItem(employeeId,itemId);
+  }
+
+
   public Boolean delete(Long id) {
     log.info("Deleting Item [{}]", id);
     itemRepository.deleteById(id);
