@@ -21,7 +21,7 @@ public class RetrofitClient {
 
     //    public static final String BASE_URL = "http://localhost:8080";
     private static final String AUTH = "Basic " + Base64.encodeToString(("admin:admin").getBytes(), Base64.NO_WRAP);
-    public static final String BASE_URL = "http://192.168.0.5:8080";
+    public static final String BASE_URL = "http://192.168.0.8:8080";
     private static RetrofitClient mInstance;
     private Retrofit retrofit;
 

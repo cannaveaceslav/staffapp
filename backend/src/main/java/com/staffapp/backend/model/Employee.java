@@ -56,7 +56,7 @@ public class Employee {
           nullable = false)
   private Department department;
   @Column(nullable = false)
-  private LocalDateTime birthday;
+  private LocalDate  birthday;
   @Column(nullable = false)
   private LocalDateTime createdAt;
   private LocalDateTime modifiedAt;

@@ -1,12 +1,13 @@
 package com.staffapp.mobile.model;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Map;
 
 public class CustomResponse {
 
-    String timeStamp = null;
+    LocalDate timeStamp = null;
     Long statusCode = null;
     String status = null;
     String reason = null;
@@ -14,7 +15,7 @@ public class CustomResponse {
     String developerMessage = null;
     Map<?, ?> data = null;
 
-    public CustomResponse(String timeStamp, Long statusCode, String status, String reason, String message, String developerMessage, Map<?, ?> data) {
+    public CustomResponse(LocalDate  timeStamp, Long statusCode, String status, String reason, String message, String developerMessage, Map<?, ?> data) {
         this.timeStamp = timeStamp;
         this.statusCode = statusCode;
         this.status = status;
@@ -27,7 +28,7 @@ public class CustomResponse {
     public CustomResponse() {
     }
 
-    public String getTimeStamp() {
+    public LocalDate  getTimeStamp() {
         return timeStamp;
     }
 
@@ -55,7 +56,7 @@ public class CustomResponse {
         return data;
     }
 
-    public void setTimeStamp(String timeStamp) {
+    public void setTimeStamp(LocalDate  timeStamp) {
         this.timeStamp = timeStamp;
     }
 

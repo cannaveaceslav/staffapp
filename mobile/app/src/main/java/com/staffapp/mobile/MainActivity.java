@@ -14,7 +14,12 @@ import com.google.gson.GsonBuilder;
 import com.staffapp.mobile.adapter.InterfaceAdapter;
 import com.staffapp.mobile.model.CustomResponse;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,18 +50,26 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<CustomResponse> call, @NonNull Response<CustomResponse> response) {
 
+
                 assert response.body() != null;
-                String items = response.body().toString();
                 List<Object> itemList = (List<Object>) response.body().getData().get("items");
-                String headers = response.headers().toString();
+                System.out.println("[itemList   ]" + itemList);
+                Log.i(TAG, itemList + "Hello from logs");
                 assert itemList != null;
-                int message = itemList.size();
-                System.out.println("[TIEMS    ]"+items);
-                System.out.println("[HEADERS   ]"+headers);
-                System.out.println("[List size   ]"+message);
-                System.out.println("[itemList   ]"+itemList);
-                Log.i(TAG,items+"Hello from logs");
-                Toast.makeText(MainActivity.this,  items, Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, itemList.toString(), Toast.LENGTH_LONG).show();
+
+                if (itemList.size() > 0) {
+                    JSONObject jsonObject = null;
+                    try {
+                        jsonObject = new JSONObject(itemList.get(0).toString());
+                        Long id = jsonObject.getLong("id");
+                        String itemName = jsonObject.getString("itemName");
+                        System.out.println("ID: [" + id + "], itemName: [" + itemName + "]");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
             }
 
             @Override
@@ -66,13 +79,30 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
         login_button.setOnClickListener((view -> {
 
+//            Call<CustomResponse> call2 =  RetrofitClient
+//                    .getInstance()
+//                    .getApi()
+//                    .linkEmployee(2L, 2L);
+//            call2.enqueue(new Callback<CustomResponse>() {
+//                @Override
+//                public void onResponse(Call<CustomResponse> call, Response<CustomResponse> response) {
+//                    Log.i(TAG,"Success");
+//                }
+//
+//                @Override
+//                public void onFailure(Call<CustomResponse> call, Throwable t) {
+//                    Log.i(TAG,"Fail");
+//                }
+//            });
+
             if (username.getText().toString().equals("admin") &&
-                    password.getText().toString().equals("admin"))
+                    password.getText().toString().equals("admin")) {
+
+
                 Toast.makeText(MainActivity.this, "LOGIN SUCCESSFUL", Toast.LENGTH_SHORT).show();
-            else {
+            } else {
                 Toast.makeText(MainActivity.this, "LOGIN FAILED", Toast.LENGTH_SHORT).show();
             }
 
