@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Staffapp">
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

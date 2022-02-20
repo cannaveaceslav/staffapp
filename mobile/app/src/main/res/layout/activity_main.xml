@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <TextView
         android:id="@+id/logo"
@@ -22,70 +22,78 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/sign"
+        android:id="@+id/linking"
         android:layout_width="339dp"
         android:layout_height="57dp"
+        android:layout_below="@id/logo"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="1dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="10dp"
-        android:layout_below="@id/logo"
         android:gravity="center"
-        android:text="@string/sign_in"
+        android:text="@string/Linking"
         android:textAlignment="inherit"
         android:textColor="@color/white"
         android:textSize="34sp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/employee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/sign"
-        android:layout_margin="10dp"
-        android:background="#35ffffff"
-        android:drawableStart="@drawable/ic_baseline_person_24"
-        android:hint="@string/email"
-        android:drawablePadding="20dp"
-        android:padding="20dp"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textColorHint="@color/white" />
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/username"
+        android:layout_below="@id/linking"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="#35ffffff"
-        android:drawableStart="@drawable/ic_baseline_lock_24"
+        android:drawableStart="@drawable/ic_baseline_person_24"
         android:drawablePadding="20dp"
-        android:hint="@string/password"
-        android:inputType="textPassword"
+        android:hint="@string/employee"
         android:padding="20dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:id="@+id/item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/employee"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#35ffffff"
+        android:drawableStart="@drawable/ic_action_laptop"
+        android:drawablePadding="20dp"
+        android:hint="@string/item"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="20sp"
+        android:autofillHints="" />
+
+
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/login_button"
-        android:layout_width="269dp"
+        android:id="@+id/confirm_button"
+        android:layout_width="400dp"
         android:layout_height="83dp"
-        android:layout_below="@id/password"
+        android:layout_below="@id/item"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="3dp"
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/cardview_shadow_start_color"
         android:gravity="center"
-        android:text="@string/Login"
+        android:text="@string/CONFIRM"
         android:textSize="20sp"
         android:textStyle="bold" />
+
+
 
 
 </RelativeLayout>

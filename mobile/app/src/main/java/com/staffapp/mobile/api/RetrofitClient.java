@@ -1,14 +1,8 @@
-package com.staffapp.mobile;
+package com.staffapp.mobile.api;
 
 import android.util.Base64;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.staffapp.mobile.adapter.InterfaceAdapter;
-import com.staffapp.mobile.model.CustomResponse;
-
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -19,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    //    public static final String BASE_URL = "http://localhost:8080";
+
     private static final String AUTH = "Basic " + Base64.encodeToString(("admin:admin").getBytes(), Base64.NO_WRAP);
     public static final String BASE_URL = "http://192.168.0.8:8080";
     private static RetrofitClient mInstance;

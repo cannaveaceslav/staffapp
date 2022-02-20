@@ -3,6 +3,7 @@
     <string name="sign_in">Sign in</string>
     <string name="email">email</string>
     <string name="password">password</string>
+    <string name="Linking">LINKING</string>
     <string name="Login">LOGIN</string>
     <string name="logo">Staffapp</string>
     <string name="title_activity_login">LoginActivity</string>
@@ -14,4 +15,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="employee">select employee</string>
+    <string name="item">select item</string>
+    <string name="CONFIRM">confirm</string>
 </resources>
