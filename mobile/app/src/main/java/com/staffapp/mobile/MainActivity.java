@@ -36,10 +36,6 @@ public class MainActivity extends AppCompatActivity {
         TextView password = (TextView) findViewById(R.id.password);
         MaterialButton login_button = (MaterialButton) findViewById(R.id.login_button);
 
-//        GsonBuilder builder = new GsonBuilder();
-//        builder.registerTypeAdapter(CustomResponse.class, new InterfaceAdapter());
-//        Gson gson = builder.create();
-
         Call<CustomResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()

@@ -48,7 +48,7 @@ public class ItemController {
     );
   }
 
-  @GetMapping("/type/{id}")
+  @GetMapping("/{id}")
   @ApiOperation("Method returns a response with the map with key=items and value=list of all items by itemTypeId")
   public ResponseEntity<Response> getItemsByItemTypeId(@PathVariable("id") Long id) {
     return ResponseEntity.ok(
