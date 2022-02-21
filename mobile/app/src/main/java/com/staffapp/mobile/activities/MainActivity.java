@@ -12,6 +12,7 @@ import com.google.android.material.button.MaterialButton;
 import com.staffapp.mobile.R;
 import com.staffapp.mobile.api.RetrofitClient;
 import com.staffapp.mobile.model.CustomResponse;
+import com.staffapp.mobile.storage.SharedPrefManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         confirm_button.setOnClickListener((view -> {
-                    startActivity( new Intent(this, LoginActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
 //            if (username.getText().toString().equals("admin") &&
 //                    password.getText().toString().equals("admin")) {
 //
@@ -102,5 +103,16 @@ public class MainActivity extends AppCompatActivity {
         }));
 
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (!SharedPrefManager.getInstance(this).isLoggedIn()) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
     }
 }

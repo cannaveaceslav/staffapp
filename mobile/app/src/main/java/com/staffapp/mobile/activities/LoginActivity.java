@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.staffapp.mobile.R;
 import com.staffapp.mobile.api.RetrofitClient;
+import com.staffapp.mobile.model.User;
+import com.staffapp.mobile.storage.SharedPrefManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,7 +34,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editTextPassword = findViewById(R.id.password);
 
         findViewById(R.id.login_button).setOnClickListener(this);
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
+            Intent intent = new Intent(LoginActivity.this, CheckActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
     }
 
     private void userLogin() {
@@ -77,8 +89,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                 if (response.isSuccessful()) {
-                    System.out.println("onResponse ="+authenticated);
+                    System.out.println("onResponse =" + authenticated);
                     authenticated = true;
+
+                    SharedPrefManager.getInstance((LoginActivity.this))
+                            .saveUser(new User(email, password));
+                    Intent intent = new Intent(LoginActivity.this, CheckActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+
                     Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_LONG).show();
 
                 } else {
@@ -90,7 +109,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onFailure(Call<Boolean> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "Login failed. Check connection", Toast.LENGTH_LONG).show();
 
             }
 
@@ -100,11 +119,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        if (authenticated)
-            startActivity(new Intent(this, MainActivity.class));
         userLogin();
-        System.out.println("onClick= "+authenticated);
-
     }
 
 

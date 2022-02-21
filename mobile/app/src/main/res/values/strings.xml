@@ -18,4 +18,9 @@
     <string name="employee">select employee</string>
     <string name="item">select item</string>
     <string name="CONFIRM">confirm</string>
+    <string name="checking">CHECKING</string>
+    <string name="scan">scan barcode</string>
+    <string name="item_description">Item description</string>
+    <string name="item_owner">Item owner</string>
+    <string name="user">user</string>
 </resources>
