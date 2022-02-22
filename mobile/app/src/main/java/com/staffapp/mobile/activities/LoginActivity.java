@@ -3,6 +3,7 @@ package com.staffapp.mobile.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
@@ -12,8 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.staffapp.mobile.R;
 import com.staffapp.mobile.api.RetrofitClient;
+import com.staffapp.mobile.model.CustomResponse;
+import com.staffapp.mobile.model.LoginUser;
 import com.staffapp.mobile.model.User;
 import com.staffapp.mobile.storage.SharedPrefManager;
+
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,7 +30,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private static final String TAG = "LoginActivity";
     private EditText editTextEmail;
     private EditText editTextPassword;
-    public Boolean authenticated = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,25 +84,52 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String base = email + ":" + password;
         String authHeader = "Basic " + Base64.encodeToString(base.getBytes(), Base64.NO_WRAP);
 
-        System.out.println(authHeader);
-        Call<Boolean> call = RetrofitClient
+        System.out.println("PASSWORD" + password);
+        LoginUser loginUser = new LoginUser(email, password);
+
+//        Call<Boolean> call = RetrofitClient
+//                .getInstance()
+//                .getApi()
+//                .loginUser(authHeader);
+
+        Call<CustomResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .loginUser(authHeader);
-        System.out.println("CALL: " + call);
+                .validateUser(loginUser);
 
-        call.enqueue(new Callback<Boolean>() {
+
+        call.enqueue(new Callback<CustomResponse>() {
             @Override
-            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+            public void onResponse(Call<CustomResponse> call, Response<CustomResponse> response) {
                 if (response.isSuccessful()) {
-                    System.out.println("onResponse =" + authenticated);
-                    authenticated = true;
+                    CustomResponse customResponse = response.body();
+                    assert customResponse != null;
+                    System.out.println(customResponse.getData().get("user"));
+                    Map<?, ?> userMap = (Map<?, ?>) customResponse.getData().get("user");
+                    assert userMap != null;
+                    Log.i(TAG, userMap.toString());
+//                    User user = new User(
+//                            (float) userMap.get("id"),
+//                            (String) userMap.get("firstName"),
+//                            (String) userMap.get("lastName"),
+//                            (String) userMap.get("email"),
+//                            (String) userMap.get("password"),
+//                            (String) userMap.get("userRole"),
+//                            (Boolean) userMap.get("locked"),
+//                            (Boolean) userMap.get("enabled")
+//                    );
+//                    User user = (User) userMap.get("user");
+//                    Log.i(TAG, user + "User retrieved");
 
-                    SharedPrefManager.getInstance((LoginActivity.this))
-                            .saveUser(new User(email, password));
-                    Intent intent = new Intent(LoginActivity.this, CheckActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
+//                    Log.i(TAG, user.toString());
+
+
+//                    SharedPrefManager.getInstance((LoginActivity.this))
+//                            .saveUser(user);
+
+//                    Intent intent = new Intent(LoginActivity.this, CheckActivity.class);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                    startActivity(intent);
 
                     Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_LONG).show();
 
@@ -108,7 +141,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
             @Override
-            public void onFailure(Call<Boolean> call, Throwable t) {
+            public void onFailure(Call<CustomResponse> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, "Login failed. Check connection", Toast.LENGTH_LONG).show();
 
             }

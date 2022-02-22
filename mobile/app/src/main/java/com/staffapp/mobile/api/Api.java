@@ -5,8 +5,10 @@ import android.util.Base64;
 
 import com.staffapp.mobile.model.CustomResponse;
 import com.staffapp.mobile.model.LoginResponse;
+import com.staffapp.mobile.model.LoginUser;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -27,13 +29,9 @@ public interface Api {
             @Field("itemId") Long itemId
     );
 
-
-
-    @FormUrlEncoded
     @POST("/login/validate")
     Call<CustomResponse> validateUser(
-            @Field("email") String email,
-            @Field("password") String password
+            @Body LoginUser loginUser
     );
 
     @GET("/login/validateLogin")

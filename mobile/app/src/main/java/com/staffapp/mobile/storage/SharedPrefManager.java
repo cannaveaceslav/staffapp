@@ -27,21 +27,33 @@ public class SharedPrefManager {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
+        editor.putFloat("id", user.getId());
+        editor.putString("firstName", user.getFirstName());
+        editor.putString("lastName", user.getLastName());
         editor.putString("email", user.getEmail());
         editor.putString("password", user.getPassword());
+        editor.putString("userRole", user.getUserRole());
+        editor.putBoolean("locked", user.getLocked());
+        editor.putBoolean("enabled", user.getEnabled());
         editor.apply();
     }
 
     public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return !sharedPreferences.getString("email", "").equals("");
+        return sharedPreferences.getLong("id", -1) != -1;
     }
 
     public User getUser() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return new User(
+                (float) sharedPreferences.getFloat("id", -1),
+                sharedPreferences.getString("firstName", ""),
+                sharedPreferences.getString("lastName", ""),
                 sharedPreferences.getString("email", ""),
-                sharedPreferences.getString("password", "")
+                sharedPreferences.getString("password", ""),
+                sharedPreferences.getString("userRole", null),
+                sharedPreferences.getBoolean("locked", false),
+                sharedPreferences.getBoolean("enabled", false)
         );
     }
 
