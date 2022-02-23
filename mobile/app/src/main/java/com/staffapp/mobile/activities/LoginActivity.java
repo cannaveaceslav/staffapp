@@ -84,18 +84,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String base = email + ":" + password;
         String authHeader = "Basic " + Base64.encodeToString(base.getBytes(), Base64.NO_WRAP);
 
-        System.out.println("PASSWORD" + password);
         LoginUser loginUser = new LoginUser(email, password);
 
-//        Call<Boolean> call = RetrofitClient
-//                .getInstance()
-//                .getApi()
-//                .loginUser(authHeader);
 
         Call<CustomResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .validateUser(loginUser);
+                .validateUser(authHeader,loginUser);
 
 
         call.enqueue(new Callback<CustomResponse>() {
@@ -104,32 +99,29 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (response.isSuccessful()) {
                     CustomResponse customResponse = response.body();
                     assert customResponse != null;
-                    System.out.println(customResponse.getData().get("user"));
                     Map<?, ?> userMap = (Map<?, ?>) customResponse.getData().get("user");
                     assert userMap != null;
-                    Log.i(TAG, userMap.toString());
-//                    User user = new User(
-//                            (float) userMap.get("id"),
-//                            (String) userMap.get("firstName"),
-//                            (String) userMap.get("lastName"),
-//                            (String) userMap.get("email"),
-//                            (String) userMap.get("password"),
-//                            (String) userMap.get("userRole"),
-//                            (Boolean) userMap.get("locked"),
-//                            (Boolean) userMap.get("enabled")
-//                    );
-//                    User user = (User) userMap.get("user");
-//                    Log.i(TAG, user + "User retrieved");
+                    User user = new User(
+                            (String) userMap.get("firstName"),
+                            (String) userMap.get("lastName"),
+                            (String) userMap.get("email"),
+                            (String) userMap.get("password"),
+                            (String) userMap.get("userRole"),
+                            (Boolean) userMap.get("locked"),
+                            (Boolean) userMap.get("enabled")
+                    );
 
-//                    Log.i(TAG, user.toString());
+                    Log.i(TAG, user + "User retrieved");
 
 
-//                    SharedPrefManager.getInstance((LoginActivity.this))
-//                            .saveUser(user);
 
-//                    Intent intent = new Intent(LoginActivity.this, CheckActivity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                    startActivity(intent);
+
+                    SharedPrefManager.getInstance((LoginActivity.this))
+                            .saveUser(user);
+
+                    Intent intent = new Intent(LoginActivity.this, CheckActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
 
                     Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_LONG).show();
 

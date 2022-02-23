@@ -1,7 +1,6 @@
 package com.staffapp.mobile.model;
 
 public class User {
-    private Float id;
     private String firstName;
     private String lastName;
     private String email;
@@ -10,8 +9,7 @@ public class User {
     private Boolean locked = false;
     private Boolean enabled = false;
 
-    public User(Float id, String firstName, String lastName, String email, String password, String userRole, Boolean locked, Boolean enabled) {
-        this.id = id;
+    public User(String firstName, String lastName, String email, String password, String userRole, Boolean locked, Boolean enabled) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -21,13 +19,7 @@ public class User {
         this.enabled = enabled;
     }
 
-    public float getId() {
-        return id;
-    }
 
-    public void setId(Float id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -88,7 +80,6 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +

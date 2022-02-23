@@ -13,19 +13,15 @@ import com.staffapp.mobile.storage.SharedPrefManager;
 
 public class CheckActivity extends AppCompatActivity {
 
-    private EditText editItem;
-    private TextView itemDescriptionView;
-    private TextView ownerView;
-    private TextView userView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check);
 
-        editItem = findViewById(R.id.barcode);
-        itemDescriptionView = findViewById(R.id.description);
-        ownerView = findViewById(R.id.owner);
-        userView = findViewById(R.id.user);
+        EditText editItem = findViewById(R.id.barcode);
+        TextView itemDescriptionView = findViewById(R.id.description);
+        TextView ownerView = findViewById(R.id.owner);
+        TextView userView = findViewById(R.id.user);
 
         User user = SharedPrefManager.getInstance(this).getUser();
         userView.setText(user.getEmail());

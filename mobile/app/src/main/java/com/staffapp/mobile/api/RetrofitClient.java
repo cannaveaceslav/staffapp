@@ -1,6 +1,12 @@
 package com.staffapp.mobile.api;
 
+import android.content.Context;
+import android.preference.PreferenceManager;
 import android.util.Base64;
+import android.util.Log;
+
+import com.staffapp.mobile.model.User;
+import com.staffapp.mobile.storage.SharedPrefManager;
 
 import java.io.IOException;
 
@@ -14,13 +20,28 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
 
 
-    private static final String AUTH = "Basic " + Base64.encodeToString(("admin:admin").getBytes(), Base64.NO_WRAP);
+//    private static final String AUTH = "Basic " + Base64.encodeToString(("admin:admin").getBytes(), Base64.NO_WRAP);
     public static final String BASE_URL = "http://192.168.0.8:8080";
     private static RetrofitClient mInstance;
     private Retrofit retrofit;
+    private static final String TAG = "RetrofitClient";
 
 
     private RetrofitClient() {
+        User user = SharedPrefManager.getInstance(MyAppContext.getContext()).getUser();
+        Log.i(TAG, user + "User retrieved from context");
+
+        String email = user.getEmail();
+        String password = user.getPassword();
+        String role = user.getUserRole();
+
+        String base = email + ":" + password;
+        String AUTH = "Basic " + Base64.encodeToString(base.getBytes(), Base64.NO_WRAP);
+
+        Log.i(TAG,base);
+        Log.i(TAG,role);
+
+
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(
@@ -28,18 +49,19 @@ public class RetrofitClient {
                             @Override
                             public Response intercept(Chain chain) throws IOException {
                                 Request original = chain.request();
-
-                                Request.Builder requestBuilder = original.newBuilder()
-                                        .addHeader("Authorization", AUTH)
-                                        .method(original.method(), original.body());
-                                Request request = requestBuilder.build();
-                                return chain.proceed(request);
+                                if (original.header("Authorization") == null) {
+                                    Request.Builder requestBuilder = original.newBuilder()
+                                            .addHeader("Authorization", AUTH)
+                                            .method(original.method(), original.body());
+                                    Request request = requestBuilder.build();
+                                    return chain.proceed(request);
+                                } else {
+                                    return chain.proceed(original);
+                                }
 
                             }
                         }
                 ).build();
-
-
 
 
         retrofit = new Retrofit.Builder()

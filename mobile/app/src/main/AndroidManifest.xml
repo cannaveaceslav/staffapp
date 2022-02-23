@@ -10,7 +10,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name="com.staffapp.mobile.api.MyAppContext"
         android:theme="@style/Theme.Staffapp">
+
+
         <activity
             android:name=".activities.CheckActivity"
             android:exported="false" />
