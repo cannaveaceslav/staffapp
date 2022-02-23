@@ -33,7 +33,7 @@ public class LoginController {
         return true;
     }
 
-    @PostMapping(path = "/validate", consumes = "application/json")
+    @PostMapping(path = "/validate", consumes = "application/json",produces = "application/json")
     @ApiOperation("Method returns a response with the map with key=user and value=user from DB")
     public ResponseEntity<Response> getUserJson(@RequestBody LoginRequest loginRequest) {
         return ResponseEntity.ok(
