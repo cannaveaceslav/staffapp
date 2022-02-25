@@ -21,10 +21,8 @@ public class CheckActivity extends AppCompatActivity {
         EditText editItem = findViewById(R.id.barcode);
         TextView itemDescriptionView = findViewById(R.id.description);
         TextView ownerView = findViewById(R.id.owner);
-        TextView userView = findViewById(R.id.user);
 
         User user = SharedPrefManager.getInstance(this).getUser();
-        userView.setText(user.getEmail());
     }
 
     @Override

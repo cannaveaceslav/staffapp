@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/menu_checking"
+        android:icon="@drawable/ic_baseline_how_to_reg_24"
+        android:title="Check" />
+
+    <item
+        android:id="@+id/menu_link"
+        android:icon="@drawable/ic_baseline_person_link_24"
+        android:title="Link" />
+
+    <item
+        android:id="@+id/menu_unlink"
+        android:icon="@drawable/ic_baseline_person_unlink_24"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/menu_settings"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="Settings" />
+</menu>
