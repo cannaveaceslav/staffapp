@@ -23,8 +23,10 @@ drawable ic_baseline_settings_24
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 id barcode
+id botton_nav
 id checking
 id confirm_button
+id container_check
 id description
 id employee
 id item
@@ -42,6 +44,10 @@ id username
 layout activity_check
 layout activity_login
 layout activity_main
+layout check_fragment
+layout link_fragment
+layout settings_fragment
+layout unlink_fragment
 menu botton_menu
 mipmap ic_laptop
 mipmap ic_launcher
@@ -52,6 +58,7 @@ string Login
 string action_sign_in
 string action_sign_in_short
 string app_name
+string check
 string checking
 string email
 string employee
@@ -60,14 +67,17 @@ string invalid_username
 string item
 string item_description
 string item_owner
+string link
 string login_failed
 string logo
 string password
 string prompt_email
 string prompt_password
 string scan
+string settings
 string sign_in
 string title_activity_login
+string unlink
 string user
 string welcome
 style Theme.Staffapp

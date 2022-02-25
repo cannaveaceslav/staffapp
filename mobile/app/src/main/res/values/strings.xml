@@ -23,4 +23,8 @@
     <string name="item_description">Item description</string>
     <string name="item_owner">Item owner</string>
     <string name="user">user</string>
+    <string name="link">Link</string>
+    <string name="check">Check</string>
+    <string name="unlink">Unlink</string>
+    <string name="settings">Settings</string>
 </resources>

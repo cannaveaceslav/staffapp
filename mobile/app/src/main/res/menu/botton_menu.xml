@@ -5,20 +5,21 @@
     <item
         android:id="@+id/menu_checking"
         android:icon="@drawable/ic_baseline_how_to_reg_24"
-        android:title="Check" />
+        android:title="@string/check" />
 
     <item
         android:id="@+id/menu_link"
         android:icon="@drawable/ic_baseline_person_link_24"
-        android:title="Link" />
+        android:title="@string/link" />
 
     <item
         android:id="@+id/menu_unlink"
         android:icon="@drawable/ic_baseline_person_unlink_24"
-        android:title="Home" />
+        android:title="@string/unlink" />
 
     <item
         android:id="@+id/menu_settings"
         android:icon="@drawable/ic_baseline_settings_24"
-        android:title="Settings" />
+        android:title="@string/settings" />
+
 </menu>
