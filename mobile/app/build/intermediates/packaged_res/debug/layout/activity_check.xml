@@ -108,14 +108,14 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <android.support.design.widget.BottomNavigationView
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="73dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="1dp"
-        android:background="@color/design_default_color_primary"
+        android:background="@color/purple_700"
         app:itemIconTint="@color/white"
-        app:itemTextColor="@color/design_default_color_on_primary"
+        app:itemTextColor="@color/cardview_light_background"
         app:menu="@menu/botton_menu" />
 
 </RelativeLayout>

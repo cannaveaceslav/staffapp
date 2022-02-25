@@ -2465,6 +2465,7 @@ drawable ic_baseline_link_24
 drawable ic_baseline_lock_24
 drawable ic_baseline_person_24
 drawable ic_baseline_person_link_24
+drawable ic_baseline_person_unlink_24
 drawable ic_baseline_settings_24
 drawable ic_clock_black_24dp
 drawable ic_keyboard_black_24dp
@@ -2793,6 +2794,7 @@ id material_value_index
 id menu_checking
 id menu_link
 id menu_settings
+id menu_unlink
 id message
 id middle
 id mini
