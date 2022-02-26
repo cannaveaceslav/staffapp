@@ -34,12 +34,18 @@ public class SharedPrefManager {
         editor.putString("userRole", user.getUserRole());
         editor.putBoolean("locked", user.getLocked());
         editor.putBoolean("enabled", user.getEnabled());
+        editor.putString("plainPassword", user.getPlainPassword());
         editor.apply();
     }
 
     public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return !sharedPreferences.getString("email", "").equals("");
+    }
+
+    public String getPlainPassword() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("plainPassword","");
     }
 
     public User getUser() {
@@ -51,7 +57,8 @@ public class SharedPrefManager {
                 sharedPreferences.getString("password", ""),
                 sharedPreferences.getString("userRole", null),
                 sharedPreferences.getBoolean("locked", false),
-                sharedPreferences.getBoolean("enabled", false)
+                sharedPreferences.getBoolean("enabled", false),
+                sharedPreferences.getString("plainPassword", "")
         );
     }
 

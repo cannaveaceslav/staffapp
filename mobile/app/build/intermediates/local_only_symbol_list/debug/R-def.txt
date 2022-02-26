@@ -29,6 +29,7 @@ id confirm_button
 id container_check
 id description
 id employee
+id employee_recyclerview
 id item
 id linking
 id login
@@ -40,12 +41,15 @@ id menu_settings
 id menu_unlink
 id owner
 id password
+id textViewFirstName
+id textViewLastName
 id username
 layout activity_check
 layout activity_login
 layout activity_main
 layout check_fragment
 layout link_fragment
+layout recyclerview_employees
 layout settings_fragment
 layout unlink_fragment
 menu botton_menu

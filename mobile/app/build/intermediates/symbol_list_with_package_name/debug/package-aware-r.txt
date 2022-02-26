@@ -2618,6 +2618,7 @@ id beginning
 id bestChoice
 id blocking
 id bottom
+id botton_nav
 id bounce
 id bounceBoth
 id bounceEnd
@@ -2653,6 +2654,7 @@ id compress
 id confirm_button
 id constraint
 id container
+id container_check
 id content
 id contentPanel
 id contiguous
@@ -2701,6 +2703,7 @@ id east
 id edit_query
 id elastic
 id employee
+id employee_recyclerview
 id end
 id endToStart
 id enterAlways
@@ -2967,6 +2970,8 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
+id textViewFirstName
+id textViewLastName
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -3103,6 +3108,7 @@ layout abc_tooltip
 layout activity_check
 layout activity_login
 layout activity_main
+layout check_fragment
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -3119,6 +3125,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout link_fragment
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
@@ -3171,9 +3178,11 @@ layout notification_template_custom_big
 layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
+layout recyclerview_employees
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
+layout settings_fragment
 layout support_simple_spinner_dropdown_item
 layout test_action_chip
 layout test_chip_zero_corner_radius
@@ -3190,6 +3199,7 @@ layout text_view_with_line_height_from_layout
 layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
+layout unlink_fragment
 menu botton_menu
 menu example_menu
 menu example_menu2
@@ -3237,6 +3247,7 @@ string bottomsheet_action_expand_halfway
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
+string check
 string checking
 string chip_text
 string clear_text_end_icon_content_description
@@ -3254,6 +3265,7 @@ string item
 string item_description
 string item_owner
 string item_view_role_description
+string link
 string login_failed
 string logo
 string m3_ref_typeface_brand_display_regular
@@ -3347,9 +3359,11 @@ string prompt_email
 string prompt_password
 string scan
 string search_menu_title
+string settings
 string sign_in
 string status_bar_notification_info_overflow
 string title_activity_login
+string unlink
 string user
 string welcome
 style AlertDialog_AppCompat

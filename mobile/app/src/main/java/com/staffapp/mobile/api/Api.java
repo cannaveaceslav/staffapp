@@ -20,6 +20,9 @@ public interface Api {
     @GET("/items")
     Call<CustomResponse> getAllItems();
 
+    @GET("/employees")
+    Call<CustomResponse> getAllEmployees();
+
     @FormUrlEncoded
     @POST("/items/save")
     Call<CustomResponse> linkEmployee(

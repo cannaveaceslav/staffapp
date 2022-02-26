@@ -8,8 +8,9 @@ public class User {
     private String userRole;
     private Boolean locked = false;
     private Boolean enabled = false;
+    private String plainPassword;
 
-    public User(String firstName, String lastName, String email, String password, String userRole, Boolean locked, Boolean enabled) {
+    public User(String firstName, String lastName, String email, String password, String userRole, Boolean locked, Boolean enabled, String plainPassword) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -17,6 +18,7 @@ public class User {
         this.userRole = userRole;
         this.locked = locked;
         this.enabled = enabled;
+        this.plainPassword = plainPassword;
     }
 
 
@@ -75,6 +77,14 @@ public class User {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public String getPlainPassword() {
+        return plainPassword;
+    }
+
+    public void setPlainPassword(String plainPassword) {
+        this.plainPassword = plainPassword;
     }
 
     @Override

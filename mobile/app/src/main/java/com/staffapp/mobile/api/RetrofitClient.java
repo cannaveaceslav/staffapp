@@ -5,10 +5,15 @@ import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 
+import androidx.constraintlayout.motion.widget.Key;
+
 import com.staffapp.mobile.model.User;
 import com.staffapp.mobile.storage.SharedPrefManager;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+
+import javax.crypto.spec.SecretKeySpec;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -32,14 +37,16 @@ public class RetrofitClient {
         Log.i(TAG, user + "User retrieved from context");
 
         String email = user.getEmail();
-        String password = user.getPassword();
+
+        String password = user.getPlainPassword();
+
         String role = user.getUserRole();
 
         String base = email + ":" + password;
         String AUTH = "Basic " + Base64.encodeToString(base.getBytes(), Base64.NO_WRAP);
 
-        Log.i(TAG,base);
-        Log.i(TAG,role);
+//        Log.i(TAG,base);
+//        Log.i(TAG,role);
 
 
 
@@ -54,6 +61,7 @@ public class RetrofitClient {
                                             .addHeader("Authorization", AUTH)
                                             .method(original.method(), original.body());
                                     Request request = requestBuilder.build();
+                                    Log.i(TAG, "Request intercepted");
                                     return chain.proceed(request);
                                 } else {
                                     return chain.proceed(original);

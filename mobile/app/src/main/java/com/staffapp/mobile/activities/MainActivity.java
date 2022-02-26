@@ -91,15 +91,6 @@ public class MainActivity extends AppCompatActivity {
 
         confirm_button.setOnClickListener((view -> {
             startActivity(new Intent(this, LoginActivity.class));
-//            if (username.getText().toString().equals("admin") &&
-//                    password.getText().toString().equals("admin")) {
-//
-//
-//                Toast.makeText(MainActivity.this, "LOGIN SUCCESSFUL", Toast.LENGTH_SHORT).show();
-//            } else {
-//                Toast.makeText(MainActivity.this, "LOGIN FAILED", Toast.LENGTH_SHORT).show();
-//            }
-
         }));
 
 

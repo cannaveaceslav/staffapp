@@ -108,7 +108,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             (String) userMap.get("password"),
                             (String) userMap.get("userRole"),
                             (Boolean) userMap.get("locked"),
-                            (Boolean) userMap.get("enabled")
+                            (Boolean) userMap.get("enabled"),
+                            password
                     );
 
                     Log.i(TAG, user + "User retrieved");

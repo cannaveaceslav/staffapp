@@ -156,12 +156,16 @@
         "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_link_24.png"
     },
     {
+        "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\layout_link_fragment.xml.flat",
+        "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\layout\\link_fragment.xml"
+    },
+    {
         "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_ic_baseline_link_24.png.flat",
         "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_baseline_link_24.png"
     },
     {
-        "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\layout_link_fragment.xml.flat",
-        "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\layout\\link_fragment.xml"
+        "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\layout_recyclerview_employees.xml.flat",
+        "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\layout\\recyclerview_employees.xml"
     },
     {
         "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_laptop.png.flat",
@@ -180,12 +184,12 @@
         "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_baseline_how_to_reg_24.png"
     },
     {
-        "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.webp"
-    },
-    {
         "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\layout_check_fragment.xml.flat",
         "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\layout\\check_fragment.xml"
+    },
+    {
+        "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
         "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\layout_settings_fragment.xml.flat",
