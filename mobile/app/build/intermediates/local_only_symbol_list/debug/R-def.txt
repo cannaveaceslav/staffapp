@@ -45,6 +45,7 @@ id password
 id settings
 id textViewEmail
 id textViewLastName
+id unlinking
 id username
 layout activity_check
 layout activity_login
@@ -85,6 +86,7 @@ string settings
 string sign_in
 string title_activity_login
 string unlink
+string unlinking
 string user
 string welcome
 style Theme.Staffapp

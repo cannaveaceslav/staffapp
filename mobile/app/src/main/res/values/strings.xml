@@ -28,4 +28,5 @@
     <string name="unlink">Unlink</string>
     <string name="settings">SETTINGS</string>
     <string name="LOGOUT">LOGOUT</string>
+    <string name="unlinking">UNLINKING</string>
 </resources>

@@ -36,6 +36,7 @@
     <string name="sign_in">Sign in</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="unlink">Unlink</string>
+    <string name="unlinking">UNLINKING</string>
     <string name="user">user</string>
     <string name="welcome">"Welcome !"</string>
     <style name="Theme.Staffapp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
