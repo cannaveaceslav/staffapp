@@ -27,6 +27,9 @@
         android:testOnly="true"
         android:theme="@style/Theme.Staffapp" >
         <activity
+            android:name="com.staffapp.mobile.activities.ItemsActivity"
+            android:exported="false" />
+        <activity
             android:name="com.staffapp.mobile.activities.CheckActivity"
             android:exported="false" />
         <activity

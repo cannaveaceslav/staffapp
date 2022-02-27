@@ -1,16 +1,19 @@
 package com.staffapp.mobile.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.internal.LinkedTreeMap;
 import com.staffapp.mobile.R;
+import com.staffapp.mobile.activities.ItemsActivity;
 import com.staffapp.mobile.model.Employee;
 
 import org.w3c.dom.Text;
@@ -60,6 +63,8 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
         return employeesList.size();
     }
 
+
+
     class EmployeesViewHolder extends RecyclerView.ViewHolder{
         TextView textViewLastName;
         TextView textViewEmail;
@@ -68,6 +73,16 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
             super(itemView);
             textViewLastName = itemView.findViewById(R.id.textViewLastName);
             textViewEmail = itemView.findViewById(R.id.textViewEmail);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                int positionIndex = getBindingAdapterPosition();
+                Toast.makeText(mCtx, "Was clicked "+ positionIndex, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(mCtx, ItemsActivity.class);
+                    mCtx.startActivity(intent);
+                }
+            });
         }
     }
 

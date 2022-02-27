@@ -156,6 +156,10 @@
         "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_link_24.png"
     },
     {
+        "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_items.xml.flat",
+        "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\layout\\activity_items.xml"
+    },
+    {
         "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\layout_link_fragment.xml.flat",
         "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\layout\\link_fragment.xml"
     },
