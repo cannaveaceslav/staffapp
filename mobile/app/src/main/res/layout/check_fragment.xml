@@ -6,9 +6,9 @@
 
     <RelativeLayout
         android:id="@+id/container_check"
-        android:layout_marginBottom="67dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="67dp">
 
         <TextView
             android:id="@+id/logo"

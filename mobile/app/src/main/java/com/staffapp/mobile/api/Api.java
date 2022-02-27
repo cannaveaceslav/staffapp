@@ -12,6 +12,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 
 public interface Api {
@@ -24,10 +25,10 @@ public interface Api {
     Call<CustomResponse> getAllEmployees();
 
     @FormUrlEncoded
-    @POST("/items/save")
+    @POST("/items/save/{employeeId}/{itemsId}")
     Call<CustomResponse> linkEmployee(
-            @Field("employeeId") Long employeeId,
-            @Field("itemId") Long itemId
+            @Path("employeeId") Long employeeId,
+            @Path("itemId") Long itemId
     );
 
     @POST("/login/validate")

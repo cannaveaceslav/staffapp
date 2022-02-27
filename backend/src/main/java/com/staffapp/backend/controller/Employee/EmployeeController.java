@@ -32,7 +32,7 @@ public class EmployeeController {
   private final EmployeeService employeeService;
 
 
-  @GetMapping
+  @GetMapping(produces = "application/json")
   @ApiOperation("Method returns a response with the map with key=employees and value=list of all employees")
   public ResponseEntity<Response> getEmployees() throws InterruptedException {
     return ResponseEntity.ok(

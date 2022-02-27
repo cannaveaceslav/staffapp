@@ -13,10 +13,13 @@ import com.google.gson.internal.LinkedTreeMap;
 import com.staffapp.mobile.R;
 import com.staffapp.mobile.model.Employee;
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 import java.util.List;
 
 public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.EmployeesViewHolder> {
+    private static final String TAG = "EmployeeAdapter";
 
     private Context mCtx;
     private List<?> employeesList;
@@ -35,15 +38,19 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
 
     @Override
     public void onBindViewHolder(@NonNull EmployeesViewHolder holder, int position) {
-//        Employee employee = (Employee) employeesList.get(position);
+
         LinkedTreeMap employeeMap = (LinkedTreeMap) employeesList.get(position);
         Employee employee = new Employee(
+                 new Double((Double) employeeMap.get("id")).longValue(),
                 (String) employeeMap.get("firstName".toString()),
-                (String) employeeMap.get("lastName")
+                (String) employeeMap.get("lastName"),
+                (String) employeeMap.get("email")
         );
 
-        holder.textViewLastName.setText(employee.getLastName());
-        holder.textViewFirstName.setText(employee.getFirstName());
+        String fullName = employee.getLastName()+" "+employee.getFirstName();
+
+        holder.textViewLastName.setText(fullName);
+        holder.textViewEmail.setText(employee.getEmail());
 
 
     }
@@ -55,12 +62,12 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
 
     class EmployeesViewHolder extends RecyclerView.ViewHolder{
         TextView textViewLastName;
-        TextView textViewFirstName;
+        TextView textViewEmail;
 
         public EmployeesViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewLastName = itemView.findViewById(R.id.textViewLastName);
-            textViewFirstName = itemView.findViewById(R.id.textViewFirstName);
+            textViewEmail = itemView.findViewById(R.id.textViewEmail);
         }
     }
 

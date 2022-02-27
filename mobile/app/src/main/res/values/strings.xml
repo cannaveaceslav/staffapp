@@ -26,5 +26,6 @@
     <string name="link">Link</string>
     <string name="check">Check</string>
     <string name="unlink">Unlink</string>
-    <string name="settings">Settings</string>
+    <string name="settings">SETTINGS</string>
+    <string name="LOGOUT">LOGOUT</string>
 </resources>

@@ -35,13 +35,15 @@ id linking
 id login
 id login_button
 id logo
+id logout_botton
 id menu_checking
 id menu_link
 id menu_settings
 id menu_unlink
 id owner
 id password
-id textViewFirstName
+id settings
+id textViewEmail
 id textViewLastName
 id username
 layout activity_check
@@ -57,6 +59,7 @@ mipmap ic_laptop
 mipmap ic_launcher
 mipmap ic_launcher_round
 string CONFIRM
+string LOGOUT
 string Linking
 string Login
 string action_sign_in

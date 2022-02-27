@@ -1,6 +1,7 @@
 package com.staffapp.mobile.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -15,10 +16,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.staffapp.mobile.R;
+import com.staffapp.mobile.activities.LoginActivity;
 import com.staffapp.mobile.adapter.EmployeeAdapter;
 import com.staffapp.mobile.api.RetrofitClient;
 import com.staffapp.mobile.model.CustomResponse;
 import com.staffapp.mobile.model.Employee;
+import com.staffapp.mobile.storage.SharedPrefManager;
 
 import java.util.List;
 
@@ -26,7 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LinkFragment extends Fragment {
+public class LinkFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "LinkFragment";
     private RecyclerView recyclerView;
     private List<Employee> employeeList;
@@ -35,7 +38,7 @@ public class LinkFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.link_fragment, container,false);
+        return inflater.inflate(R.layout.link_fragment, container, false);
     }
 
     @Override
@@ -53,15 +56,14 @@ public class LinkFragment extends Fragment {
         call.enqueue(new Callback<CustomResponse>() {
             @Override
             public void onResponse(Call<CustomResponse> call, Response<CustomResponse> response) {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     CustomResponse customResponse = response.body();
                     employeeList = (List<Employee>) customResponse.getData().get("employees");
                     employeeAdapter = new EmployeeAdapter(getActivity(), (List<Employee>) employeeList);
                     recyclerView.setAdapter(employeeAdapter);
-                    Log.i(TAG,  "EmployeeList retrieved");
-                }
-                else {
-                    Log.i(TAG,  "EmployeeList failed");
+                    Log.i(TAG, "EmployeeList retrieved");
+                } else {
+                    Log.i(TAG, "EmployeeList failed");
                 }
 
 
@@ -73,7 +75,12 @@ public class LinkFragment extends Fragment {
             }
         });
 
+    }
 
+
+    @Override
+    public void onClick(View view) {
 
     }
+
 }
