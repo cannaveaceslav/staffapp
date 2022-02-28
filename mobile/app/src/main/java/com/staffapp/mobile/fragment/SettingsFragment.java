@@ -15,7 +15,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.staffapp.mobile.R;
-import com.staffapp.mobile.activities.CheckActivity;
 import com.staffapp.mobile.activities.LoginActivity;
 import com.staffapp.mobile.storage.SharedPrefManager;
 

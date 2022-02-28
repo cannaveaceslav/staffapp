@@ -1,7 +1,6 @@
 package com.staffapp.mobile.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,16 +8,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.internal.LinkedTreeMap;
 import com.staffapp.mobile.R;
-import com.staffapp.mobile.activities.ItemsActivity;
+import com.staffapp.mobile.fragment.LinkItemFragment;
 import com.staffapp.mobile.model.Employee;
 
-import org.w3c.dom.Text;
-
-import java.util.HashMap;
 import java.util.List;
 
 public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.EmployeesViewHolder> {
@@ -68,19 +66,30 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
     class EmployeesViewHolder extends RecyclerView.ViewHolder{
         TextView textViewLastName;
         TextView textViewEmail;
+        View rootView;
+        Employee employee;
+
 
         public EmployeesViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewLastName = itemView.findViewById(R.id.textViewLastName);
             textViewEmail = itemView.findViewById(R.id.textViewEmail);
+            rootView = itemView;
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                 int positionIndex = getBindingAdapterPosition();
-                Toast.makeText(mCtx, "Was clicked "+ positionIndex, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(mCtx, ItemsActivity.class);
-                    mCtx.startActivity(intent);
+                Toast.makeText(mCtx, "Position"+ positionIndex+" Emp ID:" , Toast.LENGTH_SHORT).show();
+
+                    AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                    Fragment myFragment = new LinkItemFragment();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.container_check1, myFragment).addToBackStack(null).commit();
+
+
+//                    Intent intent = new Intent(mCtx, ItemsActivity.class);
+//                    mCtx.startActivity(intent);
                 }
             });
         }

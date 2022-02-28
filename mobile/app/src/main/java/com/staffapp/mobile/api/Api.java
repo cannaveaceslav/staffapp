@@ -25,10 +25,10 @@ public interface Api {
     Call<CustomResponse> getAllEmployees();
 
     @FormUrlEncoded
-    @POST("/items/save/{employeeId}/{itemsId}")
+    @POST("/items/link")
     Call<CustomResponse> linkEmployee(
-            @Path("employeeId") Long employeeId,
-            @Path("itemId") Long itemId
+            @Field("employeeId") Long employeeId,
+            @Field("itemId") Long itemId
     );
 
     @POST("/login/validate")

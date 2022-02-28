@@ -13,10 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Staffapp">
         <activity
-            android:name=".activities.ItemsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.CheckActivity"
+            android:name=".activities.LinkingActivity"
             android:exported="false" />
         <activity
             android:name=".activities.MainActivity"

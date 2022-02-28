@@ -18,9 +18,7 @@ import com.staffapp.mobile.model.LoginUser;
 import com.staffapp.mobile.model.User;
 import com.staffapp.mobile.storage.SharedPrefManager;
 
-import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,7 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onStart();
 
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
-            Intent intent = new Intent(LoginActivity.this, CheckActivity.class);
+            Intent intent = new Intent(LoginActivity.this, LinkingActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
@@ -120,7 +118,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     SharedPrefManager.getInstance((LoginActivity.this))
                             .saveUser(user);
 
-                    Intent intent = new Intent(LoginActivity.this, CheckActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, LinkingActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
 

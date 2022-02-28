@@ -8,8 +8,8 @@
         "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\layout\\activity_login.xml"
     },
     {
-        "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_check.xml.flat",
-        "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\layout\\activity_check.xml"
+        "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\layout_link_employee_fragment.xml.flat",
+        "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\layout\\link_employee_fragment.xml"
     },
     {
         "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\drawable-xhdpi_ic_baseline_how_to_reg_24.png.flat",
@@ -68,6 +68,14 @@
         "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_link_24.png"
     },
     {
+        "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\layout_link_confirm_fragment.xml.flat",
+        "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\layout\\link_confirm_fragment.xml"
+    },
+    {
+        "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_link.xml.flat",
+        "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\layout\\activity_link.xml"
+    },
+    {
         "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher.webp.flat",
         "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.webp"
     },
@@ -86,6 +94,10 @@
     {
         "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_baseline_person_24.xml.flat",
         "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\drawable\\ic_baseline_person_24.xml"
+    },
+    {
+        "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\layout_recyclerview_items.xml.flat",
+        "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\layout\\recyclerview_items.xml"
     },
     {
         "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
@@ -156,12 +168,8 @@
         "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_baseline_link_24.png"
     },
     {
-        "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\layout_activity_items.xml.flat",
-        "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\layout\\activity_items.xml"
-    },
-    {
-        "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\layout_link_fragment.xml.flat",
-        "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\layout\\link_fragment.xml"
+        "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\layout_link_item_fragment.xml.flat",
+        "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\layout\\link_item_fragment.xml"
     },
     {
         "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_ic_baseline_link_24.png.flat",
