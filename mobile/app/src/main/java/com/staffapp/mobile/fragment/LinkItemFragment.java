@@ -36,6 +36,7 @@ public class LinkItemFragment extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Bundle bundle = getArguments();
         return inflater.inflate(R.layout.link_item_fragment, container, false);
     }
 

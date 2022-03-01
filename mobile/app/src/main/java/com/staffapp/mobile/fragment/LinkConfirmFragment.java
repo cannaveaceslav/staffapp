@@ -1,6 +1,7 @@
 package com.staffapp.mobile.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,22 +24,34 @@ import com.staffapp.mobile.model.CustomResponse;
 import com.staffapp.mobile.model.Employee;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LinkConfirmFragment extends Fragment implements View.OnClickListener {
-    private static final String TAG = "LinkEmployeeFragment";
+    private static final String TAG = "LinkConfirmFragment";
     private RecyclerView recyclerView;
     private TextView textViewEmployeeName;
     private TextView textViewItemName;
     private TextView textViewItemBarcode;
+    private Long employeeId;
+    private Long itemId;
+
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+//         employeeId = requireActivity().getIntent().getExtras().getLong("employeeId");
+//         itemId = requireActivity().getIntent().getExtras().getLong("itemId");
+
+//        employeeId = this.getArguments().getLong("employeeId");
+//        itemId = this.getArguments().getLong("itemId");
+
+//        Log.i(TAG,"EmployeeId: "+employeeId+", ItemId: "+itemId);
         return inflater.inflate(R.layout.link_confirm_fragment, container, false);
     }
 
@@ -49,34 +62,11 @@ public class LinkConfirmFragment extends Fragment implements View.OnClickListene
 
     }
 
-    private void linkItemToEmployee() {
-        Call<CustomResponse> call = RetrofitClient
-                .getInstance()
-                .getApi()
-                .linkEmployee(4l,4l);
-        call.enqueue(new Callback<CustomResponse>() {
-            @Override
-            public void onResponse(Call<CustomResponse> call, Response<CustomResponse> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(getActivity(), "Linking successful", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getActivity(), "Linking failed", Toast.LENGTH_LONG).show();
-                }
 
-            }
-
-            @Override
-            public void onFailure(Call<CustomResponse> call, Throwable t) {
-
-            }
-        });
-
-    }
 
 
     @Override
     public void onClick(View view) {
-        linkItemToEmployee();
     }
 
 

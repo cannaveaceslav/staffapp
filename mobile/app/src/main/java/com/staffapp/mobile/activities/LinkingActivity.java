@@ -29,7 +29,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LinkingActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-    private static final String TAG = "CheckActivity";
+    private static final String TAG = "LinkingActivity";
 
 
     @Override
@@ -106,10 +106,16 @@ public class LinkingActivity extends AppCompatActivity implements BottomNavigati
 
 
     private void linkItemToEmployee() {
+
+        Bundle bundle = getIntent().getExtras();
+        Long employeeId = (Long) bundle.get("employeeId");
+        Long itemId = (Long) bundle.get("itemId");
+
+
         Call<CustomResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .linkEmployee(3l,3l);
+                .linkEmployee(employeeId,itemId);
         call.enqueue(new Callback<CustomResponse>() {
             @Override
             public void onResponse(Call<CustomResponse> call, Response<CustomResponse> response) {

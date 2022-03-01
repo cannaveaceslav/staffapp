@@ -1,6 +1,9 @@
 package com.staffapp.mobile.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.internal.LinkedTreeMap;
 import com.staffapp.mobile.R;
+import com.staffapp.mobile.activities.LinkingActivity;
 import com.staffapp.mobile.fragment.LinkConfirmFragment;
 import com.staffapp.mobile.model.Item;
 
@@ -25,6 +29,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     private Context mCtx;
     private List<?> itemsList;
+
 
     public ItemAdapter(Context mCtx, List<Item> itemsList) {
         this.mCtx = mCtx;
@@ -43,7 +48,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
         LinkedTreeMap itemMap = (LinkedTreeMap) itemsList.get(position);
         Item item = new Item(
-                 new Double((Double) itemMap.get("id")).longValue(),
+                new Double((Double) itemMap.get("id")).longValue(),
                 (String) itemMap.get("itemName"),
                 (String) itemMap.get("barcode")
         );
@@ -61,8 +66,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     }
 
 
-
-    class ItemViewHolder extends RecyclerView.ViewHolder{
+    class ItemViewHolder extends RecyclerView.ViewHolder {
         TextView textViewItemName;
         TextView textViewBarcode;
         View rootView;
@@ -74,15 +78,32 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             textViewItemName = itemView.findViewById(R.id.textViewItemName);
             textViewBarcode = itemView.findViewById(R.id.textViewBarcode);
 
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                int positionIndex = getBindingAdapterPosition();
-                Toast.makeText(mCtx, "Was clicked "+ positionIndex+"item barcode", Toast.LENGTH_SHORT).show();
+                    int position = getAbsoluteAdapterPosition();
+                    LinkedTreeMap itemsMap = (LinkedTreeMap) itemsList.get(position);
+
+                    String itemName = (String) itemsMap.get("itemName");
+                    String barcode = (String) itemsMap.get("barcode");
+                    Long id = new Double((Double) itemsMap.get("id")).longValue();
+                    /******************************************************************************************/
+
+
+
+                    Intent i = ((Activity) mCtx).getIntent();
+                    i.putExtra("itemId", id);
+
+
+                    Toast.makeText(mCtx, "Was clicked " + itemName + "item barcode", Toast.LENGTH_SHORT).show();
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
                     Fragment myFragment = new LinkConfirmFragment();
-                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.container_check, myFragment).addToBackStack(null).commit();
 
+
+                    Log.i(TAG, "Bundle ITEM  :" + id);
+
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.container_check, myFragment).addToBackStack(null).commit();
 
 
 //                    Intent intent = new Intent(mCtx, ItemsActivity.class);

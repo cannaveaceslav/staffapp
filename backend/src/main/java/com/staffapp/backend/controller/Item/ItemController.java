@@ -8,14 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Collections;
@@ -125,10 +118,10 @@ public class ItemController {
     );
   }
 
-  @PostMapping("/save/{employeeId}/{itemId}")
+  @PostMapping(path="/link", consumes = "application/x-www-form-urlencoded;charset=UTF-8",produces = "application/json")
   @ApiOperation("Method that updates selected item with employee.")
-  public ResponseEntity<Response> linkItem(@PathVariable("employeeId") Long employeeId,
-                                             @PathVariable("itemId") Long itemId) {
+  public ResponseEntity<Response> linkItem(@RequestParam("employeeId") Long employeeId,
+                                             @RequestParam("itemId") Long itemId) {
 
 
     return ResponseEntity.ok(

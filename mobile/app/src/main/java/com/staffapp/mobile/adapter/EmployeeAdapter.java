@@ -1,6 +1,9 @@
 package com.staffapp.mobile.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.internal.LinkedTreeMap;
 import com.staffapp.mobile.R;
+import com.staffapp.mobile.activities.LinkingActivity;
+import com.staffapp.mobile.fragment.LinkConfirmFragment;
 import com.staffapp.mobile.fragment.LinkItemFragment;
 import com.staffapp.mobile.model.Employee;
 
@@ -80,11 +85,27 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                int positionIndex = getBindingAdapterPosition();
-                Toast.makeText(mCtx, "Position"+ positionIndex+" Emp ID:" , Toast.LENGTH_SHORT).show();
+
+                    int position = getAbsoluteAdapterPosition();
+                    LinkedTreeMap employeeMap = (LinkedTreeMap) employeesList.get(position);
+                    String email = (String) employeeMap.get("email");
+                    String lastName = (String) employeeMap.get("lastName");
+                    Long id = new Double((Double) employeeMap.get("id")).longValue();
+
+//                    Intent i = new Intent(view.getContext(),  LinkItemFragment.class);
+//                    i.putExtra("employeeId", id);
+
+
+                    Toast.makeText(mCtx, "Lastname:  "+ lastName+"  ID= "+id, Toast.LENGTH_SHORT).show();
 
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
                     Fragment myFragment = new LinkItemFragment();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("employeeId", id);
+                    Log.i(TAG, "Bundle EMPLOYEE  :"+id);
+                    myFragment.setArguments(bundle);
+
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.container_check1, myFragment).addToBackStack(null).commit();
 
 
