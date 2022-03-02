@@ -19,8 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.internal.LinkedTreeMap;
 import com.staffapp.mobile.R;
 import com.staffapp.mobile.activities.LinkingActivity;
+import com.staffapp.mobile.api.MyAppContext;
 import com.staffapp.mobile.fragment.LinkConfirmFragment;
 import com.staffapp.mobile.model.Item;
+import com.staffapp.mobile.storage.SharedPrefManager;
 
 import java.util.List;
 
@@ -90,24 +92,20 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                     Long id = new Double((Double) itemsMap.get("id")).longValue();
                     /******************************************************************************************/
 
+                    SharedPrefManager.getInstance(MyAppContext.getContext()).saveItemId(id);
+                    SharedPrefManager.getInstance(MyAppContext.getContext()).saveItemName(itemName);
+                    SharedPrefManager.getInstance(MyAppContext.getContext()).saveItemBarcode(barcode);
 
-
-                    Intent i = ((Activity) mCtx).getIntent();
-                    i.putExtra("itemId", id);
-
-
-                    Toast.makeText(mCtx, "Was clicked " + itemName + "item barcode", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mCtx, barcode, Toast.LENGTH_SHORT).show();
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
                     Fragment myFragment = new LinkConfirmFragment();
 
 
-                    Log.i(TAG, "Bundle ITEM  :" + id);
+                    Log.i(TAG, "Clicked ITEM  :" + id);
 
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.container_check, myFragment).addToBackStack(null).commit();
 
 
-//                    Intent intent = new Intent(mCtx, ItemsActivity.class);
-//                    mCtx.startActivity(intent);
                 }
             });
         }

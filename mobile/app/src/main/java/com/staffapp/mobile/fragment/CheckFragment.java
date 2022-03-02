@@ -38,7 +38,7 @@ public class CheckFragment extends Fragment {
         description = view.findViewById(R.id.description);
         owner = view.findViewById(R.id.owner);
 
-        description.setText(SharedPrefManager.getInstance(getActivity()).getUser().getUserRole());
-        owner.setText(SharedPrefManager.getInstance(getActivity()).getUser().getLastName());
+//        description.setText(SharedPrefManager.getInstance(getActivity()).getUser().getUserRole());
+//        owner.setText(SharedPrefManager.getInstance(getActivity()).getUser().getLastName());
     }
 }

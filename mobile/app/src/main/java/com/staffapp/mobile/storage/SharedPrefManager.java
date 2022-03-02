@@ -45,7 +45,66 @@ public class SharedPrefManager {
 
     public String getPlainPassword() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString("plainPassword","");
+        return sharedPreferences.getString("plainPassword", "");
+    }
+
+    public void saveEmployeeId(Long id) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putLong("employeeId", id);
+        editor.apply();
+    }
+
+    public void saveEmployeeName(String name) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("employeeName", name);
+        editor.apply();
+    }
+
+    public Long getEmployeeId() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getLong("employeeId", 0L);
+    }
+
+    public String getEmployeeName() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("employeeName", "");
+    }
+
+    public void saveItemId(Long id) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putLong("itemId", id);
+        editor.apply();
+    }
+
+    public void saveItemName(String itemName) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("itemName", itemName);
+        editor.apply();
+    }
+
+    public void saveItemBarcode(String barcode) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("barcode", barcode);
+        editor.apply();
+    }
+
+    public Long getItemId() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getLong("itemId", 0L);
+    }
+    public String getItemName() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("itemName", "");
+    }
+
+    public String getItemBarcode() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("barcode", "");
     }
 
     public User getUser() {

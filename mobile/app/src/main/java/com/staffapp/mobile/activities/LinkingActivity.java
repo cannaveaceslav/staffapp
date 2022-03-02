@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.staffapp.mobile.R;
+import com.staffapp.mobile.api.MyAppContext;
 import com.staffapp.mobile.api.RetrofitClient;
 import com.staffapp.mobile.fragment.CheckFragment;
 import com.staffapp.mobile.fragment.LinkEmployeeFragment;
@@ -107,9 +108,8 @@ public class LinkingActivity extends AppCompatActivity implements BottomNavigati
 
     private void linkItemToEmployee() {
 
-        Bundle bundle = getIntent().getExtras();
-        Long employeeId = (Long) bundle.get("employeeId");
-        Long itemId = (Long) bundle.get("itemId");
+        Long employeeId = SharedPrefManager.getInstance(MyAppContext.getContext()).getEmployeeId();
+        Long itemId = SharedPrefManager.getInstance(MyAppContext.getContext()).getItemId();
 
 
         Call<CustomResponse> call = RetrofitClient
@@ -121,6 +121,7 @@ public class LinkingActivity extends AppCompatActivity implements BottomNavigati
             public void onResponse(Call<CustomResponse> call, Response<CustomResponse> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(LinkingActivity.this, "Linking successful", Toast.LENGTH_LONG).show();
+                    displayFragment(new LinkEmployeeFragment());
                 } else {
                     Toast.makeText(LinkingActivity.this, "Linking failed", Toast.LENGTH_LONG).show();
                 }

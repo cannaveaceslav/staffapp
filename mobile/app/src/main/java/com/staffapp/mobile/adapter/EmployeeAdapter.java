@@ -18,9 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.internal.LinkedTreeMap;
 import com.staffapp.mobile.R;
 import com.staffapp.mobile.activities.LinkingActivity;
+import com.staffapp.mobile.api.MyAppContext;
 import com.staffapp.mobile.fragment.LinkConfirmFragment;
 import com.staffapp.mobile.fragment.LinkItemFragment;
 import com.staffapp.mobile.model.Employee;
+import com.staffapp.mobile.storage.SharedPrefManager;
 
 import java.util.List;
 
@@ -89,28 +91,24 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
                     int position = getAbsoluteAdapterPosition();
                     LinkedTreeMap employeeMap = (LinkedTreeMap) employeesList.get(position);
                     String email = (String) employeeMap.get("email");
+                    String firstName = (String) employeeMap.get("firstName");
                     String lastName = (String) employeeMap.get("lastName");
+                    String name = lastName+" "+firstName;
                     Long id = new Double((Double) employeeMap.get("id")).longValue();
 
-//                    Intent i = new Intent(view.getContext(),  LinkItemFragment.class);
-//                    i.putExtra("employeeId", id);
+                    SharedPrefManager.getInstance(MyAppContext.getContext()).saveEmployeeId(id);
+                    SharedPrefManager.getInstance(MyAppContext.getContext()).saveEmployeeName(name);
 
-
-                    Toast.makeText(mCtx, "Lastname:  "+ lastName+"  ID= "+id, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mCtx,  lastName, Toast.LENGTH_SHORT).show();
 
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
                     Fragment myFragment = new LinkItemFragment();
 
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("employeeId", id);
-                    Log.i(TAG, "Bundle EMPLOYEE  :"+id);
-                    myFragment.setArguments(bundle);
+                    Log.i(TAG, "Clicked EMPLOYEE  :" + id);
+
 
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.container_check1, myFragment).addToBackStack(null).commit();
 
-
-//                    Intent intent = new Intent(mCtx, ItemsActivity.class);
-//                    mCtx.startActivity(intent);
                 }
             });
         }
