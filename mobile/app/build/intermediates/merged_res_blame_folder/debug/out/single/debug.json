@@ -204,6 +204,10 @@
         "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
+        "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_internet_problems_dialog.xml.flat",
+        "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\layout\\fragment_internet_problems_dialog.xml"
+    },
+    {
         "merged": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\build\\intermediates\\merged_res\\debug\\layout_settings_fragment.xml.flat",
         "source": "D:\\vcanna\\JTOM\\staffapp\\mobile\\app\\src\\main\\res\\layout\\settings_fragment.xml"
     },

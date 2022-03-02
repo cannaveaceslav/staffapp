@@ -3,6 +3,7 @@ package com.staffapp.mobile.activities;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
@@ -14,9 +15,11 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.staffapp.mobile.R;
+import com.staffapp.mobile.api.ConnectionLiveData;
 import com.staffapp.mobile.api.MyAppContext;
 import com.staffapp.mobile.api.RetrofitClient;
 import com.staffapp.mobile.fragment.CheckFragment;
+import com.staffapp.mobile.fragment.InternetProblemsDialogFragment;
 import com.staffapp.mobile.fragment.LinkEmployeeFragment;
 import com.staffapp.mobile.fragment.SettingsFragment;
 import com.staffapp.mobile.fragment.UnlinkFragment;
@@ -37,6 +40,33 @@ public class LinkingActivity extends AppCompatActivity implements BottomNavigati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_link);
+
+        DialogFragment noInternetDialogFragment = new InternetProblemsDialogFragment();
+        getSupportFragmentManager().beginTransaction()
+                .add(noInternetDialogFragment, "INTERNET_CONNECTION");
+        noInternetDialogFragment.setCancelable(false);
+
+        ConnectionLiveData connectionLiveData = new ConnectionLiveData(getApplicationContext());
+        connectionLiveData.observe(this, connection -> {
+
+            if (connection.getIsConnected()) {
+                switch (connection.getType()) {
+                    case 1:
+                        noInternetDialogFragment.dismiss();
+                        Toast.makeText(LinkingActivity.this, "Wifi turned ON", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 2:
+                        noInternetDialogFragment.dismiss();
+                        Toast.makeText(LinkingActivity.this, "Mobile data turned ON", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            } else {
+                noInternetDialogFragment.show(getSupportFragmentManager(), "INTERNET_CONNECTION");
+                Toast.makeText(LinkingActivity.this, "Connections turned OFF", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
         BottomNavigationView navigationView = findViewById(R.id.botton_nav);
         navigationView.setOnNavigationItemSelectedListener(this);

@@ -59,6 +59,7 @@ layout activity_link
 layout activity_login
 layout activity_main
 layout check_fragment
+layout fragment_internet_problems_dialog
 layout link_confirm_fragment
 layout link_employee_fragment
 layout link_item_fragment
@@ -79,8 +80,10 @@ string SELECT_ITEM
 string action_sign_in
 string action_sign_in_short
 string app_name
+string cancel
 string check
 string checking
+string dialog_connection_lost
 string email
 string employee
 string hello_blank_fragment
@@ -99,6 +102,7 @@ string logo
 string password
 string prompt_email
 string prompt_password
+string retry
 string scan
 string settings
 string sign_in

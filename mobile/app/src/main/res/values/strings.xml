@@ -37,4 +37,7 @@
     <string name="link_employee">employee</string>
     <string name="link_to_item">item</string>
     <string name="link_item_barcode">barcode</string>
+    <string name="dialog_connection_lost">Connection lost</string>
+    <string name="retry">Retry</string>
+    <string name="cancel">Cancel</string>
 </resources>

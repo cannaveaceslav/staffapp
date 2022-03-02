@@ -3146,6 +3146,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout fragment_internet_problems_dialog
 layout link_confirm_fragment
 layout link_employee_fragment
 layout link_item_fragment
@@ -3280,6 +3281,7 @@ string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
 string bottomsheet_action_expand_halfway
+string cancel
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
@@ -3287,6 +3289,7 @@ string check
 string checking
 string chip_text
 string clear_text_end_icon_content_description
+string dialog_connection_lost
 string email
 string employee
 string error_icon_content_description
@@ -3398,6 +3401,7 @@ string path_password_eye_mask_visible
 string path_password_strike_through
 string prompt_email
 string prompt_password
+string retry
 string scan
 string search_menu_title
 string settings
