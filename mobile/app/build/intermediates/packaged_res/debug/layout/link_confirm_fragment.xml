@@ -116,6 +116,24 @@
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="5dp"
                 tools:layout_editor_absoluteY="216dp" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_below="@id/link_employee"
+                android:background="?android:attr/listDivider"
+             />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+
+                android:layout_below="@id/linking"
+                android:background="?android:attr/listDivider" />
+
+
         </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

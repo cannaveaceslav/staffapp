@@ -2696,6 +2696,8 @@ id disableIntraAutoTransition
 id disablePostScroll
 id disableScroll
 id disjoint
+id divider
+id divider2
 id dragAnticlockwise
 id dragClockwise
 id dragDown
