@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
@@ -57,7 +58,7 @@ class ItemServiceTest {
             .itemType(testItemType)
             .employee(testEmployee)
             .location(testLocation)
-            .manufacturedAt(LocalDateTime.of(2020, Month.OCTOBER, 15, 12, 30))
+            .manufacturedAt(LocalDate.of(2020, Month.OCTOBER, 15))
             .itemName("test item model xxx")
             .build();
   }

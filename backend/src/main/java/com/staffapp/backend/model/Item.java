@@ -20,6 +20,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -47,7 +48,7 @@ public class Item {
     @Column(nullable = false)
     private String description;
     @Column(nullable = false)
-    private LocalDateTime manufacturedAt;
+    private LocalDate manufacturedAt;
     @Column(nullable = false, unique = true)
     private String barcode;
     @Column(nullable = false)

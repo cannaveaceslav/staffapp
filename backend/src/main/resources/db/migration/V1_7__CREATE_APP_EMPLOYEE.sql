@@ -2,7 +2,7 @@
 CREATE TABLE STAFFAPP.APP_EMPLOYEE
 (
   ID                 NUMBER(19)                 NOT NULL,
-  BIRTHDAY           TIMESTAMP(6)               NOT NULL,
+  BIRTHDAY           DATE               NOT NULL,
   CREATED_AT         TIMESTAMP(6)               NOT NULL,
   EMAIL              VARCHAR2(255 CHAR)         NOT NULL,
   ENABLED            NUMBER(1),

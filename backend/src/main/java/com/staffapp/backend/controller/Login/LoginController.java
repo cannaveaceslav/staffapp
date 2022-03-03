@@ -1,5 +1,6 @@
 package com.staffapp.backend.controller.Login;
 
+import com.staffapp.backend.model.LoginRequest.LoginRequest;
 import com.staffapp.backend.model.Response;
 import com.staffapp.backend.service.user.UserService;
 import io.swagger.annotations.Api;
@@ -7,11 +8,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 
@@ -26,27 +24,43 @@ import static org.springframework.http.HttpStatus.OK;
 @Slf4j
 public class LoginController {
 
-  private final UserService userService;
+    private final UserService userService;
 
-  @GetMapping(produces = "application/json")
-  @RequestMapping({"/validateLogin"})
-  public boolean validateLogin() {
-    log.info("User authenticated");
-    return true;
-  }
+    @GetMapping(produces = "application/json")
+    @RequestMapping({"/validateLogin"})
+    public boolean validateLogin() {
+        log.info("User authenticated");
+        return true;
+    }
 
-  @GetMapping("/validate/{email}/{password}")
-  @ApiOperation("Method returns a response with the map with key=user and value=user from DB")
-  public ResponseEntity<Response> getUser(@PathVariable("email") String email,
-                                               @PathVariable("password") String password) throws InterruptedException {
-    return ResponseEntity.ok(
-            Response.builder()
-                    .timeStamp(now())
-                    .data(Collections.singletonMap("user", userService.loadUserByUsernameAndPassword(email,password)))
-                    .message("User retrieved")
-                    .status(OK)
-                    .statusCode(OK.value())
-                    .build()
-    );
-  }
+    @PostMapping(path = "/validate", consumes = "application/json",produces = "application/json")
+    @ApiOperation("Method returns a response with the map with key=user and value=user from DB")
+    public ResponseEntity<Response> getUserJson(@RequestBody LoginRequest loginRequest) {
+        return ResponseEntity.ok(
+                Response.builder()
+                        .timeStamp(now())
+                        .data(Collections.singletonMap("user", userService.loadUserByUsernameAndPassword(loginRequest.getEmail(), loginRequest.getPassword())))
+                        .message("User retrieved 1")
+                        .status(OK)
+                        .statusCode(OK.value())
+                        .build()
+        );
+    }
+
+
+
+//  @PostMapping(path = "/validate", consumes = "application/x-www-form-urlencoded")
+//  @ApiOperation("Method returns a response with the map with key=user and value=user from DB")
+//  public ResponseEntity<Response> getUser(@RequestParam(name="email") String email,
+//                                          @RequestParam(name="password")  String password)  {
+//    return ResponseEntity.ok(
+//            Response.builder()
+//                    .timeStamp(now())
+//                    .data(Collections.singletonMap("user", userService.loadUserByUsernameAndPassword(email,password)))
+//                    .message("User retrieved")
+//                    .status(OK)
+//                    .statusCode(OK.value())
+//                    .build()
+//    );
+//  }
 }

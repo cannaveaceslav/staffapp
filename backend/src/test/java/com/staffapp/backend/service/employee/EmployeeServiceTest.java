@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.data.domain.Sort;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
@@ -57,7 +58,7 @@ class EmployeeServiceTest {
             .firstName("testEmployee")
             .lastName("testEmployee")
             .email("testemployeeemail@mail.ru")
-            .birthday(LocalDateTime.of(1989, Month.OCTOBER, 3, 12, 30))
+            .birthday(LocalDate.of(1989, Month.OCTOBER, 3))
             .enabled(true)
             .company(testCompany)
             .department(testDepartment)

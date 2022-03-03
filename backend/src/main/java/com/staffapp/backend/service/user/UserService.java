@@ -4,14 +4,12 @@ import com.staffapp.backend.model.User;
 import com.staffapp.backend.repository.UserRepository;
 import com.staffapp.backend.model.ConfirmationToken;
 import com.staffapp.backend.service.registration.ConfirmationTokenService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,101 +25,116 @@ import java.util.UUID;
 @Transactional
 public class UserService implements UserDetailsService {
 
-  private final static String USER_NOT_FOUND_MSG = "User with email %s not found";
-  private final UserRepository userRepository;
-  private final BCryptPasswordEncoder bCryptPasswordEncoder;
-  private final ConfirmationTokenService confirmationTokenService;
+    private final static String USER_NOT_FOUND_MSG = "User with email %s not found";
+    private final UserRepository userRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final ConfirmationTokenService confirmationTokenService;
 
-  @Override
-  public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-    return userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
-  }
-
-  public String signUpUser(User user) {
-
-    String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
-    user.setPassword(encodedPassword);
-    String token = UUID.randomUUID().toString();
-
-    boolean userExists = userRepository
-            .findByEmail(user.getEmail())
-            .isPresent();
-
-    if (userExists) {
-      log.info("User with email [{}] exists. Check if user is enabled.", user.getEmail());
-      boolean userIsEnabled = userRepository
-              .findByEmail(user.getEmail()).get().isEnabled();
-
-      if (!userIsEnabled) {
-        log.info("User with email  [{}] is disabled", user.getEmail());
-        user.setId(userRepository.findByEmail(user.getEmail()).get().getId());
-        userRepository.save(user);
-        log.info("User with email [{}] was updated.", user.getEmail());
-        confirmationTokenService.saveConfirmationToken(generateConfirmationToken(user, token));
-        return token;
-      } else {
-        //TODO fix logs with object
-        log.info("User with email [{}] is already enabled. Registration failed.", user.getEmail());
-        throw new IllegalStateException("email already taken");
-      }
-    } else {
-      userRepository.save(user);
-      log.info("Created new user with email [{}].", user.getEmail());
-      confirmationTokenService.saveConfirmationToken(generateConfirmationToken(user, token));
-      return token;
+        return userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
     }
-  }
 
-  public void enableUser(String userName) {
-    userRepository.updateUserEnable(userName);
-  }
+    public String signUpUser(User user) {
 
-  private ConfirmationToken generateConfirmationToken(User user, String token) {
+        String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+        String token = UUID.randomUUID().toString();
 
-    return new ConfirmationToken(
-            token,
-            LocalDateTime.now(),
-            LocalDateTime.now().plusMinutes(15),
-            user
-    );
-  }
+        boolean userExists = userRepository
+                .findByEmail(user.getEmail())
+                .isPresent();
 
-  public User loadUserByUsernameAndPassword(String email, String password) {
-    return userRepository.findByEmailAndPassword(email, password)
-            .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
+        if (userExists) {
+            log.info("User with email [{}] exists. Check if user is enabled.", user.getEmail());
+            boolean userIsEnabled = userRepository
+                    .findByEmail(user.getEmail()).get().isEnabled();
 
-  }
+            if (!userIsEnabled) {
+                log.info("User with email  [{}] is disabled", user.getEmail());
+                user.setId(userRepository.findByEmail(user.getEmail()).get().getId());
+                userRepository.save(user);
+                log.info("User with email [{}] was updated.", user.getEmail());
+                confirmationTokenService.saveConfirmationToken(generateConfirmationToken(user, token));
+                return token;
+            } else {
+                //TODO fix logs with object
+                log.info("User with email [{}] is already enabled. Registration failed.", user.getEmail());
+                throw new IllegalStateException("email already taken");
+            }
+        } else {
+            userRepository.save(user);
+            log.info("Created new user with email [{}].", user.getEmail());
+            confirmationTokenService.saveConfirmationToken(generateConfirmationToken(user, token));
+            return token;
+        }
+    }
 
-  public void deleteUser(User user) {
-    userRepository.delete(user);
-  }
+    public void enableUser(String userName) {
+        userRepository.updateUserEnable(userName);
+    }
 
-  public User create(@NotNull User user) {
-    log.info("Creating new user with email [{}]", user.getEmail());
-    return userRepository.save(user);
-  }
+    private ConfirmationToken generateConfirmationToken(User user, String token) {
 
-  public Collection<User> list() {
-    log.info("Fetching all users");
-    return userRepository.findAll();
-  }
+        return new ConfirmationToken(
+                token,
+                LocalDateTime.now(),
+                LocalDateTime.now().plusMinutes(15),
+                user
+        );
+    }
 
-  public User getById(Long id) {
-    log.info("Getting user by id [{}]", id);
-    return userRepository.getById(id);
-  }
+    public Optional<User> loadUserByUsernameAndPassword(String email, String plainPassword) {
 
-  public User update(@NotNull User user) {
-    log.info("Updating user with email[{}]", user.getEmail());
-    return userRepository.save(user);
-  }
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+        boolean matches = false;
 
-  public Boolean deleteById(Long id) {
-    log.info("Deleting user with ID [{}]", id);
-    userRepository.deleteById(id);
-    return Boolean.TRUE;
-  }
+        if (optionalUser.isPresent()) {
+            String encodedPassword = optionalUser.get().getPassword();
+            matches = bCryptPasswordEncoder.matches(plainPassword, encodedPassword);
+        }
+
+        if (matches) {
+            System.out.println("***********SUCCESS**********");
+            return optionalUser;
+
+        } else {
+            System.out.println("***********FAIL**********");
+            throw new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email));
+        }
+
+    }
+
+    public void deleteUser(User user) {
+        userRepository.delete(user);
+    }
+
+    public User create(@NotNull User user) {
+        log.info("Creating new user with email [{}]", user.getEmail());
+        return userRepository.save(user);
+    }
+
+    public Collection<User> list() {
+        log.info("Fetching all users");
+        return userRepository.findAll();
+    }
+
+    public User getById(Long id) {
+        log.info("Getting user by id [{}]", id);
+        return userRepository.getById(id);
+    }
+
+    public User update(@NotNull User user) {
+        log.info("Updating user with email[{}]", user.getEmail());
+        return userRepository.save(user);
+    }
+
+    public Boolean deleteById(Long id) {
+        log.info("Deleting user with ID [{}]", id);
+        userRepository.deleteById(id);
+        return Boolean.TRUE;
+    }
 
 
 }

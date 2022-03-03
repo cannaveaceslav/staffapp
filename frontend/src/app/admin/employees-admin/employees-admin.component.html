@@ -96,7 +96,7 @@
 
           <ng-container matColumnDef="LOCATION">
             <th mat-header-cell *matHeaderCellDef>LOCATION</th>
-            <td mat-cell *matCellDef="let employee"> {{employee.location.locationNumber}} </td>
+            <td mat-cell *matCellDef="let employee"> {{employee.location?.locationNumber}} </td>
           </ng-container>
 
           <ng-container matColumnDef="IMAGE">

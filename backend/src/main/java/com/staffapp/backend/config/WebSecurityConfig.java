@@ -40,6 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
             .antMatchers(HttpMethod.OPTIONS,
                          "/registration/**",
+                         "/registration",
                          "/js/**",
                          "/css/**",
                          "/img/**",

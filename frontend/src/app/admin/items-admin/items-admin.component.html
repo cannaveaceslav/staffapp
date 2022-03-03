@@ -89,12 +89,12 @@
 
           <ng-container matColumnDef="EMPLOYEE">
             <th mat-header-cell *matHeaderCellDef> EMPLOYEE</th>
-            <td mat-cell *matCellDef="let item"> {{item.employee.lastName + ' ' + item.employee.firstName}} </td>
+            <td mat-cell *matCellDef="let item"> {{item.employee?.lastName}}  {{item.employee?.firstName}} </td>
           </ng-container>
 
           <ng-container matColumnDef="LOCATION">
             <th mat-header-cell *matHeaderCellDef>LOCATION</th>
-            <td mat-cell *matCellDef="let item"> {{item.location.locationNumber}} </td>
+            <td mat-cell *matCellDef="let item"> {{item.location?.locationNumber}} </td>
           </ng-container>
 
            <ng-container matColumnDef="IMAGE">
