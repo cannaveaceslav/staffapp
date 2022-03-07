@@ -14,10 +14,10 @@ import {environment} from "../../environments/environment";
 })
 export class EmployeesService {
   private baseURL = environment.serverUrl;
+  formData?: Employee;
 
 
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) {  }
 
 
   // public getEmployees() {

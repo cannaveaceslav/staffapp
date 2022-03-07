@@ -5,7 +5,6 @@ import {ItemComponent} from "./item/item.component";
 import {EmployeesComponent} from "./employees/employees.component";
 import {ReportsComponent} from "./reports/reports.component";
 import {HomeComponent} from "./home/home.component";
-import {AddEmployeeComponent} from "./employees/add-employee/add-employee.component";
 import {LoginComponent} from "./login/login.component";
 import {LogoutComponent} from "./logout/logout.component";
 import {AuthGaurdService} from "./service/auth-gaurd.service";
@@ -20,6 +19,7 @@ import {UsersAdminComponent} from "./admin/users-admin/users-admin.component";
 import {ItemsAdminComponent} from "./admin/items-admin/items-admin.component";
 import {LocationsAdminComponent} from "./admin/locations-admin/locations-admin.component";
 import {ItemsComponent} from "./items/items.component";
+import {AddEmployeeComponent} from "./admin/employees-admin/add-employee/add-employee.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},

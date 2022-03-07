@@ -1,63 +1,156 @@
-<p-toast></p-toast>
-<mat-card class="add_employee">
+<div class="mat-dialog-container" style="width: 100%; background: cornflowerblue" >
+<div class="d-flex justify-content-between" >
+  <h4>Add new employee</h4>
 
-  <h3 class="title">Add new employee</h3>
-  <div class="field grid">
-    <label class="col" for="lastName">Last Name</label>
-    <input class="col" type="text" pInputText id="lastName" [(ngModel)]="defaultEmployee.lastName" autofocus/>
-  </div>
-  <div class="field grid">
-    <label class="col" for="firstName">First Name</label>
-    <textarea class="col" id="firstName" pInputTextarea [(ngModel)]="defaultEmployee.firstName" rows="3"
-              cols="20"></textarea>
-  </div>
-  <div class="field grid">
-    <p-dropdown class="col" [(ngModel)]="defaultEmployee.company" inputId="company" [options]="companies"
-                placeholder="Select">
-      <ng-template let-option pTemplate="item">
-        <span [class]="'article-badge status-' + option.value">{{option.label}}</span>
-      </ng-template>
-    </p-dropdown>
-  </div>
-  <div class="field grid">
-    <p-dropdown class="col" [(ngModel)]="defaultEmployee.department" inputId="department" [options]="departments"
-                placeholder="Select">
-      <ng-template let-option pTemplate="item">
-        <span [class]="'article-badge status-' + option.value">{{option.label}}</span>
-      </ng-template>
-    </p-dropdown>
-  </div>
+  <button mat-button (click)="onClose()">
+    <mat-icon>close</mat-icon>
+  </button>
 
-  <div class="field grid">
-    <label class="col" for="email">Email</label>
-    <textarea class="col" id="email" pInputTextarea [(ngModel)]="defaultEmployee.email"></textarea>
-  </div>
+</div>
 
-  <div class="field grid">
-    <label class="col" for="birthday">Birthday</label>
-    <input class="col" type="date" pInputText id="birthday" [(ngModel)]="defaultEmployee.birthday"/>
-  </div>
+<div style="overflow: auto; height: 100%; width: 400px;">
+  <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
 
-  <div class="field grid">
-    <label class="col" for="location">Location</label>
-    <input class="col" type="number" pInputText id="location" [(ngModel)]="defaultEmployee.location"/>
-  </div>
-
-   <div class="field">
-    <label class="mb-3">Status</label>
-    <div class="formgrid grid">
-      <div class="field-radiobutton col-6">
-        <p-radioButton id="category1" name="category" value="true" [(ngModel)]="defaultEmployee.enabled">
-        </p-radioButton>
-        <label for="category1">Enabled</label>
+    <!--/***************************Field Last Name **************************/-->
+    <div class="mt-4 input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Last Name</span>
       </div>
+      <input required minlength="3"
+             type="text"
+             class="form-control"
+             name="LastName"
+             #LastName="ngModel"
+             [(ngModel)]="employeeService.formData!.lastName">
     </div>
-  </div>
+    <div class="text-left text-danger"
+         *ngIf="LastName.invalid && LastName.touched">
+      Please enter the Last Name
+    </div>
+    <!--/***************************Field Last Name **************************/-->
+    <div class="mt-4 input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">First Name</span>
+      </div>
+      <input required minlength="3"
+             type="text"
+             class="form-control"
+             name="FirstName"
+             #FirstName="ngModel"
+             [(ngModel)]="employeeService.formData!.firstName">
+    </div>
+    <div class="text-left text-danger"
+         *ngIf="FirstName.invalid && FirstName.touched">
+      Please enter the First Name
+    </div>
+    <!--/***************************Field Last Name **************************/-->
+    <div class="mt-4 input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Email</span>
+      </div>
+      <input required minlength="3"
+             type="email"
+             class="form-control"
+             name="Email"
+             #Email="ngModel"
+             [(ngModel)]="employeeService.formData!.email">
+    </div>
+    <div class="text-left text-danger"
+         *ngIf="Email.invalid && Email.touched">
+      Please enter the First Name
+    </div>
+    <!--/***************************Field Last Name **************************/-->
+    <div class="mt-4 input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Birthday</span>
+      </div>
+      <input required minlength="3"
+             type="date"
+             class="form-control"
+             name="Birthday"
+             #Birthday="ngModel"
+             [(ngModel)]="employeeService.formData!.birthday">
+    </div>
+    <div class="text-left text-danger"
+         *ngIf="Birthday.invalid && Birthday.touched">
+      Please enter the First Name
+    </div>
+    <!--/***************************Field Last Name **************************/-->
 
-  <span class="p-buttonset">
-    <button pButton pRipple label="Cancel" class="button-text p-button-danger" style="width: 207.5px;"
-            (click)="cancel()"></button>
-    <button pButton pRipple label="Save" class="button-text p-button-success" style="width: 207.5px;"
-            (click)="save()"></button>
-  </span>
-</mat-card>
+
+    <button class="mt-4"
+            mat-raised-button color="primary"
+            type="submit"
+            [disabled]="form.invalid">Add employee
+    </button>
+
+  </form>
+</div>
+
+</div>
+<!--<p-toast></p-toast>-->
+<!--<mat-card class="add_employee">-->
+
+<!--  <h3 class="title">Add new employee</h3>-->
+
+<!--  <div class="field grid">-->
+<!--    <label class="col" for="lastName">Last Name</label>-->
+<!--    <input class="col" type="text" pInputText id="lastName" [(ngModel)]="defaultEmployee.lastName" autofocus/>-->
+<!--  </div>-->
+
+<!--  <div class="field grid">-->
+<!--    <label class="col" for="firstName">First Name</label>-->
+<!--    <input class="col" type="text" pInputText id="firstName" [(ngModel)]="defaultEmployee.firstName" autofocus/>-->
+<!--  </div>-->
+
+
+<!--  <div class="field grid">-->
+<!--    <p-dropdown class="col" [(ngModel)]="defaultEmployee.company" inputId="company" [options]="companies"-->
+<!--                placeholder="Select">-->
+<!--      <ng-template let-option pTemplate="item">-->
+<!--        <span [class]="'article-badge status-' + option.value">{{option.label}}</span>-->
+<!--      </ng-template>-->
+<!--    </p-dropdown>-->
+<!--  </div>-->
+<!--  <div class="field grid">-->
+<!--    <p-dropdown class="col" [(ngModel)]="defaultEmployee.department" inputId="department" [options]="departments"-->
+<!--                placeholder="Select">-->
+<!--      <ng-template let-option pTemplate="item">-->
+<!--        <span [class]="'article-badge status-' + option.value">{{option.label}}</span>-->
+<!--      </ng-template>-->
+<!--    </p-dropdown>-->
+<!--  </div>-->
+
+<!--  <div class="field grid">-->
+<!--    <label class="col" for="email">Email</label>-->
+<!--    <textarea class="col" id="email" pInputTextarea [(ngModel)]="defaultEmployee.email"></textarea>-->
+<!--  </div>-->
+
+<!--  <div class="field grid">-->
+<!--    <label class="col" for="birthday">Birthday</label>-->
+<!--    <input class="col" type="date" pInputText id="birthday" [(ngModel)]="defaultEmployee.birthday"/>-->
+<!--  </div>-->
+
+<!--  <div class="field grid">-->
+<!--    <label class="col" for="location">Location</label>-->
+<!--    <input class="col" type="number" pInputText id="location" [(ngModel)]="defaultEmployee.location"/>-->
+<!--  </div>-->
+
+<!--   <div class="field">-->
+<!--    <label class="mb-3">Status</label>-->
+<!--    <div class="formgrid grid">-->
+<!--      <div class="field-radiobutton col-6">-->
+<!--        <p-radioButton id="category1" name="category" value="true" [(ngModel)]="defaultEmployee.enabled">-->
+<!--        </p-radioButton>-->
+<!--        <label for="category1">Enabled</label>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <span class="p-buttonset">-->
+<!--    <button pButton pRipple label="Cancel" class="button-text p-button-danger" style="width: 207.5px;"-->
+<!--            (click)="cancel()"></button>-->
+<!--    <button pButton pRipple label="Save" class="button-text p-button-success" style="width: 207.5px;"-->
+<!--            (click)="save()"></button>-->
+<!--  </span>-->
+<!--</mat-card>-->

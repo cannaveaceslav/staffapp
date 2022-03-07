@@ -2,7 +2,7 @@ import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {ActivatedRoute, Router} from "@angular/router";
 import {map, Observable, of, shareReplay, startWith} from "rxjs";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {AddEmployeeComponent} from "../../admin/employees-admin/add-employee/add-employee.component";
 import {DataState} from "../../enum/data-state.enum";
 import {CustomResponse} from "../../interface/custom-response";
 import {AppState} from "../../interface/app-state";
@@ -10,9 +10,9 @@ import {Employee} from "../../interface/employee";
 import {EmployeesService} from "../../service/employees.service";
 import {catchError} from "rxjs/operators";
 import {MatSort} from "@angular/material/sort";
-import {Item} from "../../interface/item";
 import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
+import {MatDialogConfig, MatDialog, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-employees-admin',
@@ -41,7 +41,8 @@ export class EmployeesAdminComponent implements OnInit {
   @ViewChild(MatTable) table!: MatTable<any>;
 
 
-  constructor(private router: Router
+  constructor(private router: Router,
+              private dialog: MatDialog
     , private employeeService: EmployeesService
     , private breakpointObserver: BreakpointObserver) {
   }
@@ -93,7 +94,13 @@ export class EmployeesAdminComponent implements OnInit {
 
   }
 
-  addEmployee(employee: any) {
+  addEmployee() {
+    console.log("Add new employee clicked")
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "40%";
+    this.dialog.open(AddEmployeeComponent, dialogConfig);
 
   }
 }
