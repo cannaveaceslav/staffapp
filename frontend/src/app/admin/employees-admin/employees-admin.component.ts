@@ -13,6 +13,10 @@ import {MatSort} from "@angular/material/sort";
 import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatDialogConfig, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {ItemType} from "../../interface/itemType";
+import {EditTypeComponent} from "../item-types-admin/edit-type/edit-type.component";
+import {EditEmployeeComponent} from "./edit-employee/edit-employee.component";
 
 @Component({
   selector: 'app-employees-admin',
@@ -41,10 +45,15 @@ export class EmployeesAdminComponent implements OnInit {
   @ViewChild(MatTable) table!: MatTable<any>;
 
 
-  constructor(private router: Router,
-              private dialog: MatDialog
+  constructor(private router: Router
+    , private dialog: MatDialog
     , private employeeService: EmployeesService
-    , private breakpointObserver: BreakpointObserver) {
+    , private breakpointObserver: BreakpointObserver
+    , private snackBar: MatSnackBar) {
+    this.employeeService.listen().subscribe((m: any) => {
+      console.log(m);
+      this.refreshTable();
+    })
   }
 
   ngOnInit(): void {
@@ -72,25 +81,37 @@ export class EmployeesAdminComponent implements OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
 
   delete(employee: Employee): void {
-    this.appState$ = this.employeeService.delete$(employee)
-      .pipe(
-        map(response => {
-          this.ngOnInit();
-          return {dataState: DataState.LOADED_STATE, appData: response}
-        }),
-        startWith({dataState: DataState.LOADING_STATE}),
-        catchError((error: string) => {
-          return of({dataState: DataState.ERROR_STATE, error: error})
-        })
-      );
-
+    if (confirm('Are you sure to delete?')) {
+      this.appState$ = this.employeeService.delete$(employee)
+        .pipe(
+          map(response => {
+            this.snackBar.open(response.message, '', {
+              duration: 4000,
+              verticalPosition: 'top'
+            });
+            this.ngOnInit();
+            return {dataState: DataState.LOADED_STATE, appData: response}
+          }),
+          startWith({dataState: DataState.LOADING_STATE}),
+          catchError((error: string) => {
+            return of({dataState: DataState.ERROR_STATE, error: error})
+          })
+        );
+    }
   }
 
   edit(employee: Employee) {
+    this.employeeService.formData = employee;
+    console.log("Edit employee clicked")
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "50%";
+    this.dialog.open(EditEmployeeComponent, dialogConfig);
 
   }
 
@@ -99,8 +120,24 @@ export class EmployeesAdminComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "40%";
+    dialogConfig.width = "50%";
     this.dialog.open(AddEmployeeComponent, dialogConfig);
 
+  }
+
+  private refreshTable() {
+    this.appState$ = this.employeeService.getEmployees$
+      .pipe(
+        map(response => {
+          this.employees = response.data.employees;
+          // @ts-ignore
+          this.dataSource = new MatTableDataSource(this.employees);
+          return {dataState: DataState.LOADED_STATE, appData: response}
+        }),
+        startWith({dataState: DataState.LOADING_STATE}),
+        catchError((error: string) => {
+          return of({dataState: DataState.ERROR_STATE, error: error})
+        })
+      );
   }
 }

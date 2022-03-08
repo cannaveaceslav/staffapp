@@ -2,12 +2,12 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Output, EventEmitter} from '@angular/core';
 import {MessageService} from 'primeng/api';
 import {EmployeesService} from "../../../service/employees.service";
-import {Employee} from "../../../interface/employee";
 import {MatDialogRef} from "@angular/material/dialog";
 import {NgForm} from "@angular/forms";
 import {Company} from "../../../interface/company";
 import {Location} from "../../../interface/location";
 import {Department} from "../../../interface/department";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -18,29 +18,56 @@ import {Department} from "../../../interface/department";
 export class AddEmployeeComponent implements OnInit {
 
 
-  defaultEmployee: Employee = new Employee();
-  companies!: any[];
-  departments!: any[];
+  public companiesList:Array<Company>=[];
+  public departmentsList:Array<Department>=[];
+  public locationsList: Array<Location>=[];
 
 
   @Output()
   submitted = new EventEmitter();
 
-  constructor(public employeeService: EmployeesService
+  constructor(public employeesService: EmployeesService
     , public dialogBox: MatDialogRef<AddEmployeeComponent>
-    , private messageService: MessageService) {
+    , private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
-  this.resetForm();
+    this.resetForm();
+    this.dropDownLocations();
+    this.dropDownCompanies()
+    this.dropDownDepartments()
+  }
 
+  dropDownCompanies(){
+    this.employeesService.getDropDownCompanies$.subscribe(data =>{
+      console.log(data);
+      data.data?.companies?.forEach(element =>{
+        this.companiesList?.push(element);
+      })
+    })
+  }
+  dropDownDepartments(){
+    this.employeesService.getDropDownDepartments$.subscribe(data =>{
+      console.log(data);
+      data.data?.departments?.forEach(element =>{
+        this.departmentsList?.push(element);
+      })
+    })
+  }
+  dropDownLocations(){
+    this.employeesService.getDropDownLocations$.subscribe(data =>{
+      // console.log(data.data?.locations);
+      data.data?.locations?.forEach(element =>{
+         this.locationsList?.push(element);
+      })
+    })
   }
 
   resetForm(form?: NgForm) {
     if (form != null)
       form.resetForm();
 
-    this.employeeService.formData = {
+    this.employeesService.formData = {
 
       id: 0,
       lastName: '',
@@ -49,10 +76,10 @@ export class AddEmployeeComponent implements OnInit {
       birthday: new Date(),
       createdAt: new Date(),
       enabled: false,
-      company: new Company(),
-      department: new Department,
+      company: this.companiesList[1],
+      department: this.departmentsList[1],
       image: new Blob(),
-      location: new Location(),
+      location: this.locationsList[1],
       modifiedAt: new Date(),
 
 
@@ -61,15 +88,18 @@ export class AddEmployeeComponent implements OnInit {
 
   onClose() {
     this.dialogBox.close();
+    this.employeesService.filter('Register click');
   }
 
   onSubmit(form: NgForm) {
     console.log(form.value);
 
-    this.employeeService.save$(form.value).subscribe(res=>
-      {
+    this.employeesService.save$(form.value).subscribe(res => {
         this.resetForm(form);
-        alert(res);
+        this.snackBar.open(res.message, '', {
+          duration: 3500,
+          verticalPosition: 'top'
+        });
       }
     )
   }

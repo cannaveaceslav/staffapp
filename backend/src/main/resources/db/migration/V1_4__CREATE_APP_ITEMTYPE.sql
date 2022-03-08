@@ -1,7 +1,7 @@
 CREATE TABLE STAFFAPP.APP_ITEMTYPE
 (
   ID           NUMBER(19)                       NOT NULL,
-  CREATED_AT   TIMESTAMP(6)                     NOT NULL,
+  CREATED_AT   TIMESTAMP(6)                     DEFAULT SYSDATE,
   DESCRIPTION  VARCHAR2(255 CHAR),
   ENABLED      NUMBER(1),
   IMAGE        BLOB,

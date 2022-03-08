@@ -20,6 +20,7 @@ import {ItemsAdminComponent} from "./admin/items-admin/items-admin.component";
 import {LocationsAdminComponent} from "./admin/locations-admin/locations-admin.component";
 import {ItemsComponent} from "./items/items.component";
 import {AddEmployeeComponent} from "./admin/employees-admin/add-employee/add-employee.component";
+import {AddTypeComponent} from "./admin/item-types-admin/add-type/add-type.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'item/:id', component: ItemComponent, canActivate: [AuthGaurdService]},
   {path: 'item-types', component: ItemtypeComponent, canActivate: [AuthGaurdService]},
   {path: 'addemployee', component: AddEmployeeComponent, canActivate: [AuthGaurdService]},
+  {path: 'addtype', component: AddTypeComponent, canActivate: [AuthGaurdService]},
   {path: 'reports', component: ReportsComponent, canActivate: [AuthGaurdService]},
   //admin pages
   {path: 'admin', component: AdminComponent, canActivate: [AuthGaurdService]},

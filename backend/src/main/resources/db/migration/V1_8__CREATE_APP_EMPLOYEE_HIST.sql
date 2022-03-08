@@ -2,7 +2,7 @@ CREATE TABLE STAFFAPP.APP_EMPLOYEE_HIST
 (
   ID                 NUMBER(19)                 NOT NULL,
   BIRTHDAY           TIMESTAMP(6)               NOT NULL,
-  CREATED_AT         TIMESTAMP(6)               NOT NULL,
+  CREATED_AT         TIMESTAMP(6)               DEFAULT SYSDATE,
   DELETED_AT         TIMESTAMP(6),
   EMAIL              VARCHAR2(255 CHAR)         NOT NULL,
   EMPLOYEE_ID        NUMBER(19),

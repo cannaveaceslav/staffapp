@@ -33,7 +33,6 @@ public class Department {
     @Column(nullable = false)
     private String departmentName;
     private String description;
-    @Column(nullable = false)
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private Boolean enabled = true;

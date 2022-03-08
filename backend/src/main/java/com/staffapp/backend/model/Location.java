@@ -34,7 +34,6 @@ public class Location {
   @OneToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "app_employee_id")
   private Employee employee;
-  @Column(nullable = false)
   private LocalDateTime createdAt;
   private LocalDateTime modifiedAt;
   @Column(columnDefinition = "NUMBER")

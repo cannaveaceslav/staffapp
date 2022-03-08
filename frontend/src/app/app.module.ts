@@ -52,7 +52,7 @@ import {ButtonModule} from "primeng/button";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTooltipModule} from "@angular/material/tooltip";
-import { ItemsComponent } from './items/items.component';
+import {ItemsComponent} from './items/items.component';
 import {MatSortModule} from "@angular/material/sort";
 import {AddEmployeeComponent} from "./admin/employees-admin/add-employee/add-employee.component";
 import {ToastModule} from "primeng/toast";
@@ -60,6 +60,21 @@ import {InputTextModule} from "primeng/inputtext";
 import {InputTextareaModule} from "primeng/inputtextarea";
 import {RippleModule} from "primeng/ripple";
 import {MessageService} from "primeng/api";
+import {AddTypeComponent} from './admin/item-types-admin/add-type/add-type.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {EditEmployeeComponent} from './admin/employees-admin/edit-employee/edit-employee.component';
+import {EditTypeComponent} from './admin/item-types-admin/edit-type/edit-type.component';
+import {AddItemComponent} from './admin/items-admin/add-item/add-item.component';
+import {EditItemComponent} from './admin/items-admin/edit-item/edit-item.component';
+import {AddLcoationComponent} from './admin/locations-admin/add-lcoation/add-lcoation.component';
+import {EditLocationComponent} from './admin/locations-admin/edit-location/edit-location.component';
+import {EditUserComponent} from './admin/users-admin/edit-user/edit-user.component';
+import {CompaniesAdminComponent} from './admin/companies-admin/companies-admin.component';
+import {AddCompanyComponent} from './admin/companies-admin/add-company/add-company.component';
+import {EditCompanyComponent} from './admin/companies-admin/edit-company/edit-company.component';
+import {DepartmentsAdminComponent} from './admin/departments-admin/departments-admin.component';
+import {AddDepartmentComponent} from './admin/departments-admin/add-department/add-department.component';
+import {EditDepartmentComponent} from './admin/departments-admin/edit-department/edit-department.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +100,21 @@ import {MessageService} from "primeng/api";
     ItemTypesAdminComponent,
     UsersAdminComponent,
     ConfirmPageComponent,
-    ItemsComponent
+    ItemsComponent,
+    AddTypeComponent,
+    EditEmployeeComponent,
+    EditTypeComponent,
+    AddItemComponent,
+    EditItemComponent,
+    AddLcoationComponent,
+    EditLocationComponent,
+    EditUserComponent,
+    CompaniesAdminComponent,
+    AddCompanyComponent,
+    EditCompanyComponent,
+    DepartmentsAdminComponent,
+    AddDepartmentComponent,
+    EditDepartmentComponent
   ],
   imports: [
     BrowserModule,
@@ -100,6 +129,7 @@ import {MessageService} from "primeng/api";
     MatNativeDateModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatSnackBarModule,
     DragDropModule,
     BrowserAnimationsModule,
     LayoutModule,
@@ -127,11 +157,23 @@ import {MessageService} from "primeng/api";
     RippleModule
 
   ],
-  providers: [MessageService,{
+  providers: [MessageService, {
     provide: HTTP_INTERCEPTORS, useClass: BasicAuthHttpInterceptorService, multi: true
   }],
   bootstrap: [AppComponent],
-  entryComponents:[AddEmployeeComponent]
+  entryComponents: [AddEmployeeComponent
+    , EditEmployeeComponent
+    , AddTypeComponent
+    , EditTypeComponent
+    , AddItemComponent
+    , EditItemComponent
+    , AddLcoationComponent
+    , EditLocationComponent
+    , EditUserComponent
+    , AddCompanyComponent
+    , EditCompanyComponent
+    , AddDepartmentComponent
+    , EditDepartmentComponent]
 })
 export class AppModule {
 }

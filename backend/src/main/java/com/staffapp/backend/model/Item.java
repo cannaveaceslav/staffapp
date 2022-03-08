@@ -51,7 +51,6 @@ public class Item {
     private LocalDate manufacturedAt;
     @Column(nullable = false, unique = true)
     private String barcode;
-    @Column(nullable = false)
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private Boolean enabled = true;

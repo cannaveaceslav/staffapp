@@ -1,93 +1,153 @@
-<div class="mat-dialog-container" style="width: 100%; background: cornflowerblue" >
-<div class="d-flex justify-content-between" >
-  <h4>Add new employee</h4>
+<div class="mat-dialog-container" style="width: 100%; background: cornflowerblue">
+  <div class="d-flex justify-content-between">
+    <h4>Add new employee</h4>
 
-  <button mat-button (click)="onClose()">
-    <mat-icon>close</mat-icon>
-  </button>
-
-</div>
-
-<div style="overflow: auto; height: 100%; width: 400px;">
-  <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
-
-    <!--/***************************Field Last Name **************************/-->
-    <div class="mt-4 input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Last Name</span>
-      </div>
-      <input required minlength="3"
-             type="text"
-             class="form-control"
-             name="LastName"
-             #LastName="ngModel"
-             [(ngModel)]="employeeService.formData!.lastName">
-    </div>
-    <div class="text-left text-danger"
-         *ngIf="LastName.invalid && LastName.touched">
-      Please enter the Last Name
-    </div>
-    <!--/***************************Field Last Name **************************/-->
-    <div class="mt-4 input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text">First Name</span>
-      </div>
-      <input required minlength="3"
-             type="text"
-             class="form-control"
-             name="FirstName"
-             #FirstName="ngModel"
-             [(ngModel)]="employeeService.formData!.firstName">
-    </div>
-    <div class="text-left text-danger"
-         *ngIf="FirstName.invalid && FirstName.touched">
-      Please enter the First Name
-    </div>
-    <!--/***************************Field Last Name **************************/-->
-    <div class="mt-4 input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Email</span>
-      </div>
-      <input required minlength="3"
-             type="email"
-             class="form-control"
-             name="Email"
-             #Email="ngModel"
-             [(ngModel)]="employeeService.formData!.email">
-    </div>
-    <div class="text-left text-danger"
-         *ngIf="Email.invalid && Email.touched">
-      Please enter the First Name
-    </div>
-    <!--/***************************Field Last Name **************************/-->
-    <div class="mt-4 input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Birthday</span>
-      </div>
-      <input required minlength="3"
-             type="date"
-             class="form-control"
-             name="Birthday"
-             #Birthday="ngModel"
-             [(ngModel)]="employeeService.formData!.birthday">
-    </div>
-    <div class="text-left text-danger"
-         *ngIf="Birthday.invalid && Birthday.touched">
-      Please enter the First Name
-    </div>
-    <!--/***************************Field Last Name **************************/-->
-
-
-    <button class="mt-4"
-            mat-raised-button color="primary"
-            type="submit"
-            [disabled]="form.invalid">Add employee
+    <button mat-button (click)="onClose()">
+      <mat-icon>close</mat-icon>
     </button>
 
-  </form>
-</div>
+  </div>
+
+  <div style="overflow: auto; height: 100%; width: 400px;">
+    <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+
+
+      <!--/***************************Field Type Name **************************/-->
+      <div class="mt-4 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Last Name</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="lastName"
+               #lastName="ngModel"
+               [(ngModel)]="employeesService.formData!.lastName">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="lastName.invalid && lastName.touched">
+        Please enter the Last Name
+      </div>
+      <!--/***************************Field Description **************************/-->
+      <div class="mt-4  input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">First  Name</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="firstName"
+               #firstName="ngModel"
+               [(ngModel)]="employeesService.formData!.firstName">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="firstName.invalid && firstName.touched">
+        Please enter the Last Name
+      </div>
+      <!--/***************************Field Description **************************/-->
+      <div class="mt-4  input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Email</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="email"
+               #email="ngModel"
+               [(ngModel)]="employeesService.formData!.email">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="email.invalid && email.touched">
+        Please enter email
+      </div>
+      <!--/***************************Field Enabled **************************/-->
+      <div class="mt-4 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Birthday</span>
+        </div>
+        <input required minlength="3"
+               type="date"
+               class="form-control"
+               name="birthday"
+               #birthday="ngModel"
+               [(ngModel)]="employeesService.formData!.birthday">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="birthday.invalid && birthday.touched">
+        Please enter birthday
+      </div>
+
+      <!--/***************************Field Description **************************/-->
+      <div class="mt-4  input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Image</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="image"
+               #image="ngModel"
+               [(ngModel)]="employeesService.formData!.image">
+      </div>
+
+      <!--/***************************Field Description **************************/-->
+
+      <div class="mt-4  input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Company</span>
+        </div>
+        <select class="form-control"
+                name="company"
+                #company="ngModel"
+                [(ngModel)]="employeesService.formData!.company">
+          <option *ngFor="let cl of companiesList" [value]="cl">
+            {{cl.companyName}}
+          </option>
+        </select>
+      </div>
+      <!--/***************************Field Description **************************/-->
+      <div class="mt-4 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Department</span>
+        </div>
+        <select class="form-control"
+                name="department"
+                #department="ngModel"
+                [(ngModel)]="employeesService.formData!.department">
+          <option *ngFor="let dl of departmentsList" [value]="dl">
+            {{dl.departmentName}}
+          </option>
+        </select>
+      </div>
+
+
+      <!--/***************************Field Description **************************/-->
+      <div class="mt-4 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Location</span>
+        </div>
+        <select class="form-control"
+                name="location"
+                #location="ngModel"
+                [(ngModel)]="employeesService.formData!.location">
+          <option *ngFor="let ll of locationsList" [value]="ll">
+            {{ll.locationNumber}}
+          </option>
+        </select>
+      </div>
+
+      <button class="mt-4"
+              mat-raised-button color="primary"
+              type="submit"
+              >Add employee
+<!--              [disabled]="form.invalid">Add employee-->
+      </button>
+
+    </form>
+  </div>
 
 </div>
+
 <!--<p-toast></p-toast>-->
 <!--<mat-card class="add_employee">-->
 

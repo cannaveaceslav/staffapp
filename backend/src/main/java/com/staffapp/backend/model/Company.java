@@ -33,7 +33,6 @@ public class Company {
   @Column(nullable = false)
   private String companyName;
   private String description;
-  @Column(nullable = false)
   private LocalDateTime createdAt;
   private LocalDateTime modifiedAt;
   private Boolean enabled = true;

@@ -3,7 +3,7 @@ CREATE TABLE STAFFAPP.APP_LOCATION
 (
   ID               NUMBER(19)                   NOT NULL,
   AVAILABLE        NUMBER(1),
-  CREATED_AT       TIMESTAMP(6)                 NOT NULL,
+  CREATED_AT       TIMESTAMP(6)                 DEFAULT SYSDATE,
   DESCRIPTION      VARCHAR2(255 CHAR),
   LOCATION_NUMBER  NUMBER(19)                   NOT NULL,
   MODIFIED_AT      TIMESTAMP(6),

@@ -3,7 +3,7 @@ CREATE TABLE STAFFAPP.APP_ITEM_HIST
   ID               NUMBER(19)                   NOT NULL,
   ITEM_ID          NUMBER(19),
   BARCODE          VARCHAR2(255 CHAR)           NOT NULL,
-  CREATED_AT       TIMESTAMP(6)                 NOT NULL,
+  CREATED_AT       TIMESTAMP(6)                DEFAULT SYSDATE,
   DESCRIPTION      VARCHAR2(255 CHAR)           NOT NULL,
   ENABLED          NUMBER(1),
   IMAGE            BLOB,

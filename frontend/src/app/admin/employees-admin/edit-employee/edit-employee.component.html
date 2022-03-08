@@ -1,0 +1,173 @@
+<div class="mat-dialog-container" style="width: 100%; background: cornflowerblue">
+  <div class="d-flex justify-content-between m-3">
+    <h4>Edit employee</h4>
+
+    <button mat-button (click)="onClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+
+  </div>
+
+  <div style="overflow: auto; height: 100%; width: auto;">
+    <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+
+      <div class="mt-4 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Type ID</span>
+        </div>
+        <input readonly="readonly"
+               type="text"
+               class="form-control"
+               name="id"
+               #id="ngModel"
+               [(ngModel)]="employeesService.formData!.id">
+      </div>
+
+
+      <!--/***************************Field Type Name **************************/-->
+      <div class="mt-4 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Last Name</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="lastName"
+               #lastName="ngModel"
+               [(ngModel)]="employeesService.formData!.lastName">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="lastName.invalid && lastName.touched">
+        Please enter the Last Name
+      </div>
+      <!--/***************************Field Description **************************/-->
+      <div class="mt-4 input-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text">First  Name</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="firstName"
+               #firstName="ngModel"
+               [(ngModel)]="employeesService.formData!.firstName">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="firstName.invalid && firstName.touched">
+        Please enter the Last Name
+      </div>
+      <!--/***************************Field Description **************************/-->
+      <div class="mt-4 input-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text">Email</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="email"
+               #email="ngModel"
+               [(ngModel)]="employeesService.formData!.email">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="email.invalid && email.touched">
+        Please enter email
+      </div>
+      <!--/***************************Field Enabled **************************/-->
+      <div class="mt-4 input-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text">Birthday</span>
+        </div>
+        <input required minlength="3"
+               type="date"
+               class="form-control"
+               name="birthday"
+               #birthday="ngModel"
+               [(ngModel)]="employeesService.formData!.birthday">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="birthday.invalid && birthday.touched">
+        Please enter birthday
+      </div>
+
+      <!--/***************************Field Description **************************/-->
+      <div class="mt-4 input-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text">Image</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="image"
+               #image="ngModel"
+               [(ngModel)]="employeesService.formData!.image">
+      </div>
+
+      <!--/***************************Field Description **************************/-->
+
+      <div class="mt-4 input-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text">Company</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="company"
+               #company="ngModel"
+               [(ngModel)]="employeesService.formData!.company">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="company.invalid && company.touched">
+        Please enter company
+      </div>
+
+      <!--/***************************Field Description **************************/-->
+      <div class="mt-4 input-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text">Department</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="department"
+               #department="ngModel"
+               [(ngModel)]="employeesService.formData!.department">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="department.invalid && department.touched">
+        Please enter department
+      </div>
+
+      <!--/***************************Field Description **************************/-->
+      <div class="mt-4 input-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text">Location</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="location"
+               #location="ngModel"
+               [(ngModel)]="employeesService.formData!.location">
+      </div>
+           <!--/***************************Field Enabled **************************/-->
+      <div class="mt-4 input-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text">Enabled</span>
+        </div>
+        <input required minlength="3"
+               type="checkbox"
+               class="form-control"
+               name="enabled"
+               #enabled="ngModel"
+               [(ngModel)]="employeesService.formData!.enabled">
+      </div>
+
+      <button class="mt-4"
+              mat-raised-button color="primary"
+              type="submit">Update employee
+      </button>
+
+    </form>
+  </div>
+
+</div>

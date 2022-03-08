@@ -45,7 +45,6 @@ public class ItemHist {
     private LocalDateTime manufacturedAt;
     @Column(nullable = false, unique = true)
     private String barcode;
-    @Column(nullable = false)
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private Boolean enabled = true;
