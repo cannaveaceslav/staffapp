@@ -12,13 +12,11 @@ import {ItemService} from "../../../service/item.service";
 export class AddItemComponent implements OnInit {
 
 
-  public companiesList:Array<any>=[];
-  public departmentsList: Array<any>=[];
+
   public locationsList: Array<any>=[];
   public employeesList: Array<any>=[];
   public typesList: Array<any>=[];
-  //type
-  //employee
+
 
 
   @Output()

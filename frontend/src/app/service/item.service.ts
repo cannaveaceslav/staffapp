@@ -68,8 +68,8 @@ export class ItemService {
   }
 
 
-  public update$ = (employee: Employee) => <Observable<CustomResponse>>
-    this.httpClient.post<CustomResponse>(`${this.baseURL}/employees/save`, employee)
+  public update$ = (item: Item) => <Observable<CustomResponse>>
+    this.httpClient.post<CustomResponse>(`${this.baseURL}/items/save`, item)
       .pipe(
         tap(console.log),
         catchError(this.handleError)

@@ -10,6 +10,7 @@ import {EmployeesService} from "../../../service/employees.service";
   styleUrls: ['./edit-employee.component.css']
 })
 export class EditEmployeeComponent implements OnInit {
+
   public companiesList:Array<any>=[];
   public departmentsList: Array<any>=[];
   public locationsList: Array<any>=[];
