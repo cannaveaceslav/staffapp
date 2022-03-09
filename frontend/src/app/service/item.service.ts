@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {CustomResponse} from "../interface/custom-response";
 import {environment} from "../../environments/environment";
 import {catchError, tap} from "rxjs/operators";
 import {Item} from "../interface/item";
+import {Employee} from "../interface/employee";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
   private baseURL = environment.serverUrl;
+  formData?: Item;
   constructor(private httpClient: HttpClient) {
   }
 
@@ -54,6 +56,60 @@ export class ItemService {
     console.log(error)
     throw new Error(`An error occurred - Error code: ${error.status}`);
   }
+
+
+  private _listeners = new Subject<any>();
+  listen(): Observable<any>{
+    return this._listeners.asObservable();
+  }
+
+  filter(filterBy: string){
+    this._listeners.next(filterBy);
+  }
+
+
+  public update$ = (employee: Employee) => <Observable<CustomResponse>>
+    this.httpClient.post<CustomResponse>(`${this.baseURL}/employees/save`, employee)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
+
+  public getDropDownDepartments$ = <Observable<CustomResponse>>
+    this.httpClient.get<CustomResponse>(`${this.baseURL}/departments`)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
+
+  public getDropDownCompanies$ = <Observable<CustomResponse>>
+    this.httpClient.get<CustomResponse>(`${this.baseURL}/companies`)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
+
+  public getDropDownLocations$ = <Observable<CustomResponse>>
+    this.httpClient.get<CustomResponse>(`${this.baseURL}/layout`)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
+
+  public getDropDownEmployees$ = <Observable<CustomResponse>>
+    this.httpClient.get<CustomResponse>(`${this.baseURL}/employees`)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
+
+  public getDropDownItemTypes$ = <Observable<CustomResponse>>
+    this.httpClient.get<CustomResponse>(`${this.baseURL}/item-types`)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
+
 
 
 

@@ -1,14 +1,8 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Output, EventEmitter} from '@angular/core';
-import {MessageService} from 'primeng/api';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {EmployeesService} from "../../../service/employees.service";
 import {MatDialogRef} from "@angular/material/dialog";
 import {NgForm} from "@angular/forms";
-import {Company} from "../../../interface/company";
-import {Location} from "../../../interface/location";
-import {Department} from "../../../interface/department";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Item} from "../../../interface/item";
 
 
 @Component({
@@ -50,16 +44,9 @@ export class AddEmployeeComponent implements OnInit {
   dropDownDepartments(){
     this.employeesService.getDropDownDepartments$.subscribe(data =>{
       data.data?.departments?.forEach(element =>{
-        this.departmentsList?.push(JSON.parse(JSON.stringify(element)));
+        this.departmentsList?.push(element);
       })
-      // this.departmentsList = data.data?.departments!.toString();
-      console.log("--------------------111-----------------------");
-      console.log(this.departmentsList[1]);
-      console.log("-------------------------------------------");
-      console.log(this.departmentsList);
-      console.log("-------------------------------------------");
-
-    })
+     })
   }
   dropDownLocations(){
     this.employeesService.getDropDownLocations$.subscribe(data =>{

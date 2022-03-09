@@ -10,7 +10,7 @@ export class Item {
   enabled!: boolean;
   image!: Blob;
   itemName!: string;
-  manufactured_at!: Date;
+  manufacturedAt!: Date;
   modifiedAt!: Date;
   employee!: Employee;
   itemType!: ItemType;

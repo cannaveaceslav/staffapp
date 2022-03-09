@@ -104,16 +104,18 @@
 
       <!--/***************************Field Description **************************/-->
 
-      <div class="mt-4 input-group">
-      <div class="input-group-prepend">
+      <div class="mt-4  input-group">
+        <div class="input-group-prepend">
           <span class="input-group-text">Company</span>
         </div>
-        <input required minlength="3"
-               type="text"
-               class="form-control"
-               name="company"
-               #company="ngModel"
-               [(ngModel)]="employeesService.formData!.company">
+        <select class="form-control"
+                name="company"
+                #company="ngModel"
+                [(ngModel)]="employeesService.formData!.company">
+          <option *ngFor="let cl of companiesList" [ngValue]="cl">
+            {{cl.companyName}}
+          </option>
+        </select>
       </div>
       <div class="text-left text-danger"
            *ngIf="company.invalid && company.touched">
@@ -122,15 +124,17 @@
 
       <!--/***************************Field Description **************************/-->
       <div class="mt-4 input-group">
-      <div class="input-group-prepend">
+        <div class="input-group-prepend">
           <span class="input-group-text">Department</span>
         </div>
-        <input required minlength="3"
-               type="text"
-               class="form-control"
-               name="department"
-               #department="ngModel"
-               [(ngModel)]="employeesService.formData!.department">
+        <select class="form-control"
+                name="department"
+                #department="ngModel"
+                [(ngModel)]="employeesService.formData!.department">
+          <option *ngFor="let dl of departmentsList" [ngValue]="dl">
+            {{dl.departmentName}}
+          </option>
+        </select>
       </div>
       <div class="text-left text-danger"
            *ngIf="department.invalid && department.touched">
@@ -139,15 +143,17 @@
 
       <!--/***************************Field Description **************************/-->
       <div class="mt-4 input-group">
-      <div class="input-group-prepend">
+        <div class="input-group-prepend">
           <span class="input-group-text">Location</span>
         </div>
-        <input required minlength="3"
-               type="text"
-               class="form-control"
-               name="location"
-               #location="ngModel"
-               [(ngModel)]="employeesService.formData!.location">
+        <select class="form-control"
+                name="location"
+                #location="ngModel"
+                [(ngModel)]="employeesService.formData!.location">
+          <option *ngFor="let ll of locationsList" [ngValue]="ll">
+            {{ll.locationNumber}}
+          </option>
+        </select>
       </div>
            <!--/***************************Field Enabled **************************/-->
       <div class="mt-4 input-group">

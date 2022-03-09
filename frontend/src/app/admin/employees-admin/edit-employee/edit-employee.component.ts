@@ -10,6 +10,10 @@ import {EmployeesService} from "../../../service/employees.service";
   styleUrls: ['./edit-employee.component.css']
 })
 export class EditEmployeeComponent implements OnInit {
+  public companiesList:Array<any>=[];
+  public departmentsList: Array<any>=[];
+  public locationsList: Array<any>=[];
+
 
   constructor(public employeesService: EmployeesService
     , public dialogBox: MatDialogRef<EditEmployeeComponent>
@@ -17,7 +21,33 @@ export class EditEmployeeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.dropDownLocations();
+    this.dropDownCompanies()
+    this.dropDownDepartments()
   }
+  dropDownCompanies(){
+    this.employeesService.getDropDownCompanies$.subscribe(data =>{
+      data.data?.companies?.forEach(element =>{
+        this.companiesList?.push(element);
+      })
+    })
+  }
+  dropDownDepartments(){
+    this.employeesService.getDropDownDepartments$.subscribe(data =>{
+      data.data?.departments?.forEach(element =>{
+        this.departmentsList?.push(element);
+      })
+    })
+  }
+  dropDownLocations(){
+    this.employeesService.getDropDownLocations$.subscribe(data =>{
+      data.data?.locations?.forEach(element =>{
+        this.locationsList?.push(element);
+      })
+    })
+  }
+
+
 
   onClose() {
     this.dialogBox.close();
