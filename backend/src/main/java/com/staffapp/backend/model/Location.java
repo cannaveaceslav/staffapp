@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties
 @Entity
 @Builder
 @Table(name = "APP_LOCATION")

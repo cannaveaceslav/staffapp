@@ -100,7 +100,7 @@
                 name="company"
                 #company="ngModel"
                 [(ngModel)]="employeesService.formData!.company">
-          <option *ngFor="let cl of companiesList" [value]="cl">
+          <option *ngFor="let cl of companiesList" [ngValue]="cl">
             {{cl.companyName}}
           </option>
         </select>
@@ -113,8 +113,8 @@
         <select class="form-control"
                 name="department"
                 #department="ngModel"
-                [(ngModel)]="employeesService.formData!.department">
-          <option *ngFor="let dl of departmentsList" [value]="dl">
+                  [(ngModel)]="employeesService.formData!.department">
+          <option *ngFor="let dl of departmentsList" [ngValue]="dl">
             {{dl.departmentName}}
           </option>
         </select>
@@ -130,7 +130,7 @@
                 name="location"
                 #location="ngModel"
                 [(ngModel)]="employeesService.formData!.location">
-          <option *ngFor="let ll of locationsList" [value]="ll">
+          <option *ngFor="let ll of locationsList" [ngValue]="ll">
             {{ll.locationNumber}}
           </option>
         </select>

@@ -1,5 +1,6 @@
 package com.staffapp.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -30,6 +31,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Builder
+@JsonIgnoreProperties
 @Table(name = "APP_EMPLOYEE")
 public class Employee {
 

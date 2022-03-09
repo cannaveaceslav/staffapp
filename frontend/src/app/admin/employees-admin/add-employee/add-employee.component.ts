@@ -8,6 +8,7 @@ import {Company} from "../../../interface/company";
 import {Location} from "../../../interface/location";
 import {Department} from "../../../interface/department";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Item} from "../../../interface/item";
 
 
 @Component({
@@ -18,9 +19,10 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class AddEmployeeComponent implements OnInit {
 
 
-  public companiesList:Array<Company>=[];
-  public departmentsList:Array<Department>=[];
-  public locationsList: Array<Location>=[];
+  public companiesList:Array<any>=[];
+  public departmentsList: Array<any>=[];
+  public locationsList: Array<any>=[];
+
 
 
   @Output()
@@ -40,7 +42,6 @@ export class AddEmployeeComponent implements OnInit {
 
   dropDownCompanies(){
     this.employeesService.getDropDownCompanies$.subscribe(data =>{
-      console.log(data);
       data.data?.companies?.forEach(element =>{
         this.companiesList?.push(element);
       })
@@ -48,15 +49,20 @@ export class AddEmployeeComponent implements OnInit {
   }
   dropDownDepartments(){
     this.employeesService.getDropDownDepartments$.subscribe(data =>{
-      console.log(data);
       data.data?.departments?.forEach(element =>{
-        this.departmentsList?.push(element);
+        this.departmentsList?.push(JSON.parse(JSON.stringify(element)));
       })
+      // this.departmentsList = data.data?.departments!.toString();
+      console.log("--------------------111-----------------------");
+      console.log(this.departmentsList[1]);
+      console.log("-------------------------------------------");
+      console.log(this.departmentsList);
+      console.log("-------------------------------------------");
+
     })
   }
   dropDownLocations(){
     this.employeesService.getDropDownLocations$.subscribe(data =>{
-      // console.log(data.data?.locations);
       data.data?.locations?.forEach(element =>{
          this.locationsList?.push(element);
       })
@@ -67,6 +73,7 @@ export class AddEmployeeComponent implements OnInit {
     if (form != null)
       form.resetForm();
 
+    // @ts-ignore
     this.employeesService.formData = {
 
       id: 0,
@@ -76,10 +83,6 @@ export class AddEmployeeComponent implements OnInit {
       birthday: new Date(),
       createdAt: new Date(),
       enabled: false,
-      company: this.companiesList[1],
-      department: this.departmentsList[1],
-      image: new Blob(),
-      location: this.locationsList[1],
       modifiedAt: new Date(),
 
 

@@ -5,7 +5,6 @@ import {Observable, Subject, throwError} from "rxjs";
 import {CustomResponse} from "../interface/custom-response";
 import {catchError, tap} from "rxjs/operators";
 import {environment} from "../../environments/environment";
-import {ItemType} from "../interface/itemType";
 
 
 
