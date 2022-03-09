@@ -12,6 +12,14 @@ import {CustomResponse} from "../../interface/custom-response";
 import {AppState} from "../../interface/app-state";
 import {Location} from "../../interface/location";
 import {LayoutService} from "../../service/layout.service";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {ItemTypeService} from "../../service/itemtype.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {ItemType} from "../../interface/itemType";
+import {EditTypeComponent} from "../item-types-admin/edit-type/edit-type.component";
+import {EditLocationComponent} from "./edit-location/edit-location.component";
+import {AddTypeComponent} from "../item-types-admin/add-type/add-type.component";
+import {AddLocationComponent} from "./add-lcoation/add-location.component";
 
 @Component({
   selector: 'app-locations-admin',
@@ -20,7 +28,7 @@ import {LayoutService} from "../../service/layout.service";
 })
 export class LocationsAdminComponent implements OnInit {
 
-  displayedColumns: string[] = ['ID', 'LOCATION NUMBER', 'DESCRIPTION', 'EMPLOYEE', 'POS X', 'POS Y', 'EDIT', 'DELETE'];
+  displayedColumns: string[] = ['ID', 'LOCATION NUMBER', 'DESCRIPTION', 'EMPLOYEE', 'AVAILABLE', 'POS X', 'POS Y', 'EDIT', 'DELETE'];
   appState$!: Observable<AppState<CustomResponse>>;
   readonly DataState = DataState;
   locations?: Location[] = []
@@ -32,8 +40,14 @@ export class LocationsAdminComponent implements OnInit {
 
 
   constructor(private router: Router
+    , private dialog: MatDialog
     , private locationService: LayoutService
-    , private breakpointObserver: BreakpointObserver) {
+    , private breakpointObserver: BreakpointObserver
+    , private snackBar: MatSnackBar) {
+    this.locationService.listen().subscribe((m: any) => {
+      console.log(m);
+      this.refreshTable();
+    })
   }
 
   ngOnInit(): void {
@@ -65,10 +79,54 @@ export class LocationsAdminComponent implements OnInit {
   }
 
   delete(location: Location): void {
-    this.appState$ = this.locationService.delete$(location.id)
+    if (confirm('Are you sure to delete?')) {
+      this.appState$ = this.locationService.delete$(location.id)
+        .pipe(
+          map(response => {
+            this.snackBar.open(response.message, '', {
+              duration: 4000,
+              verticalPosition: 'top'
+            });
+            this.ngOnInit();
+            return {dataState: DataState.LOADED_STATE, appData: response}
+          }),
+          startWith({dataState: DataState.LOADING_STATE}),
+          catchError((error: string) => {
+            return of({dataState: DataState.ERROR_STATE, error: error})
+          })
+        );
+    }
+  }
+
+  edit(location: Location) {
+    this.locationService.formData = location;
+    console.log("Edit location clicked")
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "50%";
+    this.dialog.open(EditLocationComponent, dialogConfig);
+
+  }
+
+
+
+  addLocation() {
+    console.log("Add new location clicked")
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "50%";
+    this.dialog.open(AddLocationComponent, dialogConfig);
+  }
+
+  private refreshTable() {
+    this.appState$ = this.locationService.getlocations$
       .pipe(
         map(response => {
-          this.ngOnInit();
+          this.locations = response.data.locations;
+          // @ts-ignore
+          this.dataSource = new MatTableDataSource(this.locations);
           return {dataState: DataState.LOADED_STATE, appData: response}
         }),
         startWith({dataState: DataState.LOADING_STATE}),
@@ -76,15 +134,6 @@ export class LocationsAdminComponent implements OnInit {
           return of({dataState: DataState.ERROR_STATE, error: error})
         })
       );
-
-  }
-
-  edit(location: Location) {
-
-  }
-
-  addLocation(newLocation: any) {
-
   }
 
 

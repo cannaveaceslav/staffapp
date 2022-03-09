@@ -11,6 +11,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrls: ['./add-type.component.css']
 })
 export class AddTypeComponent implements OnInit {
+
   @Output()
   submitted = new EventEmitter();
 

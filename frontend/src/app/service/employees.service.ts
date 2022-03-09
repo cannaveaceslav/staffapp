@@ -76,6 +76,7 @@ export class EmployeesService {
         catchError(this.handleError)
       );
 
+
   public getDropDownDepartments$ = <Observable<CustomResponse>>
     this.httpClient.get<CustomResponse>(`${this.baseURL}/departments`)
       .pipe(

@@ -1,6 +1,6 @@
 <div class="mat-dialog-container" style="width: 100%; background: cornflowerblue" >
   <div class="d-flex justify-content-between" >
-    <h4>Edit location</h4>
+    <h4>Add new location</h4>
 
     <button mat-button (click)="onClose()">
       <mat-icon>close</mat-icon>
@@ -11,19 +11,6 @@
   <div style="overflow: auto; height: 100%; width: 400px;">
     <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
 
-      <div class="m-2 input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Location ID</span>
-        </div>
-        <input readonly="readonly"
-               type="text"
-               class="form-control"
-               name="id"
-               #id="ngModel"
-               [(ngModel)]="locationService.formData!.id">
-      </div>
-
-
       <!--/***************************Field Type Name **************************/-->
       <div class="mt-4 input-group">
         <div class="input-group-prepend">
@@ -31,7 +18,6 @@
         </div>
         <input required
                minlength="1"
-               maxlength="3"
                type="number"
                class="form-control"
                name="locationNumber"
@@ -82,23 +68,12 @@
                #pos_y="ngModel"
                [(ngModel)]="locationService.formData!.pos_y">
       </div>
-      <!--/***************************Field Enabled **************************/-->
-      <div class="mt-4 input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Available</span>
-        </div>
-        <input required minlength="3"
-               type="checkbox"
-               class="form-control"
-               name="available"
-               #available="ngModel"
-               [(ngModel)]="locationService.formData!.available">
-      </div>
+
 
 
       <button class="mt-4"
               mat-raised-button color="primary"
-              type="submit">Update location
+              type="submit">Add item type
       </button>
 
     </form>

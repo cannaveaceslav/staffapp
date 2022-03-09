@@ -66,7 +66,7 @@ import {EditEmployeeComponent} from './admin/employees-admin/edit-employee/edit-
 import {EditTypeComponent} from './admin/item-types-admin/edit-type/edit-type.component';
 import {AddItemComponent} from './admin/items-admin/add-item/add-item.component';
 import {EditItemComponent} from './admin/items-admin/edit-item/edit-item.component';
-import {AddLcoationComponent} from './admin/locations-admin/add-lcoation/add-lcoation.component';
+import {AddLocationComponent} from './admin/locations-admin/add-lcoation/add-location.component';
 import {EditLocationComponent} from './admin/locations-admin/edit-location/edit-location.component';
 import {EditUserComponent} from './admin/users-admin/edit-user/edit-user.component';
 import {CompaniesAdminComponent} from './admin/companies-admin/companies-admin.component';
@@ -106,7 +106,7 @@ import {EditDepartmentComponent} from './admin/departments-admin/edit-department
     EditTypeComponent,
     AddItemComponent,
     EditItemComponent,
-    AddLcoationComponent,
+    AddLocationComponent,
     EditLocationComponent,
     EditUserComponent,
     CompaniesAdminComponent,
@@ -167,7 +167,7 @@ import {EditDepartmentComponent} from './admin/departments-admin/edit-department
     , EditTypeComponent
     , AddItemComponent
     , EditItemComponent
-    , AddLcoationComponent
+    , AddLocationComponent
     , EditLocationComponent
     , EditUserComponent
     , AddCompanyComponent
