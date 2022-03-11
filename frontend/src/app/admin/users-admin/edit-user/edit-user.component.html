@@ -1,1 +1,131 @@
-<p>edit-user works!</p>
+<div class="mat-dialog-container" style="width: 100%; background: cornflowerblue">
+  <div class="d-flex justify-content-between m-3">
+    <h4>Edit user</h4>
+
+    <button mat-button (click)="onClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+
+  </div>
+
+  <div style="overflow: auto; height: 100%; width: auto;">
+    <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+
+      <div class="m-2 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">User ID</span>
+        </div>
+        <input readonly="readonly"
+               type="text"
+               class="form-control"
+               name="id"
+               #id="ngModel"
+               [(ngModel)]="userService.formData!.id">
+      </div>
+
+
+      <!--/***************************Field Type Name **************************/-->
+      <div class="m-2 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Last Name</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="lastName"
+               #lastName="ngModel"
+               [(ngModel)]="userService.formData!.lastName">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="lastName.invalid && lastName.touched">
+        Please enter the Last Name
+      </div>
+      <!--/***************************Field Description **************************/-->
+      <div class="m-2 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">First Name</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="firstName"
+               #firstName="ngModel"
+               [(ngModel)]="userService.formData!.firstName">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="firstName.invalid && firstName.touched">
+        Please enter firstName
+      </div>
+
+      <!--/***************************Field Description **************************/-->
+      <div class="m-2 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Email</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="email"
+               #email="ngModel"
+               [(ngModel)]="userService.formData!.email">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="email.invalid && email.touched">
+        Please enter email
+      </div>
+
+      <!--/***************************Field Description **************************/-->
+      <div class="m-2 input-group"style="width: 30%">
+        <div class="input-group-prepend">
+          <span class="input-group-text">User Role</span>
+        </div>
+        <select class="form-control"
+                name="userRole"
+                #userRole="ngModel"
+                [(ngModel)]="userService.formData!.userRole">
+          <option *ngFor="let ll of userRoles" [value]="ll">
+            {{ll}}
+          </option>
+        </select>
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="userRole.invalid && userRole.touched">
+        Please select userRole
+      </div>
+
+      <!--/***************************Field Enabled **************************/-->
+      <div class="m-2 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Locked</span>
+        </div>
+        <input type="checkbox"
+               value="1"
+               checked
+               class="form-control"
+               name="enabled"
+               #enabled="ngModel"
+               [(ngModel)]="userService.formData!.locked">
+      </div>
+      <!--/***************************Field Enabled **************************/-->
+      <div class="m-2 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Enabled</span>
+        </div>
+        <input required minlength="3"
+               type="checkbox"
+               class="form-control"
+               name="enabled"
+               #enabled="ngModel"
+               [(ngModel)]="userService.formData!.enabled">
+      </div>
+
+
+      <button class="m-2"
+              mat-raised-button color="primary"
+              type="submit">Update item type
+      </button>
+
+    </form>
+  </div>
+
+</div>

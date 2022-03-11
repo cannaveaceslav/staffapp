@@ -69,7 +69,7 @@ public class EmployeeController {
             Response.builder()
                     .timeStamp(now())
                     .data(Collections.singletonMap("employee", employeeService.create(employee)))
-                    .message("Location created")
+                    .message("New employee created")
                     .status(CREATED)
                     .statusCode(CREATED.value())
                     .build()
@@ -77,7 +77,7 @@ public class EmployeeController {
   }
 
   @PutMapping("/update")
-  @ApiOperation("Method update current location." +
+  @ApiOperation("Method update current employee." +
           "Returns a response with the map with key=employee and value=new employee")
   public ResponseEntity<Response> updateEmployee(@RequestBody @Valid Employee employee) {
 

@@ -18,9 +18,11 @@ export class LayoutComponent implements OnInit {
   readonly DataState = DataState;
   public location!: Location;
   public dragging!: boolean;
+  public showHover!: boolean;
 
 
   constructor(private layoutService: LayoutService) {
+    this.showHover = false
   }
 
 
@@ -37,18 +39,19 @@ export class LayoutComponent implements OnInit {
       );
   }
 
-  onDragEnded(event: { source: { getRootElement: () => any; }; }, location:Location) {
+  onDragEnded(event: { source: { getRootElement: () => any; }; }, location2: Location) {
 
     let element = event.source.getRootElement();
     let boundingClientRect = element.getBoundingClientRect();
     let parentPosition = this.getPosition(element);
-    console.log("******"+'x: ' + (boundingClientRect.x - parentPosition.left), 'y: ' + (boundingClientRect.y - parentPosition.top));
-    console.log(this.location)
-    this.location.pos_x = boundingClientRect.x - parentPosition.left;
-    this.location.pos_y = boundingClientRect.y - parentPosition.top;
-    console.log(this.location.pos_y+"   "+this.location.pos_x+'canna');
-    this.saveLocation(this.location);
+    console.log("******" + 'x: ' + (boundingClientRect.x - parentPosition.left), 'y: ' + (boundingClientRect.y - parentPosition.top));
+    console.log(location2)
+    location2.pos_x = boundingClientRect.x - parentPosition.left;
+    location2.pos_y = boundingClientRect.y - parentPosition.top;
+    console.log(location2.pos_y + "   " + location2.pos_x + 'canna');
+    this.ngOnInit();
 
+    this.saveLocation(location2);
   }
 
   getPosition(el: any) {
@@ -67,10 +70,10 @@ export class LayoutComponent implements OnInit {
   }
 
   saveLocation(location: Location): void {
-    this.appState$ = this.layoutService.save$(location)
+    this.appState$ = this.layoutService.update$(location)
       .pipe(
         map(response => {
-          console.log('saving');
+          console.log('updating');
           return {dataState: DataState.LOADED_STATE, appData: response}
         }),
         startWith({dataState: DataState.LOADING_STATE}),
@@ -78,6 +81,7 @@ export class LayoutComponent implements OnInit {
           return of({dataState: DataState.ERROR_STATE, error: error})
         })
       );
+
   }
 
   public handleClick(event: MouseEvent): void {
@@ -87,5 +91,7 @@ export class LayoutComponent implements OnInit {
     }
     alert('clicked!');
   }
+
+
 
 }

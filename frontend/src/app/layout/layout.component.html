@@ -1,6 +1,7 @@
 <ng-container *ngIf="(appState$ | async ) as appState" [ngSwitch]="appState.dataState">
   <div class="ext-container">
 
+
     <div class="container">
       <ng-container *ngSwitchCase="DataState.LOADED_STATE">
 
@@ -16,25 +17,41 @@
                (click)=handleClick($event) *ngIf="location.available; else notAvailable">
 
             <p>{{location.locationNumber}}</p>
+
           </div>
           <ng-template #notAvailable>
             <div class="table-not-available"
                  cdkDrag
                  cdkDragBoundary=".container"
+                 (mouseover)="showHover=true"
+                 (mouseout)="showHover=false"
                  [cdkDragFreeDragPosition]="{x:location.pos_x, y:location.pos_y}"
                  (cdkDragEnded)=onDragEnded($event,location)
                  (cdkDragStarted)=handleDragStart($event)
-                 (click)=handleClick($event)>
+                 (click)=handleClick($event) >
               {{location.locationNumber}}
+
+              <div *ngIf="showHover" style="
+                width: max-content;
+                background:  linear-gradient(30deg, #686ee3 1%, #3931af 40%, lightskyblue 90%);
+                color: whitesmoke;
+                margin-left: 35px;
+                position: unset;
+                margin-top: -42px;
+                border-radius: 5px;">
+                <p style=" width: max-content">{{location.employee.lastName}} {{location.employee.firstName}}</p>
+              </div>
             </div>
           </ng-template>
+
         </div>
+
       </ng-container>
     </div>
   </div>
   <ng-container>
-<!--    <div style="height: 300px">-->
-<!--    </div>-->
+    <!--    <div style="height: 300px">-->
+    <!--    </div>-->
   </ng-container>
 
 </ng-container>
