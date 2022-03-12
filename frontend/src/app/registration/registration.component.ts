@@ -58,16 +58,15 @@ export class RegistrationComponent implements OnInit {
     }
 
     this.loading = true;
+    console.log('Registration successful  1');
 
     this.authenticationService.register(this.form.value)
-
       .pipe(first())
-
       .subscribe({
         next: () => {
-          console.log('Registration successful');
+          console.log('Registration successful  2');
           this.alertService.success('Registration successful', {keepAfterRouteChange: true});
-          this.router.navigate(['../login']);
+          this.router.navigate([`login`]);
         },
         error: error => {
           this.alertService.error(error);
@@ -76,9 +75,11 @@ export class RegistrationComponent implements OnInit {
       });
   }
 
-  register(registrationRequest: RegistrationRequest) {
-    console.log('Register user:', registrationRequest);
-    this.httpClient.post(this.baseURL + '/registration', registrationRequest);
-    return this.router.navigate(['../login']);
-  }
+  // register(registrationRequest: RegistrationRequest) {
+  //   console.log('Register user:', registrationRequest);
+  //   this.httpClient.post(this.baseURL + '/registration', registrationRequest);
+  //   console.log('Registration successful');
+  //     this.router.navigate([`/login`]);
+  //
+  // }
 }

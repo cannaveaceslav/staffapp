@@ -94,12 +94,13 @@
       <div class="input-group-prepend">
           <span class="input-group-text">Image</span>
         </div>
-        <input required minlength="3"
-               type="text"
+        <input type="file"
+               (change)="onFileSelected($event)"
                class="form-control"
                name="image"
                #image="ngModel"
                [(ngModel)]="employeesService.formData!.image">
+
       </div>
 
       <!--/***************************Field Description **************************/-->
@@ -170,6 +171,7 @@
 
       <button class="mt-4"
               mat-raised-button color="primary"
+              (click)="onUpload()"
               type="submit">Update employee
       </button>
 

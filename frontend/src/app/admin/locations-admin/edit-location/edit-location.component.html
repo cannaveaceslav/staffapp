@@ -43,6 +43,25 @@
         Please enter location number
       </div>
       <!--/***************************Field Description **************************/-->
+      <div class="mt-4 input-group"style="width: 100%">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Table orientation</span>
+        </div>
+        <select class="form-control"
+                name="locationType"
+                #locationType="ngModel"
+                [(ngModel)]="locationService.formData!.locationType">
+          <option *ngFor="let ll of locationTypes" [value]="ll">
+            {{ll}}
+          </option>
+        </select>
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="locationType.invalid && locationType.touched">
+        Please select location Type
+      </div>
+
+      <!--/***************************Field Description **************************/-->
       <div class="mt-4 input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">Description</span>

@@ -5,6 +5,7 @@ import {environment} from "../../environments/environment";
 import {catchError, tap} from "rxjs/operators";
 import {DataState} from "../enum/data-state.enum";
 import {RegistrationRequest} from "../interface/registrationRequest";
+import {Router} from "@angular/router";
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class AuthenticationService {
   private baseURL = environment.serverUrl;
   public registrationRequest!: Observable<RegistrationRequest>;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private router: Router) {
   }
 
 
@@ -51,6 +52,7 @@ export class AuthenticationService {
   register(registrationRequest: RegistrationRequest) {
 
     const headers = new HttpHeaders({Authorization: 'Basic ' + btoa('admin' + ':' + 'admin')});
+    this.router.navigate([`../confirm`]);
     return this.httpClient.post(`${this.baseURL}/registration`, registrationRequest, {headers});
   }
 

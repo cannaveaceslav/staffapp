@@ -73,6 +73,11 @@
             <td mat-cell *matCellDef="let location"> {{location.description}} </td>
           </ng-container>
 
+          <ng-container matColumnDef="TYPE">
+            <th mat-header-cell *matHeaderCellDef> ORIENTATION </th>
+            <td mat-cell *matCellDef="let location"> {{location.locationType}} </td>
+          </ng-container>
+
           <ng-container matColumnDef="EMPLOYEE">
             <th mat-header-cell *matHeaderCellDef> EMPLOYEE</th>
             <td mat-cell *matCellDef="let location"> {{location.employee?.lastName}} </td>

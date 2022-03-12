@@ -14,6 +14,7 @@ export class EditEmployeeComponent implements OnInit {
   public companiesList:Array<any>=[];
   public departmentsList: Array<any>=[];
   public locationsList: Array<any>=[];
+  public selectedFile:any = File;
 
 
   constructor(public employeesService: EmployeesService
@@ -56,6 +57,9 @@ export class EditEmployeeComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    // form.controls['image'].setValue(this.selectedFile);
+    console.log("*********************")
+    console.log(form.value)
     this.employeesService.update$(form.value).subscribe(res => {
       this.snackBar.open(res.message, '', {
         duration: 5000,
@@ -65,4 +69,17 @@ export class EditEmployeeComponent implements OnInit {
 
   }
 
+  onFileSelected(event:any) {
+     // this.selectedFile = event.target.files[0];
+    }
+
+
+
+
+  onUpload() {
+    console.log("unUpload clicked")
+    console.log(this.selectedFile)
+  }
+
 }
+

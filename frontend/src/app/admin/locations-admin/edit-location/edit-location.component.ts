@@ -4,6 +4,8 @@ import {MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {NgForm} from "@angular/forms";
 import {LayoutService} from "../../../service/layout.service";
+import {UserRole} from "../../../interface/userRole";
+import {LocationType} from "../../../interface/LocationType";
 
 @Component({
   selector: 'app-edit-location',
@@ -11,6 +13,7 @@ import {LayoutService} from "../../../service/layout.service";
   styleUrls: ['./edit-location.component.css']
 })
 export class EditLocationComponent implements OnInit {
+  locationTypes?: Array<any> = [LocationType[0],LocationType[1]]
 
   constructor(public locationService: LayoutService
     , public dialogBox: MatDialogRef<EditLocationComponent>

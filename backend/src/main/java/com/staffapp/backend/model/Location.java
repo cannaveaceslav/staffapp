@@ -41,4 +41,6 @@ public class Location {
   private Double pos_x;
   @Column(columnDefinition = "NUMBER")
   private Double pos_y;
+  @Enumerated(EnumType.STRING)
+  private LocationType locationType;
 }

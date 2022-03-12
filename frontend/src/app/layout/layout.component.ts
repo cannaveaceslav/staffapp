@@ -48,7 +48,7 @@ export class LayoutComponent implements OnInit {
     console.log(location2)
     location2.pos_x = boundingClientRect.x - parentPosition.left;
     location2.pos_y = boundingClientRect.y - parentPosition.top;
-    console.log(location2.pos_y + "   " + location2.pos_x + 'canna');
+    console.log(location2.pos_y + "   " + location2.pos_x);
     this.ngOnInit();
 
     this.saveLocation(location2);

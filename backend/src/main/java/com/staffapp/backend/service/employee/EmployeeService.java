@@ -37,6 +37,7 @@ public class EmployeeService {
     return Optional.of(employeeRepository.getById(id));
   }
 
+  @Transactional
   public Employee update(@NotNull Employee employee) {
     log.info("Updating employee [{}], [{}]", employee.getLastName(), employee.getFirstName());
     return employeeRepository.save(employee);

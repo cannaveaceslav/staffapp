@@ -21,11 +21,13 @@ import {LocationsAdminComponent} from "./admin/locations-admin/locations-admin.c
 import {ItemsComponent} from "./items/items.component";
 import {AddEmployeeComponent} from "./admin/employees-admin/add-employee/add-employee.component";
 import {AddTypeComponent} from "./admin/item-types-admin/add-type/add-type.component";
+import {ConfirmPageComponent} from "./registration/confirm-page/confirm-page.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegistrationComponent},
+  {path: 'confirm', component: ConfirmPageComponent},
   {path: 'logout', component: LogoutComponent, canActivate: [AuthGaurdService]},
   {path: 'home', component: HomeComponent, canActivate: [AuthGaurdService]},
   {path: 'layout', component: LayoutComponent, canActivate: [AuthGaurdService]},

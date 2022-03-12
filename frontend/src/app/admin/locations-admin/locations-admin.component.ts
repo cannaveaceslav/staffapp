@@ -5,7 +5,6 @@ import {map, Observable, of, shareReplay, startWith} from "rxjs";
 import {DataState} from "../../enum/data-state.enum";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTable, MatTableDataSource} from "@angular/material/table";
-import {Item} from "../../interface/item";
 import {MatSort} from "@angular/material/sort";
 import {catchError} from "rxjs/operators";
 import {CustomResponse} from "../../interface/custom-response";
@@ -13,12 +12,8 @@ import {AppState} from "../../interface/app-state";
 import {Location} from "../../interface/location";
 import {LayoutService} from "../../service/layout.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
-import {ItemTypeService} from "../../service/itemtype.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {ItemType} from "../../interface/itemType";
-import {EditTypeComponent} from "../item-types-admin/edit-type/edit-type.component";
 import {EditLocationComponent} from "./edit-location/edit-location.component";
-import {AddTypeComponent} from "../item-types-admin/add-type/add-type.component";
 import {AddLocationComponent} from "./add-lcoation/add-location.component";
 
 @Component({
@@ -28,7 +23,7 @@ import {AddLocationComponent} from "./add-lcoation/add-location.component";
 })
 export class LocationsAdminComponent implements OnInit {
 
-  displayedColumns: string[] = ['ID', 'LOCATION NUMBER', 'DESCRIPTION', 'EMPLOYEE', 'AVAILABLE', 'POS X', 'POS Y', 'EDIT', 'DELETE'];
+  displayedColumns: string[] = ['ID', 'LOCATION NUMBER', 'DESCRIPTION', 'TYPE', 'EMPLOYEE', 'AVAILABLE', 'POS X', 'POS Y', 'EDIT', 'DELETE'];
   appState$!: Observable<AppState<CustomResponse>>;
   readonly DataState = DataState;
   locations?: Location[] = []
@@ -108,7 +103,6 @@ export class LocationsAdminComponent implements OnInit {
     this.dialog.open(EditLocationComponent, dialogConfig);
 
   }
-
 
 
   addLocation() {

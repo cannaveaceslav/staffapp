@@ -13,10 +13,10 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class AddEmployeeComponent implements OnInit {
 
 
-  public companiesList:Array<any>=[];
-  public departmentsList: Array<any>=[];
-  public locationsList: Array<any>=[];
-
+  public companiesList: Array<any> = [];
+  public departmentsList: Array<any> = [];
+  public locationsList: Array<any> = [];
+  selectedFile = null;
 
 
   @Output()
@@ -34,24 +34,26 @@ export class AddEmployeeComponent implements OnInit {
     this.dropDownDepartments()
   }
 
-  dropDownCompanies(){
-    this.employeesService.getDropDownCompanies$.subscribe(data =>{
-      data.data?.companies?.forEach(element =>{
+  dropDownCompanies() {
+    this.employeesService.getDropDownCompanies$.subscribe(data => {
+      data.data?.companies?.forEach(element => {
         this.companiesList?.push(element);
       })
     })
   }
-  dropDownDepartments(){
-    this.employeesService.getDropDownDepartments$.subscribe(data =>{
-      data.data?.departments?.forEach(element =>{
+
+  dropDownDepartments() {
+    this.employeesService.getDropDownDepartments$.subscribe(data => {
+      data.data?.departments?.forEach(element => {
         this.departmentsList?.push(element);
       })
-     })
+    })
   }
-  dropDownLocations(){
-    this.employeesService.getDropDownLocations$.subscribe(data =>{
-      data.data?.locations?.forEach(element =>{
-         this.locationsList?.push(element);
+
+  dropDownLocations() {
+    this.employeesService.getDropDownLocations$.subscribe(data => {
+      data.data?.locations?.forEach(element => {
+        this.locationsList?.push(element);
       })
     })
   }
@@ -92,5 +94,14 @@ export class AddEmployeeComponent implements OnInit {
         });
       }
     )
+  }
+
+  onFileSelected(event:any) {
+    console.log(event);
+    this.selectedFile = event.target.files[0];
+  }
+
+  onUpload() {
+    console.log("unUpload clicked")
   }
 }

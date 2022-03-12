@@ -4,6 +4,7 @@ import {MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {NgForm} from "@angular/forms";
 import {LayoutService} from "../../../service/layout.service";
+import {LocationType} from "../../../interface/LocationType";
 
 @Component({
   selector: 'app-add-lcoation',
@@ -11,6 +12,7 @@ import {LayoutService} from "../../../service/layout.service";
   styleUrls: ['./add-location.component.css']
 })
 export class AddLocationComponent implements OnInit {
+  locationTypes?: Array<any> = [LocationType[0],LocationType[1]]
 
   @Output()
   submitted = new EventEmitter();
