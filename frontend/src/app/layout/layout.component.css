@@ -38,7 +38,7 @@ p {
   border: solid 2px #ccc;
   cursor: pointer;
   display: flex;
-  text-align: center;
+  text-align: justify;
   justify-content: center;
   align-items: center;
   height: 40px;
@@ -52,14 +52,15 @@ p {
   color: cornsilk;
   border: solid 2px #ccc;
   cursor: pointer;
-  display: block;
-  text-align: center;
+  display: flex;
+  text-align: justify;
   justify-content: center;
   align-items: center;
   height: 40px;
   width: 20px;
   background-color: rgba(255, 0, 0, 0.73);
   z-index: 15;
+  position: absolute;
 }
 
 .table-available-horizontal {
