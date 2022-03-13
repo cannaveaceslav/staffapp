@@ -30,6 +30,14 @@ export class ItemService {
         catchError(this.handleError)
       );
 
+  public getItemsByEmployee$ = (employeeId: number) => <Observable<CustomResponse>>
+    this.httpClient.get<CustomResponse>(`${this.baseURL}/items/employee/${employeeId}`)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
+
+
   public item$ = (itemId: number) => <Observable<CustomResponse>>
     this.httpClient.get<CustomResponse>(`${this.baseURL}/items/get/${itemId}`)
       .pipe(

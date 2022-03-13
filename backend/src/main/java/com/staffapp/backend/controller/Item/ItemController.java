@@ -135,4 +135,19 @@ public class ItemController {
     );
   }
 
+  @GetMapping("/employee/{id}")
+  @ApiOperation("Method returns a response with the map with key=item and value=item by id")
+  public ResponseEntity<Response> getItemByEmployee(@PathVariable("id") Long id) {
+
+    return ResponseEntity.ok(
+            Response.builder()
+                    .timeStamp(now())
+                    .data(Collections.singletonMap("items", itemService.listByEmployeeId(id)))
+                    .message("Item with id " + id + " retrieved")
+                    .status(OK)
+                    .statusCode(OK.value())
+                    .build()
+    );
+  }
+
 }
