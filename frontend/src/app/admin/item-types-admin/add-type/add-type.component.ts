@@ -36,7 +36,7 @@ export class AddTypeComponent implements OnInit {
       createdAt: new Date(),
       description: "",
       enabled: false,
-      image: new Blob(),
+      image: "",
       modifiedAt: new Date(),
 
 

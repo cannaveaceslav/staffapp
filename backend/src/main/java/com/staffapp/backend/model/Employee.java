@@ -62,8 +62,8 @@ public class Employee {
   private LocalDateTime createdAt;
   private LocalDateTime modifiedAt;
   private Boolean enabled = true;
-  @Lob
-  private byte[] image;
+//  @Lob
+  private String image;
   //    @OneToOne(fetch = FetchType.LAZY,
 //            cascade = CascadeType.ALL,
 //            mappedBy = "employee"

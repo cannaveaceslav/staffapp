@@ -8,16 +8,11 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.Base64;
 import java.util.Collections;
 
@@ -81,9 +76,7 @@ public class EmployeeController {
   @PutMapping("/update")
   @ApiOperation("Method update current employee." +
           "Returns a response with the map with key=employee and value=new employee")
-  public ResponseEntity<Response> updateEmployee(@RequestBody @Valid Employee employee, MultipartFile file) {
-      Employee emp = employee;
-//      emp.setImage()
+  public ResponseEntity<Response> updateEmployee(@RequestBody @Valid Employee employee) throws IOException {
     return ResponseEntity.ok(
             Response.builder()
                     .timeStamp(now())

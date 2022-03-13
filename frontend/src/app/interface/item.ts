@@ -8,7 +8,7 @@ export class Item {
   createdAt!: Date;
   description!: string;
   enabled!: boolean;
-  image!: Blob;
+  image!: string;
   itemName!: string;
   manufacturedAt!: Date;
   modifiedAt!: Date;

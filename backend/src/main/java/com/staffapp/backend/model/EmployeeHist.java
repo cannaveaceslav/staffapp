@@ -45,8 +45,7 @@ public class EmployeeHist {
   private LocalDateTime createdAt;
   private LocalDateTime deletedAt;
   private Boolean enabled = false;
-  @Lob
-  private byte[] image;
+  private String image;
   @OneToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "app_location_id")
   private Location location;

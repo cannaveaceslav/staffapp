@@ -14,7 +14,7 @@
       <!--/***************************Field Type Name **************************/-->
       <div class="mt-4 input-group">
         <div class="input-group-prepend">
-          <span class="input-group-text">Type Name</span>
+          <span class="input-group-text" style="width: 150px">Type Name</span>
         </div>
         <input required minlength="3"
                type="text"
@@ -30,7 +30,7 @@
       <!--/***************************Field Description **************************/-->
       <div class="mt-4 input-group">
         <div class="input-group-prepend">
-          <span class="input-group-text">Description</span>
+          <span class="input-group-text" style="width: 150px">Description</span>
         </div>
         <input required minlength="3"
                type="text"
@@ -43,10 +43,22 @@
            *ngIf="description.invalid && description.touched">
         Please enter Description
       </div>
+      <!--/***************************Field Description **************************/-->
+      <div class="mt-4 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 150px">Image URL</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="image"
+               #image="ngModel"
+               [(ngModel)]="itemTypeService.formData!.image">
+      </div>
       <!--/***************************Field Enabled **************************/-->
       <div class="mt-4 input-group">
         <div class="input-group-prepend">
-          <span class="input-group-text">Enabled</span>
+          <span class="input-group-text" style="width: 150px">Enabled</span>
         </div>
         <input required minlength="3"
                type="checkbox"

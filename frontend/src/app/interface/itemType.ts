@@ -2,7 +2,7 @@ export class ItemType {
   id!: number;
   typeName!: string;
   description!: string;
-  image!: Blob;
+  image!: string;
   createdAt!: Date;
   modifiedAt!: Date;
   enabled!: boolean;

@@ -15,6 +15,6 @@ export class Employee {
   createdAt!: Date;
   modifiedAt!: Date;
   enabled!: boolean;
-  image!: Blob;
+  image!: string;
   location!: Location;
 }

@@ -1,5 +1,5 @@
 CREATE OR REPLACE TRIGGER STAFFAPP.TAUIER_APP_EMPLOYEE
-    after update or insert ON STAFFAPP.APP_EMPLOYEE
+    before update or insert ON STAFFAPP.APP_EMPLOYEE
     for each row
 declare
 

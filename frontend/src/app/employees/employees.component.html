@@ -20,10 +20,10 @@
 <!--        </div>-->
         <ul class="row" >
           <li class="col-12 col-md-6 col-lg-3" *ngFor="let employee of appState?.appData?.data?.employees; let i = index">
-            <div class="cnt-block equal-hight" >
-              <figure><img src="http://www.webcoderskull.com/img/team1.png" class="img-responsive"  alt="Employee picture" (click)="getEmployeePage(employee.id)"></figure>
-              <h6><a href="http://www.webcoderskull.com/">{{employee.lastName}} {{employee.firstName}}</a></h6>
-              <p>{{employee.department.departmentName}}</p>
+            <div class="cnt-block equal-hight" (click)="getEmployeePage(employee.id)">
+              <figure><img src="{{employee.image}}" class="img-responsive"  alt="Employee picture" (click)="getEmployeePage(employee.id)"></figure>
+              <h4><a >{{employee.lastName}} {{employee.firstName}}</a></h4>
+              <h6>{{employee.department.departmentName}}</h6>
               <ul class="follow-us clearfix">
                 <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
 <!--                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>-->

@@ -11,10 +11,14 @@ import {EmployeesService} from "../../../service/employees.service";
 })
 export class EditEmployeeComponent implements OnInit {
 
-  public companiesList:Array<any>=[];
-  public departmentsList: Array<any>=[];
-  public locationsList: Array<any>=[];
-  public selectedFile:any = File;
+  public companiesList: Array<any> = [];
+  public departmentsList: Array<any> = [];
+  public locationsList: Array<any> = [];
+  public selectedFile!: File;
+  public retrievedImage: any;
+  base64Data: any;
+  retrievedReasons: any;
+  imageName: any;
 
 
   constructor(public employeesService: EmployeesService
@@ -27,28 +31,30 @@ export class EditEmployeeComponent implements OnInit {
     this.dropDownCompanies()
     this.dropDownDepartments()
   }
-  dropDownCompanies(){
-    this.employeesService.getDropDownCompanies$.subscribe(data =>{
-      data.data?.companies?.forEach(element =>{
+
+  dropDownCompanies() {
+    this.employeesService.getDropDownCompanies$.subscribe(data => {
+      data.data?.companies?.forEach(element => {
         this.companiesList?.push(element);
       })
     })
   }
-  dropDownDepartments(){
-    this.employeesService.getDropDownDepartments$.subscribe(data =>{
-      data.data?.departments?.forEach(element =>{
+
+  dropDownDepartments() {
+    this.employeesService.getDropDownDepartments$.subscribe(data => {
+      data.data?.departments?.forEach(element => {
         this.departmentsList?.push(element);
       })
     })
   }
-  dropDownLocations(){
-    this.employeesService.getDropDownLocations$.subscribe(data =>{
-      data.data?.locations?.forEach(element =>{
+
+  dropDownLocations() {
+    this.employeesService.getDropDownLocations$.subscribe(data => {
+      data.data?.locations?.forEach(element => {
         this.locationsList?.push(element);
       })
     })
   }
-
 
 
   onClose() {
@@ -57,9 +63,6 @@ export class EditEmployeeComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    // form.controls['image'].setValue(this.selectedFile);
-    console.log("*********************")
-    console.log(form.value)
     this.employeesService.update$(form.value).subscribe(res => {
       this.snackBar.open(res.message, '', {
         duration: 5000,
@@ -69,17 +72,8 @@ export class EditEmployeeComponent implements OnInit {
 
   }
 
-  onFileSelected(event:any) {
-     // this.selectedFile = event.target.files[0];
-    }
-
-
-
 
   onUpload() {
-    console.log("unUpload clicked")
-    console.log(this.selectedFile)
   }
-
 }
 

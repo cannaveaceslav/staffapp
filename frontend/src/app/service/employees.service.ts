@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Employee} from "../interface/employee";
 import {Observable, Subject, throwError} from "rxjs";
 import {CustomResponse} from "../interface/custom-response";
@@ -60,6 +60,7 @@ export class EmployeesService {
   }
 
   private _listeners = new Subject<any>();
+  private let: any;
   listen(): Observable<any>{
     return this._listeners.asObservable();
   }
@@ -70,8 +71,8 @@ export class EmployeesService {
 
 
 
-  public update$ = (employee: Employee) => <Observable<CustomResponse>>
-    this.httpClient.post<CustomResponse>(`${this.baseURL}/employees/save`, employee)
+  public update$ = (employee: Employee, ) => <Observable<CustomResponse>>
+    this.httpClient.put<CustomResponse>(`${this.baseURL}/employees/update`, employee)
       .pipe(
         tap(console.log),
         catchError(this.handleError)

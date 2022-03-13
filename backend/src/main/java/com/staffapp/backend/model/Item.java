@@ -54,8 +54,7 @@ public class Item {
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private Boolean enabled = true;
-    @Lob
-    private byte[] image;
+    private String image;
     @ManyToOne
     @JoinColumn(name = "app_itemtype_id", nullable = false)
     private ItemType itemType;

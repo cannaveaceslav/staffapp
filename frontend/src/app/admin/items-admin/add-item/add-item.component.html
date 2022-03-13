@@ -15,7 +15,7 @@
       <!--/***************************Field Type Name **************************/-->
       <div class="mt-4 input-group">
         <div class="input-group-prepend">
-          <span class="input-group-text">Item Name</span>
+          <span class="input-group-text" style="width: 150px">Item Name</span>
         </div>
         <input required minlength="3"
                type="text"
@@ -31,7 +31,7 @@
       <!--/***************************Field Description **************************/-->
       <div class="mt-4  input-group">
         <div class="input-group-prepend">
-          <span class="input-group-text">Item type</span>
+          <span class="input-group-text" style="width: 150px">Item type</span>
         </div>
         <select class="form-control"
                 name="itemType"
@@ -49,7 +49,7 @@
       <!--/***************************Field Description **************************/-->
       <div class="mt-4  input-group">
         <div class="input-group-prepend">
-          <span class="input-group-text">Barcode</span>
+          <span class="input-group-text" style="width: 150px">Barcode</span>
         </div>
         <input required minlength="8"
                type="text"
@@ -65,7 +65,7 @@
       <!--/***************************Field Description **************************/-->
       <div class="mt-4  input-group">
         <div class="input-group-prepend">
-          <span class="input-group-text">Description</span>
+          <span class="input-group-text" style="width: 150px">Description</span>
         </div>
         <input required minlength="8"
                type="text"
@@ -78,10 +78,22 @@
            *ngIf="description.invalid && description.touched">
         Please enter description
       </div>
+      <!--/***************************Field Description **************************/-->
+      <div class="mt-4  input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 150px">Image URL</span>
+        </div>
+        <input required minlength="8"
+               type="text"
+               class="form-control"
+               name="image"
+               #image="ngModel"
+               [(ngModel)]="itemService.formData!.image">
+      </div>
       <!--/***************************Field Enabled **************************/-->
       <div class="mt-4 input-group">
         <div class="input-group-prepend">
-          <span class="input-group-text">Manufactured at</span>
+          <span class="input-group-text" style="width: 150px">Manufactured at</span>
         </div>
         <input required minlength="3"
                type="date"
@@ -96,23 +108,10 @@
       </div>
 
       <!--/***************************Field Description **************************/-->
-      <div class="mt-4  input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Image</span>
-        </div>
-        <input required minlength="3"
-               type="text"
-               class="form-control"
-               name="image"
-               #image="ngModel"
-               [(ngModel)]="itemService.formData!.image">
-      </div>
 
-      <!--/***************************Field Description **************************/-->
-
-      <div class="mt-4  input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Employee</span>
+      <div class="mt-4  input-group" >
+        <div class="input-group-prepend" >
+          <span class="input-group-text" style="width: 150px">Employee</span>
         </div>
         <select class="form-control"
                 name="employee"
