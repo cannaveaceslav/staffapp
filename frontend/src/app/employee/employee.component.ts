@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {EmployeesService} from "../service/employees.service";
 import {map, Observable, of, startWith} from "rxjs";
 import {AppState} from "../interface/app-state";
@@ -27,6 +27,7 @@ export class EmployeeComponent implements OnInit {
   public items?: Item[];
 
   constructor(private route: ActivatedRoute,
+              private router:Router,
               private employeesService: EmployeesService,
               private itemService: ItemService
   ) {
@@ -66,7 +67,14 @@ export class EmployeeComponent implements OnInit {
   }
 
 
-  getItemPage(id: number) {
-    
+  getItemPage(itemId: number) {
+    {
+      let itemsPage = {
+        url: `item/${itemId}`
+      };
+      console.log(itemsPage)
+      this.router.navigateByUrl(itemsPage.url);
+    }
+
   }
 }

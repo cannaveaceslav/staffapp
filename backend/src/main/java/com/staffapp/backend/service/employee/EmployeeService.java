@@ -3,6 +3,7 @@ package com.staffapp.backend.service.employee;
 import com.staffapp.backend.model.Employee;
 import com.staffapp.backend.model.Location;
 import com.staffapp.backend.repository.EmployeeRepository;
+import com.staffapp.backend.repository.LocationRepository;
 import com.sun.istack.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ import java.util.Optional;
 @Slf4j
 public class EmployeeService {
   private final EmployeeRepository employeeRepository;
+  private final LocationRepository locationRepository;
 
   public Employee create(Employee employee) {
     log.info("Saving new  employee [{}]", employee.getLastName() + " " + employee.getFirstName());
@@ -40,6 +42,14 @@ public class EmployeeService {
   @Transactional
   public Employee update(@NotNull Employee employee) {
     log.info("Updating employee [{}], [{}]", employee.getLastName(), employee.getFirstName());
+    log.info("Employee new location [{}]", employee.getLocation().getLocationNumber());
+    if(employee.getLocation()!=null){
+      Location location = employee.getLocation();
+      location.setAvailable(false);
+      location.setEmployee(employee);
+      locationRepository.save(location);
+      employeeRepository.save(employee);
+    }
     return employeeRepository.save(employee);
   }
 

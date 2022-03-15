@@ -1,6 +1,8 @@
 package com.staffapp.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -69,6 +71,7 @@ public class Employee {
 //            mappedBy = "employee"
 //    )
   @OneToOne(fetch = FetchType.EAGER)
+  @JsonBackReference
   @JoinColumn(name = "app_location_id")
   private Location location;
 

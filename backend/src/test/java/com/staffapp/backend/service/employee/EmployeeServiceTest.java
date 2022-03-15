@@ -4,6 +4,7 @@ import com.staffapp.backend.model.Company;
 import com.staffapp.backend.model.Department;
 import com.staffapp.backend.model.Employee;
 import com.staffapp.backend.repository.EmployeeRepository;
+import com.staffapp.backend.repository.LocationRepository;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,6 +37,8 @@ import static org.mockito.Mockito.when;
 class EmployeeServiceTest {
   @Mock
   private EmployeeRepository employeeRepositoryMock;
+  @Mock
+  private LocationRepository locationRepository;
   @SpyBean
   private EmployeeRepository employeeRepositorySpy;
   @Mock
@@ -49,8 +52,8 @@ class EmployeeServiceTest {
 
   @BeforeEach
   void setUp() {
-    employeeServiceWithMock = new EmployeeService(employeeRepositoryMock);
-    employeeServiceWithSpy = new EmployeeService(employeeRepositorySpy);
+    employeeServiceWithMock = new EmployeeService(employeeRepositoryMock, locationRepository);
+    employeeServiceWithSpy = new EmployeeService(employeeRepositorySpy, locationRepository);
     Random random = new Random();
 
     testEmployee = Employee.builder()
