@@ -3,7 +3,7 @@
                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
                [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar><h2>ADMIN MENU</h2></mat-toolbar>
     <mat-nav-list>
       <div id="sidebar">
         <mat-nav-list role="list">
@@ -46,7 +46,7 @@
       <ng-container *ngSwitchCase="DataState.LOADED_STATE">
 
         <button mat-icon-button matTooltip="Click to create new" class="table-button"
-                (click)="addEmployee(newEmployee)" color="warn">ADD NEW EMPLOYEE
+                (click)="addEmployee()" color="warn">ADD NEW EMPLOYEE
           <mat-icon>person</mat-icon>
         </button>
 

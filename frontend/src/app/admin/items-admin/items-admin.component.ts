@@ -11,6 +11,10 @@ import {Item} from "../../interface/item";
 import {ItemService} from "../../service/item.service";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {EditItemComponent} from "./edit-item/edit-item.component";
+import {AddItemComponent} from "./add-item/add-item.component";
 
 
 @Component({
@@ -41,8 +45,14 @@ export class ItemsAdminComponent implements OnInit {
 
 
   constructor(private router: Router
+    , private dialog: MatDialog
     , private itemService: ItemService
-    , private breakpointObserver: BreakpointObserver) {
+    , private breakpointObserver: BreakpointObserver
+    , private snackBar: MatSnackBar) {
+    this.itemService.listen().subscribe((m: any) => {
+      console.log(m);
+      this.refreshTable();
+    })
   }
 
   ngOnInit(): void {
@@ -74,10 +84,51 @@ export class ItemsAdminComponent implements OnInit {
   }
 
   delete(item: Item): void {
-    this.appState$ = this.itemService.delete$(item)
+    if (confirm('Are you sure to delete?')) {
+      this.appState$ = this.itemService.delete$(item)
+        .pipe(
+          map(response => {
+            this.snackBar.open(response.message, '', {
+              duration: 4000,
+              verticalPosition: 'top'
+            });
+            this.ngOnInit();
+            return {dataState: DataState.LOADED_STATE, appData: response}
+          }),
+          startWith({dataState: DataState.LOADING_STATE}),
+          catchError((error: string) => {
+            return of({dataState: DataState.ERROR_STATE, error: error})
+          })
+        );
+    }
+  }
+
+  edit(item: Item) {
+    this.itemService.formData = item;
+    console.log("Edit item clicked")
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "50%";
+    this.dialog.open(EditItemComponent, dialogConfig);
+  }
+
+  addItem() {
+    console.log("Add new Item clicked")
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "50%";
+    this.dialog.open(AddItemComponent, dialogConfig);
+
+  }
+  private refreshTable() {
+    this.appState$ = this.itemService.getItems$
       .pipe(
         map(response => {
-          this.ngOnInit();
+          this.items = response.data.items;
+          // @ts-ignore
+          this.dataSource = new MatTableDataSource(this.items);
           return {dataState: DataState.LOADED_STATE, appData: response}
         }),
         startWith({dataState: DataState.LOADING_STATE}),
@@ -85,14 +136,6 @@ export class ItemsAdminComponent implements OnInit {
           return of({dataState: DataState.ERROR_STATE, error: error})
         })
       );
-
   }
 
-  edit(item: Item) {
-
-  }
-
-  addItem(newItem: any) {
-
-  }
 }

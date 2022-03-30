@@ -16,10 +16,14 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
   Optional<Collection<Item>> findAllByItemTypeId(Long id);
 
+  Optional<Collection<Item>> findAllByEmployeeId(Long id);
+
     @Transactional
     @Modifying
     @Query("UPDATE Item c " +
             "SET c.employee.id = ?1 " +
             "WHERE c.id = ?2")
   int linkEmployeeToItem(Long employeeId, Long itemId);
+
+
 }

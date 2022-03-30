@@ -33,7 +33,37 @@ p {
 
 }
 
-.table-available {
+.table-available-vertical {
+  color: cornsilk;
+  border: solid 2px #ccc;
+  cursor: pointer;
+  display: flex;
+  text-align: justify;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 20px;
+  background-color: rgba(42, 183, 42, 0.59);
+  z-index: 15;
+  position: absolute;
+}
+
+.table-not-available-vertical {
+  color: cornsilk;
+  border: solid 2px #ccc;
+  cursor: pointer;
+  display: flex;
+  text-align: justify;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 20px;
+  background-color: rgba(255, 0, 0, 0.73);
+  z-index: 15;
+  position: absolute;
+}
+
+.table-available-horizontal {
   color: cornsilk;
   border: solid 2px #ccc;
   cursor: pointer;
@@ -41,14 +71,14 @@ p {
   text-align: center;
   justify-content: center;
   align-items: center;
-  height: 25px;
-  width: 25px;
-  background-color: limegreen;
+  height: 20px;
+  width: 40px;
+  background-color: rgba(42, 183, 42, 0.59);
   z-index: 15;
   position: absolute;
 }
 
-.table-not-available {
+.table-not-available-horizontal {
   color: cornsilk;
   border: solid 2px #ccc;
   cursor: pointer;
@@ -56,11 +86,12 @@ p {
   text-align: center;
   justify-content: center;
   align-items: center;
-  height: 25px;
-  width: 25px;
-  background-color: red;
+  height: 20px;
+  width: 40px;
+  background-color: rgba(255, 0, 0, 0.73);
   z-index: 15;
 }
+
 
 .cdk-drop-dragging .cdk-drag {
   transition: transform 500ms cubic-bezier(0, 0, 0.2, 1);

@@ -45,12 +45,10 @@ public class ItemHist {
     private LocalDateTime manufacturedAt;
     @Column(nullable = false, unique = true)
     private String barcode;
-    @Column(nullable = false)
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private Boolean enabled = true;
-    @Lob
-    private byte[] image;
+    private String image;
     @ManyToOne
     @JoinColumn(name = "app_itemtype_id", nullable = false)
     private ItemType itemType;

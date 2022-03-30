@@ -3,6 +3,8 @@ import {Employee} from "./employee";
 import {Item} from "./item";
 import {User} from "./user";
 import {ItemType} from "./itemType";
+import {Department} from "./department";
+import {Company} from "./company";
 
 export interface CustomResponse {
   timeStamp: Date;
@@ -15,5 +17,8 @@ export interface CustomResponse {
         ,employees?: Employee [], employee?: Employee
         ,items?: Item [], item?: Item
         ,itemTypes?: ItemType [], itemType?: ItemType
-        ,users?: User [] ,user?: User };
+        ,users?: User [] ,user?: User
+        ,departments?: Department [] ,department?: Department
+        ,companies?: Company [] ,company?: Company
+        };
 }

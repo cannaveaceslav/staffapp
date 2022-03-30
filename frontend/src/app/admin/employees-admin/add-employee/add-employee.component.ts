@@ -1,9 +1,9 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Output, EventEmitter} from '@angular/core';
-import {MessageService} from 'primeng/api';
-import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {EmployeesService} from "../../../service/employees.service";
-import {Employee} from "../../../interface/employee";
+import {MatDialogRef} from "@angular/material/dialog";
+import {NgForm} from "@angular/forms";
+import {MatSnackBar} from "@angular/material/snack-bar";
+
 
 @Component({
   selector: 'app-add-employee',
@@ -13,87 +13,95 @@ import {Employee} from "../../../interface/employee";
 export class AddEmployeeComponent implements OnInit {
 
 
-  defaultEmployee: Employee = new Employee();
-  companies!: any[];
-  departments!: any[];
-  // socket: WebSocketSubject<WebSocketMessage> = webSocket('ws://localhost:8080/web-socket/' + 'WS01'/*this.userService.currentUser.username*/);
+  public companiesList: Array<any> = [];
+  public departmentsList: Array<any> = [];
+  public locationsList: Array<any> = [];
+  selectedFile = null;
+
 
   @Output()
   submitted = new EventEmitter();
-  articleDialog: boolean = true;
 
-  constructor(private employeeService: EmployeesService,
-              private messageService: MessageService) {
+  constructor(public employeesService: EmployeesService
+    , public dialogBox: MatDialogRef<AddEmployeeComponent>
+    , private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
-    this.companies = [
-      {label: 'ISD SRL', value: '1'},
-      {label: 'SERVICE SRL', value: '2'},
-    ];
-    this.companies = [
-      {label: 'Administration department', value: '1'},
-      {label: 'Service department', value: '2'},
-      {label: 'IPC department', value: '3'},
-      {label: 'Cost engineering', value: '4'},
-      {label: 'IPA department', value: '5'},
-      {label: 'PLC department', value: '6'},
-    ];
-    // this.connectWS();
+    this.resetForm();
+    this.dropDownLocations();
+    this.dropDownCompanies()
+    this.dropDownDepartments()
   }
 
-  // ngOnDestroy(): void {
-  //   this.closeWebSocketSession();
-  // }
+  dropDownCompanies() {
+    this.employeesService.getDropDownCompanies$.subscribe(data => {
+      data.data?.companies?.forEach(element => {
+        this.companiesList?.push(element);
+      })
+    })
+  }
 
-  save() {
-    if (this.checkProduct()) {
-      let employee = new Employee();
-      employee.lastName = this.defaultEmployee.lastName;
-      employee.firstName = this.defaultEmployee.firstName;
-      employee.company = this.defaultEmployee.company;
-      employee.department = this.defaultEmployee.department;
-      employee.email = this.defaultEmployee.email;
-      employee.birthday = this.defaultEmployee.birthday;
-      employee.location = this.defaultEmployee.location;
-      employee.enabled = this.defaultEmployee.enabled;
-      employee.image = this.defaultEmployee.image;
-      this.employeeService.save$(employee);
-      this.submitted.emit();
-      this.defaultEmployee = new Employee();
+  dropDownDepartments() {
+    this.employeesService.getDropDownDepartments$.subscribe(data => {
+      data.data?.departments?.forEach(element => {
+        this.departmentsList?.push(element);
+      })
+    })
+  }
+
+  dropDownLocations() {
+    this.employeesService.getDropDownLocations$.subscribe(data => {
+      data.data?.locations?.forEach(element => {
+        this.locationsList?.push(element);
+      })
+    })
+  }
+
+  resetForm(form?: NgForm) {
+    if (form != null)
+      form.resetForm();
+
+    // @ts-ignore
+    this.employeesService.formData = {
+
+      id: 0,
+      lastName: '',
+      firstName: "",
+      email: "",
+      birthday: new Date(),
+      createdAt: new Date(),
+      enabled: false,
+      modifiedAt: new Date(),
+
+
     }
   }
 
-  cancel() {
-    this.submitted.emit();
+  onClose() {
+    this.dialogBox.close();
+    this.employeesService.filter('Register click');
   }
 
-  checkProduct() {
-    if (!(this.defaultEmployee.firstName
-      && this.defaultEmployee.lastName
-      && this.defaultEmployee.email
-      && this.defaultEmployee.company
-      && this.defaultEmployee.department
-      && this.defaultEmployee.birthday)) {
-      this.messageService.add({severity: 'error', summary: 'Complete all fields', detail: ''});
-      return false;
-    }
-    return true;
+  onSubmit(form: NgForm) {
+    console.log(form.value);
+
+    this.employeesService.save$(form.value).subscribe(res => {
+        this.resetForm(form);
+        this.snackBar.open(res.message, '', {
+          duration: 3500,
+          verticalPosition: 'top'
+        });
+      }
+    )
   }
 
-  // connectWS() {
-  //   this.socket.subscribe(
-  //     message => {
-  //       console.log("Response: " + message.productId);
-  //       this.defaultProduct.rfId = message.productId;
-  //     },
-  //     error => {
-  //       console.error(error);
-  //     });
-  // }
+  onFileSelected(event:any) {
+    console.log(event);
+    this.selectedFile = event.target.files[0];
+  }
 
-  // closeWebSocketSession() {
-  //   this.socket.complete();
-  // }
-
+  onUpload() {
+    console.log("unUpload clicked")
+  }
 }

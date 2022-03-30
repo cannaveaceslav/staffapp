@@ -1,9 +1,22 @@
-.add_employee {
-  border-radius: 10px;
-    width: 450px;
-    background-color: lightskyblue;
-}
 
+
+.mat-dialog-container {
+  display: block;
+  padding: 24px;
+  max-width: none;
+  border-radius: 15px;
+  box-sizing: border-box;
+  overflow: auto;
+  outline: 0;
+  width: 100%;
+  background: #686ee3;
+  height: 100%;
+  min-height: inherit;
+  max-height: inherit;
+}
+mat-dialog-0 {
+  width: 100%;
+}
 .title {
   text-align: center;
 }

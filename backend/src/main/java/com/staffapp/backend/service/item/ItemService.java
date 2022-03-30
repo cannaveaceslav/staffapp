@@ -1,5 +1,6 @@
 package com.staffapp.backend.service.item;
 
+import com.staffapp.backend.model.Employee;
 import com.staffapp.backend.model.Item;
 import com.staffapp.backend.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -57,4 +58,9 @@ public class ItemService {
   }
 
 
+
+  public Optional<Collection<Item>> listByEmployeeId(Long id) {
+    log.info("Fetching all Items for employee ["+ id+"]");
+    return itemRepository.findAllByEmployeeId(id);
+  }
 }

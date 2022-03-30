@@ -3,7 +3,7 @@
                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
                [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar><h2>ADMIN MENU</h2></mat-toolbar>
     <mat-nav-list>
       <div id="sidebar">
         <mat-nav-list role="list">
@@ -45,7 +45,7 @@
 
       <ng-container *ngSwitchCase="DataState.LOADED_STATE">
         <button mat-icon-button matTooltip="Click to create new" class="table-button"
-                (click)="addItem(newItem)" color="warn">ADD NEW ITEM
+                (click)="addItem()" color="warn">ADD NEW ITEM
           <mat-icon>devices</mat-icon>
         </button>
 
@@ -94,7 +94,7 @@
 
           <ng-container matColumnDef="LOCATION">
             <th mat-header-cell *matHeaderCellDef>LOCATION</th>
-            <td mat-cell *matCellDef="let item"> {{item.location?.locationNumber}} </td>
+            <td mat-cell *matCellDef="let item"> {{item.employee?.location?.locationNumber}} </td>
           </ng-container>
 
            <ng-container matColumnDef="IMAGE">

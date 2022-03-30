@@ -1,0 +1,94 @@
+<div class="mat-dialog-container" style="width: 100%; background: cornflowerblue">
+  <div class="d-flex justify-content-between m-3">
+    <h4>Edit item type</h4>
+
+    <button mat-button (click)="onClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+
+  </div>
+
+  <div style="overflow: auto; height: 100%; width: auto;">
+    <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+
+      <div class="m-2 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 150px"> Type ID</span>
+        </div>
+        <input readonly="readonly"
+               type="text"
+               class="form-control"
+               name="id"
+               #id="ngModel"
+               [(ngModel)]="itemTypeService.formData!.id">
+      </div>
+
+
+      <!--/***************************Field Type Name **************************/-->
+      <div class="m-2 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 150px">Type Name</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="typeName"
+               #TypeName="ngModel"
+               [(ngModel)]="itemTypeService.formData!.typeName">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="TypeName.invalid && TypeName.touched">
+        Please enter the Last Name
+      </div>
+      <!--/***************************Field Description **************************/-->
+      <div class="m-2 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 150px">Description</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="description"
+               #description="ngModel"
+               [(ngModel)]="itemTypeService.formData!.description">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="description.invalid && description.touched">
+        Please enter Description
+      </div>
+
+      <!--/***************************Field Description **************************/-->
+      <div class="m-2 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 150px">Image URL</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="image"
+               #image="ngModel"
+               [(ngModel)]="itemTypeService.formData!.image">
+      </div>
+      <!--/***************************Field Enabled **************************/-->
+      <div class="m-2 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 150px">Enabled</span>
+        </div>
+        <input required minlength="3"
+               type="checkbox"
+               class="form-control"
+               name="enabled"
+               #enabled="ngModel"
+               [(ngModel)]="itemTypeService.formData!.enabled">
+      </div>
+
+
+      <button class="m-2"
+              mat-raised-button color="primary"
+              type="submit">Update item type
+      </button>
+
+    </form>
+  </div>
+
+</div>

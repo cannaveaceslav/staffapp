@@ -1,6 +1,8 @@
 import {Company} from "./company";
 import {Department} from "./department";
 import {Location} from "./location";
+import {Serializer} from "@angular/compiler";
+import {serialize} from "@angular/compiler/src/i18n/serializers/xml_helper";
 
 export class Employee {
   id!: number;
@@ -13,6 +15,6 @@ export class Employee {
   createdAt!: Date;
   modifiedAt!: Date;
   enabled!: boolean;
-  image!: Blob;
+  image!: string;
   location!: Location;
 }

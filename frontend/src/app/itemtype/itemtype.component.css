@@ -21,8 +21,8 @@ ul {
 
 .padding-lg {
   display: block;
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 
 .practice-area.padding-lg {
@@ -83,15 +83,15 @@ ul {
 .our-webcoderskull .cnt-block figure {
   width: 148px;
   height: 148px;
-  border-radius: 100%;
+  border-radius: 10%;
   display: inline-block;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 .our-webcoderskull .cnt-block img {
   width: 148px;
   height: 148px;
-  border-radius: 100%;
+  border-radius: 10%;
 }
 
 .our-webcoderskull .cnt-block h3 {

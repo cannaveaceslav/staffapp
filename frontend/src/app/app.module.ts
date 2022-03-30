@@ -9,7 +9,6 @@ import {EmployeesComponent} from './employees/employees.component';
 import {ItemComponent} from './item/item.component';
 import {ReportsComponent} from './reports/reports.component';
 import {HomeComponent} from './home/home.component';
-import {AddEmployeeComponent} from './employees/add-employee/add-employee.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
@@ -53,8 +52,29 @@ import {ButtonModule} from "primeng/button";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTooltipModule} from "@angular/material/tooltip";
-import { ItemsComponent } from './items/items.component';
+import {ItemsComponent} from './items/items.component';
 import {MatSortModule} from "@angular/material/sort";
+import {AddEmployeeComponent} from "./admin/employees-admin/add-employee/add-employee.component";
+import {ToastModule} from "primeng/toast";
+import {InputTextModule} from "primeng/inputtext";
+import {InputTextareaModule} from "primeng/inputtextarea";
+import {RippleModule} from "primeng/ripple";
+import {MessageService} from "primeng/api";
+import {AddTypeComponent} from './admin/item-types-admin/add-type/add-type.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {EditEmployeeComponent} from './admin/employees-admin/edit-employee/edit-employee.component';
+import {EditTypeComponent} from './admin/item-types-admin/edit-type/edit-type.component';
+import {AddItemComponent} from './admin/items-admin/add-item/add-item.component';
+import {EditItemComponent} from './admin/items-admin/edit-item/edit-item.component';
+import {AddLocationComponent} from './admin/locations-admin/add-lcoation/add-location.component';
+import {EditLocationComponent} from './admin/locations-admin/edit-location/edit-location.component';
+import {EditUserComponent} from './admin/users-admin/edit-user/edit-user.component';
+import {CompaniesAdminComponent} from './admin/companies-admin/companies-admin.component';
+import {AddCompanyComponent} from './admin/companies-admin/add-company/add-company.component';
+import {EditCompanyComponent} from './admin/companies-admin/edit-company/edit-company.component';
+import {DepartmentsAdminComponent} from './admin/departments-admin/departments-admin.component';
+import {AddDepartmentComponent} from './admin/departments-admin/add-department/add-department.component';
+import {EditDepartmentComponent} from './admin/departments-admin/edit-department/edit-department.component';
 
 @NgModule({
   declarations: [
@@ -80,48 +100,80 @@ import {MatSortModule} from "@angular/material/sort";
     ItemTypesAdminComponent,
     UsersAdminComponent,
     ConfirmPageComponent,
-    ItemsComponent
+    ItemsComponent,
+    AddTypeComponent,
+    EditEmployeeComponent,
+    EditTypeComponent,
+    AddItemComponent,
+    EditItemComponent,
+    AddLocationComponent,
+    EditLocationComponent,
+    EditUserComponent,
+    CompaniesAdminComponent,
+    AddCompanyComponent,
+    EditCompanyComponent,
+    DepartmentsAdminComponent,
+    AddDepartmentComponent,
+    EditDepartmentComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatToolbarModule,
-        MatTabsModule,
-        MatInputModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatCheckboxModule,
-        MatRadioModule,
-        DragDropModule,
-        BrowserAnimationsModule,
-        LayoutModule,
-        MatToolbarModule,
-        MatButtonModule,
-        RadioButtonModule,
-        ButtonModule,
-        MatSidenavModule,
-        MatDialogModule,
-        MatIconModule,
-        MatListModule,
-        MatGridListModule,
-        MatCardModule,
-        MatMenuModule,
-        PaginatorModule,
-        TreeTableModule,
-        TableModule,
-        MatTableModule,
-        MatPaginatorModule,
-        MatTooltipModule,
-        MatSortModule
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatToolbarModule,
+    MatTabsModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatSnackBarModule,
+    DragDropModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    RadioButtonModule,
+    ButtonModule,
+    MatSidenavModule,
+    MatDialogModule,
+    MatIconModule,
+    MatListModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    PaginatorModule,
+    TreeTableModule,
+    TableModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatTooltipModule,
+    MatSortModule,
+    ToastModule,
+    InputTextModule,
+    InputTextareaModule,
+    RippleModule
 
-    ],
-  providers: [{
+  ],
+  providers: [MessageService, {
     provide: HTTP_INTERCEPTORS, useClass: BasicAuthHttpInterceptorService, multi: true
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AddEmployeeComponent
+    , EditEmployeeComponent
+    , AddTypeComponent
+    , EditTypeComponent
+    , AddItemComponent
+    , EditItemComponent
+    , AddLocationComponent
+    , EditLocationComponent
+    , EditUserComponent
+    , AddCompanyComponent
+    , EditCompanyComponent
+    , AddDepartmentComponent
+    , EditDepartmentComponent]
 })
 export class AppModule {
 }

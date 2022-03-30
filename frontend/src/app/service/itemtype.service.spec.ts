@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ItemtypeService } from './itemtype.service';
+import { ItemTypeService } from './itemtype.service';
 
-describe('ItemtypeService', () => {
-  let service: ItemtypeService;
+describe('ItemTypeService', () => {
+  let service: ItemTypeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ItemtypeService);
+    service = TestBed.inject(ItemTypeService);
   });
 
   // it('should be created', () => {

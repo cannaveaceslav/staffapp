@@ -36,9 +36,7 @@ public class ItemType {
   @Column(nullable = false)
   private String typeName;
   private String description;
-  @Lob
-  private byte[] image;
-  @Column(nullable = false)
+  private String image;
   private LocalDateTime createdAt;
   private LocalDateTime modifiedAt;
   private Boolean enabled = true;

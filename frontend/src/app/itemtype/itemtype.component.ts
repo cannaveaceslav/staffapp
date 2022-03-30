@@ -3,7 +3,7 @@ import {map, Observable, of, startWith} from "rxjs";
 import {AppState} from "../interface/app-state";
 import {DataState} from "../enum/data-state.enum";
 import {CustomResponse} from "../interface/custom-response";
-import {ItemtypeService} from "../service/itemtype.service";
+import {ItemTypeService} from "../service/itemtype.service";
 import {Router} from "@angular/router";
 import {catchError} from "rxjs/operators";
 
@@ -15,7 +15,7 @@ import {catchError} from "rxjs/operators";
 export class ItemtypeComponent implements OnInit {
   appState$!: Observable<AppState<CustomResponse>>;
   readonly DataState = DataState;
-  constructor(private itemTypeService: ItemtypeService, private router:Router) { }
+  constructor(private itemTypeService: ItemTypeService, private router:Router) { }
 
   ngOnInit(): void {
     this.appState$ = this.itemTypeService.getItemTypes$

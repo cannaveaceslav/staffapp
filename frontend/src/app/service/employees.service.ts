@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Employee} from "../interface/employee";
-import {Observable, throwError} from "rxjs";
+import {Observable, Subject, throwError} from "rxjs";
 import {CustomResponse} from "../interface/custom-response";
 import {catchError, tap} from "rxjs/operators";
 import {environment} from "../../environments/environment";
@@ -14,10 +14,10 @@ import {environment} from "../../environments/environment";
 })
 export class EmployeesService {
   private baseURL = environment.serverUrl;
+  formData?: Employee;
 
 
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) {  }
 
 
   // public getEmployees() {
@@ -58,6 +58,47 @@ export class EmployeesService {
     console.log(error)
     throw new Error(`An error occurred - Error code: ${error.status}`);
   }
+
+  private _listeners = new Subject<any>();
+  private let: any;
+  listen(): Observable<any>{
+    return this._listeners.asObservable();
+  }
+
+  filter(filterBy: string){
+    this._listeners.next(filterBy);
+  }
+
+
+
+  public update$ = (employee: Employee, ) => <Observable<CustomResponse>>
+    this.httpClient.put<CustomResponse>(`${this.baseURL}/employees/update`, employee)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
+
+
+  public getDropDownDepartments$ = <Observable<CustomResponse>>
+    this.httpClient.get<CustomResponse>(`${this.baseURL}/departments`)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
+
+  public getDropDownCompanies$ = <Observable<CustomResponse>>
+    this.httpClient.get<CustomResponse>(`${this.baseURL}/companies`)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
+
+  public getDropDownLocations$ = <Observable<CustomResponse>>
+    this.httpClient.get<CustomResponse>(`${this.baseURL}/layout`)
+      .pipe(
+        tap(console.log),
+        catchError(this.handleError)
+      );
 
 
 }

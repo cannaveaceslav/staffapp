@@ -1,0 +1,100 @@
+<div class="mat-dialog-container" style="width: 100%; background: cornflowerblue" >
+  <div class="d-flex justify-content-between" >
+    <h4>Add new location</h4>
+
+    <button mat-button (click)="onClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+
+  </div>
+
+  <div style="overflow: auto; height: 100%; width: 400px;">
+    <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+
+      <!--/***************************Field Type Name **************************/-->
+      <div class="mt-4 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 150px">Location Number</span>
+        </div>
+        <input required
+               minlength="1"
+               type="number"
+               class="form-control"
+               name="locationNumber"
+               #locationNumber="ngModel"
+               [(ngModel)]="locationService.formData!.locationNumber">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="locationNumber.invalid && locationNumber.touched">
+        Please enter location number
+      </div>
+      <!--/***************************Field Description **************************/-->
+      <div class="mt-4 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 150px">Description</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="description"
+               #description="ngModel"
+               [(ngModel)]="locationService.formData!.description">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="description.invalid && description.touched">
+        Please enter Description
+      </div>
+      <!--/***************************Field Description **************************/-->
+      <div class="mt-4 input-group"style="width: 100%">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 150px">Table orientation</span>
+        </div>
+        <select class="form-control"
+                name="locationType"
+                #locationType="ngModel"
+                [(ngModel)]="locationService.formData!.locationType">
+          <option *ngFor="let ll of locationTypes" [value]="ll">
+            {{ll}}
+          </option>
+        </select>
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="locationType.invalid && locationType.touched">
+        Please select location Type
+      </div>
+      <!--/***************************Field Enabled **************************/-->
+      <div class="mt-4 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 150px">Position X</span>
+        </div>
+        <input required minlength="3"
+               type="number"
+               class="form-control"
+               name="pos_x"
+               #pos_x="ngModel"
+               [(ngModel)]="locationService.formData!.pos_x">
+      </div>
+      <!--/***************************Field Enabled **************************/-->
+      <div class="mt-4 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 150px">Position Y</span>
+        </div>
+        <input required minlength="3"
+               type="number"
+               class="form-control"
+               name="pos_y"
+               #pos_y="ngModel"
+               [(ngModel)]="locationService.formData!.pos_y">
+      </div>
+
+
+
+      <button class="mt-4"
+              mat-raised-button color="primary"
+              type="submit">Add item type
+      </button>
+
+    </form>
+  </div>
+
+</div>

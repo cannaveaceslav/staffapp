@@ -1,5 +1,8 @@
 package com.staffapp.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -30,6 +33,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Builder
+@JsonIgnoreProperties
 @Table(name = "APP_EMPLOYEE")
 public class Employee {
 
@@ -57,17 +61,17 @@ public class Employee {
   private Department department;
   @Column(nullable = false)
   private LocalDate  birthday;
-  @Column(nullable = false)
   private LocalDateTime createdAt;
   private LocalDateTime modifiedAt;
   private Boolean enabled = true;
-  @Lob
-  private byte[] image;
+//  @Lob
+  private String image;
   //    @OneToOne(fetch = FetchType.LAZY,
 //            cascade = CascadeType.ALL,
 //            mappedBy = "employee"
 //    )
   @OneToOne(fetch = FetchType.EAGER)
+  @JsonBackReference
   @JoinColumn(name = "app_location_id")
   private Location location;
 

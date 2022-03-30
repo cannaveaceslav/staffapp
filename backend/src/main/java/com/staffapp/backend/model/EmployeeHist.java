@@ -42,12 +42,10 @@ public class EmployeeHist {
   private Department department;
   @Column(nullable = false)
   private LocalDateTime birthday;
-  @Column(nullable = false)
   private LocalDateTime createdAt;
   private LocalDateTime deletedAt;
   private Boolean enabled = false;
-  @Lob
-  private byte[] image;
+  private String image;
   @OneToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "app_location_id")
   private Location location;

@@ -3,7 +3,7 @@
                [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
                [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar><h2>ADMIN MENU</h2></mat-toolbar>
     <mat-nav-list>
       <div id="sidebar">
         <mat-nav-list role="list">
@@ -46,7 +46,7 @@
       <ng-container *ngSwitchCase="DataState.LOADED_STATE">
 
         <button mat-icon-button matTooltip="Click to create new" class="table-button"
-                (click)="addLocation(newLocation)" color="warn">ADD NEW LOCATION
+                (click)="addLocation()" color="warn">ADD NEW LOCATION
           <mat-icon>person_pin_circle</mat-icon>
         </button>
 
@@ -73,9 +73,19 @@
             <td mat-cell *matCellDef="let location"> {{location.description}} </td>
           </ng-container>
 
+          <ng-container matColumnDef="TYPE">
+            <th mat-header-cell *matHeaderCellDef> ORIENTATION </th>
+            <td mat-cell *matCellDef="let location"> {{location.locationType}} </td>
+          </ng-container>
+
           <ng-container matColumnDef="EMPLOYEE">
             <th mat-header-cell *matHeaderCellDef> EMPLOYEE</th>
-            <td mat-cell *matCellDef="let location"> {{location.employee?.lastName + ' ' + location.employee?.firstName}} </td>
+            <td mat-cell *matCellDef="let location"> {{location.employee?.lastName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="AVAILABLE">
+            <th mat-header-cell *matHeaderCellDef> AVAILABLE</th>
+            <td mat-cell *matCellDef="let location"> {{location.available}} </td>
           </ng-container>
 
           <ng-container matColumnDef="POS X">
