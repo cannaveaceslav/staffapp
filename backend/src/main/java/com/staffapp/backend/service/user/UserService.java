@@ -96,11 +96,9 @@ public class UserService implements UserDetailsService {
         }
 
         if (matches) {
-            System.out.println("***********SUCCESS**********");
             return optionalUser;
 
         } else {
-            System.out.println("***********FAIL**********");
             throw new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email));
         }
 
