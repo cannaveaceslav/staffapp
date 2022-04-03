@@ -10,7 +10,7 @@
   </parent>
   <groupId>com.staffapp</groupId>
   <artifactId>backend</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1</version>
   <name>backend</name>
   <description>JTOM#3 Project by VCANNA</description>
   <properties>

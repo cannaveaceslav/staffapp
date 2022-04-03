@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  oracle-container:
+    image: kutsyy/oracle-12c
+    container_name: oracle-container
+    environment:
+      - ORACLE_ROOT_PASSWORD=sys
+      - ORACLE_DATABASE=DBINT
+      - ORACLE_USER=STAFFAPP
+      - ORACLE_PASSWORD=staffapp
+  backend-docker-container:
+    image: backend
+    container_name: backend-container
+    ports:
+      - 8080:8080
+    build:
+      context: ./
+      dockerfile: pipelines/Dockerfile
+    depends_on:
+      - oracle-container
