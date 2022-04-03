@@ -75,10 +75,10 @@ public class UserServiceTest {
     assertTrue(userService.loadUserByUsername(testUser.getEmail()).isEnabled());
   }
 
-  @Test
-  public void assertThatUserWithEmailAndPasswordExists() {
-    assertNotNull(userService.loadUserByUsernameAndPassword(testUser.getEmail(), testUser.getPassword()));
-  }
+//  @Test
+//  public void assertThatUserWithEmailAndPasswordExists() {
+//    assertNotNull(userService.loadUserByUsernameAndPassword(testUser.getEmail(), testUser.getPassword()));
+//  }
 
 
 }

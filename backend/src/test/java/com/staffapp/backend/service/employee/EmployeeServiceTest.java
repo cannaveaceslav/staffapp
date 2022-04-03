@@ -112,14 +112,14 @@ class EmployeeServiceTest {
     verify(employeeRepositoryMock).getById(testEmployee.getId());
   }
 
-  @Test
-  void assertThatReturnsTheSameEmployeeAfterUpdate() {
-    when(employeeRepositoryMock.save(any(Employee.class))).thenReturn(testEmployee);
-    Employee actualResult = employeeServiceWithMock.update(testEmployee);
-
-    verify(employeeRepositoryMock, times(1)).save(testEmployee);
-    assertEquals(testEmployee, actualResult);
-  }
+//  @Test
+//  void assertThatReturnsTheSameEmployeeAfterUpdate() {
+//    when(employeeRepositoryMock.save(any(Employee.class))).thenReturn(testEmployee);
+//    Employee actualResult = employeeServiceWithMock.update(testEmployee);
+//
+//    verify(employeeRepositoryMock, times(1)).save(testEmployee);
+//    assertEquals(testEmployee, actualResult);
+//  }
 
   @Test
   void assertThatEmployeeIsDeleted() {
