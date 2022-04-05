@@ -8,7 +8,7 @@ pipeline {
         def serviceName = "frontend";
         def branchName = "main";
         def versionName = "";
-        def dockerRegistry = "836434573289.dkr.ecr.eu-north-1.amazonaws.com"
+        def dockerRegistry = "vcanna1989/frontend"
         def imageName = "";
         def dockerImage = null;
         registryCredential = 'docker'
@@ -41,13 +41,20 @@ pipeline {
                 script {
                     echo 'Build docker image'
                     dir('frontend/') {
-                        dockerImage = docker.build(imageName,  "-f pipelines/Dockerfile .")
+                      dockerImage = docker.build("vcanna1989/frontend", "-f pipelines/Dockerfile .")
                     }
 
                 }
             }
         }
-      stage('Deploy our image') {
+      stage('add tag'){
+        steps {
+          script {
+            sh('docker tag vcanna1989/fronted vcanna1989/frontend:1.01 ')
+          }
+        }
+      }
+      stage('Push our image') {
         steps {
           script {
             docker.withRegistry( '', registryCredential ) {
