@@ -11,5 +11,6 @@ RUN npm run build --prod
 
 EXPOSE 4200
 
+
 CMD ["npm", "start"]
 
