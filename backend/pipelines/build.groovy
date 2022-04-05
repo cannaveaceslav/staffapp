@@ -52,11 +52,17 @@ pipeline {
                 }
             }
         }
+        stage('login') {
+            steps {
+                script {
+                    sh 'echo $DOCKERHUB_CREDENTIALS_PWS | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                }
+            }
+        }
         stage('docker publish') {
             steps {
                 script {
                     echo 'Publish docker image'
-                    sh('echo $dockerHub_PWS | docker login -u $dockerHub_USR --password-stdin')
                     sh 'docker push vcanna1989/backend:1.01 '
 
                 }
