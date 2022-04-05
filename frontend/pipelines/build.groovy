@@ -50,7 +50,7 @@ pipeline {
       stage('add tag'){
         steps {
           script {
-            sh('docker tag vcanna1989/fronted vcanna1989/frontend:1.01 ')
+            sh('docker tag vcanna1989/frontend vcanna1989/frontend:1.01 ')
           }
         }
       }
