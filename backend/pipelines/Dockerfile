@@ -6,13 +6,14 @@ FROM maven:3.8.4-openjdk-11 AS builder
 #ADD ../src src/
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
+COPY src ./src
 
 
 # package jar
-#RUN mvn clean package -DskipTests
-RUN ./mvnw dependency:go-offline
+RUN mvn clean package -DskipTests
+#RUN ./mvnw dependency:go-offline
 
-COPY src ./src
+
 
 
 RUN ls -lah target
