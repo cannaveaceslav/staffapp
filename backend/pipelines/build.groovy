@@ -8,9 +8,10 @@ pipeline {
         def serviceName = "backend";
         def branchName = "main";
         def versionName = "";
-        def dockerRegistry = "europe-west1-docker.pkg.dev/neat-environs-343619/backend"
+        def dockerRegistry = "vcanna1989/backend"
         def imageName = "";
         def dockerImage = null;
+        registryCredential = 'docker'
         DOCKERHUB_CREDENTIALS = credentials('docker');
     }
 
@@ -52,10 +53,19 @@ pipeline {
                 }
             }
         }
+        stage('Deploy our image') {
+            steps {
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
         stage('login') {
             steps {
                 script {
-                    sh 'echo $DOCKERHUB_CREDENTIALS_PWS | winpty docker login -u "$DOCKERHUB_CREDENTIALS_USR" --password-stdin'
+                    sh 'echo $DOCKERHUB_CREDENTIALS_PWS | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                 }
             }
         }
