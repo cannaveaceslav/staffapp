@@ -53,7 +53,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy our image') {
+        stage('Push our image') {
             steps {
                 script {
                     docker.withRegistry( '', registryCredential ) {
