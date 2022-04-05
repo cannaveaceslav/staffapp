@@ -11,7 +11,7 @@ pipeline {
         def dockerRegistry = "europe-west1-docker.pkg.dev/neat-environs-343619/backend"
         def imageName = "";
         def dockerImage = null;
-        DOCKERHUB_CREDENTIALS = credentials('docker2');
+        DOCKERHUB_CREDENTIALS = credentials('docker');
     }
 
     stages {
@@ -55,7 +55,7 @@ pipeline {
         stage('login') {
             steps {
                 script {
-                    sh 'echo $DOCKERHUB_CREDENTIALS_PWS | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                    sh 'echo $DOCKERHUB_CREDENTIALS_PWS | winpty docker login -u "$DOCKERHUB_CREDENTIALS_USR" --password-stdin'
                 }
             }
         }
