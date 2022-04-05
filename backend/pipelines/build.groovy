@@ -11,7 +11,7 @@ pipeline {
         def dockerRegistry = "europe-west1-docker.pkg.dev/neat-environs-343619/backend"
         def imageName = "";
         def dockerImage = null;
-        DOCKERHUB_CREDENTIALS = credentials('docker');
+        DOCKERHUB_CREDENTIALS = credentials('docker2');
     }
 
     stages {
