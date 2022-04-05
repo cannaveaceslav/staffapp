@@ -47,7 +47,7 @@ pipeline {
         stage('add tag'){
             steps {
                 script {
-                    sh('docker tag gogo6ar/backend gogo6ar/backend:1.01 ')
+                    sh('docker tag vcanna1989/backend vcanna1989/backend:1.01 ')
                 }
             }
         }
@@ -56,7 +56,7 @@ pipeline {
                 script {
                     echo 'Publish docker image'
                     sh('echo $dockerHub_PWS | docker login -u $dockerHub_USR --password-stdin')
-                    sh 'docker push gogo6ar/backend:1.01 '
+                    sh 'docker push vcanna1989/backend:1.01 '
 
                 }
             }
