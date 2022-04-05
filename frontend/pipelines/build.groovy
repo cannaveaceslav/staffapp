@@ -11,6 +11,7 @@ pipeline {
         def dockerRegistry = "836434573289.dkr.ecr.eu-north-1.amazonaws.com"
         def imageName = "";
         def dockerImage = null;
+        registryCredential = 'docker'
     }
 
     stages {
@@ -46,17 +47,14 @@ pipeline {
                 }
             }
         }
-        stage('docker publish') {
-            steps {
-                script {
-                    echo 'Publish docker image'
-                     docker.withRegistry("https://${dockerRegistry}",  'ecr:eu-north-1:ecr_key') {
-
-                        dockerImage.push()
-                     }
-
-                }
+      stage('Deploy our image') {
+        steps {
+          script {
+            docker.withRegistry( '', registryCredential ) {
+              dockerImage.push()
             }
+          }
         }
+      }
     }
 }
