@@ -2,11 +2,18 @@
 FROM maven:3.8.4-openjdk-11 AS builder
 
 # add pom.xml and source code
-ADD ./pom.xml pom.xml
-ADD ../src src/
+#ADD ../pom.xml pom.xml
+#ADD ../src src/
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+
 
 # package jar
-RUN mvn clean package -DskipTests
+#RUN mvn clean package -DskipTests
+RUN ./mvnw dependency:go-offline
+
+COPY src ./src
+
 
 RUN ls -lah target
 
@@ -18,4 +25,6 @@ COPY --from=builder ./target/backend-0.1.jar  /srv/app.jar
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "/srv/app.jar"]
+CMD ["./mvnw", "spring-boot:run"]
+
+#CMD ["java", "-jar", "/srv/app.jar"]
