@@ -14,7 +14,7 @@ RUN ls -lah target
 FROM openjdk:11-jre-slim
 
 # copy jar from the first stage
-COPY --from=builder ../target/backend-0.1.jar  /srv/app.jar
+COPY --from=builder ./target/backend-0.1.jar  /srv/app.jar
 
 EXPOSE 8080
 
