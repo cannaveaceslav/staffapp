@@ -26,6 +26,6 @@ COPY --from=builder ./target/backend-0.1.jar  /srv/app.jar
 
 EXPOSE 8080
 
-CMD ["./mvnw", "spring-boot:run"]
+#CMD ["./mvnw", "spring-boot:run"]
 
-#CMD ["java", "-jar", "/srv/app.jar"]
+CMD ["java", "-jar", "/srv/app.jar"]
