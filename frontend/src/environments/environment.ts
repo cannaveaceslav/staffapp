@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  serverActuatorUrl: 'http://localhost:8080/actuator',
-  serverUrl: 'http://localhost:8080'
+  // serverActuatorUrl: 'http://localhost:8080/actuator',
+  // serverUrl: 'http://localhost:8080'
+  serverActuatorUrl: 'http://138.3.240.127:8082/actuator',
+  serverUrl: 'http://138.3.240.127:8082'
 };
 
 /*
