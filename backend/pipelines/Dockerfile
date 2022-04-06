@@ -3,7 +3,7 @@
 
 FROM java:8
 WORKDIR /srv/
-ADD target/backend-0.1.jar backend.jar
+ADD target/backend-0.1.jar backend-0.1.jar
 
 # package jar
 #RUN mvn clean package -DskipTests
@@ -17,5 +17,5 @@ ADD target/backend-0.1.jar backend.jar
 
 EXPOSE 8088
 
-ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "backend.jar"]
+ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "backend-0.1.jar"]
 
