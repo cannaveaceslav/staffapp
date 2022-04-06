@@ -47,26 +47,34 @@ pipeline {
                 }
             }
         }
-      stage('add tag'){
+//      stage('add tag'){
+//        steps {
+//          script {
+//            sh('docker tag vcanna1989/frontend vcanna1989/frontend:1.01 ')
+//          }
+//        }
+//      }
+//      stage('push image to dockerhub') {
+//        steps {
+//          script {
+//            docker.withRegistry( '', registryCredential ) {
+//              dockerImage.push()
+//            }
+//          }
+//        }
+//      }
+      stage('stop container'){
         steps {
           script {
-            sh('docker tag vcanna1989/frontend vcanna1989/frontend:1.01 ')
+            sh('docker stop /staffapp_frontend ')
           }
         }
       }
-      stage('push image to dockerhub') {
-        steps {
-          script {
-            docker.withRegistry( '', registryCredential ) {
-              dockerImage.push()
-            }
-          }
-        }
-      }
+
       stage('remove container'){
         steps {
           script {
-            sh('docker rm /staffapp_backend ')
+            sh('docker rm /staffapp_frontend ')
           }
         }
       }
@@ -79,4 +87,5 @@ pipeline {
       }
     }
 }
+
 
