@@ -2,7 +2,7 @@
 #FROM maven:3.8.4-openjdk-11 AS builder
 
 FROM java:8
-WORKDIR /srv/
+#WORKDIR /srv/
 ADD target/backend-0.1.jar backend-0.1.jar
 
 # package jar
