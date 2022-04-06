@@ -27,7 +27,7 @@ pipeline {
 
             }
         }
-        stage('clone') {
+        stage('clone repo') {
             steps {
                 script {
                     echo 'Clone repository'
@@ -36,7 +36,7 @@ pipeline {
                 }
             }
         }
-        stage('build') {
+        stage('build image') {
             steps {
                 script {
                     echo 'Build docker image'
@@ -54,7 +54,7 @@ pipeline {
           }
         }
       }
-      stage('Push our image') {
+      stage('push image to dockerhub') {
         steps {
           script {
             docker.withRegistry( '', registryCredential ) {
