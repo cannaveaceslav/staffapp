@@ -15,9 +15,9 @@ RUN ls -lah target
 FROM openjdk:11-jre-slim
 
 # copy jar from the first stage
-COPY --from=builder ./target/backend-0.1.jar  backend-0.1.jar
+COPY --from=builder ./target/backend-0.1.jar  backend.jar
 
 EXPOSE 8088
 
-ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "backend-0.1.jar"]
+ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "backend.jar"]
 
