@@ -3,12 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {SystemCPU} from "../interface/SystemCPU";
 import {SystemlHealth} from "../interface/system-health";
+import {environment} from "../../environments/environment.prod";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
-  private baseUrl = 'http://localhost:8080/actuator';
+  // private baseUrl = 'http://localhost:8080/actuator';
+  private baseUrl = environment.serverActuatorUrl
 
   constructor(private http:HttpClient) { }
 
