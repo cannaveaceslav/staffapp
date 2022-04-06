@@ -63,5 +63,20 @@ pipeline {
           }
         }
       }
+      stage('remove container'){
+        steps {
+          script {
+            sh('docker rm /staffapp_backend ')
+          }
+        }
+      }
+      stage('run container'){
+        steps {
+          script {
+            sh('docker run -p 4200:4200 --name staffapp_frontend vcanna1989/frontend:latest ')
+          }
+        }
+      }
     }
 }
+
