@@ -1,20 +1,13 @@
 # First stage: complete build environment
 FROM maven:3.8.4-openjdk-11 AS builder
 
-# add pom.xml and source code
-#ADD ../pom.xml pom.xml
-#ADD ../src src/
+# copy pom.xml and source code
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 COPY src ./src
 
-
 # package jar
 RUN mvn clean package -DskipTests
-#RUN ./mvnw dependency:go-offline
-
-
-
 
 RUN ls -lah target
 
@@ -22,10 +15,9 @@ RUN ls -lah target
 FROM openjdk:11-jre-slim
 
 # copy jar from the first stage
-COPY --from=builder ./target/backend-0.1.jar  /srv/app.jar
+COPY --from=builder ./target/backend-0.1.jar  backend-0.1.jar
 
-EXPOSE 8080
+EXPOSE 8088
 
-#CMD ["./mvnw", "spring-boot:run"]
+ENTRYPOINT ["java","-jar","backend-0.1.jar"]
 
-CMD ["java", "-jar", "/srv/app.jar"]
