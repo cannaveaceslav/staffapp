@@ -63,7 +63,7 @@ pipeline {
 //            }
 //        }
 
-/*
+
         stage('stop container'){
             steps {
                 script {
@@ -86,13 +86,8 @@ pipeline {
                 }
             }
         }
-*/
-        stage('start container'){
-            steps{
-                sh 'docker-compose up'
-                sh 'docker compose ps'
-            }
-        }
+
+
 
     }
 
