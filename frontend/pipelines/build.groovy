@@ -66,7 +66,7 @@ pipeline {
       stage('stop container'){
         steps {
           script {
-            sh('docker stop /staffapp_frontend ')
+            sh('docker stop /staffapp_frontend || true ')
           }
         }
       }
@@ -74,7 +74,7 @@ pipeline {
       stage('remove container'){
         steps {
           script {
-            sh('docker rm /staffapp_frontend ')
+            sh('docker rm /staffapp_frontend || true ')
           }
         }
       }
