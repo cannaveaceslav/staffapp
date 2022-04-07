@@ -62,6 +62,8 @@ pipeline {
 //                }
 //            }
 //        }
+
+/*
         stage('stop container'){
             steps {
                 script {
@@ -76,6 +78,7 @@ pipeline {
                 }
             }
         }
+
         stage('run container'){
             steps {
                 script {
@@ -83,6 +86,14 @@ pipeline {
                 }
             }
         }
+*/
+        stage('start container'){
+            steps{
+                sh 'docker compose up -d --no-color --wait'
+                sh 'docker compose ps'
+            }
+        }
+
     }
 
 }
