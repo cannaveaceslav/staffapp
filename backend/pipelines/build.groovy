@@ -82,8 +82,7 @@ pipeline {
         stage('run container'){
             steps {
                 script {
-                    sh('docker run -p 8082:8082 --name staffapp_backend vcanna1989/backend:latest ' +
-                            'exit')
+                    sh('docker run -d -p 8082:8082 --name staffapp_backend vcanna1989/backend:latest ' )
 
                 }
             }
