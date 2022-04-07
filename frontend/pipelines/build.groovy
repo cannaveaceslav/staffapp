@@ -81,7 +81,7 @@ pipeline {
       stage('run container'){
         steps {
           script {
-            sh('docker run -d-p 4200:4200 --name staffapp_frontend vcanna1989/frontend:latest ')
+            sh('docker run -d -p 4200:4200 --name staffapp_frontend vcanna1989/frontend:latest ')
           }
         }
       }
