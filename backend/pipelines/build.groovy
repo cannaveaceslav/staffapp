@@ -67,14 +67,14 @@ pipeline {
         stage('stop container'){
             steps {
                 script {
-                    sh('docker stop /staffapp_backend ')
+                    sh('docker stop /staffapp_backend || true ')
                 }
             }
         }
         stage('remove container'){
             steps {
                 script {
-                    sh('docker rm /staffapp_backend ')
+                    sh('docker rm /staffapp_backend || true ')
                 }
             }
         }
