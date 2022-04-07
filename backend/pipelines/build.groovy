@@ -89,7 +89,7 @@ pipeline {
 */
         stage('start container'){
             steps{
-                sh 'docker compose up -d --no-color --wait'
+                sh 'docker compose up'
                 sh 'docker compose ps'
             }
         }
