@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  backend-docker-container:
+    image: vcanna1989/backend:latest
+    container_name: backend-container
+    ports:
+      - 8082:8082
