@@ -104,3 +104,11 @@ table {
 
 
 }
+
+.img-responsive{
+  width: 10%;
+  height: 10%;
+  position: center;
+  /*margin-left: 300px;*/
+
+}

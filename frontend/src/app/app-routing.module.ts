@@ -22,6 +22,7 @@ import {ItemsComponent} from "./items/items.component";
 import {AddEmployeeComponent} from "./admin/employees-admin/add-employee/add-employee.component";
 import {AddTypeComponent} from "./admin/item-types-admin/add-type/add-type.component";
 import {ConfirmPageComponent} from "./registration/confirm-page/confirm-page.component";
+import {DepartmentsAdminComponent} from "./admin/departments-admin/departments-admin.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -43,6 +44,7 @@ const routes: Routes = [
   {path: 'admin', component: AdminComponent, canActivate: [AuthGaurdService]},
   {path: 'admin/dashboard', component: DashboardComponent, canActivate: [AuthGaurdService]},
   {path: 'admin/items', component: ItemsAdminComponent, canActivate: [AuthGaurdService]},
+  {path: 'admin/departments', component: DepartmentsAdminComponent, canActivate: [AuthGaurdService]},
   {path: 'admin/employees', component: EmployeesAdminComponent, canActivate: [AuthGaurdService]},
   {path: 'admin/item-types', component: ItemTypesAdminComponent, canActivate: [AuthGaurdService]},
   {path: 'admin/users', component: UsersAdminComponent, canActivate: [AuthGaurdService]},

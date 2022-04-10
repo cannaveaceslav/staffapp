@@ -1,1 +1,70 @@
-<p>add-department works!</p>
+<div class="mat-dialog-container" style="width: 100%; background: cornflowerblue" >
+  <div class="d-flex justify-content-between" >
+    <h4>Add new department</h4>
+
+    <button mat-button (click)="onClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+
+  </div>
+
+  <div style="overflow: auto; height: 100%; width: 400px;">
+    <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+
+      <!--/***************************Field Type Name **************************/-->
+      <div class="mt-4 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 150px">Department Name</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="departmentName"
+               #departmentName="ngModel"
+               [(ngModel)]="departmentService.formData!.departmentName">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="departmentName.invalid && departmentName.touched">
+        Please enter the Last Name
+      </div>
+      <!--/***************************Field Description **************************/-->
+      <div class="mt-4 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 150px">Description</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="description"
+               #description="ngModel"
+               [(ngModel)]="departmentService.formData!.description">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="description.invalid && description.touched">
+        Please enter Description
+      </div>
+
+      <!--/***************************Field Enabled **************************/-->
+      <div class="mt-4 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 150px">Enabled</span>
+        </div>
+        <input required minlength="3"
+               type="checkbox"
+               class="form-control"
+               name="enabled"
+               #enabled="ngModel"
+               [(ngModel)]="departmentService.formData!.enabled">
+      </div>
+
+
+
+      <button class="mt-4"
+              mat-raised-button color="primary"
+              type="submit">Add department
+      </button>
+
+    </form>
+  </div>
+
+</div>

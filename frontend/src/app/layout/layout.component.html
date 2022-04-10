@@ -16,19 +16,17 @@
 
                  (cdkDragEnded)=onDragEnded($event,location)
                  (cdkDragStarted)=handleDragStart($event)
-                 (click)=handleClick($event) *ngIf="location.available; else notAvailable">
+                 (click)=handleClickAvailable($event) *ngIf="location.available; else notAvailable">
               <p>{{location.locationNumber}}</p>
             </div>
             <ng-template #notAvailable>
               <div class="table-not-available-vertical"
                    cdkDrag
                    cdkDragBoundary=".container"
-                   (mouseover)="showHover=true"
-                   (mouseout)="showHover=false"
                    [cdkDragFreeDragPosition]="{x:location.pos_x, y:location.pos_y}"
                    (cdkDragEnded)=onDragEnded($event,location)
                    (cdkDragStarted)=handleDragStart($event)
-                   (click)=handleClick($event)>
+                   (click)=handleClick($event,location)>
                 {{location.locationNumber}}
 
                 <div *ngIf="showHover" style="
@@ -53,7 +51,7 @@
 
                  (cdkDragEnded)=onDragEnded($event,location)
                  (cdkDragStarted)=handleDragStart($event)
-                 (click)=handleClick($event) *ngIf="location.available; else notAvailable">
+                 (click)=handleClickAvailable($event) *ngIf="location.available; else notAvailable">
               <p>{{location.locationNumber}}</p>
             </div>
             <ng-template #notAvailable>
@@ -65,7 +63,7 @@
                    [cdkDragFreeDragPosition]="{x:location.pos_x, y:location.pos_y}"
                    (cdkDragEnded)=onDragEnded($event,location)
                    (cdkDragStarted)=handleDragStart($event)
-                   (click)=handleClick($event)>
+                   (click)=handleClick($event,location)>
                 {{location.locationNumber}}
 
                 <div *ngIf="showHover" style="
