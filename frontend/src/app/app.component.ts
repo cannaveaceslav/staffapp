@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
       if (event instanceof NavigationStart) {
         this.showMenu = event.url != "/admin"
           && event.url != "/admin/dashboard"
+          && event.url != "/admin/departments"
           && event.url != "/admin/add-new-content"
           && event.url != "/admin/employees"
           && event.url != "/admin/items"

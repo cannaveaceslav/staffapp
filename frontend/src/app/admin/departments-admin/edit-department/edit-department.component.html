@@ -1,1 +1,88 @@
-<p>edit-department works!</p>
+<div class="mat-dialog-container" style="width: 100%; background: cornflowerblue">
+  <div class="d-flex justify-content-between m-3">
+    <h4>Edit department type</h4>
+
+    <button mat-button (click)="onClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+
+  </div>
+
+  <div style="overflow: auto; height: 100%; width: auto;">
+    <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+
+      <div class="m-2 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 150px"> Type ID</span>
+        </div>
+        <input readonly="readonly"
+               type="text"
+               class="form-control"
+               name="id"
+               #id="ngModel"
+               [(ngModel)]="departmentService.formData!.id">
+      </div>
+
+
+      <!--/***************************Field Type Name **************************/-->
+      <div class="m-2 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 150px">Department Name</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="departmentName"
+               #departmentName="ngModel"
+               [(ngModel)]="departmentService.formData!.departmentName">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="departmentName.invalid && departmentName.touched">
+        Please enter the department Name
+      </div>
+      <!--/***************************Field Description **************************/-->
+      <div class="m-2 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 150px">Description</span>
+        </div>
+        <input required minlength="3"
+               type="text"
+               class="form-control"
+               name="description"
+               #description="ngModel"
+               [(ngModel)]="departmentService.formData!.description">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="description.invalid && description.touched">
+        Please enter Description
+      </div>
+
+      <!--/***************************Field Description **************************/-->
+      <div class="m-2 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 150px">Enabled</span>
+        </div>
+        <input required minlength="3"
+               type="checkbox"
+               class="form-control"
+               name="Enabled"
+               #Enabled="ngModel"
+               [(ngModel)]="departmentService.formData!.enabled">
+      </div>
+      <div class="text-left text-danger"
+           *ngIf="description.invalid && description.touched">
+
+      </div>
+
+
+
+
+      <button class="m-2"
+              mat-raised-button color="primary"
+              type="submit">Update department
+      </button>
+
+    </form>
+  </div>
+
+</div>

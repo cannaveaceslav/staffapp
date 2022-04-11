@@ -7,6 +7,7 @@ import {DataState} from "../enum/data-state.enum";
 import {catchError} from "rxjs/operators";
 import {CdkDragStart, DragAxis} from "@angular/cdk/drag-drop";
 import {Location} from '../interface/location';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-layout',
@@ -19,9 +20,10 @@ export class LayoutComponent implements OnInit {
   public location!: Location;
   public dragging!: boolean;
   public showHover!: boolean;
+  public currentUser = sessionStorage.getItem('username');
 
 
-  constructor(private layoutService: LayoutService) {
+  constructor(private layoutService: LayoutService, private router: Router) {
     this.showHover = false
   }
 
@@ -40,18 +42,16 @@ export class LayoutComponent implements OnInit {
   }
 
   onDragEnded(event: { source: { getRootElement: () => any; }; }, location2: Location) {
-
+  if(this.currentUser =="admin") {
     let element = event.source.getRootElement();
     let boundingClientRect = element.getBoundingClientRect();
     let parentPosition = this.getPosition(element);
     console.log("******" + 'x: ' + (boundingClientRect.x - parentPosition.left), 'y: ' + (boundingClientRect.y - parentPosition.top));
-    console.log(location2)
     location2.pos_x = boundingClientRect.x - parentPosition.left;
     location2.pos_y = boundingClientRect.y - parentPosition.top;
     console.log(location2.pos_y + "   " + location2.pos_x);
-    this.ngOnInit();
-
     this.saveLocation(location2);
+  }
   }
 
   getPosition(el: any) {
@@ -74,6 +74,8 @@ export class LayoutComponent implements OnInit {
       .pipe(
         map(response => {
           console.log('updating');
+          this.ngOnInit();
+
           return {dataState: DataState.LOADED_STATE, appData: response}
         }),
         startWith({dataState: DataState.LOADING_STATE}),
@@ -82,14 +84,32 @@ export class LayoutComponent implements OnInit {
         })
       );
 
-  }
 
-  public handleClick(event: MouseEvent): void {
+  }
+  public handleClickAvailable(event: MouseEvent): void {
     if (this.dragging) {
       this.dragging = false;
       return
     }
-    alert('clicked!');
+    alert('Location is free!');
+  }
+
+  public handleClick(event: MouseEvent, location: Location): void {
+    if (this.dragging) {
+      this.dragging = false;
+      return
+    }
+    // alert('clicked!'+location.locationNumber);
+    this.getEmployeePage(location.employee?.id)
+  }
+
+  getEmployeePage(employeeId: number) {
+    {
+      let employeePage = {
+        url : `employee/${employeeId}`
+      };
+      this.router.navigateByUrl(employeePage.url);
+    }
   }
 
 

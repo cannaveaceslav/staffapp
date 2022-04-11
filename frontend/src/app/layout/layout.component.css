@@ -35,7 +35,7 @@ p {
 
 .table-available-vertical {
   color: cornsilk;
-  border: solid 2px #ccc;
+  border: solid 1px #ccc;
   cursor: pointer;
   display: flex;
   text-align: justify;
@@ -50,7 +50,7 @@ p {
 
 .table-not-available-vertical {
   color: cornsilk;
-  border: solid 2px #ccc;
+  border: solid 2px red;
   cursor: pointer;
   display: flex;
   text-align: justify;
@@ -65,7 +65,7 @@ p {
 
 .table-available-horizontal {
   color: cornsilk;
-  border: solid 2px #ccc;
+  border: solid 1px #ccc;
   cursor: pointer;
   display: flex;
   text-align: center;
@@ -80,7 +80,7 @@ p {
 
 .table-not-available-horizontal {
   color: cornsilk;
-  border: solid 2px #ccc;
+  border: solid 2px red;
   cursor: pointer;
   display: block;
   text-align: center;
