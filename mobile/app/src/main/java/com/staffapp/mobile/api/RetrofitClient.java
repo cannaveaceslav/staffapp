@@ -26,7 +26,8 @@ public class RetrofitClient {
 
 
 //    private static final String AUTH = "Basic " + Base64.encodeToString(("admin:admin").getBytes(), Base64.NO_WRAP);
-    public static final String BASE_URL = "http://192.168.0.8:8080";
+//    public static final String BASE_URL = "http://192.168.0.3:8080";
+    public static final String BASE_URL = "http://138.3.240.127:8082";
     private static RetrofitClient mInstance;
     private Retrofit retrofit;
     private static final String TAG = "RetrofitClient";
@@ -62,6 +63,7 @@ public class RetrofitClient {
                                             .method(original.method(), original.body());
                                     Request request = requestBuilder.build();
                                     Log.i(TAG, "Request intercepted");
+                                    Log.i(TAG, BASE_URL);
                                     return chain.proceed(request);
                                 } else {
                                     return chain.proceed(original);

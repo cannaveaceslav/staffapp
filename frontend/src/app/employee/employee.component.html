@@ -12,11 +12,28 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="DataState.LOADED_STATE">
-      <div class="ext-container" style="color: #cccccc">
-        <div class="container" style="background: linear-gradient(30deg, rgba(8,8,231,0.29) 1%, rgba(7,8,65,0.29) 50%, #0d0556 99%)">
+      <div class="ext-container" style="color: #cccccc;padding-top: 25px; padding-bottom: 100px">
+        <div class="container" style=" height: 100%; background: linear-gradient(30deg, rgba(232,232,238,0.29) 1%, rgba(2,3,28,0.29) 20%, #090241 99%)">
+          <div class="container2" style="text-align: center"><h2>Employee`s staff</h2></div>
           <div class="row">
-            <div class="col" style="text-align: center; text-align-all: end; vertical-align: center; height: 30px"><h1>Employee`s items</h1></div>
+<!--            <div class="col" style="text-align: center; text-align-all: end; vertical-align: center; height: 30px"><h1>Employee`s items</h1></div>-->
+            <div class="col" style="text-align: center; text-align-all: end; vertical-align: center; height: 30px">
+            <section class="our-webcoderskull padding-lg">
+              <div class="container">
+                <ul class="row" >
+                  <li class="col-12 col-md-6 col-lg-3" *ngFor="let item of items; let i = index">
+                    <div class="cnt-block equal-height" style="height: 100px; justify-content: center" (click)="getItemPage(item.id)">
+                      <figure style="margin: -22px"><img src="{{item.image}}"
+                                                         class="img-responsive"
+                                                         alt="item  picture"
+                                                         (click)="getItemPage(item.id) "></figure>
+                    </div>
 
+                  </li>
+                </ul>
+              </div>
+            </section>
+            </div>
             <div class="col" style="margin-top: 20px">
               <div><img class="img-fluid" src="{{employee?.image}}"/></div>
               <hr/>
@@ -24,26 +41,27 @@
             </div>
             <div class="w-100"></div>
             <!----------------------col 3-->
-            <div class="col" >
-              <section class="our-webcoderskull padding-lg">
-                <div class="container">
-                  <ul class="row" >
-                    <li class="col-12 col-md-6 col-lg-3" *ngFor="let item of items; let i = index">
-                      <div class="cnt-block equal-height" style="height: 100px; justify-content: center" (click)="getItemPage(item.id)">
-                        <figure style="margin: -22px"><img src="{{item.image}}"
-                                     class="img-responsive"
-                                     alt="item  picture"
-                                     (click)="getItemPage(item.id) "></figure>
-                      </div>
+            <div class="col" style="height: 20px"></div>
+<!--            <div class="col" >-->
+<!--              <section class="our-webcoderskull padding-lg">-->
+<!--                <div class="container">-->
+<!--                  <ul class="row" >-->
+<!--                    <li class="col-12 col-md-6 col-lg-3" *ngFor="let item of items; let i = index">-->
+<!--                      <div class="cnt-block equal-height" style="height: 100px; justify-content: center" (click)="getItemPage(item.id)">-->
+<!--                        <figure style="margin: -22px"><img src="{{item.image}}"-->
+<!--                                     class="img-responsive"-->
+<!--                                     alt="item  picture"-->
+<!--                                     (click)="getItemPage(item.id) "></figure>-->
+<!--                      </div>-->
 
-                    </li>
-                  </ul>
-                </div>
-              </section>
-            </div>
+<!--                    </li>-->
+<!--                  </ul>-->
+<!--                </div>-->
+<!--              </section>-->
+<!--            </div>-->
             <div class="col" >
               <div style="text-align: left">
-                <h1><b>{{employee?.lastName}}  {{employee?.firstName}}</b></h1>
+                <h1>{{employee?.lastName}}  {{employee?.firstName}}</h1>
               </div>
               <hr/>
               <div style="text-align: left">
@@ -51,31 +69,31 @@
               </div>
 
               <div style="text-align: left">
-                <h4><b>Company:</b>   {{employee?.company?.companyName}}</h4>
+                <h4>Company:  <b> {{employee?.company?.companyName}}</b></h4>
               </div>
               <hr/>
               <div style="text-align: left">
-                <h4><b>Department:</b>   {{employee?.department?.departmentName}}</h4>
-              </div>
-              <hr/>
-
-              <div style="text-align: left">
-                <h4><b>Email:</b>   {{employee?.email}}</h4>
+                <h4>Department:  <b> {{employee?.department?.departmentName}}</b></h4>
               </div>
               <hr/>
 
               <div style="text-align: left">
-                <h4><b>Birthday:</b>   {{employee?.birthday}}</h4>
+                <h4>Email: <b>  {{employee?.email}}</b></h4>
               </div>
               <hr/>
 
               <div style="text-align: left">
-                <h4><b>Location:</b>   {{employee?.location?.locationType}}</h4>
+                <h4>Birthday: <b>  {{employee?.birthday}}</b></h4>
               </div>
               <hr/>
 
               <div style="text-align: left">
-                <h4><b>Enabled:</b>   {{employee?.enabled}}</h4>
+                <h4>Location: <b> {{employee?.location?.locationType}}</b></h4>
+              </div>
+              <hr/>
+
+              <div style="text-align: left">
+                <h4>Enabled: <b> {{employee?.enabled}}</b></h4>
               </div>
 
 
