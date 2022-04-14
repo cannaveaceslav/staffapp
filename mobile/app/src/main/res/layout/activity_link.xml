@@ -23,7 +23,12 @@
         android:layout_marginBottom="1dp"
         android:background="@color/purple_700"
         app:itemIconTint="@color/white"
-        app:itemTextColor="@color/cardview_light_background"
-        app:menu="@menu/botton_menu" />
+        app:itemTextColor="@color/white"
+        app:menu="@menu/botton_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+
 
 </RelativeLayout>

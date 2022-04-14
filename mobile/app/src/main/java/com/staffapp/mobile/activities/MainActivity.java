@@ -3,13 +3,17 @@ package com.staffapp.mobile.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 
 import com.google.android.material.button.MaterialButton;
 import com.staffapp.mobile.R;
+import com.staffapp.mobile.adapter.EmployeeAdapter;
 import com.staffapp.mobile.api.RetrofitClient;
 import com.staffapp.mobile.model.CustomResponse;
 import com.staffapp.mobile.storage.SharedPrefManager;
@@ -95,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 
     @Override
     protected void onStart() {
