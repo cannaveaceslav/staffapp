@@ -1,12 +1,12 @@
 package com.staffapp.mobile.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,24 +17,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.internal.LinkedTreeMap;
 import com.staffapp.mobile.R;
-import com.staffapp.mobile.activities.LinkingActivity;
 import com.staffapp.mobile.api.MyAppContext;
-import com.staffapp.mobile.fragment.LinkConfirmFragment;
 import com.staffapp.mobile.fragment.LinkItemFragment;
 import com.staffapp.mobile.model.Employee;
 import com.staffapp.mobile.storage.SharedPrefManager;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.EmployeesViewHolder> {
+public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.EmployeesViewHolder> implements Filterable {
     private static final String TAG = "EmployeeAdapter";
 
     private Context mCtx;
     private List<?> employeesList;
+    private List<Employee> employeesListFull;
 
     public EmployeeAdapter(Context mCtx, List<Employee> employeesList) {
         this.mCtx = mCtx;
-        this.employeesList = employeesList;
+        this.employeesListFull = employeesList;
+        this.employeesList = new ArrayList<>(employeesListFull);
     }
 
     @NonNull
@@ -49,13 +51,13 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
 
         LinkedTreeMap employeeMap = (LinkedTreeMap) employeesList.get(position);
         Employee employee = new Employee(
-                 new Double((Double) employeeMap.get("id")).longValue(),
+                new Double((Double) employeeMap.get("id")).longValue(),
                 (String) employeeMap.get("firstName".toString()),
                 (String) employeeMap.get("lastName"),
                 (String) employeeMap.get("email")
         );
 
-        String fullName = employee.getLastName()+" "+employee.getFirstName();
+        String fullName = employee.getLastName() + " " + employee.getFirstName();
 
         holder.textViewLastName.setText(fullName);
         holder.textViewEmail.setText(employee.getEmail());
@@ -69,8 +71,48 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
     }
 
 
+    public Filter getFilter() {
+        return null;
+    }
 
-    class EmployeesViewHolder extends RecyclerView.ViewHolder{
+    private final Filter employeeFilter = new Filter() {
+
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<Employee> filteredEmployeesList = new ArrayList<>();
+            if(charSequence == null|| charSequence.length()==0 ){
+                filteredEmployeesList.addAll((Collection<? extends Employee>) employeesListFull);
+            }
+            else {
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+                for(Employee employee : employeesListFull){
+                    if(employee.getFirstName().toLowerCase().contains(filterPattern)){
+                        filteredEmployeesList.add(employee);
+                    }
+                    if(employee.getLastName().toLowerCase().contains(filterPattern)){
+                        filteredEmployeesList.add(employee);
+                    }
+                    if(employee.getEmail().toLowerCase().contains(filterPattern)){
+                        filteredEmployeesList.add(employee);
+                    }
+                }
+            }
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredEmployeesList;
+            filterResults.count = filteredEmployeesList.size();
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                employeesList.clear();
+                employeesList.addAll((ArrayList)filterResults.values);
+                notifyDataSetChanged();
+        }
+    };
+
+
+    class EmployeesViewHolder extends RecyclerView.ViewHolder {
         TextView textViewLastName;
         TextView textViewEmail;
         View rootView;
@@ -93,13 +135,13 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
                     String email = (String) employeeMap.get("email");
                     String firstName = (String) employeeMap.get("firstName");
                     String lastName = (String) employeeMap.get("lastName");
-                    String name = lastName+" "+firstName;
+                    String name = lastName + " " + firstName;
                     Long id = new Double((Double) employeeMap.get("id")).longValue();
 
                     SharedPrefManager.getInstance(MyAppContext.getContext()).saveEmployeeId(id);
                     SharedPrefManager.getInstance(MyAppContext.getContext()).saveEmployeeName(name);
 
-                    Toast.makeText(mCtx,  lastName, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mCtx, lastName, Toast.LENGTH_SHORT).show();
 
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
                     Fragment myFragment = new LinkItemFragment();

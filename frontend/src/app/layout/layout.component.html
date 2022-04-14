@@ -1,5 +1,5 @@
 <ng-container *ngIf="(appState$ | async ) as appState" [ngSwitch]="appState.dataState">
-  <div class="ext-container" style="width: 100%">
+  <div class="ext-container" style="width: 100%; height: 70%">
 
 
     <div class="container" style="border-radius: 5px; border-color: #a300bf;padding-right: 100px">
@@ -48,7 +48,6 @@
                  cdkDrag
                  cdkDragBoundary=".container"
                  [cdkDragFreeDragPosition]="{x:location.pos_x, y:location.pos_y}"
-
                  (cdkDragEnded)=onDragEnded($event,location)
                  (cdkDragStarted)=handleDragStart($event)
                  (click)=handleClickAvailable($event) *ngIf="location.available; else notAvailable">
@@ -58,8 +57,6 @@
               <div class="table-not-available-horizontal"
                    cdkDrag
                    cdkDragBoundary=".container"
-                   (mouseover)="showHover=true"
-                   (mouseout)="showHover=false"
                    [cdkDragFreeDragPosition]="{x:location.pos_x, y:location.pos_y}"
                    (cdkDragEnded)=onDragEnded($event,location)
                    (cdkDragStarted)=handleDragStart($event)
@@ -92,52 +89,29 @@
 
 </ng-container>
 
+<!--HOVER***-->
+<!--<div class="table-not-available-horizontal"-->
+<!--     cdkDrag-->
+<!--     cdkDragBoundary=".container"-->
+<!--     (mouseover)="showHover=true"-->
+<!--     (mouseout)="showHover=false"-->
+<!--     [cdkDragFreeDragPosition]="{x:location.pos_x, y:location.pos_y}"-->
+<!--     (cdkDragEnded)=onDragEnded($event,location)-->
+<!--     (cdkDragStarted)=handleDragStart($event)-->
+<!--     (click)=handleClick($event,location)>-->
+<!--  {{location.locationNumber}}-->
 
-<!--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"-->
-<!--      id="bootstrap-css">-->
-<!--<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>-->
-<!--<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>-->
-<!--&lt;!&ndash;&#45;&#45;&#45;&#45; Include the above in your HEAD tag &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-<!--<ng-container *ngIf="(appState$ | async ) as appState" [ngSwitch]="appState.dataState">-->
-<!--  <ng-container *ngSwitchCase="DataState.LOADING_STATE">-->
+<!--  <div *ngIf="showHover" style="-->
+<!--                width: max-content;-->
+<!--                background:  linear-gradient(30deg, #686ee3 1%, #3931af 40%, lightskyblue 90%);-->
+<!--                color: whitesmoke;-->
+<!--                margin-left: 35px;-->
+<!--                position: unset;-->
+<!--                margin-top: -42px;-->
+<!--                border-radius: 5px;">-->
+<!--    <p style=" width: max-content">{{location.employee.lastName}} {{location.employee.firstName}}</p>-->
+<!--  </div>-->
+<!--</div>-->
+<!--HOVER***-->
 
-<!--    <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">-->
-<!--      <span class="sr-only">Loading...</span>-->
-<!--    </div>-->
-<!--  </ng-container>-->
 
-<!--  <ng-container *ngSwitchCase="DataState.LOADED_STATE">-->
-<!--    <div class="container">-->
-<!--      <div class="row">-->
-<!--        <div class="span5">-->
-<!--          <table class="table table-striped table-condensed">-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--              <th>ID</th>-->
-<!--              <th>LOCATION NUMBER</th>-->
-<!--              <th>AVAILABLE</th>-->
-<!--              <th>EMPLOYEE</th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            <tr *ngFor="let location of appState?.appData?.data?.locations; let i = index">-->
-<!--              <td>{{location.id}}</td>-->
-<!--              <td>{{location.locationNumber}}</td>-->
-<!--              <td>{{location.available}}</td>-->
-<!--              <td>{{location?.employee?.lastName}}</td>-->
-<!--              <td *ngIf=location.available><span class="label label-important">Active</span>-->
-<!--              <td *ngIf=!location.available><span class="label label-success">Inactive</span>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            </tbody>-->
-<!--          </table>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </ng-container>-->
-<!--  <ng-container *ngSwitchCase="DataState.ERROR_STATE">-->
-<!--    <div class="spinner-border text-danger" role="status">-->
-<!--      <span class="sr-only">Loading...</span>-->
-<!--    </div>-->
-<!--  </ng-container>-->
-<!--</ng-container>-->

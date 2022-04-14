@@ -133,7 +133,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onFailure(Call<CustomResponse> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Login failed. Check connection", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "Login failed. Check connection...", Toast.LENGTH_LONG).show();
 
             }
 

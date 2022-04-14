@@ -24,7 +24,8 @@
             android:textSize="30sp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="134dp"
-            tools:layout_editor_absoluteY="1dp" />
+            tools:layout_editor_absoluteY="1dp"
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/linking"
@@ -53,6 +54,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
