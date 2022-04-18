@@ -51,7 +51,7 @@ export class AuthenticationService {
 
   register(registrationRequest: RegistrationRequest) {
 
-    const headers = new HttpHeaders({Authorization: 'Basic ' + btoa('admin' + ':' + 'admin')});
+    const headers = new HttpHeaders({Authorization: 'Basic ' + btoa('admin' + ':' + 'password')});
     this.router.navigate([`../confirm`]);
     return this.httpClient.post(`${this.baseURL}/registration`, registrationRequest, {headers});
   }
