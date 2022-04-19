@@ -13,17 +13,17 @@
 
     <ng-container *ngSwitchCase="DataState.LOADED_STATE">
       <div class="ext-container" style="color: #cccccc;padding-top: 25px; padding-bottom: 100px">
-        <div class="container" style=" height: 100%; background: linear-gradient(30deg, rgba(232,232,238,0.29) 1%, rgba(2,3,28,0.29) 20%, #090241 99%)">
+        <div class="container" style=" height: border-box; background: linear-gradient(30deg, rgba(232,232,238,0.29) 1%, rgba(2,3,28,0.29) 20%, #090241 99%)">
           <div class="container2" style="text-align: center"><h2>Employee`s staff</h2></div>
-          <div class="row">
+          <div class="row" >
 <!--            <div class="col" style="text-align: center; text-align-all: end; vertical-align: center; height: 30px"><h1>Employee`s items</h1></div>-->
-            <div class="col" style="text-align: center; text-align-all: end; vertical-align: center; height: 30px">
+            <div class="col" style="text-align: center; text-align-all: end; vertical-align: center; height: auto">
             <section class="our-webcoderskull padding-lg">
-              <div class="container">
-                <ul class="row" >
-                  <li class="col-12 col-md-6 col-lg-3" *ngFor="let item of items; let i = index">
+              <div class="container3" style="height: max-content">
+                <ul class="row border-right border-secondery" >
+                  <li class="col-12 col-md-6 col-lg-3 " *ngFor="let item of items; let i = index">
                     <div class="cnt-block equal-height" style="height: 100px; justify-content: center" (click)="getItemPage(item.id)">
-                      <figure style="margin: -22px"><img src="{{item.image}}"
+                      <figure style="margin: -27px"><img src="{{item.image}}"
                                                          class="img-responsive"
                                                          alt="item  picture"
                                                          (click)="getItemPage(item.id) "></figure>
@@ -34,32 +34,11 @@
               </div>
             </section>
             </div>
-            <div class="col" style="margin-top: 20px">
+            <div class="col" style="margin-top: 1px">
               <div><img class="img-fluid" src="{{employee?.image}}"/></div>
               <hr/>
-
-            </div>
-            <div class="w-100"></div>
-            <!----------------------col 3-->
-            <div class="col" style="height: 20px"></div>
-<!--            <div class="col" >-->
-<!--              <section class="our-webcoderskull padding-lg">-->
-<!--                <div class="container">-->
-<!--                  <ul class="row" >-->
-<!--                    <li class="col-12 col-md-6 col-lg-3" *ngFor="let item of items; let i = index">-->
-<!--                      <div class="cnt-block equal-height" style="height: 100px; justify-content: center" (click)="getItemPage(item.id)">-->
-<!--                        <figure style="margin: -22px"><img src="{{item.image}}"-->
-<!--                                     class="img-responsive"-->
-<!--                                     alt="item  picture"-->
-<!--                                     (click)="getItemPage(item.id) "></figure>-->
-<!--                      </div>-->
-
-<!--                    </li>-->
-<!--                  </ul>-->
-<!--                </div>-->
-<!--              </section>-->
-<!--            </div>-->
-            <div class="col" >
+              <div></div>
+                <!------------------------------------>
               <div style="text-align: left">
                 <h1>{{employee?.lastName}}  {{employee?.firstName}}</h1>
               </div>
@@ -87,83 +66,66 @@
               </div>
               <hr/>
 
-              <div style="text-align: left">
-                <h4>Location: <b> {{employee?.location?.locationType}}</b></h4>
-              </div>
-              <hr/>
+<!--              <div style="text-align: left">-->
+<!--                <h4>Location: <b> {{employee?.location}}</b></h4>-->
+<!--              </div>-->
+<!--              <hr/>-->
 
               <div style="text-align: left">
-                <h4>Enabled: <b> {{employee?.enabled}}</b></h4>
+                <h4>Employed: <b> {{employee?.enabled}}</b></h4>
               </div>
 
 
-
+              <!--------------------------------------->
             </div>
+            <div class="w-100"></div>
+            <!----------------------col 3-->
+<!--            <div class="col" style="height: 20px"></div>-->
+
+<!--            <div class="col" >-->
+<!--              <div style="text-align: left">-->
+<!--                <h1>{{employee?.lastName}}  {{employee?.firstName}}</h1>-->
+<!--              </div>-->
+<!--              <hr/>-->
+<!--              <div style="text-align: left">-->
+<!--                <h4></h4>-->
+<!--              </div>-->
+
+<!--              <div style="text-align: left">-->
+<!--                <h4>Company:  <b> {{employee?.company?.companyName}}</b></h4>-->
+<!--              </div>-->
+<!--              <hr/>-->
+<!--              <div style="text-align: left">-->
+<!--                <h4>Department:  <b> {{employee?.department?.departmentName}}</b></h4>-->
+<!--              </div>-->
+<!--              <hr/>-->
+
+<!--              <div style="text-align: left">-->
+<!--                <h4>Email: <b>  {{employee?.email}}</b></h4>-->
+<!--              </div>-->
+<!--              <hr/>-->
+
+<!--              <div style="text-align: left">-->
+<!--                <h4>Birthday: <b>  {{employee?.birthday}}</b></h4>-->
+<!--              </div>-->
+<!--              <hr/>-->
+
+<!--              <div style="text-align: left">-->
+<!--                <h4>Location: <b> {{employee?.location?.locationType}}</b></h4>-->
+<!--              </div>-->
+<!--              <hr/>-->
+
+<!--              <div style="text-align: left">-->
+<!--                <h4>Enabled: <b> {{employee?.enabled}}</b></h4>-->
+<!--              </div>-->
+
+
+
+<!--            </div>-->
           </div>
         </div>
       </div>
 
-      <!--    <div class="ext-container">-->
-      <!--      <div class="container">-->
-      <!--        <div class="row">-->
-      <!--          <div class="col-lg-12 bg-primary p-2 text-white mt-2 text-center text-capitalize">-->
-      <!--            {{employee?.lastName}}-->
-      <!--          </div>-->
-      <!--        </div>-->
-      <!--        <div class="row mt-4">-->
-      <!--          <div class="col-lg-1 text-center">-->
-      <!--            <ul class="nav nav-tabs row text-center pro-details" id="myTab" role="tablist" *ngFor=" let item of items">-->
-      <!--              <li class="nav-item col-lg-12 mb-2  h-120 w-120">-->
-      <!--                <img class="img-fluid active h-120 w-120 p-30" src="{{item.image}}" id="home-tab"-->
-      <!--                     data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"/>-->
-      <!--              </li>-->
-
-      <!--            </ul>-->
-      <!--          </div>-->
-      <!--          <div class="col-lg-4 text-center border-right border-secondery">-->
-      <!--            <div class="tab-content row h-100 d-flex justify-content-center align-items-center" id="myTabContent">-->
-      <!--              <div class="tab-pane fade show active col-lg-12" id="home" role="tabpanel" aria-labelledby="home-tab">-->
-      <!--                <img class="img-fluid" src="https://pbs.twimg.com/media/ENktSOKU0AA9Y-6.jpg"/>-->
-      <!--              </div>-->
-      <!--              <div class="tab-pane fade col-lg-12" id="profile" role="tabpanel" aria-labelledby="profile-tab">-->
-      <!--                <img class="img-fluid" src="https://pbs.twimg.com/media/ENktSOTUEAELNMN.jpg"/>-->
-      <!--              </div>-->
-      <!--              <div class="tab-pane fade col-lg-12" id="contact" role="tabpanel" aria-labelledby="contact-tab">-->
-      <!--                <img class="img-fluid" src="https://pbs.twimg.com/media/ENktSONUEAAm6k1.jpg"/>-->
-      <!--              </div>-->
-      <!--              <div class="tab-pane fade col-lg-12" id="product" role="tabpanel" aria-labelledby="product-tab">-->
-      <!--                <img class="img-fluid" src="https://pbs.twimg.com/media/EOYIp0FUYAA0uM1?format=jpg&name=360x360"/>-->
-      <!--              </div>-->
-      <!--              <div class="tab-pane fade col-lg-12" id="productTwo" role="tabpanel" aria-labelledby="productTwo-tab">-->
-      <!--                <img class="img-fluid" src="https://pbs.twimg.com/media/EOYIp0DUUAA29Ft?format=jpg&name=small"/>-->
-      <!--              </div>-->
-      <!--              <div class="tab-pane fade col-lg-12" id="productThree" role="tabpanel" aria-labelledby="productThree-tab">-->
-      <!--                <img class="img-fluid" src="https://pbs.twimg.com/media/EOYIp0JVUAANGFD?format=jpg&name=small"/>-->
-      <!--              </div>-->
-      <!--            </div>-->
-      <!--          </div>-->
-      <!--          <div class="row">-->
-      <!--            <div class="col-sm-4 h-200"> <div class="col-sm-12">-->
-      <!--              <h2>-->
-      <!--                {{employee?.lastName}}-->
-      <!--              </h2>-->
-      <!--              <h2>-->
-      <!--                {{employee?.firstName}}-->
-      <!--              </h2>-->
-      <!--              <ul>-->
-      <!--                <li ><b>{{employee?.email}}</b> </li>-->
-      <!--                <li ><b>{{employee?.department?.departmentName}}</b></li>-->
-
-      <!--              </ul>-->
-      <!--            </div>-->
-      <!--            </div>-->
-      <!--            <div class="col-sm-8">.<img class="img-fluid" src="{{employee?.image}}"/></div>-->
-
-      <!--          </div>-->
-
-      <!--        </div>-->
-      <!--      </div>-->
-      <!--    </div>-->
     </ng-container>
     <ng-container *ngSwitchCase="DataState.ERROR_STATE">
       <div class="spinner-border text-danger" role="status">
