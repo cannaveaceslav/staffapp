@@ -19,7 +19,7 @@ p {
   height: 468px;
   width: 1214px;
   /*background: url("../../assets/images/isd-office.heic") no-repeat center center / cover;*/
-  background-image: url('../../assets/images/isd_layout_6.png'), url('../../assets/images/isd_layout_3.png');
+  background-image: url('../../assets/images/isd_layout_6.png');
   /*background-position: left;*/
   /*background-color: silver;*/
   background-repeat: no-repeat; /* Do not repeat the image */
@@ -90,6 +90,7 @@ p {
   width: 40px;
   background-color: rgba(255, 0, 0, 0.73);
   z-index: 15;
+  position: absolute;
 }
 
 
