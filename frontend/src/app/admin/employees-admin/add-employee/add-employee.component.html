@@ -9,7 +9,7 @@
   </div>
 
   <div style="overflow: auto; height: 100%; width: 400px;">
-    <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+    <form #form="ngForm" (submit)="onSubmit(form); onClose()" autocomplete="off">
 
 
       <!--/***************************Field Type Name **************************/-->
@@ -99,7 +99,7 @@
                 name="company"
                 #company="ngModel"
                 [(ngModel)]="employeesService.formData!.company">
-          <option *ngFor="let cl of companiesList" [ngValue]="cl">
+          <option *ngFor="let cl of companiesList" [value]="cl">
             {{cl.companyName}}
           </option>
         </select>
@@ -113,7 +113,7 @@
                 name="department"
                 #department="ngModel"
                   [(ngModel)]="employeesService.formData!.department">
-          <option *ngFor="let dl of departmentsList" [ngValue]="dl">
+          <option *ngFor="let dl of departmentsList" [value]="dl">
             {{dl.departmentName}}
           </option>
         </select>
@@ -129,7 +129,7 @@
                 name="location"
                 #location="ngModel"
                 [(ngModel)]="employeesService.formData!.location">
-          <option *ngFor="let ll of locationsList" [ngValue]="ll">
+          <option *ngFor="let ll of locationsList" [value]="ll">
             {{ll.locationNumber}}
           </option>
         </select>

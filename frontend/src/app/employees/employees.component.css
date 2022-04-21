@@ -13,6 +13,10 @@
   height: 100px;
   width: 100px;
 }
+.img-responsive-table {
+  height: 300px;
+  width: 300px;
+}
 
 ul {
   margin: 0;

@@ -65,9 +65,9 @@
             <td mat-cell *matCellDef="let item"> {{item.id}} </td>
           </ng-container>
 
-          <ng-container matColumnDef="ITEM NAME">
+          <ng-container matColumnDef="ITEM NAME"   >
             <th mat-header-cell *matHeaderCellDef> ITEM NAME</th>
-            <td mat-cell *matCellDef="let item"> {{item.itemName}} </td>
+            <td mat-cell *matCellDef="let item" > {{item.itemName}} </td>
           </ng-container>
 
             <ng-container matColumnDef="TYPE">
@@ -103,7 +103,7 @@
            <ng-container matColumnDef="IMAGE">
             <th mat-header-cell *matHeaderCellDef>IMAGE</th>
 <!--            <td mat-cell *matCellDef="let item"> {{item.image}} </td>-->
-             <td mat-cell *matCellDef="let item" style="width: 30%; text-align-all: center"> <img src="{{item.image}}" class="img-responsive"  alt="Items picture"></td>-->
+             <td mat-cell *matCellDef="let item" > <img src="{{item.image}}" class="img-responsive2" style="width: 40px;" alt="Items picture" ></td>-->
           </ng-container>
 
           <!-- Action Column -->
