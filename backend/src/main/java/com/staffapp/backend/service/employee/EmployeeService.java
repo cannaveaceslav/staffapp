@@ -25,7 +25,14 @@ public class EmployeeService {
     @Transactional
     public Employee create(Employee employee) {
         log.info("Saving new  employee [{}]", employee.getLastName() + " " + employee.getFirstName());
-        return employeeRepository.save(employee);
+        employeeRepository.save(employee);
+        if (employee.getLocation() != null) {
+            Location location = employee.getLocation();
+            location.setAvailable(false);
+            location.setEmployee(employee);
+            locationRepository.save(location);
+        }
+        return employee;
     }
 
     @Transactional
@@ -50,7 +57,6 @@ public class EmployeeService {
             location.setAvailable(false);
             location.setEmployee(employee);
             locationRepository.save(location);
-            employeeRepository.save(employee);
         }
         return employeeRepository.save(employee);
     }
