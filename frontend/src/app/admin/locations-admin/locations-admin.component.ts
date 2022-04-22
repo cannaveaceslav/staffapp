@@ -23,7 +23,7 @@ import {AddLocationComponent} from "./add-lcoation/add-location.component";
 })
 export class LocationsAdminComponent implements OnInit {
 
-  displayedColumns: string[] = ['ID', 'LOCATION NUMBER', 'DESCRIPTION', 'TYPE', 'EMPLOYEE', 'AVAILABLE', 'POS X', 'POS Y', 'EDIT', 'DELETE'];
+  displayedColumns: string[] = ['LOCATION NUMBER', 'DESCRIPTION', 'TYPE', 'EMPLOYEE', 'AVAILABLE', 'POS X', 'POS Y', 'EDIT', 'DELETE'];
   appState$!: Observable<AppState<CustomResponse>>;
   readonly DataState = DataState;
   locations?: Location[] = []

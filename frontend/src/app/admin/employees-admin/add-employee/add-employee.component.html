@@ -99,9 +99,6 @@
                 name="company"
                 #company="ngModel"
                 [(ngModel)]="employeesService.formData!.company">
-          <option *ngFor="let cl of companiesList" [value]="cl" disabled selected hidden>
-            {{cl.companyName}}
-          </option>
           <option *ngFor="let cl of companiesList" [ngValue] ="cl">
             {{cl.companyName}}
           </option>
@@ -116,9 +113,6 @@
                 name="department"
                 #department="ngModel"
                   [(ngModel)]="employeesService.formData!.department">
-          <option *ngFor="let dl of departmentsList" [value]="dl" disabled selected hidden>
-            {{dl.departmentName}}
-          </option>
           <option *ngFor="let dl of departmentsList" [ngValue]="dl">
             {{dl.departmentName}}
           </option>
@@ -135,9 +129,6 @@
                 name="location"
                 #location="ngModel"
                 [(ngModel)]="employeesService.formData!.location">
-          <option *ngFor="let ll of locationsList" [value]="ll" disabled selected hidden>
-            {{ll.locationNumber}}
-          </option>
           <option *ngFor="let ll of locationsList" [ngValue]="ll">
             {{ll.locationNumber}}
           </option>
