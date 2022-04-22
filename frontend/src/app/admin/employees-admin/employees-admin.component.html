@@ -104,7 +104,7 @@
 
           <ng-container matColumnDef="IMAGE">
             <th mat-header-cell *matHeaderCellDef>IMAGE</th>
-            <td mat-cell *matCellDef="let employee"> {{employee.image}} </td>
+            <td mat-cell *matCellDef="let employee">  <img src="{{employee.image}}" class="img-responsive-table" style="width: 55px;"  alt="Items picture"> </td>
           </ng-container>
 
           <!-- Action Column -->

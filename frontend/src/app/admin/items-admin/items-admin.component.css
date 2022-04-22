@@ -112,3 +112,22 @@ table {
   /*margin-left: 300px;*/
 
 }
+
+.mat-column-image {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+  width: 90% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-barcode {
+  flex: 0 0 50%;
+  width: 200px !important;
+}
