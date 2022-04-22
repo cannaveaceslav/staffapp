@@ -31,7 +31,7 @@ export class EmployeesAdminComponent implements OnInit {
     , 'DEPARTMENT'
     , 'EMAIL'
     , 'BIRTHDAY'
-    , 'LOCATION'
+    // , 'LOCATION'
     , 'IMAGE'
     , 'EDIT'
     , 'DELETE'];

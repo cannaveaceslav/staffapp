@@ -48,9 +48,8 @@
                 name="itemType"
                 #itemType="ngModel"
                 [(ngModel)]="itemService.formData!.itemType">
-          <option *ngFor="let cl of typesList" [value]="cl" disabled selected hidden >
-            {{cl.typeName}}
-          </option>
+          <option [ngValue]="itemService.formData!.itemType" hidden>
+            {{itemService.formData?.itemType!.typeName}}</option>
           <option *ngFor="let cl of typesList" [ngValue]="cl">
             {{cl.typeName}}
           </option>
@@ -132,9 +131,8 @@
                 name="employee"
                 #employee="ngModel"
                 [(ngModel)]="itemService.formData!.employee">
-          <option *ngFor="let cl of employeesList" [value]="cl" disabled selected hidden>
-            {{cl.lastName}}  {{cl.firstName}}
-          </option>
+          <option [ngValue]="itemService.formData!.employee" hidden>
+            {{itemService.formData?.employee?.lastName}} {{itemService.formData?.employee?.firstName}}</option>
           <option *ngFor="let cl of employeesList" [ngValue]="cl">
             {{cl.lastName}}  {{cl.firstName}}
           </option>
