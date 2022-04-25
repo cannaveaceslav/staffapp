@@ -1,1 +1,46 @@
-<p>reports works!</p>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"
+      xmlns="http://www.w3.org/1999/html">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<div class="ext-container" style="color: #cccccc;padding-top: 55px; padding-bottom: 100px; ">
+  <div class="container1" style="margin-left: 40%; margin-right:40%">
+    <div>
+      <div class="mt-4 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 150px">Item type</span>
+        </div>
+        <select class="form-control" style="width: 50px"
+                name="itme-type">
+        </select>
+      </div>
+    </div>
+    <div>
+      <div class="mt-4 input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="width: 150px">Employee</span>
+        </div>
+        <select class="form-control" style="width: 50px"
+                name="employee">
+        </select>
+      </div>
+    </div>
+    <div class="mt-4 input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" style="width: 150px">Date</span>
+      </div>
+      <input required minlength="3"
+             type="date"
+             class="form-control"
+             name="date"
+      >
+    </div>
+    <div style="padding: 10%; width: 300%">
+      <button mat-icon-button matTooltip="Click to generate report" class="table-button"
+              color="primary"> <mat-icon>description</mat-icon>   Generate
+
+      </button>
+    </div>
+
+  </div>
+</div>
