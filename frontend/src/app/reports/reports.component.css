@@ -1,0 +1,23 @@
+.container {
+  /*background-color: whitesmoke;*/
+
+}
+
+.ext-container {
+  background-color: navy;
+  height: 70%;
+  background-image: linear-gradient(30deg, #a300bf 1%, #3931af 40%, lightskyblue 90%);
+
+}
+.table-button {
+  width: 20%;
+  border: #a300bf;
+  border-radius: 5px;
+  background: silver;
+  margin-left: 2%;
+}
+
+
+
+
+
