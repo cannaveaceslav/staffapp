@@ -30,7 +30,8 @@ ul {
 
 .padding-lg {
   display: block;
-  padding-top: 60px;
+  padding-top: 30px;
+  padding-left: 160px;
   padding-bottom: 60px;
 }
 
@@ -77,11 +78,15 @@ ul {
 }
 
 .col-12 col-md-6 col-lg-3 {
-  max-width: 20%;
+  max-width: 15%;
+  padding: 2px;
+
+
 }
 
 .col-lg-3 {
-  max-width: 20%;
+  max-width: 13%;
+  padding: 2px;
 }
 
 .our-webcoderskull {
@@ -96,7 +101,7 @@ ul {
   float: left;
   width: 80%;
   background: #fff;
-  padding: 30px 20px;
+  padding: 11px 2px;
   text-align: center;
   border: 2px solid #d5d5d5;
   margin: 0 0 28px;
@@ -158,4 +163,13 @@ ul {
 
 .our-webcoderskull .cnt-block .follow-us li .fa:hover {
   color: #025a8e;
+}
+
+.container{
+  max-width: 90%;
+  margin-left: 100px;
+}
+
+.mat-h4{
+
 }
