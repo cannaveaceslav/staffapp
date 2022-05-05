@@ -5,7 +5,7 @@ import {map, Observable, of, shareReplay, startWith} from "rxjs";
 import {DataState} from "../../enum/data-state.enum";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTable, MatTableDataSource} from "@angular/material/table";
-import {MatSort} from "@angular/material/sort";
+import {MatSort, Sort} from "@angular/material/sort";
 import {catchError} from "rxjs/operators";
 import {CustomResponse} from "../../interface/custom-response";
 import {AppState} from "../../interface/app-state";
@@ -15,6 +15,7 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {EditLocationComponent} from "./edit-location/edit-location.component";
 import {AddLocationComponent} from "./add-lcoation/add-location.component";
+import {LiveAnnouncer} from "@angular/cdk/a11y";
 
 @Component({
   selector: 'app-locations-admin',
@@ -23,20 +24,31 @@ import {AddLocationComponent} from "./add-lcoation/add-location.component";
 })
 export class LocationsAdminComponent implements OnInit {
 
-  displayedColumns: string[] = ['LOCATION NUMBER', 'DESCRIPTION', 'TYPE', 'EMPLOYEE', 'AVAILABLE', 'POS X', 'POS Y', 'EDIT', 'DELETE'];
+  displayedColumns: string[] = ['ID','LOCATION NUMBER', 'DESCRIPTION', 'TYPE', 'EMPLOYEE', 'AVAILABLE', 'POS X', 'POS Y', 'EDIT', 'DELETE'];
   appState$!: Observable<AppState<CustomResponse>>;
   readonly DataState = DataState;
   locations?: Location[] = []
+  sort!: Sort;
   newLocation?: Location;
   dataSource!: MatTableDataSource<Location[]>;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort, {}) sort!: MatSort;
+  @ViewChild(MatPaginator) set matPaginator(paginator: MatPaginator) {
+    if (!this.dataSource.paginator) {
+      this.dataSource.paginator = paginator;
+    }
+  }
+
+  @ViewChild(MatSort) set matSort(sort: MatSort) {
+    if (!this.dataSource.sort) {
+      this.dataSource.sort = sort;
+    }
+  }
   @ViewChild(MatTable) table!: MatTable<any>;
 
 
   constructor(private router: Router
     , private dialog: MatDialog
     , private locationService: LayoutService
+    , private _liveAnnouncer: LiveAnnouncer
     , private breakpointObserver: BreakpointObserver
     , private snackBar: MatSnackBar) {
     this.locationService.listen().subscribe((m: any) => {
@@ -128,6 +140,13 @@ export class LocationsAdminComponent implements OnInit {
           return of({dataState: DataState.ERROR_STATE, error: error})
         })
       );
+  }
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
   }
 
 
