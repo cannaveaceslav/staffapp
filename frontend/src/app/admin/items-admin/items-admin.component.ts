@@ -9,12 +9,13 @@ import {AppState} from "../../interface/app-state";
 import {catchError} from "rxjs/operators";
 import {Item} from "../../interface/item";
 import {ItemService} from "../../service/item.service";
-import {MatSort} from "@angular/material/sort";
+import {MatSort, Sort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {EditItemComponent} from "./edit-item/edit-item.component";
 import {AddItemComponent} from "./add-item/add-item.component";
+import {LiveAnnouncer} from "@angular/cdk/a11y";
 
 
 @Component({
@@ -38,15 +39,28 @@ export class ItemsAdminComponent implements OnInit {
   readonly DataState = DataState;
   items?: Item[] = []
   newItem?: Item;
+  sort!: Sort
   dataSource!: MatTableDataSource<Item[]>;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort, {}) sort!: MatSort;
+
+  @ViewChild(MatPaginator) set matPaginator(paginator: MatPaginator) {
+    if (!this.dataSource.paginator) {
+      this.dataSource.paginator = paginator;
+    }
+  }
+
+  @ViewChild(MatSort) set matSort(sort: MatSort) {
+    if (!this.dataSource.sort) {
+      this.dataSource.sort = sort;
+    }
+  }
+
   @ViewChild(MatTable) table!: MatTable<any>;
 
 
   constructor(private router: Router
     , private dialog: MatDialog
     , private itemService: ItemService
+    , private _liveAnnouncer: LiveAnnouncer
     , private breakpointObserver: BreakpointObserver
     , private snackBar: MatSnackBar) {
     this.itemService.listen().subscribe((m: any) => {
@@ -122,6 +136,7 @@ export class ItemsAdminComponent implements OnInit {
     this.dialog.open(AddItemComponent, dialogConfig);
 
   }
+
   private refreshTable() {
     this.appState$ = this.itemService.getItems$
       .pipe(
@@ -136,6 +151,14 @@ export class ItemsAdminComponent implements OnInit {
           return of({dataState: DataState.ERROR_STATE, error: error})
         })
       );
+  }
+
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
   }
 
 }

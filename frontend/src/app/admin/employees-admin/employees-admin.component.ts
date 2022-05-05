@@ -9,7 +9,7 @@ import {AppState} from "../../interface/app-state";
 import {Employee} from "../../interface/employee";
 import {EmployeesService} from "../../service/employees.service";
 import {catchError} from "rxjs/operators";
-import {MatSort} from "@angular/material/sort";
+import {MatSort, Sort} from "@angular/material/sort";
 import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatDialogConfig, MatDialog, MatDialogRef} from "@angular/material/dialog";
@@ -17,6 +17,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {ItemType} from "../../interface/itemType";
 import {EditTypeComponent} from "../item-types-admin/edit-type/edit-type.component";
 import {EditEmployeeComponent} from "./edit-employee/edit-employee.component";
+import {LiveAnnouncer} from "@angular/cdk/a11y";
 
 @Component({
   selector: 'app-employees-admin',
@@ -39,16 +40,27 @@ export class EmployeesAdminComponent implements OnInit {
   readonly DataState = DataState;
   employees?: Employee[] = []
   newEmployee?: Employee;
+  sort!: Sort;
   dataSource!: MatTableDataSource<Employee[]>;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort, {}) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<any>;
+  @ViewChild(MatPaginator) set matPaginator(paginator: MatPaginator) {
+    if (!this.dataSource.paginator) {
+      this.dataSource.paginator = paginator;
+    }
+  }
+
+  @ViewChild(MatSort) set matSort(sort: MatSort) {
+    if (!this.dataSource.sort) {
+      this.dataSource.sort = sort;
+    }
+  }
 
 
   constructor(private router: Router
     , private dialog: MatDialog
     , private employeeService: EmployeesService
     , private breakpointObserver: BreakpointObserver
+    , private _liveAnnouncer: LiveAnnouncer
     , private snackBar: MatSnackBar) {
     this.employeeService.listen().subscribe((m: any) => {
       console.log(m);
@@ -140,4 +152,13 @@ export class EmployeesAdminComponent implements OnInit {
         })
       );
   }
+
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+
 }

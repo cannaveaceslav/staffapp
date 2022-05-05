@@ -25,7 +25,12 @@ export class ItemsComponent implements OnInit {
   items?: Item[] = []
   sort!: Sort
   dataSource!: MatTableDataSource<Item[]>;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  // @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator) set matPaginator(paginator: MatPaginator) {
+    if (!this.dataSource.paginator) {
+      this.dataSource.paginator = paginator;
+    }
+  }
 
   @ViewChild(MatSort) set matSort(sort: MatSort) {
     if (!this.dataSource.sort) {
@@ -33,7 +38,7 @@ export class ItemsComponent implements OnInit {
     }
   }
 
-  // @ViewChild(MatSort, {}) sort!: MatSort;
+
 
   @ViewChild(MatTable) table!: MatTable<any>;
   public value: any;
@@ -78,9 +83,6 @@ export class ItemsComponent implements OnInit {
       shareReplay()
     );
 
-  // ngAfterViewInit() {
-  //   this.dataSource.sort = this.sort;
-  // }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
