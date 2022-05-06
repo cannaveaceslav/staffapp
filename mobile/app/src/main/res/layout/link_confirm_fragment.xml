@@ -14,7 +14,13 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
 
             <TextView
                 android:id="@+id/logo"
@@ -52,8 +58,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/linking"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="48dp"
                 android:autofillHints=""
+                android:background="@color/cardview_shadow_start_color"
                 android:drawablePadding="20dp"
                 android:hint="@string/link_employee"
                 android:padding="6dp"
@@ -67,47 +74,57 @@
 
             <TextView
                 android:id="@+id/link_item"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_width="386dp"
+                android:layout_height="77dp"
 
                 android:layout_below="@id/link_employee"
-                android:layout_marginTop="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="11dp"
+                android:layout_marginTop="38dp"
+
                 android:autofillHints=""
-                android:drawablePadding="0dp"
+                android:background="@color/cardview_shadow_start_color"
+                android:drawablePadding="1dp"
                 android:hint="@string/link_to_item"
                 android:padding="6dp"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
-                android:textSize="25sp"
+                android:textSize="28sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="102dp" />
 
             <TextView
                 android:id="@+id/link_item_barcode"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_width="385dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/link_item"
-                android:layout_marginTop="0dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="9dp"
                 android:autofillHints=""
+                android:background="@color/cardview_shadow_start_color"
+
                 android:drawablePadding="0dp"
                 android:hint="@string/link_item_barcode"
                 android:padding="6dp"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textColorHint="@android:color/background_light"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="102dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/confirm_button"
-                android:layout_width="match_parent"
-                android:layout_height="83dp"
+                android:layout_width="369dp"
+                android:layout_height="81dp"
                 android:layout_below="@id/link_item"
-                android:layout_marginTop="109dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="118dp"
+                android:layout_marginEnd="19dp"
                 android:background="#75F1D4D4"
                 android:gravity="center"
                 android:onClick="onClick"
@@ -122,8 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
                 android:layout_below="@id/link_employee"
-                android:background="?android:attr/listDivider"
-             />
+                android:background="?android:attr/listDivider" />
 
             <View
                 android:id="@+id/divider2"
@@ -131,6 +147,16 @@
                 android:layout_height="5dp"
 
                 android:layout_below="@id/linking"
+                android:layout_marginTop="129dp"
+                android:background="?android:attr/listDivider" />
+
+            <View
+                android:id="@+id/divider6"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+
+                android:layout_below="@id/linking"
+                android:layout_marginTop="25dp"
                 android:background="?android:attr/listDivider" />
 
 

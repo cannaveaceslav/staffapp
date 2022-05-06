@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/background"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".activities.LinkingActivity">
 
     <RelativeLayout
         android:id="@+id/container_check"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
         android:layout_marginBottom="67dp">
 
         <TextView
@@ -24,13 +27,14 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
+
         <TextView
             android:id="@+id/checking"
-            android:layout_width="339dp"
-            android:layout_height="57dp"
+            android:layout_width="305dp"
+            android:layout_height="46dp"
             android:layout_below="@id/logo"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="-14dp"
+            android:layout_marginTop="-20dp"
             android:layout_marginEnd="50dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"
@@ -42,73 +46,97 @@
 
         <EditText
             android:id="@+id/barcode"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_width="395dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/checking"
+            android:layout_centerHorizontal="true"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="-19dp"
+            android:layout_marginTop="-20dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:background="#35ffffff"
-            android:drawableStart="@drawable/ic_action_barcode"
+            android:background="@color/white"
+            android:drawableStart="@drawable/ic_baseline_qr_code_scanner_24"
             android:drawablePadding="20dp"
             android:hint="@string/scan"
-            android:padding="20dp"
+            android:padding="10dp"
             android:textAppearance="@style/CardView.Dark"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="30sp" />
+            android:textColor="@color/black"
+            android:textColorHint="@android:color/darker_gray"
+            android:textSize="25sp" />
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/itemName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/barcode"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="-2dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:autofillHints=""
-            android:background="#35ffffff"
+            android:textAlignment="center"
+
+            android:background="@color/cardview_shadow_start_color"
             android:drawablePadding="0dp"
-            android:hint="@string/item_description"
+            android:hint="@string/items"
             android:padding="6dp"
             android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColorHint="@android:color/darker_gray"
             android:textSize="20sp" />
 
-
         <TextView
-            android:id="@+id/owner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/description"
+            android:id="@+id/description2"
+            android:layout_width="395dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/itemName"
             android:layout_marginStart="10dp"
             android:layout_marginTop="-3dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:autofillHints=""
-            android:background="#35ffffff"
-            android:drawablePadding="20dp"
+            android:background="@color/cardview_shadow_start_color"
+            android:drawablePadding="0dp"
+            android:hint="@string/item_description"
+            android:padding="0dp"
+            android:paddingStart="6dp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+
+            android:textColorHint="@android:color/darker_gray"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/owner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/description2"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="-3dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:autofillHints=""
+            android:background="@color/cardview_shadow_start_color"
             android:hint="@string/item_owner"
             android:padding="6dp"
             android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textAlignment="center"
+            android:textColorHint="@android:color/darker_gray"
             android:textSize="20sp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/confirm_button"
-            android:layout_width="400dp"
-            android:layout_height="83dp"
+            android:id="@+id/check_button"
+            android:layout_width="347dp"
+            android:layout_height="79dp"
             android:layout_below="@id/owner"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="3dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="-5dp"
             android:layout_marginEnd="3dp"
             android:layout_marginBottom="20dp"
             android:background="#75FFFFFF"
             android:gravity="center"
-            android:text="@string/CONFIRM"
+            android:onClick="onClickCheckButton"
+            android:text="@string/check"
             android:textSize="20sp"
             android:textStyle="bold" />
 

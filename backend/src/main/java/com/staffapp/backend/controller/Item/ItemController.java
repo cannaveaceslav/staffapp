@@ -6,6 +6,7 @@ import com.staffapp.backend.service.item.ItemService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -135,6 +136,21 @@ public class ItemController {
     );
   }
 
+  @PostMapping(path="/get-by-barcode", produces = "application/json")
+  @ApiOperation("Method that get item by barcode.")
+  public ResponseEntity<Response> getItemByBarcode(@RequestParam("barcode") String barcode) {
+
+
+    return ResponseEntity.ok(
+            Response.builder()
+                    .timeStamp(now())
+                    .data(Collections.singletonMap("item", itemService.getByBarcode(barcode) ))
+                    .message("Received item by barcode [" + barcode+"]")
+                    .status(OK)
+                    .statusCode(OK.value())
+                    .build()
+    );
+  }
   @GetMapping("/employee/{id}")
   @ApiOperation("Method returns a response with the map with key=item and value=item by id")
   public ResponseEntity<Response> getItemByEmployee(@PathVariable("id") Long id) {

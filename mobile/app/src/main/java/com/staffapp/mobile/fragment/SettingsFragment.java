@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +21,8 @@ import com.staffapp.mobile.storage.SharedPrefManager;
 
 public class SettingsFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "SettingsFragment";
+    private TextView editTextEmail;
+
 
     @Nullable
     @Override
@@ -32,6 +35,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.logout_botton).setOnClickListener(this);
+        editTextEmail =  view.findViewById(R.id.editTextEmail);
+        editTextEmail.setText(SharedPrefManager.getInstance(getActivity()).getUser().getEmail());
 
     }
 

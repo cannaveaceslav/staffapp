@@ -43,18 +43,33 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/logout_botton"
-            android:layout_width="400dp"
-            android:layout_height="83dp"
+            android:layout_width="325dp"
+            android:layout_height="76dp"
             android:layout_below="@id/settings"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="3dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="109dp"
             android:layout_marginEnd="3dp"
             android:layout_marginBottom="20dp"
             android:background="#75FFFFFF"
             android:gravity="center"
             android:text="@string/LOGOUT"
             android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/editTextEmail"
+            android:layout_width="340dp"
+            android:layout_height="55dp"
+            android:layout_below="@id/settings"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:textAlignment="inherit"
+            android:textColor="@color/white"
+            android:textSize="25sp"
             android:textStyle="bold" />
 
     </RelativeLayout>

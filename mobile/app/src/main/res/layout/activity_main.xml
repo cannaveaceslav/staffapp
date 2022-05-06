@@ -76,7 +76,6 @@
         android:autofillHints="" />
 
 
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/confirm_button"
         android:layout_width="400dp"

@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 
 import com.staffapp.mobile.model.User;
 
+import java.util.List;
+
 public class SharedPrefManager {
     private static final String SHARED_PREF_NAME = "my_shared_pref";
 
@@ -127,4 +129,5 @@ public class SharedPrefManager {
         editor.clear();
         editor.apply();
     }
+
 }
