@@ -96,7 +96,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                     SharedPrefManager.getInstance(MyAppContext.getContext()).saveItemName(itemName);
                     SharedPrefManager.getInstance(MyAppContext.getContext()).saveItemBarcode(barcode);
 
-                    Toast.makeText(mCtx, barcode, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(mCtx, barcode, Toast.LENGTH_SHORT).show();
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
                     Fragment myFragment = new LinkConfirmFragment();
 

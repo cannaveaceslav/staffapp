@@ -31,6 +31,13 @@ public interface Api {
             @Field("itemId") Long itemId
     );
 
+    @FormUrlEncoded
+    @POST("/items/get-by-barcode")
+    Call<CustomResponse> getItemByBarcode(
+            @Field("barcode") String barcode
+    );
+
+
     @POST("/login/validate")
     Call<CustomResponse> validateUser(
             @Header("Authorization") String authHeader,

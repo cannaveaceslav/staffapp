@@ -3,24 +3,19 @@ package com.staffapp.mobile.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 
 import com.google.android.material.button.MaterialButton;
 import com.staffapp.mobile.R;
-import com.staffapp.mobile.adapter.EmployeeAdapter;
 import com.staffapp.mobile.api.RetrofitClient;
 import com.staffapp.mobile.model.CustomResponse;
 import com.staffapp.mobile.storage.SharedPrefManager;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -28,15 +23,23 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
+    private EditText editTextBarcode;
+    private TextView textViewDescription;
+    private TextView textViewOwner;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.check_fragment);
 
-        MaterialButton confirm_button = (MaterialButton) findViewById(R.id.confirm_button);
+        editTextBarcode = findViewById(R.id.barcode);
+        textViewDescription = findViewById(R.id.description2);
+        textViewOwner = findViewById(R.id.owner);
+
+        MaterialButton check_button = (MaterialButton) findViewById(R.id.check_button);
 
         Call<CustomResponse> call = RetrofitClient
                 .getInstance()
@@ -60,30 +63,25 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG, itemList + "List with items retrieved");
                 Toast.makeText(MainActivity.this, customResponse.getMessage(), Toast.LENGTH_LONG).show();
 
-
-                if (itemList.size() > 0) {
-                    JSONObject jsonObject = null;
-                    JSONArray jsonArray = new JSONArray(itemList);
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        try {
-                            jsonObject = (JSONObject) jsonArray.get(i);
-//                            System.out.println("/****************************/");
-//                            System.out.println(jsonObject);
+//                if (itemList.size() > 0) {
+//                    JSONObject jsonObject = null;
+//                    JSONArray jsonArray = new JSONArray(itemList);
+//                    for (int i = 0; i < jsonArray.length(); i++) {
+//                        try {
+////                            jsonObject = (JSONObject) jsonArray.get(i);
+////                            System.out.println("/****************************/");
+////                            System.out.println(jsonObject);
+////
+////                            Long id = jsonObject.getLong("id");
+////                            String itemName = jsonObject.getString("itemName");
+////                            String barcode = jsonObject.getString("barcode");
+////
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
 //
-//                            Long id = jsonObject.getLong("id");
-//                            String itemName = jsonObject.getString("itemName");
-//                            String barcode = jsonObject.getString("barcode");
-//
-//                            System.out.println(id);
-//                            System.out.println(itemName);
-//                            System.out.println(barcode);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                }
+//                }
             }
 
             @Override
@@ -93,13 +91,21 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        confirm_button.setOnClickListener((view -> {
-            startActivity(new Intent(this, LoginActivity.class));
-        }));
+//        check_button.setOnClickListener((view -> {
+////            startActivity(new Intent(this, LoginActivity.class));
+//            checkBarcode(view);
+//        }));
+
+        check_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "SSSSSSSSSS", Toast.LENGTH_LONG).show();
+
+            }
+        });
 
 
     }
-
 
 
     @Override
@@ -111,5 +117,16 @@ public class MainActivity extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
+    }
+
+
+
+    public void checkBarcode(View view) {
+        Log.i(TAG,  "HHHHHHHHHHHHHHHHHHHHHHHHHHUI");
+    }
+
+    @Override
+    public void onClick(View view) {
+        Log.i(TAG,  "ZZZZZZZZZZZZZZZZZZZ");
     }
 }

@@ -25,5 +25,6 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
             "WHERE c.id = ?2")
   int linkEmployeeToItem(Long employeeId, Long itemId);
 
+  Item findFirstByBarcode(String barcode);
 
 }

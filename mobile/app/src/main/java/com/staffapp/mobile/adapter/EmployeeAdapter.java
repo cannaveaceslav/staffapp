@@ -141,7 +141,7 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.Employ
                     SharedPrefManager.getInstance(MyAppContext.getContext()).saveEmployeeId(id);
                     SharedPrefManager.getInstance(MyAppContext.getContext()).saveEmployeeName(name);
 
-                    Toast.makeText(mCtx, lastName, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(mCtx, lastName, Toast.LENGTH_SHORT).show();
 
                     AppCompatActivity activity = (AppCompatActivity) view.getContext();
                     Fragment myFragment = new LinkItemFragment();

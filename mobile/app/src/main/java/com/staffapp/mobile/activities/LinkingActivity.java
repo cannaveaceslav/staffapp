@@ -7,15 +7,19 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.internal.LinkedTreeMap;
 import com.staffapp.mobile.R;
 import com.staffapp.mobile.api.ConnectionLiveData;
 import com.staffapp.mobile.api.MyAppContext;
@@ -29,6 +33,8 @@ import com.staffapp.mobile.model.CustomResponse;
 import com.staffapp.mobile.storage.SharedPrefManager;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,12 +42,29 @@ import retrofit2.Response;
 
 public class LinkingActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private static final String TAG = "LinkingActivity";
+    private EditText editTextBarcode;
+    private TextView textViewItemName;
+    private TextView textViewDescription;
+    private TextView textViewOwner;
+    LinkedTreeMap itemMap;
+    LinkedTreeMap employeeMap;
+    CustomResponse customResponse;
+    String itemName = "";
+    String itemDescription = "";
+    String employeeFirstName = "";
+    String employeeLastName = "";
+    String employeeFullName = "";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_link);
+
+//        editTextBarcode = findViewById(R.id.barcode);
+//        textViewItemName = findViewById(R.id.itemName);
+//        textViewDescription = findViewById(R.id.description2);
+//        textViewOwner = findViewById(R.id.owner);
 
         DialogFragment noInternetDialogFragment = new InternetProblemsDialogFragment();
         getSupportFragmentManager().beginTransaction()
@@ -68,14 +91,9 @@ public class LinkingActivity extends AppCompatActivity implements BottomNavigati
             }
         });
 
-
-
         BottomNavigationView navigationView = findViewById(R.id.botton_nav);
         navigationView.setOnNavigationItemSelectedListener(this);
-
         displayFragment(new CheckFragment());
-
-
     }
 
     @Override
@@ -118,19 +136,20 @@ public class LinkingActivity extends AppCompatActivity implements BottomNavigati
 
             @Override
             public void onResponse(Call<CustomResponse> call, Response<CustomResponse> response) {
-                if(response.isSuccessful()){
-                CustomResponse customResponse = response.body();
-                String msg = customResponse.getMessage();
-                String status = customResponse.getStatus();
-                String timestamp = customResponse.getTimeStamp();
-                List<?> employeeList = (List<?>) customResponse.getData().get("employees");
-                System.out.println(msg + " | " + status + "  | " + timestamp);
-                assert employeeList != null;
-                Log.i(TAG, employeeList + "List with items retrieved");
-                Toast.makeText(LinkingActivity.this, customResponse.getMessage(), Toast.LENGTH_LONG).show();}
-                else{
-                    Toast.makeText(LinkingActivity.this, "Failed to retrieve employees", Toast.LENGTH_LONG).show();}
+                if (response.isSuccessful()) {
+                    CustomResponse customResponse = response.body();
+                    String msg = customResponse.getMessage();
+                    String status = customResponse.getStatus();
+                    String timestamp = customResponse.getTimeStamp();
+                    List<?> employeeList = (List<?>) customResponse.getData().get("employees");
+                    System.out.println(msg + " | " + status + "  | " + timestamp);
+                    assert employeeList != null;
+//                    Log.i(TAG, employeeList + "List with items retrieved");
+                    Toast.makeText(LinkingActivity.this, customResponse.getMessage(), Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(LinkingActivity.this, "Failed to retrieve employees", Toast.LENGTH_LONG).show();
                 }
+            }
 
 
             @Override
@@ -155,17 +174,13 @@ public class LinkingActivity extends AppCompatActivity implements BottomNavigati
     }
 
 
-
     private void linkItemToEmployee() {
-
         Long employeeId = SharedPrefManager.getInstance(MyAppContext.getContext()).getEmployeeId();
         Long itemId = SharedPrefManager.getInstance(MyAppContext.getContext()).getItemId();
-
-
         Call<CustomResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .linkEmployee(employeeId,itemId);
+                .linkEmployee(employeeId, itemId);
         call.enqueue(new Callback<CustomResponse>() {
             @Override
             public void onResponse(Call<CustomResponse> call, Response<CustomResponse> response) {
@@ -175,12 +190,10 @@ public class LinkingActivity extends AppCompatActivity implements BottomNavigati
                 } else {
                     Toast.makeText(LinkingActivity.this, "Linking failed", Toast.LENGTH_LONG).show();
                 }
-
             }
 
             @Override
             public void onFailure(Call<CustomResponse> call, Throwable t) {
-
             }
         });
 
@@ -191,7 +204,70 @@ public class LinkingActivity extends AppCompatActivity implements BottomNavigati
         linkItemToEmployee();
     }
 
+    public void onClickCheckButton(View view) {
+        Log.i(TAG, "Entered into onClickCheckButton()");
+        checkBarcode();
+    }
 
+    private void checkBarcode() {
+        editTextBarcode = findViewById(R.id.barcode);
+        textViewItemName = findViewById(R.id.itemName);
+        textViewDescription = findViewById(R.id.description2);
+        textViewOwner = findViewById(R.id.owner);
+        String barcode = editTextBarcode.getText().toString().trim();
+
+        Call<CustomResponse> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .getItemByBarcode(barcode);
+        call.enqueue(new Callback<CustomResponse>() {
+            @Override
+            public void onResponse(Call<CustomResponse> call, Response<CustomResponse> response) {
+                customResponse = response.body();
+                itemMap = (LinkedTreeMap) customResponse.getData().get("item");
+
+                if (response.isSuccessful() && itemMap != null && itemMap.size() > 0) {
+                    //getting item`s Info
+                    Log.i(TAG, "Item retrieved. " + itemMap.get("itemName"));
+                    itemName = (String) itemMap.get("itemName");
+                    itemDescription = (String) itemMap.get("description");
+
+                    //getting employee Info
+                    employeeMap = (LinkedTreeMap) itemMap.get("employee");
+
+                    if (employeeMap != null && employeeMap.size() > 0) {
+                        Log.i(TAG, "Item has employee:  retrieved. " + employeeMap.get("lastName"));
+                        employeeFirstName = (String) employeeMap.get("firstName");
+                        employeeLastName = (String) employeeMap.get("lastName");
+                        employeeFullName = employeeLastName + " " + employeeFirstName;
+                    } else {
+                        Log.i(TAG, "Item has NO employee!");
+                        employeeFullName = "";
+                    }
+
+                    editTextBarcode.getText().clear();
+                    textViewItemName.setText(itemName);
+                    textViewDescription.setText(itemDescription);
+                    textViewOwner.setText(employeeFullName);
+                } else {
+                    Log.i(TAG, "Wrong barcode " + this.getClass());
+                    editTextBarcode.getText().clear();
+                    textViewItemName.setText("");
+                    textViewDescription.setText("");
+                    textViewOwner.setText("");
+                    Toast.makeText(LinkingActivity.this, "Wrong barcode. Try again", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CustomResponse> call, Throwable t) {
+                Toast.makeText(LinkingActivity.this, "Item not found. Try again", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -213,8 +289,6 @@ public class LinkingActivity extends AppCompatActivity implements BottomNavigati
         if (fragment != null) {
             displayFragment(fragment);
         }
-
         return false;
-
     }
 }
