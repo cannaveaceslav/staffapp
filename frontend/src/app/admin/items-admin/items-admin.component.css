@@ -131,3 +131,9 @@ table {
   flex: 0 0 50%;
   width: 200px !important;
 }
+
+.img-responsive2:hover{
+  -ms-transform: scale(7); /* IE 9 */
+  -webkit-transform: scale(7); /* Safari 3-8 */
+  transform: scale(7);
+}

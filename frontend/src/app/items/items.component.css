@@ -71,3 +71,8 @@ th.mat-sort-header-sorted {
 }
 
 
+.img-responsive3:hover{
+  -ms-transform: scale(7.5); /* IE 9 */
+  -webkit-transform: scale(7.5); /* Safari 3-8 */
+  transform: scale(7.5);
+}
