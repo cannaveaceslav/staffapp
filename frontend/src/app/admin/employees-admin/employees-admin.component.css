@@ -101,8 +101,10 @@ table {
   background: linear-gradient(to top, cornflowerblue 0%, #FFFFFF 100%);
   border-radius: 5px;
   margin-top: 5%;
-
-
-
 }
 
+.img-responsive-table:hover {
+  -ms-transform: scale(7.5); /* IE 9 */
+  -webkit-transform: scale(7.5); /* Safari 3-8 */
+  transform: scale(7.5);
+}
